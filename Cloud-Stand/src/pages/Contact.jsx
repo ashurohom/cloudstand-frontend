@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Clock3, Mail, MapPin, Phone } from 'lucide-react'
+import FeedbackSection from '../components/sections/FeedbackSection'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
@@ -165,6 +166,8 @@ function Contact() {
           </div>
         </div>
       </section>
+
+      <FeedbackSection />
     </main>
   )
 }
