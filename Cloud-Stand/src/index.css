@@ -109,6 +109,8 @@ select {
 
   .text-gradient {
     @apply bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradientFlow 9s ease infinite;
   }
 
   .diagonal-divider {
@@ -127,6 +129,31 @@ select {
       linear-gradient(130deg, #f7fbff, #edf4ff, #dce8ff, #f7fbff);
     background-size: 150% 150%;
     animation: gradientShift 18s ease infinite;
+  }
+
+  .gpu-layer {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .smooth-transition {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .badge-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  .floating-bob {
+    animation: bob 4s ease-in-out infinite;
+  }
+
+  .line-pulse {
+    animation: linePulse 2.5s ease-in-out infinite;
+  }
+
+  .orb-drift {
+    animation: drift 18s ease-in-out infinite;
   }
 
   .hero-particles::before,
@@ -229,5 +256,71 @@ select {
   }
   100% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 87, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(0, 87, 255, 0.08);
+  }
+}
+
+@keyframes linePulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 40px) scale(0.97);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
   }
 }

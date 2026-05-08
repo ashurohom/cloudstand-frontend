@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion'
+import { fadeUp } from '../../animations/variants'
 
-function ScrollReveal({ children, className = '', delay = 0, y = 30 }) {
+function ScrollReveal({ children, className = '', delay = 0 }) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      viewport={{ once: true, margin: '-100px' }}
+      custom={delay / 0.1}
+      initial="hidden"
+      variants={fadeUp}
+      viewport={{ once: true, margin: '-80px' }}
+      whileInView="visible"
     >
       {children}
     </motion.div>

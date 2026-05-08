@@ -9,6 +9,7 @@ function AIChatbot() {
   const [isTyping, setIsTyping] = useState(false)
   const [messages, setMessages] = useState([chatbotWelcomeMessage])
   const endRef = useRef(null)
+  const messageIdRef = useRef(0)
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -21,8 +22,9 @@ function AIChatbot() {
       return
     }
 
+    messageIdRef.current += 1
     const userMessage = {
-      id: `user-${Date.now()}`,
+      id: `user-${messageIdRef.current}`,
       role: 'user',
       text: trimmed,
     }
@@ -32,8 +34,9 @@ function AIChatbot() {
     setIsTyping(true)
 
     window.setTimeout(() => {
+      messageIdRef.current += 1
       const assistantMessage = {
-        id: `assistant-${Date.now()}`,
+        id: `assistant-${messageIdRef.current}`,
         role: 'assistant',
         text: getChatbotReply(trimmed),
       }

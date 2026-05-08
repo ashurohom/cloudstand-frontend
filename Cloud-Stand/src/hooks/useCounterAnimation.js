@@ -1,23 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useInView } from 'framer-motion'
 
-export function useCounterAnimation(target, duration = 2000, start = false) {
+export function useCounterAnimation(target, duration = 2000) {
   const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   useEffect(() => {
-    if (!start) {
+    if (!isInView) {
       return undefined
     }
 
-    let startTimestamp = null
+    let startTime = null
     let frameId = 0
+    const targetValue = `${target ?? ''}`
+    const numeric = parseInt(targetValue.replace(/\D/g, ''), 10) || 0
 
     const step = (timestamp) => {
-      if (!startTimestamp) {
-        startTimestamp = timestamp
+      if (!startTime) {
+        startTime = timestamp
       }
 
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
-      setCount(Math.floor(progress * target))
+      const progress = Math.min((timestamp - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.floor(eased * numeric))
 
       if (progress < 1) {
         frameId = window.requestAnimationFrame(step)
@@ -27,7 +33,7 @@ export function useCounterAnimation(target, duration = 2000, start = false) {
     frameId = window.requestAnimationFrame(step)
 
     return () => window.cancelAnimationFrame(frameId)
-  }, [duration, start, target])
+  }, [duration, isInView, target])
 
-  return count
+  return { count, ref, suffix: `${target ?? ''}`.replace(/[0-9]/g, '') }
 }

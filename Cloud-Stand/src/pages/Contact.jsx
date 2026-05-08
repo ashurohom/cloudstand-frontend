@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Clock3, Mail, MapPin, Phone } from 'lucide-react'
+import { motion } from 'framer-motion'
 import FeedbackSection from '../components/sections/FeedbackSection'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -7,6 +8,7 @@ import Card from '../components/ui/Card'
 import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
+import { pageVariants, slideLeft, slideRight, staggerContainer, staggerItem } from '../animations/variants'
 
 const initialForm = {
   name: '',
@@ -23,6 +25,10 @@ function Contact() {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -52,13 +58,13 @@ function Contact() {
   }
 
   const inputClass = (field) =>
-    `rounded-2xl border bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:outline-none ${
+    `rounded-2xl border bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,87,255,0.1)] ${
       errors[field] ? 'border-red-500 focus:border-red-500' : 'border-[#d7e5ff] focus:border-accent'
     }`
 
   return (
-    <main className="pt-20">
-      <section className="section-padding hero-mesh">
+    <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
+      <section className="section-padding hero-mesh gpu-layer">
         <div className="section-shell">
           <Badge>Contact</Badge>
           <h1 className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
@@ -72,29 +78,40 @@ function Contact() {
 
       <section className="section-padding bg-primary">
         <div className="section-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-5">
+          <motion.div className="space-y-5" initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <SectionTitle eyebrow="Reach Us" title="CloudStand Consulting (OPC) Pvt. Ltd." />
-            {[
-              { icon: MapPin, title: 'Address', value: 'Office No.19, Nirvana Hub, Z Corner, Mundhwa-Manjari Rd, Manjri Bk., Pune - 412307' },
-              { icon: Phone, title: 'Phone', value: '+91 9049020793' },
-              { icon: Mail, title: 'Email', value: 'hr@cloudstandconsulting.com' },
-              { icon: Clock3, title: 'Working Hours', value: 'Monday to Friday, 9:30 AM - 6:30 PM IST' },
-            ].map((item) => {
-              const Icon = item.icon
-              return (
-                <Card key={item.title} className="p-5">
-                  <div className="flex gap-4">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <div className="text-sm uppercase tracking-[0.24em] text-text-muted">{item.title}</div>
-                      <div className="mt-2 text-base leading-7 text-slate-900">{item.value}</div>
-                    </div>
-                  </div>
-                </Card>
-              )
-            })}
+            <motion.div animate="visible" className="space-y-5" initial="hidden" variants={staggerContainer}>
+              {[
+                { icon: MapPin, title: 'Address', value: 'Office No.19, Nirvana Hub, Z Corner, Mundhwa-Manjari Rd, Manjri Bk., Pune - 412307' },
+                { icon: Phone, title: 'Phone', value: '+91 9049020793' },
+                { icon: Mail, title: 'Email', value: 'hr@cloudstandconsulting.com' },
+                { icon: Clock3, title: 'Working Hours', value: 'Monday to Friday, 9:30 AM - 6:30 PM IST' },
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <motion.div key={item.title} variants={staggerItem}>
+                    <Card className="p-5">
+                      <div className="flex gap-4">
+                        <motion.span
+                          className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/15 text-accent"
+                          initial={{ scale: 0 }}
+                          transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+                          whileHover={{ rotate: -5, scale: 1.06 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                        >
+                          <Icon className="h-5 w-5" />
+                        </motion.span>
+                        <div>
+                          <div className="text-sm uppercase tracking-[0.24em] text-text-muted">{item.title}</div>
+                          <div className="mt-2 text-base leading-7 text-slate-900">{item.value}</div>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                )
+              })}
+            </motion.div>
 
             <Card className="flex min-h-[220px] items-center justify-center p-8">
               <div className="text-center">
@@ -102,36 +119,40 @@ function Contact() {
                 <div className="mt-4 text-2xl font-semibold text-slate-900">Google Maps Placeholder</div>
               </div>
             </Card>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div id="contact-form" initial="hidden" variants={slideRight} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <SectionTitle eyebrow="Inquiry Form" title="Share your project goals" subtitle="Required fields are highlighted in red on submit." />
             <Card className="p-8">
-              <form className="grid gap-5 md:grid-cols-2" onSubmit={handleSubmit}>
-                <div className="flex flex-col gap-2">
-                  <input className={inputClass('name')} name="name" onChange={handleChange} placeholder="Name" value={form.name} />
-                  {errors.name ? <span className="text-sm text-red-400">{errors.name}</span> : null}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <input className={inputClass('email')} name="email" onChange={handleChange} placeholder="Email" type="email" value={form.email} />
-                  {errors.email ? <span className="text-sm text-red-400">{errors.email}</span> : null}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <input className={inputClass('phone')} name="phone" onChange={handleChange} placeholder="Phone" value={form.phone} />
-                  {errors.phone ? <span className="text-sm text-red-400">{errors.phone}</span> : null}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <input className={inputClass('company')} name="company" onChange={handleChange} placeholder="Company" value={form.company} />
-                  {errors.company ? <span className="text-sm text-red-400">{errors.company}</span> : null}
-                </div>
-                <select className={inputClass('serviceInterest')} name="serviceInterest" onChange={handleChange} value={form.serviceInterest}>
-                  {services.map((service) => (
-                    <option key={service.slug} value={service.title}>
-                      {service.title}
-                    </option>
-                  ))}
-                </select>
-                <div className="flex flex-col gap-2">
+              <motion.form
+                className="grid gap-5 md:grid-cols-2"
+                initial="hidden"
+                onSubmit={handleSubmit}
+                variants={staggerContainer}
+                viewport={{ once: true, margin: '-80px' }}
+                whileInView="visible"
+              >
+                {[
+                  { name: 'name', placeholder: 'Name', type: 'text', className: '' },
+                  { name: 'email', placeholder: 'Email', type: 'email', className: '' },
+                  { name: 'phone', placeholder: 'Phone', type: 'text', className: '' },
+                  { name: 'company', placeholder: 'Company', type: 'text', className: '' },
+                ].map((field) => (
+                  <motion.div className="flex flex-col gap-2" key={field.name} variants={staggerItem}>
+                    <input className={inputClass(field.name)} name={field.name} onChange={handleChange} placeholder={field.placeholder} type={field.type} value={form[field.name]} />
+                    {errors[field.name] ? <span className="text-sm text-red-400">{errors[field.name]}</span> : null}
+                  </motion.div>
+                ))}
+                <motion.div variants={staggerItem}>
+                  <select className={inputClass('serviceInterest')} name="serviceInterest" onChange={handleChange} value={form.serviceInterest}>
+                    {services.map((service) => (
+                      <option key={service.slug} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
+                  </select>
+                </motion.div>
+                <motion.div className="flex flex-col gap-2" variants={staggerItem}>
                   <select className={inputClass('budget')} name="budget" onChange={handleChange} value={form.budget}>
                     <option value="">Budget Range</option>
                     <option value="<10L">&lt;10L</option>
@@ -140,8 +161,8 @@ function Contact() {
                     <option value="50L+">50L+</option>
                   </select>
                   {errors.budget ? <span className="text-sm text-red-400">{errors.budget}</span> : null}
-                </div>
-                <div className="flex flex-col gap-2 md:col-span-2">
+                </motion.div>
+                <motion.div className="flex flex-col gap-2 md:col-span-2" variants={staggerItem}>
                   <textarea
                     className={`${inputClass('message')} min-h-[160px]`}
                     name="message"
@@ -150,25 +171,29 @@ function Contact() {
                     value={form.message}
                   />
                   {errors.message ? <span className="text-sm text-red-400">{errors.message}</span> : null}
-                </div>
-                <div className="md:col-span-2 flex flex-col items-start gap-4">
+                </motion.div>
+                <motion.div className="md:col-span-2 flex flex-col items-start gap-4" variants={staggerItem}>
                   <Button size="lg" type="submit" variant="solid">
                     Submit
                   </Button>
                   {submitted ? (
-                    <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
+                    <motion.div
+                      animate={{ opacity: 1, y: 0 }}
+                      className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300"
+                      initial={{ opacity: 0, y: 8 }}
+                    >
                       Thank you. Your consultation request has been captured successfully.
-                    </div>
+                    </motion.div>
                   ) : null}
-                </div>
-              </form>
+                </motion.div>
+              </motion.form>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <FeedbackSection />
-    </main>
+    </motion.main>
   )
 }
 

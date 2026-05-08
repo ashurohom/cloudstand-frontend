@@ -24,14 +24,14 @@ import {
 } from 'lucide-react'
 
 const countryOptions = [
-  { value: 'United States', label: 'United States', flag: '🇺🇸' },
-  { value: 'United Kingdom', label: 'United Kingdom', flag: '🇬🇧' },
-  { value: 'United Arab Emirates', label: 'United Arab Emirates', flag: '🇦🇪' },
-  { value: 'India', label: 'India', flag: '🇮🇳' },
-  { value: 'Australia', label: 'Australia', flag: '🇦🇺' },
-  { value: 'Canada', label: 'Canada', flag: '🇨🇦' },
-  { value: 'Singapore', label: 'Singapore', flag: '🇸🇬' },
-  { value: 'Other', label: 'Other', flag: '🌍' },
+  { value: 'United States', label: 'United States', flag: '\u{1F1FA}\u{1F1F8}' },
+  { value: 'United Kingdom', label: 'United Kingdom', flag: '\u{1F1EC}\u{1F1E7}' },
+  { value: 'United Arab Emirates', label: 'United Arab Emirates', flag: '\u{1F1E6}\u{1F1EA}' },
+  { value: 'India', label: 'India', flag: '\u{1F1EE}\u{1F1F3}' },
+  { value: 'Australia', label: 'Australia', flag: '\u{1F1E6}\u{1F1FA}' },
+  { value: 'Canada', label: 'Canada', flag: '\u{1F1E8}\u{1F1E6}' },
+  { value: 'Singapore', label: 'Singapore', flag: '\u{1F1F8}\u{1F1EC}' },
+  { value: 'Other', label: 'Other', flag: '\u{1F30D}' },
 ]
 
 const serviceOptions = [
@@ -55,7 +55,7 @@ const ratingLabels = {
   2: { text: 'Fair', className: 'text-orange-400' },
   3: { text: 'Good', className: 'text-yellow-400' },
   4: { text: 'Very Good', className: 'text-blue-400' },
-  5: { text: 'Excellent! 🎉', className: 'text-emerald-400' },
+  5: { text: 'Excellent! \u{1F389}', className: 'text-emerald-500' },
 }
 
 const initialFormState = {
@@ -171,9 +171,9 @@ function FeedbackSection() {
   ]
 
   const progressItems = [
-    { country: 'United States', flag: '🇺🇸', value: 45 },
-    { country: 'United Kingdom', flag: '🇬🇧', value: 32 },
-    { country: 'UAE', flag: '🇦🇪', value: 23 },
+    { country: 'United States', flag: '\u{1F1FA}\u{1F1F8}', value: 45 },
+    { country: 'United Kingdom', flag: '\u{1F1EC}\u{1F1E7}', value: 32 },
+    { country: 'UAE', flag: '\u{1F1E6}\u{1F1EA}', value: 23 },
   ]
 
   const summaryCountry = countryOptions.find((country) => country.value === formData.country)
@@ -194,7 +194,7 @@ function FeedbackSection() {
   )
 
   const feedbackCounterClass =
-    charCount > 100 ? 'text-emerald-400' : charCount > 50 ? 'text-blue-300' : 'text-slate-400'
+    charCount > 100 ? 'text-emerald-600' : charCount > 50 ? 'text-accent' : 'text-text-muted'
 
   const isSubmitDisabled =
     isLoading ||
@@ -391,14 +391,14 @@ function FeedbackSection() {
   const getInputClasses = (field, hasIcon = true) => {
     const state = getFieldState(field)
     const base =
-      'w-full rounded-[18px] border bg-[#081321]/85 text-white placeholder:text-[#6E84A4] transition-all duration-200 focus:outline-none'
+      'w-full rounded-[18px] border bg-white/90 text-slate-900 placeholder:text-text-muted transition-all duration-200 focus:outline-none'
     const padding = hasIcon ? 'pl-12 pr-11' : 'px-4 pr-11'
     const stateClasses =
       state === 'error'
         ? 'border-[#EF4444] focus:border-[#EF4444] focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
         : state === 'valid'
           ? 'border-[#10B981] focus:border-[#10B981] focus:shadow-[0_0_0_3px_rgba(16,185,129,0.18)]'
-          : 'border-[rgba(0,87,255,0.22)] focus:border-[#3D8BFF] focus:shadow-[0_0_0_3px_rgba(0,87,255,0.15)]'
+          : 'border-[#d7e5ff] focus:border-[#3D8BFF] focus:shadow-[0_0_0_3px_rgba(0,87,255,0.15)]'
 
     return `${base} ${padding} py-3.5 ${stateClasses}`
   }
@@ -419,16 +419,16 @@ function FeedbackSection() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[#0A1628] text-white"
+      className="relative overflow-hidden bg-primary text-slate-900"
       id="feedback-section"
       ref={feedbackRef}
     >
       <div
-        className="h-20 w-full bg-[#0F1E35]"
+        className="h-20 w-full bg-[#eef5ff]"
         style={{ clipPath: 'polygon(0 18%, 100% 0, 100% 100%, 0 100%)' }}
       />
 
-      <div className="relative overflow-hidden">
+      <div className="hero-mesh relative overflow-hidden">
         <motion.div
           animate={{ x: [0, 25, 0], y: [0, -20, 0] }}
           className="pointer-events-none absolute left-[-8rem] top-[-6rem] h-[500px] w-[500px] rounded-full blur-3xl"
@@ -442,10 +442,10 @@ function FeedbackSection() {
           transition={{ duration: 14, ease: 'easeInOut', repeat: Infinity }}
         />
         <div
-          className="absolute inset-0 opacity-70"
+          className="absolute inset-0 opacity-90"
           style={{
             background:
-              'radial-gradient(circle at 20% 20%, rgba(61, 139, 255, 0.12), transparent 22%), radial-gradient(circle at 80% 25%, rgba(0, 87, 255, 0.08), transparent 28%), linear-gradient(145deg, rgba(5, 16, 32, 0.95), rgba(10, 22, 40, 0.92), rgba(12, 25, 45, 0.96))',
+              'radial-gradient(circle at 20% 20%, rgba(61, 139, 255, 0.18), transparent 22%), radial-gradient(circle at 80% 25%, rgba(0, 87, 255, 0.12), transparent 28%), linear-gradient(130deg, rgba(247, 251, 255, 0.98), rgba(237, 244, 255, 0.96), rgba(220, 232, 255, 0.94), rgba(247, 251, 255, 0.98))',
           }}
         />
 
@@ -457,16 +457,16 @@ function FeedbackSection() {
             whileInView="visible"
           >
             <motion.div
-              className="mx-auto inline-flex items-center gap-2 rounded-full border border-[rgba(61,139,255,0.28)] bg-white/8 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.32em] text-[#D6E7FF] backdrop-blur-xl"
+              className="mx-auto inline-flex items-center gap-2 rounded-full border border-accent/20 bg-white/70 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.32em] text-accent backdrop-blur-xl"
               variants={cardMotion}
               custom={0}
             >
-              <MessageSquare className="h-4 w-4 text-[#60A5FA]" />
+              <MessageSquare className="h-4 w-4 text-accent-light" />
               <span>Client Feedback</span>
             </motion.div>
 
             <motion.h2
-              className="mt-6 text-4xl font-extrabold leading-[0.95] text-white sm:text-5xl lg:text-[4.35rem]"
+              className="mt-6 text-4xl font-extrabold leading-[0.95] text-slate-900 sm:text-5xl lg:text-[4.35rem]"
               variants={cardMotion}
               custom={0.15}
             >
@@ -481,11 +481,11 @@ function FeedbackSection() {
             </motion.h2>
 
             <motion.p
-              className="mx-auto mt-5 max-w-3xl text-base leading-8 text-[#9FB5D4] sm:text-lg"
+              className="mx-auto mt-5 max-w-3xl text-base leading-8 text-text-muted sm:text-lg"
               variants={cardMotion}
               custom={0.25}
             >
-              Serving teams across 🇺🇸 USA · 🇬🇧 UK · 🇦🇪 UAE and beyond — your feedback shapes how we
+              Serving teams across {countryOptions[0].flag} USA · {countryOptions[1].flag} UK · {countryOptions[2].flag} UAE and beyond — your feedback shapes how we
               deliver Oracle Cloud excellence
             </motion.p>
 
@@ -500,11 +500,11 @@ function FeedbackSection() {
                 return (
                   <motion.div
                     key={item.label}
-                    className="inline-flex min-w-[165px] items-center justify-center gap-2 rounded-full border border-[rgba(61,139,255,0.2)] bg-white/8 px-5 py-3 text-sm font-medium text-[#E6F0FF] backdrop-blur-xl"
+                    className="inline-flex min-w-[165px] items-center justify-center gap-2 rounded-full border border-accent/15 bg-white/75 px-5 py-3 text-sm font-medium text-slate-900 shadow-soft backdrop-blur-xl"
                     custom={0.35 + index * 0.1}
                     variants={cardMotion}
                   >
-                    <Icon className={`h-4.5 w-4.5 ${index === 0 ? 'text-[#F59E0B]' : 'text-[#60A5FA]'}`} />
+                    <Icon className={`h-4.5 w-4.5 ${index === 0 ? 'text-gold' : 'text-accent-light'}`} />
                     <span>{item.label}</span>
                   </motion.div>
                 )
@@ -517,15 +517,15 @@ function FeedbackSection() {
               {!isSubmitted ? (
                 <motion.div
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-[20px] border border-[rgba(0,87,255,0.2)] bg-[rgba(15,30,53,0.85)] p-5 shadow-[0_25px_80px_rgba(0,0,0,0.3)] backdrop-blur-2xl sm:p-8 lg:p-10"
+                  className="glass-panel rounded-[20px] border-accent/15 bg-white/80 p-5 shadow-soft backdrop-blur-2xl sm:p-8 lg:p-10"
                   exit={{ opacity: 0, y: -18 }}
                   initial={{ opacity: 0, y: 40 }}
                   transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="mb-8">
-                    <div className="text-xs uppercase tracking-[0.3em] text-[#7F95B4]">Your Opinion Matters</div>
-                    <h3 className="mt-3 text-[24px] font-bold text-white">Leave Your Feedback</h3>
-                    <p className="mt-2 text-sm leading-6 text-[#8FA3BF]">
+                    <div className="text-xs uppercase tracking-[0.3em] text-text-muted">Your Opinion Matters</div>
+                    <h3 className="mt-3 text-[24px] font-bold text-slate-900">Leave Your Feedback</h3>
+                    <p className="mt-2 text-sm leading-6 text-text-muted">
                       Takes less than 2 minutes · Used to improve our Oracle delivery for global clients
                     </p>
                     <div className="mt-5 h-px w-full bg-gradient-to-r from-[#0057FF] via-[#3D8BFF] to-transparent" />
@@ -534,11 +534,11 @@ function FeedbackSection() {
                   <form className={`${isLoading ? 'pointer-events-none opacity-50' : ''}`} onSubmit={handleSubmit}>
                     <div className="grid gap-5 md:grid-cols-2">
                       <FieldWrapper error={errors.name} field="name" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-name">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-name">
                           Full Name *
                         </label>
                         <div className="relative">
-                          <User className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <User className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                           <input
                             className={getInputClasses('name')}
                             id="feedback-name"
@@ -555,11 +555,11 @@ function FeedbackSection() {
                       </FieldWrapper>
 
                       <FieldWrapper error={errors.designation} field="designation" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-designation">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-designation">
                           Designation *
                         </label>
                         <div className="relative">
-                          <Briefcase className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <Briefcase className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                           <input
                             className={getInputClasses('designation')}
                             id="feedback-designation"
@@ -576,11 +576,11 @@ function FeedbackSection() {
                       </FieldWrapper>
 
                       <FieldWrapper error={errors.company} field="company" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-company">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-company">
                           Company *
                         </label>
                         <div className="relative">
-                          <Building2 className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <Building2 className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                           <input
                             className={getInputClasses('company')}
                             id="feedback-company"
@@ -597,11 +597,11 @@ function FeedbackSection() {
                       </FieldWrapper>
 
                       <FieldWrapper error={errors.country} field="country" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-country">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-country">
                           Country *
                         </label>
                         <div className="relative">
-                          <Globe className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <Globe className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                           <select
                             className={`${getInputClasses('country')} appearance-none`}
                             id="feedback-country"
@@ -618,16 +618,16 @@ function FeedbackSection() {
                               </option>
                             ))}
                           </select>
-                          <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                         </div>
                       </FieldWrapper>
 
                       <FieldWrapper className="md:col-span-2" error={errors.service} field="service" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-service">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-service">
                           Service Experienced *
                         </label>
                         <div className="relative">
-                          <Settings className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <Settings className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                           <select
                             className={`${getInputClasses('service')} appearance-none`}
                             id="feedback-service"
@@ -644,18 +644,18 @@ function FeedbackSection() {
                               </option>
                             ))}
                           </select>
-                          <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                         </div>
                       </FieldWrapper>
 
                       <FieldWrapper className="md:col-span-2" error={errors.rating} field="rating" shakeField={shakeField}>
-                        <div className="flex flex-col gap-3 rounded-[18px] border border-[rgba(0,87,255,0.18)] bg-[#091526]/70 p-5">
+                        <div className="flex flex-col gap-3 rounded-[18px] border border-accent/15 bg-[#f8fbff]/90 p-5">
                           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]">Star Rating *</div>
-                              <div className="mt-2 text-base font-medium text-white">Rate Your Overall Experience</div>
+                              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">Star Rating *</div>
+                              <div className="mt-2 text-base font-medium text-slate-900">Rate Your Overall Experience</div>
                             </div>
-                            <div className={`text-sm font-semibold ${ratingLabels[hoveredRating || formData.rating]?.className || 'text-[#8FA3BF]'}`}>
+                            <div className={`text-sm font-semibold ${ratingLabels[hoveredRating || formData.rating]?.className || 'text-text-muted'}`}>
                               {ratingLabels[hoveredRating || formData.rating]?.text || 'Choose a rating'}
                             </div>
                           </div>
@@ -692,7 +692,7 @@ function FeedbackSection() {
                                     className={`h-8 w-8 transition-colors duration-200 ${
                                       isActive
                                         ? 'fill-[#F59E0B] text-[#F59E0B]'
-                                        : 'text-[#4A5E7C]'
+                                        : 'text-[#9bb0ca]'
                                     }`}
                                     strokeWidth={1.9}
                                   />
@@ -704,11 +704,11 @@ function FeedbackSection() {
                       </FieldWrapper>
 
                       <FieldWrapper className="md:col-span-2" error={errors.outcome} field="outcome" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-outcome">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-outcome">
                           Project Result (Optional)
                         </label>
                         <div className="relative">
-                          <TrendingUp className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6E84A4]" />
+                          <TrendingUp className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-text-muted" />
                           <input
                             className={getInputClasses('outcome')}
                             id="feedback-outcome"
@@ -719,11 +719,11 @@ function FeedbackSection() {
                             value={formData.outcome}
                           />
                         </div>
-                        <span className="text-xs italic text-[#D5A54C]">✦ Specific metrics make your feedback more impactful</span>
+                        <span className="text-xs italic text-[#B9851A]">✦ Specific metrics make your feedback more impactful</span>
                       </FieldWrapper>
 
                       <FieldWrapper className="md:col-span-2" error={errors.feedback} field="feedback" shakeField={shakeField}>
-                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]" htmlFor="feedback-message">
+                        <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-message">
                           Your Feedback *
                         </label>
                         <div className="relative">
@@ -752,7 +752,7 @@ function FeedbackSection() {
                       </FieldWrapper>
 
                       <div className="md:col-span-2">
-                        <div className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#9FB5D4]">
+                        <div className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
                           Display Preference
                         </div>
                         <div className="grid gap-3 sm:grid-cols-3">
@@ -765,8 +765,8 @@ function FeedbackSection() {
                                 key={option.value}
                                 className={`relative rounded-[18px] border p-4 text-left transition-all duration-200 ${
                                   selected
-                                    ? 'border-[#3D8BFF] bg-[rgba(0,87,255,0.14)] shadow-[0_10px_30px_rgba(0,87,255,0.12)]'
-                                    : 'border-[rgba(143,163,191,0.16)] bg-[#091526]/65 hover:border-[#3D8BFF]/60'
+                                    ? 'border-[#3D8BFF] bg-[rgba(0,87,255,0.08)] shadow-[0_10px_30px_rgba(0,87,255,0.08)]'
+                                    : 'border-[#d7e5ff] bg-white/85 hover:border-[#3D8BFF]/60'
                                 }`}
                                 layout
                                 onClick={() => updateField('displayPreference', option.value)}
@@ -780,14 +780,14 @@ function FeedbackSection() {
                                 <div className="flex items-center gap-3">
                                   <span
                                     className={`inline-flex h-10 w-10 items-center justify-center rounded-2xl ${
-                                      selected ? 'bg-[#0057FF]/20 text-[#8FC3FF]' : 'bg-white/5 text-[#6E84A4]'
+                                      selected ? 'bg-[#0057FF]/12 text-[#3D8BFF]' : 'bg-[#eef5ff] text-text-muted'
                                     }`}
                                   >
                                     <Icon className="h-5 w-5" />
                                   </span>
                                   <div>
-                                    <div className="font-semibold text-white">{option.title}</div>
-                                    <div className="text-sm text-[#8FA3BF]">{option.subtitle}</div>
+                                    <div className="font-semibold text-slate-900">{option.title}</div>
+                                    <div className="text-sm text-text-muted">{option.subtitle}</div>
                                   </div>
                                 </div>
                               </motion.button>
@@ -801,7 +801,7 @@ function FeedbackSection() {
                           className={`flex cursor-pointer items-start gap-3 rounded-[18px] border p-4 transition-colors duration-200 ${
                             errors.permission
                               ? 'border-[#EF4444] bg-[rgba(239,68,68,0.06)]'
-                              : 'border-[rgba(0,87,255,0.18)] bg-[#091526]/55 hover:border-[#3D8BFF]/60'
+                              : 'border-accent/15 bg-white/85 hover:border-[#3D8BFF]/60'
                           }`}
                           htmlFor="feedback-permission"
                         >
@@ -819,7 +819,7 @@ function FeedbackSection() {
                             type="checkbox"
                           />
                           <motion.span
-                            animate={{ backgroundColor: formData.permission ? '#0057FF' : 'rgba(8, 19, 33, 0.7)' }}
+                            animate={{ backgroundColor: formData.permission ? '#0057FF' : '#f8fbff' }}
                             className={`mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border ${
                               formData.permission ? 'border-[#0057FF]' : 'border-[#3D8BFF]'
                             }`}
@@ -843,7 +843,7 @@ function FeedbackSection() {
                               />
                             </motion.svg>
                           </motion.span>
-                          <span className="text-sm leading-6 text-[#8FA3BF]">
+                          <span className="text-sm leading-6 text-text-muted">
                             I permit CloudStand Consulting to display this feedback as a testimonial on their
                             website and marketing materials
                           </span>
@@ -873,7 +873,7 @@ function FeedbackSection() {
                             </>
                           )}
                         </motion.button>
-                        <div className="mt-3 text-center text-xs text-[#7F95B4]">🔒 Your feedback is secure and confidential</div>
+                        <div className="mt-3 text-center text-xs text-text-muted">🔒 Your feedback is secure and confidential</div>
                       </div>
                     </div>
                   </form>
@@ -881,7 +881,7 @@ function FeedbackSection() {
               ) : (
                 <motion.div
                   animate={{ opacity: 1, y: 0 }}
-                  className="relative overflow-hidden rounded-[20px] border border-[rgba(0,87,255,0.2)] bg-[rgba(15,30,53,0.85)] p-6 shadow-[0_25px_80px_rgba(0,0,0,0.3)] backdrop-blur-2xl sm:p-8 lg:p-10"
+                  className="glass-panel relative overflow-hidden rounded-[20px] border-accent/15 bg-white/82 p-6 shadow-soft backdrop-blur-2xl sm:p-8 lg:p-10"
                   exit={{ opacity: 0, y: 16 }}
                   initial={{ opacity: 0, y: 30 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -923,40 +923,40 @@ function FeedbackSection() {
                       />
                     </motion.svg>
 
-                    <h3 className="mt-6 text-3xl font-bold text-white">
-                      Thank You, {formData.name.trim().split(' ')[0] || 'there'}! 🎉
+                    <h3 className="mt-6 text-3xl font-bold text-slate-900">
+                      Thank You, {formData.name.trim().split(' ')[0] || 'there'}! {'\u{1F389}'}
                     </h3>
-                    <p className="mt-3 text-base text-[#9FB5D4]">Your feedback has been received successfully.</p>
+                    <p className="mt-3 text-base text-text-muted">Your feedback has been received successfully.</p>
 
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                       <div className="rounded-full border border-[rgba(245,158,11,0.25)] bg-[rgba(245,158,11,0.08)] px-4 py-2 text-sm text-[#FCD34D]">
                         {'★'.repeat(summaryRating)}
                         {'☆'.repeat(Math.max(5 - summaryRating, 0))}
                       </div>
-                      <div className="rounded-full border border-[rgba(61,139,255,0.22)] bg-white/8 px-4 py-2 text-sm text-[#DDEAFF]">
-                        {summaryCountry?.flag || '🌍'} {summaryCountry?.label || 'Global'}
+                      <div className="rounded-full border border-accent/15 bg-[#f8fbff] px-4 py-2 text-sm text-slate-900">
+                        {summaryCountry?.flag || '\u{1F30D}'} {summaryCountry?.label || 'Global'}
                       </div>
-                      <div className="rounded-full border border-[rgba(61,139,255,0.22)] bg-white/8 px-4 py-2 text-sm text-[#DDEAFF]">
+                      <div className="rounded-full border border-accent/15 bg-[#f8fbff] px-4 py-2 text-sm text-slate-900">
                         {formData.service}
                       </div>
                     </div>
 
-                    <div className="mt-8 w-full rounded-[20px] border border-dashed border-[rgba(143,163,191,0.32)] bg-[#091526]/45 p-5 text-left">
-                      <p className="text-base leading-7 text-[#DDEAFF]">
+                    <div className="mt-8 w-full rounded-[20px] border border-dashed border-[#d7e5ff] bg-[#f8fbff] p-5 text-left">
+                      <p className="text-base leading-7 text-slate-900">
                         &quot;
                         {formData.feedback.length > 120
                           ? `${formData.feedback.slice(0, 120).trim()}...`
                           : formData.feedback}
                         &quot;
                       </p>
-                      <div className="mt-4 text-sm text-[#8FA3BF]">
+                      <div className="mt-4 text-sm text-text-muted">
                         — {formData.name}, {formData.designation} at {formData.company}
                       </div>
                     </div>
 
                     <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row">
                       <button
-                        className="inline-flex flex-1 items-center justify-center rounded-[16px] border border-[rgba(61,139,255,0.26)] bg-white/5 px-5 py-3.5 text-sm font-semibold text-[#DCE9FF] transition-all duration-200 hover:border-[#3D8BFF] hover:bg-white/10"
+                        className="inline-flex flex-1 items-center justify-center rounded-[16px] border border-accent/20 bg-white px-5 py-3.5 text-sm font-semibold text-slate-900 transition-all duration-200 hover:border-[#3D8BFF] hover:bg-[#f8fbff]"
                         onClick={handleSubmitAnother}
                         type="button"
                       >
@@ -976,7 +976,7 @@ function FeedbackSection() {
 
             <div className="hidden gap-5 md:grid lg:sticky lg:top-6">
               <motion.div
-                className="rounded-[20px] border border-[rgba(61,139,255,0.18)] bg-[rgba(10,22,40,0.75)] p-6 backdrop-blur-xl"
+                className="glass-panel rounded-[20px] border-accent/15 bg-white/80 p-6 backdrop-blur-xl"
                 initial={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.65, delay: 0.4 }}
                 viewport={{ once: true, margin: '-80px' }}
@@ -984,22 +984,22 @@ function FeedbackSection() {
               >
                 <div className="border-l-4 border-[#3D8BFF] pl-4">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0057FF]/12 text-[#7EB7FF]">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0057FF]/10 text-accent">
                       <MessageSquare className="h-5 w-5" />
                     </span>
                     <div>
-                      <div className="text-xs uppercase tracking-[0.26em] text-[#7F95B4]">Why Share Your Feedback?</div>
-                      <h4 className="mt-2 text-xl font-bold text-white">Why It Matters</h4>
+                      <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Why Share Your Feedback?</div>
+                      <h4 className="mt-2 text-xl font-bold text-slate-900">Why It Matters</h4>
                     </div>
                   </div>
                   <div className="mt-5 space-y-4">
                     {sidebarItems.map((item, index) => (
                       <div
                         key={item}
-                        className="group flex items-start gap-3 text-sm leading-6 text-[#9FB5D4]"
+                        className="group flex items-start gap-3 text-sm leading-6 text-text-muted"
                       >
                         <motion.span
-                          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/6 text-[#8FC3FF]"
+                          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#eef5ff] text-accent-light"
                           transition={{ type: 'spring', stiffness: 260, damping: 18 }}
                           whileHover={{ y: -3 }}
                         >
@@ -1016,24 +1016,24 @@ function FeedbackSection() {
               </motion.div>
 
               <motion.div
-                className="rounded-[20px] border border-[rgba(61,139,255,0.18)] bg-[rgba(10,22,40,0.75)] p-6 backdrop-blur-xl"
+                className="glass-panel rounded-[20px] border-accent/15 bg-white/80 p-6 backdrop-blur-xl"
                 initial={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.65, delay: 0.5 }}
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <div className="text-xs uppercase tracking-[0.26em] text-[#7F95B4]">Global Client Base</div>
-                <h4 className="mt-2 text-xl font-bold text-white">Our Clients Are From</h4>
+                <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Global Client Base</div>
+                <h4 className="mt-2 text-xl font-bold text-slate-900">Our Clients Are From</h4>
                 <div className="mt-6 space-y-4">
                   {progressItems.map((item) => (
                     <div key={item.country}>
-                      <div className="mb-2 flex items-center justify-between text-sm text-[#D6E7FF]">
+                      <div className="mb-2 flex items-center justify-between text-sm text-slate-900">
                         <span>
                           {item.flag} {item.country}
                         </span>
                         <span>{item.value}%</span>
                       </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-white/8">
+                      <div className="h-2.5 overflow-hidden rounded-full bg-[#e5eefc]">
                         <motion.div
                           className="h-full rounded-full"
                           initial={{ width: 0 }}
@@ -1046,19 +1046,19 @@ function FeedbackSection() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 text-sm text-[#8FA3BF]">&amp; growing across 3 continents</div>
+                <div className="mt-4 text-sm text-text-muted">&amp; growing across 3 continents</div>
               </motion.div>
 
               <motion.div
-                className="rounded-[20px] border border-[rgba(61,139,255,0.18)] bg-[rgba(10,22,40,0.75)] p-6 backdrop-blur-xl"
+                className="glass-panel rounded-[20px] border-accent/15 bg-white/80 p-6 backdrop-blur-xl"
                 initial={{ opacity: 0, x: 40 }}
                 ref={statsRef}
                 transition={{ duration: 0.65, delay: 0.6 }}
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <div className="text-xs uppercase tracking-[0.26em] text-[#7F95B4]">Quick Stats</div>
-                <h4 className="mt-2 text-xl font-bold text-white">Performance Snapshot</h4>
+                <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Quick Stats</div>
+                <h4 className="mt-2 text-xl font-bold text-slate-900">Performance Snapshot</h4>
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   {[
                     { value: `${counts.projects}+`, label: 'Completed Projects' },
@@ -1068,37 +1068,37 @@ function FeedbackSection() {
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="rounded-[18px] border border-[rgba(61,139,255,0.12)] bg-white/5 p-4"
+                      className="rounded-[18px] border border-accent/10 bg-[#f8fbff] p-4"
                     >
-                      <div className="text-3xl font-bold text-[#69B2FF]">{item.value}</div>
-                      <div className="mt-2 text-sm leading-6 text-[#8FA3BF]">{item.label}</div>
+                      <div className="text-3xl font-bold text-accent">{item.value}</div>
+                      <div className="mt-2 text-sm leading-6 text-text-muted">{item.label}</div>
                     </div>
                   ))}
                 </div>
               </motion.div>
 
               <motion.div
-                className="rounded-[20px] border border-[rgba(61,139,255,0.18)] bg-[rgba(10,22,40,0.75)] p-6 backdrop-blur-xl"
+                className="glass-panel rounded-[20px] border-accent/15 bg-white/80 p-6 backdrop-blur-xl"
                 initial={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.65, delay: 0.7 }}
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <div className="text-xs uppercase tracking-[0.26em] text-[#7F95B4]">Prefer To Talk?</div>
-                <h4 className="mt-2 text-xl font-bold text-white">Speak With Our Team Directly</h4>
-                <p className="mt-3 text-sm leading-6 text-[#8FA3BF]">Rather speak with our team directly?</p>
-                <div className="mt-5 space-y-3 text-sm text-[#DDEAFF]">
+                <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Prefer To Talk?</div>
+                <h4 className="mt-2 text-xl font-bold text-slate-900">Speak With Our Team Directly</h4>
+                <p className="mt-3 text-sm leading-6 text-text-muted">Rather speak with our team directly?</p>
+                <div className="mt-5 space-y-3 text-sm text-slate-900">
                   <div className="flex items-center gap-3">
-                    <Phone className="h-4.5 w-4.5 text-[#60A5FA]" />
+                    <Phone className="h-4.5 w-4.5 text-accent-light" />
                     <span>+91 9049020793</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-4.5 w-4.5 text-[#60A5FA]" />
+                    <Mail className="h-4.5 w-4.5 text-accent-light" />
                     <span>hr@cloudstandconsulting.com</span>
                   </div>
                 </div>
                 <button
-                  className="mt-6 inline-flex items-center justify-center rounded-[16px] border border-[rgba(61,139,255,0.26)] bg-[#0057FF]/6 px-5 py-3 text-sm font-semibold text-[#DCE9FF] transition-all duration-200 hover:border-[#3D8BFF] hover:bg-[#0057FF]/12"
+                  className="mt-6 inline-flex items-center justify-center rounded-[16px] border border-accent/20 bg-[#eef5ff] px-5 py-3 text-sm font-semibold text-accent transition-all duration-200 hover:border-[#3D8BFF] hover:bg-[#dfeaff]"
                   onClick={handleContactScroll}
                   type="button"
                 >

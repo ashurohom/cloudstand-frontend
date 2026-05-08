@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import AIChatbot from './components/ui/AIChatbot'
@@ -14,101 +13,21 @@ import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
-const pageTransition = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -18 },
-  transition: { duration: 0.6, ease: 'easeOut' },
-}
-
-function ScrollToTop() {
-  const location = useLocation()
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [location.pathname])
-
-  return null
-}
-
 function AnimatedRoutes() {
   const location = useLocation()
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <motion.div {...pageTransition}>
-              <Home />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <motion.div {...pageTransition}>
-              <About />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services"
-          element={
-            <motion.div {...pageTransition}>
-              <Services />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/:slug"
-          element={
-            <motion.div {...pageTransition}>
-              <ServiceDetail />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-studies"
-          element={
-            <motion.div {...pageTransition}>
-              <CaseStudies />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/blog"
-          element={
-            <motion.div {...pageTransition}>
-              <Blog />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/careers"
-          element={
-            <motion.div {...pageTransition}>
-              <Careers />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <motion.div {...pageTransition}>
-              <Contact />
-            </motion.div>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <motion.div {...pageTransition}>
-              <NotFound />
-            </motion.div>
-          }
-        />
+        <Route element={<Home />} path="/" />
+        <Route element={<About />} path="/about" />
+        <Route element={<Services />} path="/services" />
+        <Route element={<ServiceDetail />} path="/services/:slug" />
+        <Route element={<CaseStudies />} path="/case-studies" />
+        <Route element={<Blog />} path="/blog" />
+        <Route element={<Careers />} path="/careers" />
+        <Route element={<Contact />} path="/contact" />
+        <Route element={<NotFound />} path="*" />
       </Routes>
     </AnimatePresence>
   )
@@ -117,7 +36,6 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
       <div className="min-h-screen bg-primary text-text">
         <Navbar />
         <AnimatedRoutes />
