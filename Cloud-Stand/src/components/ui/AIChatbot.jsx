@@ -1,0 +1,176 @@
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Bot, MessageSquare, Send, Sparkles, X } from 'lucide-react'
+import { chatbotQuickPrompts, chatbotWelcomeMessage, getChatbotReply } from '../../data/chatbot'
+
+function AIChatbot() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [input, setInput] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+  const [messages, setMessages] = useState([chatbotWelcomeMessage])
+  const endRef = useRef(null)
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, isTyping])
+
+  const sendMessage = (rawMessage) => {
+    const trimmed = rawMessage.trim()
+
+    if (!trimmed || isTyping) {
+      return
+    }
+
+    const userMessage = {
+      id: `user-${Date.now()}`,
+      role: 'user',
+      text: trimmed,
+    }
+
+    setMessages((current) => [...current, userMessage])
+    setInput('')
+    setIsTyping(true)
+
+    window.setTimeout(() => {
+      const assistantMessage = {
+        id: `assistant-${Date.now()}`,
+        role: 'assistant',
+        text: getChatbotReply(trimmed),
+      }
+
+      setMessages((current) => [...current, assistantMessage])
+      setIsTyping(false)
+    }, 700)
+  }
+
+  return (
+    <>
+      <div className="fixed bottom-6 right-6 z-[60] flex items-end gap-3">
+        <AnimatePresence>
+          {!isOpen ? (
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="hidden rounded-2xl border border-[#d7e5ff] bg-white/95 px-4 py-3 text-sm text-text-muted shadow-[0_18px_40px_rgba(24,67,148,0.12)] md:block"
+            >
+              AI Assistant
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+
+        <button
+          aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}
+          className="button-ring inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-light text-white shadow-[0_18px_36px_rgba(0,87,255,0.32)] transition hover:scale-[1.02]"
+          onClick={() => setIsOpen((current) => !current)}
+          type="button"
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 18, scale: 0.97 }}
+            transition={{ duration: 0.25 }}
+            className="fixed bottom-28 right-6 z-[60] flex h-[560px] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-[30px] border border-[#d7e5ff] bg-white shadow-[0_24px_60px_rgba(24,67,148,0.18)]"
+          >
+            <div className="bg-gradient-to-r from-[#0b6bff] via-[#276eff] to-[#4c88ff] p-5 text-white">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex gap-3">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15">
+                    <Bot className="h-6 w-6" />
+                  </span>
+                  <div>
+                    <div className="flex items-center gap-2 font-semibold">
+                      CloudStand AI Assistant
+                      <Sparkles className="h-4 w-4" />
+                    </div>
+                    <p className="mt-1 text-sm text-blue-50">
+                      Demo-only chatbot for AI conversations, Oracle Cloud use cases, and automation ideas.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto bg-[#f7fbff] px-4 py-4">
+              <div className="mb-4 flex flex-wrap gap-2">
+                {chatbotQuickPrompts.map((prompt) => (
+                  <button
+                    key={prompt}
+                    className="rounded-full border border-[#d7e5ff] bg-white px-3 py-2 text-xs font-medium text-slate-700 transition hover:border-accent/40 hover:text-accent"
+                    onClick={() => sendMessage(prompt)}
+                    type="button"
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+
+              <div className="space-y-4">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div
+                      className={`max-w-[85%] rounded-3xl px-4 py-3 text-sm leading-7 ${
+                        message.role === 'user'
+                          ? 'rounded-br-md bg-accent text-white'
+                          : 'rounded-bl-md border border-[#d7e5ff] bg-white text-slate-800'
+                      }`}
+                    >
+                      {message.text}
+                    </div>
+                  </div>
+                ))}
+
+                {isTyping ? (
+                  <div className="flex justify-start">
+                    <div className="rounded-3xl rounded-bl-md border border-[#d7e5ff] bg-white px-4 py-3 text-sm text-text-muted">
+                      Thinking...
+                    </div>
+                  </div>
+                ) : null}
+
+                <div ref={endRef} />
+              </div>
+            </div>
+
+            <form
+              className="border-t border-[#d7e5ff] bg-white p-4"
+              onSubmit={(event) => {
+                event.preventDefault()
+                sendMessage(input)
+              }}
+            >
+              <div className="flex gap-3">
+                <input
+                  aria-label="Ask the AI assistant"
+                  className="w-full rounded-full border border-[#d7e5ff] bg-[#f7fbff] px-4 py-3 text-sm text-slate-900 placeholder:text-text-muted focus:border-accent focus:outline-none"
+                  onChange={(event) => setInput(event.target.value)}
+                  placeholder="Ask about AI use cases, ROI, or automation ideas..."
+                  value={input}
+                />
+                <button
+                  aria-label="Send message"
+                  className="button-ring inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white transition hover:bg-accent-light disabled:cursor-not-allowed disabled:opacity-60"
+                  disabled={!input.trim() || isTyping}
+                  type="submit"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
+  )
+}
+
+export default AIChatbot
