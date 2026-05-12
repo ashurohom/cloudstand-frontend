@@ -10,7 +10,11 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
           <div className="space-y-5">
             <div>
-              <div className="font-syne text-2xl font-bold text-slate-900">CloudStand Consulting</div>
+              <img
+                alt="CloudStand Consulting"
+                className="h-14 w-auto object-contain sm:h-16"
+                src="/cloud-stand-logo.png"
+              />
               <p className="mt-3 max-w-sm text-sm leading-7 text-text-muted">
                 Empowering Businesses with Oracle Cloud through implementation, support, training, and practical transformation strategy.
               </p>

@@ -703,7 +703,7 @@ function FeedbackSection() {
                         </div>
                       </FieldWrapper>
 
-                      <FieldWrapper className="md:col-span-2" error={errors.outcome} field="outcome" shakeField={shakeField}>
+                      {/* <FieldWrapper className="md:col-span-2" error={errors.outcome} field="outcome" shakeField={shakeField}>
                         <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-outcome">
                           Project Result (Optional)
                         </label>
@@ -720,7 +720,7 @@ function FeedbackSection() {
                           />
                         </div>
                         <span className="text-xs italic text-[#B9851A]">✦ Specific metrics make your feedback more impactful</span>
-                      </FieldWrapper>
+                      </FieldWrapper> */}
 
                       <FieldWrapper className="md:col-span-2" error={errors.feedback} field="feedback" shakeField={shakeField}>
                         <label className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted" htmlFor="feedback-message">
@@ -751,7 +751,7 @@ function FeedbackSection() {
                         </div>
                       </FieldWrapper>
 
-                      <div className="md:col-span-2">
+                      {/* <div className="md:col-span-2">
                         <div className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
                           Display Preference
                         </div>
@@ -794,7 +794,7 @@ function FeedbackSection() {
                             )
                           })}
                         </div>
-                      </div>
+                      </div> */}
 
                       <FieldWrapper className="md:col-span-2" error={errors.permission} field="permission" shakeField={shakeField}>
                         <label

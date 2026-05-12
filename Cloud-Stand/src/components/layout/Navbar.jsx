@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { ChevronDown, Cloud, Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
 import Button from '../ui/Button'
 import { services } from '../../data/services'
@@ -66,13 +66,11 @@ function Navbar() {
             transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link aria-label="CloudStand home" className="flex items-center gap-3" to="/">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-light shadow-glow">
-                <Cloud className="h-5 w-5 text-white" />
-              </span>
-              <div className="leading-tight">
-                <div className="font-syne text-lg font-bold text-slate-900">CloudStand</div>
-                <div className="text-xs uppercase tracking-[0.24em] text-text-muted">Consulting</div>
-              </div>
+              <img
+                alt="CloudStand Consulting"
+                className="h-12 w-auto object-contain sm:h-14"
+                src="/cloud-stand-logo.png"
+              />
             </Link>
           </motion.div>
 
