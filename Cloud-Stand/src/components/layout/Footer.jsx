@@ -47,6 +47,7 @@ function Footer() {
                 ['About', '/about'],
                 ['Careers', '/careers'],
                 ['Blog', '/blog'],
+                ['Resolve Query', '/resolve-query'],
                 ['Contact', '/contact'],
               ].map(([label, path]) => (
                 <Link key={path} className="block transition hover:text-slate-900" to={path}>

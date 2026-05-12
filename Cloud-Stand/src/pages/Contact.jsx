@@ -62,6 +62,14 @@ function Contact() {
       errors[field] ? 'border-red-500 focus:border-red-500' : 'border-[#d7e5ff] focus:border-accent'
     }`
 
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id)
+
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section className="section-padding hero-mesh gpu-layer">
@@ -73,6 +81,17 @@ function Contact() {
           <p className="mt-6 max-w-3xl text-lg leading-8 text-text-muted">
             Tell us about your Oracle Cloud priorities and we&apos;ll help shape the right path forward.
           </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button onClick={() => scrollToSection('contact-form')} size="lg" variant="solid">
+              Contact
+            </Button>
+            <Button size="lg" to="/resolve-query" variant="ghost">
+              Resolve Query
+            </Button>
+            <Button onClick={() => scrollToSection('feedback-section')} size="lg" variant="ghost">
+              Feedback
+            </Button>
+          </div>
         </div>
       </section>
 

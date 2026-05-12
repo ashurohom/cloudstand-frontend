@@ -119,7 +119,7 @@ function Careers() {
               whileInView="visible"
             >
               {[
-                <input className="rounded-2xl border border-[#d7e5ff] bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,87,255,0.1)]" placeholder="Name" type="text" />,
+                <input className="rounded-2xl border border-[#d7e5ff] bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,87,255,0.1)]" placeholder="Full Name" type="text" />,
                 <input className="rounded-2xl border border-[#d7e5ff] bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,87,255,0.1)]" placeholder="Email" type="email" />,
                 <input className="rounded-2xl border border-[#d7e5ff] bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,87,255,0.1)]" placeholder="Phone" type="tel" />,
               ].map((field, index) => (

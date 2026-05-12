@@ -12,6 +12,7 @@ import Blog from './pages/Blog'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import ResolveQuery from './pages/ResolveQuery'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -25,6 +26,7 @@ function AnimatedRoutes() {
         <Route element={<ServiceDetail />} path="/services/:slug" />
         <Route element={<CaseStudies />} path="/case-studies" />
         <Route element={<Blog />} path="/blog" />
+        <Route element={<ResolveQuery />} path="/resolve-query" />
         <Route element={<Careers />} path="/careers" />
         <Route element={<Contact />} path="/contact" />
         <Route element={<NotFound />} path="*" />

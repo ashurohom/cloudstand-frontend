@@ -92,7 +92,10 @@ function Navbar() {
                 >
                   {({ isActive }) => (
                     <>
-                      <span className={isActive ? 'text-slate-900' : ''}>{item.label}</span>
+                      <span className={`inline-flex items-center gap-2 ${isActive ? 'text-slate-900' : ''}`}>
+                        {item.icon ? <item.icon className="h-4 w-4 text-accent" /> : null}
+                        <span>{item.label}</span>
+                      </span>
                       {renderUnderline(isActive || hoveredPath === item.path)}
                     </>
                   )}
@@ -165,7 +168,10 @@ function Navbar() {
                 >
                   {({ isActive }) => (
                     <>
-                      <span className={isActive ? 'text-slate-900' : ''}>{item.label}</span>
+                      <span className={`inline-flex items-center gap-2 ${isActive ? 'text-slate-900' : ''}`}>
+                        {item.icon ? <item.icon className="h-4 w-4 text-accent" /> : null}
+                        <span>{item.label}</span>
+                      </span>
                       {renderUnderline(isActive || hoveredPath === item.path)}
                     </>
                   )}
@@ -240,7 +246,10 @@ function Navbar() {
                       onClick={() => setMenuOpen(false)}
                       to={item.path}
                     >
-                      {item.label}
+                      <span className="inline-flex items-center gap-2">
+                        {item.icon ? <item.icon className="h-4 w-4 text-accent" /> : null}
+                        <span>{item.label}</span>
+                      </span>
                     </NavLink>
                   </motion.div>
                 ))}
