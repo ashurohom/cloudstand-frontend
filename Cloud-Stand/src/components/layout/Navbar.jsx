@@ -196,9 +196,16 @@ function Navbar() {
                 whileTap={{ scale: 0.97 }}
               >
                 <Button to="/contact" variant="solid">
-                  Get a Demo
+                  Rescue Enquiry
                 </Button>
               </motion.div>
+            </motion.div>
+            <motion.div variants={fadeUp}>
+              <img
+                alt="Oracle Partner"
+                className="h-14 w-auto object-contain"
+                src="/oracle-partner-logo.png"
+              />
             </motion.div>
           </motion.div>
 
@@ -289,9 +296,21 @@ function Navbar() {
                 </motion.div>
                 <motion.div variants={staggerItem}>
                   <Button className="w-full" to="/contact" variant="solid">
-                    Get a Demo
+                    Rescue Enquiry
                   </Button>
                 </motion.div>
+              </motion.div>
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 flex justify-center rounded-[26px] border border-[#d7e5ff] bg-white p-4"
+                initial={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.3, delay: 0.12 }}
+              >
+                <img
+                  alt="Oracle Partner"
+                  className="h-16 w-auto object-contain"
+                  src="/oracle-partner-logo.png"
+                />
               </motion.div>
             </div>
           </motion.div>

@@ -132,7 +132,7 @@ function Home() {
                 viewport={{ once: true }}
               >
                 <Button size="lg" to="/contact" variant="solid">
-                  Get a Free Demo
+                  Rescue Enquiry
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </motion.div>
