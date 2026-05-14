@@ -8,7 +8,6 @@ import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import HeroTitle from '../components/ui/HeroTitle'
 import RotatingText from '../components/ui/RotatingText'
-import SectionTitle from '../components/ui/SectionTitle'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
@@ -49,6 +48,32 @@ const timelineSteps = [
 ]
 
 const trustLogos = ['Northstar Group', 'Zenith Retail', 'Meridian Health', 'Apex Works', 'Nova Services', 'Global Edge']
+
+function HomeSectionTitle({ eyebrow, title, subtitle }) {
+  return (
+    <div className="mb-12 flex max-w-3xl flex-col gap-4 items-start text-left">
+      {eyebrow ? <Badge>{eyebrow}</Badge> : null}
+      <motion.h2
+        initial={{ opacity: 0, y: 35, scale: 0.93 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: false, margin: '-50px' }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl text-4xl md:text-5xl"
+      >
+        {title}
+      </motion.h2>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: false, margin: '-50px' }}
+        transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        style={{ originX: 0 }}
+        className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-[#0057ff] to-[#3d8bff]"
+      />
+      {subtitle ? <p className="text-base leading-7 text-text-muted sm:text-lg">{subtitle}</p> : null}
+    </div>
+  )
+}
 
 function Home() {
   useDocumentTitle('CloudStand Consulting | Oracle Cloud Transformation Partner')
@@ -177,7 +202,14 @@ function Home() {
           whileInView={{ opacity: 1, y: 0 }}
         >
           <div className="flex items-center justify-center">
-            <Badge className="border-white/20 bg-white/10 text-white">Trusted by growing enterprises</Badge>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 16 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false, margin: '-40px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Badge className="border-white/20 bg-white/10 text-[#d63b25]">Trusted by growing enterprises</Badge>
+            </motion.div>
           </div>
         </motion.div>
         <div className="relative w-full overflow-hidden">
@@ -198,7 +230,7 @@ function Home() {
 
       <section className="section-padding diagonal-divider bg-primary">
         <div className="section-shell">
-          <SectionTitle eyebrow="Services" title="Our Oracle Cloud Services" subtitle="End-to-end implementation, support, and training" />
+          <HomeSectionTitle eyebrow="Services" title="Our Oracle Cloud Services" subtitle="End-to-end implementation, support, and training" />
           <motion.div className="mb-10 h-1 w-28 rounded-full bg-gradient-to-r from-accent to-accent-light" initial="hidden" variants={lineDraw} viewport={{ once: true, margin: '-80px' }} whileInView="visible" />
           <motion.div
             className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
@@ -278,7 +310,7 @@ function Home() {
       <section className="section-padding bg-[#eef5ff]">
         <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
-            <SectionTitle
+            <HomeSectionTitle
               eyebrow="Why CloudStand"
               title="Why Industry Leaders Choose CloudStand"
               subtitle="We combine enterprise-grade Oracle expertise with fast, accountable delivery."
@@ -325,7 +357,7 @@ function Home() {
 
       <section className="section-padding bg-primary">
         <div className="section-shell">
-          <SectionTitle eyebrow="Success Stories" title="Transformation outcomes that stand up in the boardroom" />
+          <HomeSectionTitle eyebrow="Success Stories" title="Transformation outcomes that stand up in the boardroom" />
           <motion.div className="flex gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" initial="hidden" variants={staggerContainer} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             {featuredCaseStudies.map((study) => (
               <motion.div key={study.slug} variants={staggerItem}>
@@ -351,7 +383,7 @@ function Home() {
 
       <section className="section-padding bg-[#eef5ff]">
         <div className="section-shell">
-          <SectionTitle eyebrow="Process" title="Our Engagement Model" />
+          <HomeSectionTitle eyebrow="Process" title="Our Engagement Model" />
           <div className="relative mt-10">
             <motion.div
               className="line-pulse absolute left-0 top-6 hidden h-px w-full bg-gradient-to-r from-accent to-accent-light lg:block"
@@ -393,7 +425,7 @@ function Home() {
 
       <section className="section-padding bg-primary">
         <div className="section-shell">
-          <SectionTitle eyebrow="Testimonials" title="What Our Clients Say" />
+          <HomeSectionTitle eyebrow="Testimonials" title="What Our Clients Say" />
           <motion.div className="grid gap-6 lg:grid-cols-3" initial="hidden" variants={staggerContainer} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             {testimonials.map((testimonial) => (
               <motion.div key={testimonial.name} variants={staggerItem}>
