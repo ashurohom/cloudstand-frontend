@@ -7,6 +7,7 @@ import Card from '../components/ui/Card'
 import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import HeroTitle from '../components/ui/HeroTitle'
+import RotatingText from '../components/ui/RotatingText'
 import SectionTitle from '../components/ui/SectionTitle'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
 import useDocumentTitle from '../hooks/useDocumentTitle'
@@ -76,6 +77,21 @@ function Home() {
                 <HeroTitle text="Transform Your Business" />
                 <HeroTitle text="with Oracle Cloud" gradient />
               </h1>
+              <div className="mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-accent/10 bg-white/70 px-4 py-3 shadow-[0_16px_40px_rgba(24,67,148,0.08)] backdrop-blur-sm text-lg md:text-xl">
+                <span
+                  className="inline-flex items-center rounded-lg bg-accent/8 px-3 py-2"
+                  style={{
+                    fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
+                    fontWeight: 600,
+                    color: '#0f172a',
+                    fontSize: 'inherit',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  We Specialize in
+                </span>
+                <RotatingText />
+              </div>
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl"
