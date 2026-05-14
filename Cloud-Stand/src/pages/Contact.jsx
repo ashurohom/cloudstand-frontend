@@ -6,6 +6,7 @@ import FeedbackSection from '../components/sections/FeedbackSection'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import HeroTitle from '../components/ui/HeroTitle'
 import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
@@ -76,14 +77,30 @@ function Contact() {
       <section className="section-padding hero-mesh gpu-layer relative overflow-hidden">
         <AICloudBackground />
         <div className="section-shell relative z-10">
-          <Badge>Contact</Badge>
-          <h1 className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
-            Let&apos;s Plan Your Next Oracle Cloud Move
+          <motion.div
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Badge>Contact</Badge>
+          </motion.div>
+          <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-slate-900 md:text-4xl lg:text-5xl">
+            <HeroTitle text="Get In Touch" />
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-text-muted">
+          <motion.p
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-6 max-w-3xl text-lg leading-8 text-text-muted"
+            initial={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             Tell us about your Oracle Cloud priorities and we&apos;ll help shape the right path forward.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          </motion.p>
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-8 flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
             <Button onClick={() => scrollToSection('contact-form')} size="lg" variant="solid">
               Contact
             </Button>
@@ -93,7 +110,7 @@ function Contact() {
             <Button onClick={() => scrollToSection('feedback-section')} size="lg" variant="ghost">
               Feedback
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 

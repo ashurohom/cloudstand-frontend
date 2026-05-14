@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { BadgeCheck, Check, ChevronDown, CircleHelp, Search, SearchX, Shield, UserCheck, X } from 'lucide-react'
 import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
+import HeroTitle from '../components/ui/HeroTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { faqCategories, faqEntries } from '../data/faqData'
 import { pageVariants } from '../animations/variants'
@@ -138,26 +139,40 @@ function ResolveQuery() {
       <section className="hero-mesh hero-particles section-padding relative isolate overflow-hidden">
         <AICloudBackground />
         <motion.div
+          animate={{ opacity: 1, y: 0 }}
           className="section-shell relative z-10"
-          initial="hidden"
-          variants={sectionReveal}
-          viewport={{ once: true }}
-          whileInView="visible"
+          initial={{ opacity: 0, y: 16 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Badge className="inline-flex items-center gap-2">
-            <CircleHelp className="h-4 w-4 text-accent" />
-            <span>Resolve Your Query</span>
-          </Badge>
-          <h1 className="mt-6 max-w-5xl text-4xl font-bold leading-[1] text-slate-900 sm:text-5xl lg:text-[5.1rem]">
-            <span>Frequently Asked</span>
-            <br />
-            <span className="text-gradient">Questions</span>
+          <motion.div
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Badge className="inline-flex items-center gap-2">
+              <CircleHelp className="h-4 w-4 text-accent" />
+              <span>Resolve Your Query</span>
+            </Badge>
+          </motion.div>
+          <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] text-slate-900 md:text-4xl lg:text-5xl">
+            <HeroTitle text="Find Answers." />
+            <HeroTitle text="Get Clarity." gradient />
           </h1>
-          <p className="mt-6 max-w-3xl font-dm-sans text-lg leading-8 text-text-muted">
+          <motion.p
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-6 max-w-3xl font-dm-sans text-lg leading-8 text-text-muted"
+            initial={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             Browse common questions, filter by topic, and quickly find the Oracle Cloud answers you need.
-          </p>
+          </motion.p>
 
-          <div className="glass-panel mt-10 flex max-w-3xl items-center gap-3 rounded-full border-[#d7e5ff] px-5 py-3">
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-panel mt-10 flex max-w-3xl items-center gap-3 rounded-full border-[#d7e5ff] px-5 py-3"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
             <Search className="h-5 w-5 flex-none text-accent" />
             <input
               aria-label="Search FAQs"
@@ -177,7 +192,7 @@ function ResolveQuery() {
                 <X className="h-4 w-4" />
               </button>
             ) : null}
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 

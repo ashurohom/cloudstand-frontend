@@ -5,6 +5,7 @@ import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import HeroTitle from '../components/ui/HeroTitle'
 import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { iconPop, pageVariants, slideLeft, slideRight, staggerContainer, staggerItem } from '../animations/variants'
@@ -34,22 +35,21 @@ function About() {
       <section className="section-padding hero-mesh gpu-layer relative overflow-hidden">
         <AICloudBackground />
         <div className="section-shell relative z-10">
-          <Badge>About CloudStand</Badge>
-          <motion.h1
-            className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]"
-            initial={{ opacity: 0, y: 32 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
-            viewport={{ once: true }}
-            whileInView={{ opacity: 1, y: 0 }}
+          <motion.div
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            The Team Behind <span className="text-gradient">Confident Oracle Cloud Delivery</span>
-          </motion.h1>
+            <Badge>About CloudStand</Badge>
+          </motion.div>
+          <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-slate-900 md:text-4xl lg:text-5xl">
+            <HeroTitle className="text-gradient" text="We Are CloudStand" gradient />
+          </h1>
           <motion.p
+            animate={{ opacity: 1, y: 0 }}
             className="mt-6 max-w-3xl text-lg leading-8 text-text-muted"
-            initial={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             A Pune-based Oracle Cloud consulting firm helping global clients modernize operations with sharper delivery, better governance, and measurable outcomes.
           </motion.p>

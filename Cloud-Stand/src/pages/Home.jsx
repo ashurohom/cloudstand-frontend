@@ -6,6 +6,7 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
+import HeroTitle from '../components/ui/HeroTitle'
 import SectionTitle from '../components/ui/SectionTitle'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
 import useDocumentTitle from '../hooks/useDocumentTitle'
@@ -14,7 +15,6 @@ import { caseStudies } from '../data/caseStudies'
 import { testimonials } from '../data/testimonials'
 import { floatingStats, stats } from '../data/stats'
 import {
-  badgeVariants,
   cardHover,
   fadeUp,
   iconPop,
@@ -65,67 +65,43 @@ function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)]">
             <div className="max-w-4xl">
               <motion.div
+                animate={{ opacity: 1, scale: 1, y: 0 }}
                 className="mb-6 inline-flex"
-                initial="hidden"
-                variants={badgeVariants}
-                whileInView="visible"
-                viewport={{ once: true }}
+                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.div animate={{ scale: [1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
-                  <Badge className="border-accent/20 bg-white/70 text-slate-900">Oracle Cloud Specialists since 2022</Badge>
-                </motion.div>
+                <Badge className="border-accent/20 bg-white/70 text-slate-900">Oracle Cloud Specialists since 2022</Badge>
               </motion.div>
-              <h1 className="max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-text-black sm:text-5xl lg:text-[5.25rem]">
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  transition={{ duration: 0.65, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                >
-                  Transform Your Business with
-                </motion.div>
-                <motion.div
-                  className="text-gradient"
-                  initial={{ opacity: 0, y: 40 }}
-                  transition={{ duration: 0.65, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                >
-                  Oracle Cloud
-                </motion.div>
+              <h1 className="max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-text-black md:text-4xl lg:text-5xl">
+                <HeroTitle text="Transform Your Business" />
+                <HeroTitle text="with Oracle Cloud" gradient />
               </h1>
               <motion.p
+                animate={{ opacity: 1, y: 0 }}
                 className="mt-6 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl"
-                initial={{ opacity: 0, y: 24 }}
-                transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 16 }}
+                transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
                 End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts who focus on outcomes, not just go-lives.
               </motion.p>
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.55, delay: 0.62, ease: [0.22, 1, 0.36, 1] }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-10 flex flex-col gap-4 sm:flex-row"
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div>
                   <Button size="lg" to="/contact" variant="solid">
                     Rescue Enquiry
                     <ArrowRight className="h-4 w-4" />
                   </Button>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.55, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
+                </div>
+                <div>
                   <Button size="lg" to="/case-studies" variant="ghost">
                     View Our Work
                   </Button>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             </div>
 
             <motion.div
