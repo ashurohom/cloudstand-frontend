@@ -62,7 +62,7 @@ function Home() {
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section className="hero-particles gpu-layer relative isolate min-h-screen overflow-hidden">
         <AICloudBackground />
-        <div className="section-shell relative z-10 flex min-h-screen flex-col justify-center py-16">
+        <div className="section-shell relative z-10 flex min-h-screen flex-col justify-center py-10">
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)]">
             <div className="max-w-4xl">
               <motion.div
@@ -77,9 +77,9 @@ function Home() {
                 <HeroTitle text="Transform Your Business" />
                 <HeroTitle text="with Oracle Cloud" gradient />
               </h1>
-              <div className="mt-5 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-accent/10 bg-white/70 px-4 py-3 shadow-[0_16px_40px_rgba(24,67,148,0.08)] backdrop-blur-sm text-lg md:text-xl">
+              <div className="mt-5 inline-flex flex-wrap items-center gap-3 text-lg md:text-xl">
                 <span
-                  className="inline-flex items-center rounded-lg bg-accent/8 px-3 py-2"
+                  className="inline-flex items-center"
                   style={{
                     fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
                     fontWeight: 600,
@@ -171,29 +171,29 @@ function Home() {
         }}
       >
         <motion.div
-          className="section-shell relative z-10 overflow-hidden"
+          className="section-shell relative z-10 mb-8"
           initial={{ opacity: 0, y: 20 }}
           viewport={{ once: true, margin: '-80px' }}
           whileInView={{ opacity: 1, y: 0 }}
         >
-          <div className="mb-8 flex items-center justify-center">
+          <div className="flex items-center justify-center">
             <Badge className="border-white/20 bg-white/10 text-white">Trusted by growing enterprises</Badge>
           </div>
-          <div className="relative overflow-hidden">
-            <div className="flex w-max animate-marquee gap-5">
-              {[...trustLogos, ...trustLogos].map((name, index) => (
-                <motion.div
-                  className="rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-medium text-white/85 backdrop-blur-sm"
-                  key={`${name}-${index}`}
-                  transition={{ duration: 0.2 }}
-                  whileHover={{ opacity: 1 }}
-                >
-                  {name}
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </motion.div>
+        <div className="relative w-full overflow-hidden">
+          <div className="flex w-max animate-marquee gap-5">
+            {[...trustLogos, ...trustLogos].map((name, index) => (
+              <motion.div
+                className="rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-medium text-white/85 backdrop-blur-sm"
+                key={`${name}-${index}`}
+                transition={{ duration: 0.2 }}
+                whileHover={{ opacity: 1 }}
+              >
+                {name}
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="section-padding diagonal-divider bg-primary">
