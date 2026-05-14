@@ -113,7 +113,7 @@ function Home() {
                     letterSpacing: '-0.01em',
                   }}
                 >
-                  We Specialize in
+                  Experts In
                 </span>
                 <RotatingText />
               </div>
@@ -239,7 +239,7 @@ function Home() {
             viewport={{ once: true, margin: '-100px' }}
             whileInView="visible"
           >
-            {services.map((service) => {
+            {services.map((service, index) => {
               const Icon = iconMap[service.icon]
               const isAISolutions = service.slug === 'ai-solutions'
               const isBIAnalytics = service.slug === 'bi-analytics'
@@ -250,13 +250,33 @@ function Home() {
                   ? 'text-teal hover:text-teal/80'
                   : 'text-white hover:text-blue-100'
 
-              return (
-                <motion.div key={service.slug} variants={staggerItem}>
+                return (
                   <motion.div
-                    className="group h-full"
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={{ y: -6, boxShadow: '0 24px 60px rgba(0,87,255,0.16)' }}
+                    key={service.slug}
+                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, margin: '-60px' }}
+                    transition={{
+                      duration: 0.65,
+                      delay: index * 0.1,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{
+                      y: -8,
+                      scale: 1.015,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 260,
+                        damping: 22,
+                        mass: 0.85,
+                      },
+                    }}
                   >
+                    <motion.div
+                      className="group h-full"
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      whileHover={{ boxShadow: '0 24px 60px rgba(0,87,255,0.16)' }}
+                    >
                     <Card className="glass-panel relative h-full overflow-hidden rounded-[28px] border-transparent p-0 transition-all duration-300 group-hover:border-accent/40">
                       <div className="relative h-full min-h-[320px] overflow-hidden">
                         <motion.img
