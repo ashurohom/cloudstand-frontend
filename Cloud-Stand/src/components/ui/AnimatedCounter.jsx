@@ -8,7 +8,7 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }) {
 
   return (
     <motion.span
-      className="inline-block bg-[linear-gradient(90deg,#0057ff,#3d8bff,#0057ff)] bg-[length:200%_100%] bg-clip-text font-syne text-4xl font-bold tracking-tight text-transparent sm:text-5xl"
+      className="inline-block font-syne text-4xl font-bold tracking-tight text-text-orange sm:text-5xl"
       initial="hidden"
       ref={ref}
       variants={counterVariants}

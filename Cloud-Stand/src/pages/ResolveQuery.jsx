@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BadgeCheck, Check, ChevronDown, CircleHelp, Search, SearchX, Shield, UserCheck, X } from 'lucide-react'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { faqCategories, faqEntries } from '../data/faqData'
@@ -134,24 +135,8 @@ function ResolveQuery() {
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="hero-mesh hero-particles section-padding relative isolate">
-        <motion.div
-          animate={{
-            x: [0, 32, -14, 0],
-            y: [0, -24, 20, 0],
-          }}
-          className="orb-drift absolute left-[-8rem] top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(0,87,255,0.16),transparent_68%)] blur-3xl"
-          transition={{ duration: 16, ease: 'easeInOut', repeat: Number.POSITIVE_INFINITY }}
-        />
-        <motion.div
-          animate={{
-            x: [0, -28, 16, 0],
-            y: [0, 20, -26, 0],
-          }}
-          className="absolute right-[-7rem] top-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(61,139,255,0.14),transparent_68%)] blur-3xl"
-          transition={{ duration: 20, ease: 'easeInOut', repeat: Number.POSITIVE_INFINITY }}
-        />
-
+      <section className="hero-mesh hero-particles section-padding relative isolate overflow-hidden">
+        <AICloudBackground />
         <motion.div
           className="section-shell relative z-10"
           initial="hidden"

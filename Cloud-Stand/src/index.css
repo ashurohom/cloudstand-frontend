@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +13,14 @@
   --color-text-muted: #5f6f89;
   --color-border: #d7e5ff;
   --color-gold: #f59e0b;
+  --color-text-black: #0a0a0a;
+  --color-text-orange: #ea580c;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f97316;
+  --color-navy: #0a2540;
+  --color-violet: #8b5cf6;
+  --color-teal: #14b8a6;
   --color-primary-rgb: 245 249 255;
   --color-accent-rgb: 0 87 255;
   --color-accent-light-rgb: 61 139 255;
@@ -33,7 +41,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   background:
     radial-gradient(circle at top left, rgba(61, 139, 255, 0.12), transparent 24%),
     radial-gradient(circle at bottom right, rgba(0, 87, 255, 0.1), transparent 22%),
@@ -89,7 +97,7 @@ select {
   h4,
   h5,
   h6 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     letter-spacing: -0.03em;
   }
 }

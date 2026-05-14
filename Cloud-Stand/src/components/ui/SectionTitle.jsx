@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { fadeUp, lineDraw } from '../../animations/variants'
 import Badge from './Badge'
 
-function SectionTitle({ eyebrow, title, subtitle, align = 'left' }) {
+function SectionTitle({ eyebrow, title, subtitle, align = 'left', subtitleClassName = '' }) {
   const alignment = align === 'center' ? 'items-center text-center mx-auto' : 'items-start text-left'
 
   return (
@@ -18,7 +18,7 @@ function SectionTitle({ eyebrow, title, subtitle, align = 'left' }) {
         {title}
       </motion.h2>
       {subtitle ? (
-        <motion.p className="text-base leading-7 text-text-muted sm:text-lg" custom={2} variants={fadeUp}>
+        <motion.p className={`text-base leading-7 text-text-muted sm:text-lg ${subtitleClassName}`} custom={2} variants={fadeUp}>
           {subtitle}
         </motion.p>
       ) : null}

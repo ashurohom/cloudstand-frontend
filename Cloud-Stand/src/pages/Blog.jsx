@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
 import SectionTitle from '../components/ui/SectionTitle'
@@ -29,8 +30,9 @@ function Blog() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="section-padding hero-mesh gpu-layer">
-        <div className="section-shell">
+      <section className="section-padding hero-mesh gpu-layer relative overflow-hidden">
+        <AICloudBackground />
+        <div className="section-shell relative z-10">
           <Badge>Insights & Perspectives</Badge>
           <h1 className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
             Oracle Cloud Insights for Leaders Driving Change

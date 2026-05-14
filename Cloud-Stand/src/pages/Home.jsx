@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import SectionTitle from '../components/ui/SectionTitle'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
@@ -58,95 +59,88 @@ function Home() {
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="hero-mesh hero-particles gpu-layer relative isolate min-h-screen">
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ x: [0, 60, -30, 0], y: [0, -40, 20, 0] }}
-            className="gpu-layer orb-drift absolute left-[10%] top-24 h-28 w-28 rounded-full border border-blue-100 bg-white/50 blur-[1px]"
-            transition={{ duration: 18, ease: 'linear', repeat: Infinity }}
-          />
-          <motion.div
-            animate={{ x: [0, -50, 40, 0], y: [0, 30, -50, 0] }}
-            className="gpu-layer absolute right-[14%] top-40 h-24 w-24 rotate-12 border border-accent/25 bg-accent/8"
-            transition={{ duration: 22, ease: 'linear', repeat: Infinity }}
-          />
-          <motion.div
-            animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
-            className="gpu-layer absolute right-[25%] top-24 h-14 w-14 rounded-full bg-accent-light/15 blur-[1px]"
-            transition={{ duration: 14, ease: 'linear', repeat: Infinity }}
-          />
-          <div className="absolute bottom-28 left-[20%] h-48 w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            className="absolute bottom-36 right-[24%] h-20 w-20 rounded-3xl border border-blue-100 bg-white/50"
-            transition={{ duration: 4.2, ease: 'easeInOut', repeat: Infinity }}
-          />
-        </div>
-
-        <div className="section-shell flex min-h-screen flex-col justify-center py-16">
-          <div className="max-w-4xl">
-            <motion.div
-              className="mb-6 inline-flex"
-              initial="hidden"
-              variants={badgeVariants}
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.div animate={{ scale: [1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
-                <Badge className="border-accent/20 bg-white/70 text-slate-900">Oracle Cloud Specialists since 2022</Badge>
-              </motion.div>
-            </motion.div>
-            <h1 className="max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
+      <section className="hero-particles gpu-layer relative isolate min-h-screen overflow-hidden">
+        <AICloudBackground />
+        <div className="section-shell relative z-10 flex min-h-screen flex-col justify-center py-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)]">
+            <div className="max-w-4xl">
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                transition={{ duration: 0.65, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="mb-6 inline-flex"
+                initial="hidden"
+                variants={badgeVariants}
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div animate={{ scale: [1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
+                  <Badge className="border-accent/20 bg-white/70 text-slate-900">Oracle Cloud Specialists since 2022</Badge>
+                </motion.div>
+              </motion.div>
+              <h1 className="max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-text-black sm:text-5xl lg:text-[5.25rem]">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  transition={{ duration: 0.65, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  Transform Your Business with
+                </motion.div>
+                <motion.div
+                  className="text-gradient"
+                  initial={{ opacity: 0, y: 40 }}
+                  transition={{ duration: 0.65, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  Oracle Cloud
+                </motion.div>
+              </h1>
+              <motion.p
+                className="mt-6 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl"
+                initial={{ opacity: 0, y: 24 }}
+                transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                Transform Your Business with
-              </motion.div>
-              <motion.div
-                className="text-gradient"
-                initial={{ opacity: 0, y: 40 }}
-                transition={{ duration: 0.65, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                Oracle Cloud
-              </motion.div>
-            </h1>
-            <motion.p
-              className="mt-6 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl"
-              initial={{ opacity: 0, y: 24 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts who focus on outcomes, not just go-lives.
-            </motion.p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.55, delay: 0.62, ease: [0.22, 1, 0.36, 1] }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <Button size="lg" to="/contact" variant="solid">
-                  Rescue Enquiry
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.55, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <Button size="lg" to="/case-studies" variant="ghost">
-                  View Our Work
-                </Button>
-              </motion.div>
+                End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts who focus on outcomes, not just go-lives.
+              </motion.p>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.55, delay: 0.62, ease: [0.22, 1, 0.36, 1] }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <Button size="lg" to="/contact" variant="solid">
+                    Rescue Enquiry
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.55, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <Button size="lg" to="/case-studies" variant="ghost">
+                    View Our Work
+                  </Button>
+                </motion.div>
+              </div>
             </div>
+
+            <motion.div
+              className="flex justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 40, scale: 0.96 }}
+              transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true }}
+            >
+              <img
+                alt="Oracle Cloud memory illustration"
+                className="h-auto w-full max-w-[440px] object-contain"
+                src="/home-page-memory.svg"
+              />
+            </motion.div>
           </div>
 
           <motion.div
@@ -158,7 +152,7 @@ function Home() {
           >
             {floatingStats.map((item, index) => (
               <motion.div key={item.label} variants={fadeUp} custom={index} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <div className="font-syne text-2xl font-bold text-slate-900">{item.value}</div>
+                <div className="font-syne text-2xl font-bold text-text-orange">{item.value}</div>
                 <div className="mt-1 text-sm text-text-muted">{item.label}</div>
               </motion.div>
             ))}
@@ -175,21 +169,29 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding border-y border-[#d7e5ff] bg-[#eef5ff]">
+      <section
+        className="section-padding relative overflow-hidden border-y border-[#d7e5ff] bg-[#0a2540]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(10, 37, 64, 0.78), rgba(10, 37, 64, 0.78)), url("/bgimage.png")',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }}
+      >
         <motion.div
-          className="section-shell overflow-hidden"
+          className="section-shell relative z-10 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           viewport={{ once: true, margin: '-80px' }}
           whileInView={{ opacity: 1, y: 0 }}
         >
           <div className="mb-8 flex items-center justify-center">
-            <Badge>Trusted by growing enterprises</Badge>
+            <Badge className="border-white/20 bg-white/10 text-white">Trusted by growing enterprises</Badge>
           </div>
           <div className="relative overflow-hidden">
             <div className="flex w-max animate-marquee gap-5">
               {[...trustLogos, ...trustLogos].map((name, index) => (
                 <motion.div
-                  className="rounded-full border border-[#d7e5ff] bg-white/85 px-6 py-4 text-sm font-medium text-text-muted"
+                  className="rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-medium text-white/85 backdrop-blur-sm"
                   key={`${name}-${index}`}
                   transition={{ duration: 0.2 }}
                   whileHover={{ opacity: 1 }}
@@ -215,28 +217,63 @@ function Home() {
           >
             {services.map((service) => {
               const Icon = iconMap[service.icon]
+              const isAISolutions = service.slug === 'ai-solutions'
+              const isBIAnalytics = service.slug === 'bi-analytics'
+              const titleClassName = isAISolutions ? 'text-violet' : isBIAnalytics ? 'text-teal' : 'text-white'
+              const linkClassName = isAISolutions
+                ? 'text-violet hover:text-violet/80'
+                : isBIAnalytics
+                  ? 'text-teal hover:text-teal/80'
+                  : 'text-white hover:text-blue-100'
 
               return (
                 <motion.div key={service.slug} variants={staggerItem}>
-                  <motion.div animate="rest" className="group h-full" initial="rest" variants={cardHover} whileHover="hover">
-                    <Card className="h-full border-transparent p-7 transition-all duration-300 group-hover:border-accent/40">
-                      <motion.div
-                        className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl"
-                        initial="rest"
-                        style={{ background: `linear-gradient(135deg, ${service.color}, rgba(255,255,255,0.16))` }}
-                        variants={iconPop}
-                        whileHover="hover"
-                      >
-                        <Icon className="h-6 w-6 text-white" />
-                      </motion.div>
-                      <h3 className="text-2xl font-semibold text-slate-900">{service.title}</h3>
-                      <p className="mt-4 text-sm leading-7 text-text-muted">{service.tagline}</p>
-                      <Link className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent transition hover:text-accent-light" to={`/services/${service.slug}`}>
-                        Explore
-                        <motion.span whileHover={{ x: 4 }}>
-                          <ArrowRight className="h-4 w-4" />
-                        </motion.span>
-                      </Link>
+                  <motion.div
+                    className="group h-full"
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ y: -6, boxShadow: '0 24px 60px rgba(0,87,255,0.16)' }}
+                  >
+                    <Card className="glass-panel relative h-full overflow-hidden rounded-[28px] border-transparent p-0 transition-all duration-300 group-hover:border-accent/40">
+                      <div className="relative h-full min-h-[320px] overflow-hidden">
+                        <motion.img
+                          alt={service.title}
+                          className="h-full w-full object-cover"
+                          src="/network.png"
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          whileHover={{ scale: 1.06 }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#091631]/85 via-[#091631]/25 to-transparent" />
+
+                        <div className="absolute inset-x-4 bottom-4 rounded-[24px] bg-[rgba(37,49,118,0.86)] p-5 backdrop-blur-md">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-3">
+                                <motion.div
+                                  className="inline-flex h-12 w-12 items-center justify-center rounded-2xl"
+                                  initial="rest"
+                                  style={{ background: `linear-gradient(135deg, ${service.color}, rgba(255,255,255,0.16))` }}
+                                  variants={iconPop}
+                                  whileHover="hover"
+                                >
+                                  <Icon className="h-5 w-5 text-white" />
+                                </motion.div>
+                                <h3 className={`text-2xl font-semibold ${titleClassName}`}>{service.title}</h3>
+                              </div>
+                              <p className="mt-4 text-sm leading-7 text-white/85">{service.tagline}</p>
+                            </div>
+
+                            <Link
+                              aria-label={`Explore ${service.title}`}
+                              className={`mt-1 inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border border-white/30 bg-white/10 transition ${linkClassName}`}
+                              to={`/services/${service.slug}`}
+                            >
+                              <motion.span whileHover={{ x: 4 }}>
+                                <ArrowRight className="h-5 w-5" />
+                              </motion.span>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
                     </Card>
                   </motion.div>
                 </motion.div>

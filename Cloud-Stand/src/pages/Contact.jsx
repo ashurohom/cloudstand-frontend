@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Clock3, Mail, MapPin, Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import FeedbackSection from '../components/sections/FeedbackSection'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -59,7 +60,7 @@ function Contact() {
 
   const inputClass = (field) =>
     `rounded-2xl border bg-white px-4 py-3 text-slate-900 placeholder:text-text-muted focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,87,255,0.1)] ${
-      errors[field] ? 'border-red-500 focus:border-red-500' : 'border-[#d7e5ff] focus:border-accent'
+      errors[field] ? 'border-error focus:border-error' : 'border-[#d7e5ff] focus:border-accent'
     }`
 
   const scrollToSection = (id) => {
@@ -72,8 +73,9 @@ function Contact() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="section-padding hero-mesh gpu-layer">
-        <div className="section-shell">
+      <section className="section-padding hero-mesh gpu-layer relative overflow-hidden">
+        <AICloudBackground />
+        <div className="section-shell relative z-10">
           <Badge>Contact</Badge>
           <h1 className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
             Let&apos;s Plan Your Next Oracle Cloud Move
@@ -141,7 +143,12 @@ function Contact() {
           </motion.div>
 
           <motion.div id="contact-form" initial="hidden" variants={slideRight} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
-            <SectionTitle eyebrow="Inquiry Form" title="Share your project goals" subtitle="Required fields are highlighted in red on submit." />
+            <SectionTitle
+              eyebrow="Inquiry Form"
+              title="Share your project goals"
+              subtitle="Required fields are highlighted in red on submit."
+              subtitleClassName="text-warning"
+            />
             <Card className="p-8">
               <motion.form
                 className="grid gap-5 md:grid-cols-2"
@@ -159,7 +166,7 @@ function Contact() {
                 ].map((field) => (
                   <motion.div className="flex flex-col gap-2" key={field.name} variants={staggerItem}>
                     <input className={inputClass(field.name)} name={field.name} onChange={handleChange} placeholder={field.placeholder} type={field.type} value={form[field.name]} />
-                    {errors[field.name] ? <span className="text-sm text-red-400">{errors[field.name]}</span> : null}
+                    {errors[field.name] ? <span className="text-sm text-error">{errors[field.name]}</span> : null}
                   </motion.div>
                 ))}
                 <motion.div variants={staggerItem}>
@@ -179,7 +186,7 @@ function Contact() {
                     <option value="25-50L">25-50L</option>
                     <option value="50L+">50L+</option>
                   </select>
-                  {errors.budget ? <span className="text-sm text-red-400">{errors.budget}</span> : null}
+                  {errors.budget ? <span className="text-sm text-error">{errors.budget}</span> : null}
                 </motion.div>
                 <motion.div className="flex flex-col gap-2 md:col-span-2" variants={staggerItem}>
                   <textarea
@@ -189,7 +196,7 @@ function Contact() {
                     placeholder="Message"
                     value={form.message}
                   />
-                  {errors.message ? <span className="text-sm text-red-400">{errors.message}</span> : null}
+                  {errors.message ? <span className="text-sm text-error">{errors.message}</span> : null}
                 </motion.div>
                 <motion.div className="md:col-span-2 flex flex-col items-start gap-4" variants={staggerItem}>
                   <Button size="lg" type="submit" variant="solid">
@@ -198,7 +205,7 @@ function Contact() {
                   {submitted ? (
                     <motion.div
                       animate={{ opacity: 1, y: 0 }}
-                      className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300"
+                      className="rounded-2xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
                       initial={{ opacity: 0, y: 8 }}
                     >
                       Thank you. Your consultation request has been captured successfully.

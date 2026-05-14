@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { ArrowRight, BarChart3, Check, Cpu, DollarSign, Mail, GitBranch, TrendingUp, Users } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
@@ -33,8 +34,9 @@ function ServiceDetail() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="section-padding gpu-layer" style={{ background: `linear-gradient(135deg, ${service.color}18, rgba(10,22,40,1) 42%, rgba(7,16,29,1) 100%)` }}>
-        <div className="section-shell">
+      <section className="section-padding gpu-layer relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${service.color}18, rgba(10,22,40,1) 42%, rgba(7,16,29,1) 100%)` }}>
+        <AICloudBackground />
+        <div className="section-shell relative z-10">
           <motion.div custom={0} initial="hidden" variants={fadeIn} viewport={{ once: true }} whileInView="visible">
             <Badge>{service.shortTitle} Practice</Badge>
           </motion.div>
@@ -192,7 +194,12 @@ function ServiceDetail() {
 
       <section className="section-padding bg-[#eef5ff]">
         <div className="section-shell">
-          <SectionTitle eyebrow="CTA Form" title="Start the conversation" subtitle="UI only form for service-specific outreach." />
+          <SectionTitle
+            eyebrow="CTA Form"
+            title="Start the conversation"
+            subtitle="UI only form for service-specific outreach."
+            subtitleClassName="text-warning"
+          />
           <Card className="p-8">
             <motion.form
               className="grid gap-5 md:grid-cols-2"

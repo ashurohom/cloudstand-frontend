@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Briefcase, GraduationCap, Laptop, TrendingUp } from 'lucide-react'
 import { motion } from 'framer-motion'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
@@ -26,8 +27,9 @@ function Careers() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="section-padding hero-mesh gpu-layer">
-        <div className="section-shell">
+      <section className="section-padding hero-mesh gpu-layer relative overflow-hidden">
+        <AICloudBackground />
+        <div className="section-shell relative z-10">
           <Badge>Careers</Badge>
           <h1 className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
             Build the Future of Oracle Cloud Consulting With Us
@@ -109,7 +111,12 @@ function Careers() {
 
       <section className="section-padding bg-primary">
         <div className="section-shell">
-          <SectionTitle eyebrow="Application Form" title="Tell us a bit about yourself" subtitle="UI only form with no backend submission." />
+          <SectionTitle
+            eyebrow="Application Form"
+            title="Tell us a bit about yourself"
+            subtitle="UI only form with no backend submission."
+            subtitleClassName="text-warning"
+          />
           <Card className="p-8">
             <motion.form
               className="grid gap-5 md:grid-cols-2"

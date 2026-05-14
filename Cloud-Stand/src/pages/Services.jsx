@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { ArrowRight, BarChart3, Cpu, DollarSign, GitBranch, TrendingUp, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
 import SectionTitle from '../components/ui/SectionTitle'
@@ -20,8 +21,9 @@ function Services() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="section-padding hero-mesh gpu-layer">
-        <div className="section-shell">
+      <section className="section-padding hero-mesh gpu-layer relative overflow-hidden">
+        <AICloudBackground />
+        <div className="section-shell relative z-10">
           <Badge>Oracle Cloud Services</Badge>
           <h1 className="mt-6 max-w-5xl font-['DM_Sans'] text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[5.25rem]">
             Consulting Services for Every Stage of Your Oracle Cloud Journey
