@@ -49,6 +49,45 @@ const timelineSteps = [
 
 const trustLogos = ['Northstar Group', 'Zenith Retail', 'Meridian Health', 'Apex Works', 'Nova Services', 'Global Edge']
 
+const serviceBackgrounds = {
+  hcm: {
+    background:
+      'radial-gradient(circle at 18% 22%, rgba(0,87,255,0.34), transparent 26%), linear-gradient(145deg, #0d2040 0%, #132d5d 52%, #0b1732 100%)',
+    pattern:
+      'linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px)',
+  },
+  erp: {
+    background:
+      'radial-gradient(circle at 82% 18%, rgba(61,139,255,0.32), transparent 28%), linear-gradient(145deg, #10254d 0%, #17386d 48%, #0c1832 100%)',
+    pattern:
+      'linear-gradient(135deg, rgba(255,255,255,0.14) 0 2px, transparent 2px 100%), linear-gradient(45deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 100%)',
+  },
+  payroll: {
+    background:
+      'radial-gradient(circle at 22% 20%, rgba(245,158,11,0.34), transparent 24%), linear-gradient(145deg, #3c2506 0%, #6a4308 48%, #201205 100%)',
+    pattern:
+      'repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0 10px, transparent 10px 22px), repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 10px, transparent 10px 22px)',
+  },
+  oic: {
+    background:
+      'radial-gradient(circle at 78% 24%, rgba(79,124,255,0.34), transparent 24%), linear-gradient(145deg, #0d1d45 0%, #18326d 50%, #09142d 100%)',
+    pattern:
+      'linear-gradient(60deg, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(120deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
+  },
+  'bi-analytics': {
+    background:
+      'radial-gradient(circle at 20% 18%, rgba(20,184,166,0.3), transparent 26%), linear-gradient(145deg, #082c33 0%, #0d4852 46%, #071920 100%)',
+    pattern:
+      'linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+  },
+  'ai-solutions': {
+    background:
+      'radial-gradient(circle at 75% 18%, rgba(139,92,246,0.34), transparent 26%), linear-gradient(145deg, #1f1540 0%, #32205f 48%, #130d2b 100%)',
+    pattern:
+      'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.12) 0 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 0 2px, transparent 2px)',
+  },
+}
+
 function HomeSectionTitle({ eyebrow, title, subtitle }) {
   return (
     <div className="mb-12 flex max-w-3xl flex-col gap-4 items-start text-left">
@@ -187,7 +226,7 @@ function Home() {
       </section>
 
       <section
-        className="section-padding relative overflow-hidden border-y border-[#d7e5ff] bg-[#0a2540]"
+        className="py-8 sm:py-10 lg:py-12 relative overflow-hidden border-y border-[#d7e5ff] bg-[#0a2540]"
         style={{
           backgroundImage:
             'linear-gradient(rgba(10, 37, 64, 0.78), rgba(10, 37, 64, 0.78)), url("/bgimage.png")',
@@ -228,10 +267,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding diagonal-divider bg-primary">
+      <section className="py-8 sm:py-10 lg:py-12 bg-primary">
         <div className="section-shell">
           <HomeSectionTitle eyebrow="Services" title="Our Oracle Cloud Services" subtitle="End-to-end implementation, support, and training" />
-          <motion.div className="mb-10 h-1 w-28 rounded-full bg-gradient-to-r from-accent to-accent-light" initial="hidden" variants={lineDraw} viewport={{ once: true, margin: '-80px' }} whileInView="visible" />
           <motion.div
             className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
             initial="hidden"
@@ -241,6 +279,7 @@ function Home() {
           >
             {services.map((service, index) => {
               const Icon = iconMap[service.icon]
+              const serviceBackground = serviceBackgrounds[service.slug]
               const isAISolutions = service.slug === 'ai-solutions'
               const isBIAnalytics = service.slug === 'bi-analytics'
               const titleClassName = isAISolutions ? 'text-violet' : isBIAnalytics ? 'text-teal' : 'text-white'
@@ -261,31 +300,50 @@ function Home() {
                       delay: index * 0.1,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    whileHover={{
-                      y: -8,
-                      scale: 1.015,
-                      transition: {
-                        type: 'spring',
-                        stiffness: 260,
-                        damping: 22,
-                        mass: 0.85,
-                      },
-                    }}
                   >
                     <motion.div
                       className="group h-full"
-                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      whileHover={{ boxShadow: '0 24px 60px rgba(0,87,255,0.16)' }}
                     >
-                    <Card className="glass-panel relative h-full overflow-hidden rounded-[28px] border-transparent p-0 transition-all duration-300 group-hover:border-accent/40">
+                    <Card className="glass-panel relative h-full overflow-hidden rounded-[28px] border-transparent p-0 transition-all duration-300 hover:translate-y-0 hover:border-transparent hover:shadow-none">
                       <div className="relative h-full min-h-[320px] overflow-hidden">
-                        <motion.img
-                          alt={service.title}
-                          className="h-full w-full object-cover"
-                          src="/network.png"
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                          whileHover={{ scale: 1.06 }}
-                        />
+                        <motion.div
+                          className="absolute inset-0"
+                        >
+                          <div className="absolute inset-0" style={{ background: serviceBackground.background }} />
+                          <div
+                            className="absolute inset-0 opacity-35"
+                            style={{
+                              backgroundImage: serviceBackground.pattern,
+                              backgroundSize: '120px 120px',
+                            }}
+                          />
+                          <div
+                            className="absolute -left-8 top-10 h-28 w-28 rounded-full blur-3xl"
+                            style={{ background: `${service.color}55` }}
+                          />
+                          <div
+                            className="absolute -right-10 bottom-8 h-36 w-36 rounded-full blur-3xl"
+                            style={{ background: `${service.color}35` }}
+                          />
+                          <div className="absolute right-5 top-4 text-[72px] font-black tracking-[-0.08em] text-white/10">
+                            {service.shortTitle}
+                          </div>
+                          <div className="absolute bottom-24 left-5 right-5 flex items-end justify-between">
+                            <div className="space-y-2">
+                              <div className="h-2 w-16 rounded-full bg-white/30" />
+                              <div className="h-2 w-24 rounded-full bg-white/18" />
+                              <div className="h-2 w-12 rounded-full bg-white/12" />
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                              {[0, 1, 2, 3, 4, 5].map((item) => (
+                                <span
+                                  key={item}
+                                  className="h-3 w-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
                         <div className="absolute inset-0 bg-gradient-to-t from-[#091631]/85 via-[#091631]/25 to-transparent" />
 
                         <div className="absolute inset-x-4 bottom-4 rounded-[24px] bg-[rgba(37,49,118,0.86)] p-5 backdrop-blur-md">
@@ -327,7 +385,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding bg-[#eef5ff]">
+      <section className="py-8 sm:py-10 lg:py-12 bg-[#eef5ff]">
         <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <HomeSectionTitle
@@ -375,7 +433,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding bg-primary">
+      <section className="py-8 sm:py-10 lg:py-12 bg-primary">
         <div className="section-shell">
           <HomeSectionTitle eyebrow="Success Stories" title="Transformation outcomes that stand up in the boardroom" />
           <motion.div className="flex gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" initial="hidden" variants={staggerContainer} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
@@ -401,7 +459,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding bg-[#eef5ff]">
+      <section className="py-8 sm:py-10 lg:py-12 bg-[#eef5ff]">
         <div className="section-shell">
           <HomeSectionTitle eyebrow="Process" title="Our Engagement Model" />
           <div className="relative mt-10">
@@ -443,7 +501,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding bg-primary">
+      <section className="py-8 sm:py-10 lg:py-12 bg-primary">
         <div className="section-shell">
           <HomeSectionTitle eyebrow="Testimonials" title="What Our Clients Say" />
           <motion.div className="grid gap-6 lg:grid-cols-3" initial="hidden" variants={staggerContainer} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
@@ -485,7 +543,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section-padding bg-[#f7fbff]">
+      <section className="py-8 sm:py-10 lg:py-12 bg-[#f7fbff]">
         <div className="section-shell">
           <div className="hero-mesh gpu-layer relative overflow-hidden rounded-[40px] border border-[#d7e5ff] p-8 sm:p-12">
             <motion.div
