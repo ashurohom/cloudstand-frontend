@@ -57,7 +57,10 @@ function AIChatbot() {
               exit={{ opacity: 0, y: 10 }}
               className="hidden rounded-2xl border border-[#d7e5ff] bg-white/95 px-4 py-3 text-sm text-text-muted shadow-[0_18px_40px_rgba(24,67,148,0.12)] md:block"
             >
-              AI Assistant
+              <span className="inline-flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-accent" />
+                Assist
+              </span>
             </motion.div>
           ) : null}
         </AnimatePresence>
@@ -89,7 +92,7 @@ function AIChatbot() {
                   </span>
                   <div>
                     <div className="flex items-center gap-2 font-semibold">
-                      CloudStand AI Assistant
+                      Assist
                       <Sparkles className="h-4 w-4" />
                     </div>
                     <p className="mt-1 text-sm text-blue-50">

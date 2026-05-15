@@ -279,14 +279,8 @@ function Home() {
             {services.map((service, index) => {
               const Icon = iconMap[service.icon]
               const serviceBackground = serviceBackgrounds[service.slug]
-              const isAISolutions = service.slug === 'ai-solutions'
-              const isBIAnalytics = service.slug === 'bi-analytics'
-              const titleClassName = isAISolutions ? 'text-violet' : isBIAnalytics ? 'text-teal' : 'text-white'
-              const linkClassName = isAISolutions
-                ? 'text-violet hover:text-violet/80'
-                : isBIAnalytics
-                  ? 'text-teal hover:text-teal/80'
-                  : 'text-white hover:text-blue-100'
+              const titleClassName = 'text-slate-900'
+              const linkClassName = 'text-accent hover:text-accent-light'
 
                 return (
                   <motion.div
@@ -303,14 +297,14 @@ function Home() {
                     <motion.div
                       className="group h-full"
                     >
-                    <Card className="glass-panel relative h-full overflow-hidden rounded-[28px] border-transparent p-0 transition-all duration-300 hover:translate-y-0 hover:border-transparent hover:shadow-none">
+                    <Card className="relative h-full overflow-hidden rounded-[28px] border border-[#d7e5ff] bg-white p-0 transition-all duration-300 hover:translate-y-0 hover:border-accent/30 hover:shadow-[0_24px_60px_rgba(0,87,255,0.13)]">
                       <div className="relative h-full min-h-[320px] overflow-hidden">
                         <motion.div
                           className="absolute inset-0"
                         >
-                          <div className="absolute inset-0" style={{ background: serviceBackground.background }} />
+                          <div className="absolute inset-0" style={{ background: '#ffffff' }} />
                           <div
-                            className="absolute inset-0 opacity-35"
+                            className="absolute inset-0 opacity-20"
                             style={{
                               backgroundImage: serviceBackground.pattern,
                               backgroundSize: '120px 120px',
@@ -324,28 +318,28 @@ function Home() {
                             className="absolute -right-10 bottom-8 h-36 w-36 rounded-full blur-3xl"
                             style={{ background: `${service.color}35` }}
                           />
-                          <div className="absolute right-5 top-4 text-[72px] font-black tracking-[-0.08em] text-white/10">
+                          <div className="absolute right-5 top-4 text-[72px] font-black tracking-[-0.08em] text-slate-900/5">
                             {service.shortTitle}
                           </div>
                           <div className="absolute bottom-24 left-5 right-5 flex items-end justify-between">
                             <div className="space-y-2">
-                              <div className="h-2 w-16 rounded-full bg-white/30" />
-                              <div className="h-2 w-24 rounded-full bg-white/18" />
-                              <div className="h-2 w-12 rounded-full bg-white/12" />
+                              <div className="h-2 w-16 rounded-full bg-[#d7e5ff]" />
+                              <div className="h-2 w-24 rounded-full bg-[#d7e5ff]/75" />
+                              <div className="h-2 w-12 rounded-full bg-[#d7e5ff]/55" />
                             </div>
                             <div className="grid grid-cols-3 gap-2">
                               {[0, 1, 2, 3, 4, 5].map((item) => (
                                 <span
                                   key={item}
-                                  className="h-3 w-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm"
+                                  className="h-3 w-3 rounded-full border border-[#d7e5ff] bg-white/80 backdrop-blur-sm"
                                 />
                               ))}
                             </div>
                           </div>
                         </motion.div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#091631]/85 via-[#091631]/25 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-white/92 via-white/45 to-transparent" />
 
-                        <div className="absolute inset-x-4 bottom-4 rounded-[24px] bg-[rgba(37,49,118,0.86)] p-5 backdrop-blur-md">
+                        <div className="absolute inset-x-4 bottom-4 rounded-[24px] border border-[#d7e5ff] bg-white/90 p-5 backdrop-blur-md">
                           <div className="flex items-start justify-between gap-4">
                             <div className="min-w-0">
                               <div className="flex items-center gap-3">
@@ -360,12 +354,12 @@ function Home() {
                                 </motion.div>
                                 <h3 className={`text-2xl font-semibold ${titleClassName}`}>{service.title}</h3>
                               </div>
-                              <p className="mt-4 text-sm leading-7 text-white/85">{service.tagline}</p>
+                              <p className="mt-4 text-sm leading-7 text-text-muted">{service.tagline}</p>
                             </div>
 
                             <Link
                               aria-label={`Explore ${service.title}`}
-                              className={`mt-1 inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border border-white/30 bg-white/10 transition ${linkClassName}`}
+                              className={`mt-1 inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border border-[#d7e5ff] bg-white transition ${linkClassName}`}
                               to={`/services/${service.slug}`}
                             >
                               <motion.span whileHover={{ x: 4 }}>
