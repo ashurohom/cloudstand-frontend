@@ -13,10 +13,9 @@ import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
 import { caseStudies } from '../data/caseStudies'
 import { testimonials } from '../data/testimonials'
-import { floatingStats, stats } from '../data/stats'
+import { stats } from '../data/stats'
 import {
   cardHover,
-  fadeUp,
   iconPop,
   lineDraw,
   pageVariants,
@@ -48,6 +47,12 @@ const timelineSteps = [
 ]
 
 const trustLogos = ['Northstar Group', 'Zenith Retail', 'Meridian Health', 'Apex Works', 'Nova Services', 'Global Edge']
+const overviewStats = [
+  { number: '50+', label: 'Projects' },
+  { number: '30+', label: 'Clients' },
+  { number: '15+', label: 'Experts' },
+  { number: '3', label: 'Countries' },
+]
 
 const serviceBackgrounds = {
   hcm: {
@@ -169,9 +174,9 @@ function Home() {
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="hero-particles gpu-layer relative isolate min-h-screen overflow-hidden">
+      <section className="hero-particles gpu-layer relative isolate min-h-[calc(100vh-5rem)] overflow-hidden">
         <AICloudBackground />
-        <div className="section-shell relative z-10 flex min-h-screen flex-col justify-center py-10">
+        <div className="section-shell relative z-10 flex min-h-[calc(100vh-5rem)] flex-col justify-center py-6">
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)]">
             <div className="max-w-4xl">
               <motion.div
@@ -289,7 +294,7 @@ function Home() {
                   transition={{ delay: 0.9, duration: 0.5 }}
                   className="mt-3 text-center text-xs tracking-normal text-[#5f6f89]"
                 >
-                  No commitment · Free consultation
+                  Free consultation
                 </motion.p>
               </motion.div>
             </div>
@@ -308,21 +313,6 @@ function Home() {
               />
             </motion.div>
           </div>
-
-          <motion.div
-            className="glass-panel floating-bob mt-14 grid max-w-5xl grid-cols-2 gap-6 rounded-[32px] px-6 py-5 sm:grid-cols-4"
-            initial={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            {floatingStats.map((item, index) => (
-              <motion.div key={item.label} variants={fadeUp} custom={index} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <div className="font-syne text-2xl font-bold text-text-orange">{item.value}</div>
-                <div className="mt-1 text-sm text-text-muted">{item.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
 
         </div>
       </section>
@@ -373,6 +363,43 @@ function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="section-shell">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-2 md:grid-cols-4"
+          >
+            {overviewStats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: '-40px' }}
+                transition={{
+                  duration: 0.45,
+                  delay: i * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="flex flex-col items-center justify-center border-r border-[#d7e5ff] px-4 py-6 last:border-r-0"
+              >
+                <span
+                  className="mb-1 text-4xl font-bold"
+                  style={{ color: '#EA580C' }}
+                >
+                  {stat.number}
+                </span>
+                <span className="text-sm font-medium text-[#5f6f89]">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
