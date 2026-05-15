@@ -214,14 +214,6 @@ function Home() {
             ))}
           </motion.div>
 
-          <motion.div
-            animate={{ y: [0, 8, 0], opacity: [0.6, 1, 0.6] }}
-            className="mt-12 flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-text-muted"
-            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-          >
-            Scroll
-            <ArrowDown className="h-4 w-4 text-accent" />
-          </motion.div>
         </div>
       </section>
 
@@ -252,11 +244,18 @@ function Home() {
           </div>
         </motion.div>
         <div className="relative w-full overflow-hidden">
-          <div className="flex w-max animate-marquee gap-5">
-            {[...trustLogos, ...trustLogos].map((name, index) => (
+          <div
+            style={{
+              display: 'flex',
+              width: 'max-content',
+              animation: 'marquee 25s linear infinite',
+            }}
+          >
+            {[...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos].map((name, index) => (
               <motion.div
                 className="rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-medium text-white/85 backdrop-blur-sm"
                 key={`${name}-${index}`}
+                style={{ marginRight: '20px', flexShrink: 0 }}
                 transition={{ duration: 0.2 }}
                 whileHover={{ opacity: 1 }}
               >

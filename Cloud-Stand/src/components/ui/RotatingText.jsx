@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const words = [
   'HCM',
@@ -10,7 +10,7 @@ const words = [
   'AI Solutions'
 ];
 
-const ROTATION_INTERVAL = 2200;
+const ROTATION_INTERVAL = 2500;
 
 export default function RotatingText() {
   const [index, setIndex] = useState(0);
@@ -23,49 +23,56 @@ export default function RotatingText() {
   }, []);
 
   const currentWord = words[index];
+  const characters = currentWord.split('');
 
   return (
     <span
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        minWidth: '220px',
+        minWidth: '180px',
         justifyContent: 'flex-start',
         overflow: 'hidden',
         verticalAlign: 'middle',
+        height: '1.4em',
         position: 'relative',
-        lineHeight: 1,
-        padding: '0',
+        background: 'none',
+        border: 'none',
+        padding: '0 8px',
       }}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={currentWord}
-          initial={{ opacity: 0, scale: 0.78, y: 10, rotateX: -18 }}
-          animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
-          exit={{ opacity: 0, scale: 1.14, y: -10, rotateX: 18 }}
-          transition={{
-            duration: 0.46,
-            ease: [0.22, 1, 0.36, 1],
-          }}
           style={{
             display: 'inline-flex',
-            alignItems: 'center',
-            whiteSpace: 'nowrap',
-            position: 'relative',
-            zIndex: 1,
-            transformOrigin: '50% 50%',
-            fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
-            fontWeight: 800,
-            fontSize: '1.45em',
-            letterSpacing: '-0.03em',
-            color: '#d63b25',
-            padding: '8px 16px',
-            borderRadius: '999px',
-            border: '2px solid #d63b25',
+            overflow: 'hidden',
+            color: '#C74634',
+            fontWeight: 700,
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            lineHeight: 1.4,
           }}
         >
-          {currentWord}
+          {characters.map((char, i) => (
+            <motion.span
+              key={i}
+              initial={{ y: '-120%', opacity: 0 }}
+              animate={{ y: '0%', opacity: 1 }}
+              exit={{ y: '120%', opacity: 0 }}
+              transition={{
+                duration: 0.35,
+                delay: i * 0.06,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              style={{
+                display: 'inline-block',
+                whiteSpace: char === ' ' ? 'pre' : 'normal',
+                lineHeight: 1.4,
+              }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </motion.span>
+          ))}
         </motion.span>
       </AnimatePresence>
     </span>
