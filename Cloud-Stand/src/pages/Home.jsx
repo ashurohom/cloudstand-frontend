@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
-import { ArrowDown, ArrowRight, BarChart3, Check, Cpu, DollarSign, GitBranch, Quote, Star, TrendingUp, Users } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { ArrowRight, BarChart3, Check, ChevronLeft, ChevronRight, Cpu, DollarSign, GitBranch, Quote, Star, TrendingUp, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import AICloudBackground from '../components/ui/AICloudBackground'
@@ -117,10 +117,55 @@ function HomeSectionTitle({ eyebrow, title, subtitle }) {
 function Home() {
   useDocumentTitle('CloudStand Consulting | Oracle Cloud Transformation Partner')
   const featuredCaseStudies = caseStudies.slice(0, 3)
+  const enhancedTestimonials = testimonials.map((testimonial, index) => ({
+    ...testimonial,
+    avatar: testimonial.name.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase(),
+    flag: ['🇮🇳', '🇺🇸', '🇮🇳'][index] || '🌍',
+    category: ['HCM', 'ERP', 'OIC'][index] || 'Oracle Cloud',
+  }))
+  const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState(1)
+  const total = enhancedTestimonials.length
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.95,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (dir) => ({
+      x: dir > 0 ? -300 : 300,
+      opacity: 0,
+      scale: 0.95,
+    }),
+  }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1)
+      setCurrent((prev) => (prev + 1) % total)
+    }, 4000)
+
+    return () => clearInterval(timer)
+  }, [total])
+
+  const goNext = () => {
+    setDirection(1)
+    setCurrent((prev) => (prev + 1) % total)
+  }
+
+  const goPrev = () => {
+    setDirection(-1)
+    setCurrent((prev) => (prev - 1 + total) % total)
+  }
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
@@ -497,42 +542,105 @@ function Home() {
       <section className="py-8 sm:py-10 lg:py-12 bg-primary">
         <div className="section-shell">
           <HomeSectionTitle eyebrow="Testimonials" title="What Our Clients Say" />
-          <motion.div className="grid gap-6 lg:grid-cols-3" initial="hidden" variants={staggerContainer} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
-            {testimonials.map((testimonial) => (
-              <motion.div key={testimonial.name} variants={staggerItem}>
-                <Card className="h-full p-7">
-                  <Quote className="h-8 w-8 text-accent" />
-                  <p className="mt-5 text-sm leading-7 text-text-muted">{testimonial.quote}</p>
-                  <div className="mt-6 flex gap-1 text-gold">
-                    {[...Array(5)].map((_, starIndex) => (
-                      <motion.div
-                        key={starIndex}
-                        initial={{ scale: 0 }}
-                        transition={{ type: 'spring', stiffness: 500, damping: 20, delay: starIndex * 0.07 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                      >
-                        <Star className="h-4 w-4 fill-current" />
-                      </motion.div>
+          <div className="relative mx-auto w-full max-w-3xl">
+            <button
+              onClick={goPrev}
+              className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-x-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d7e5ff] bg-white shadow-soft transition-all duration-200 hover:border-[#0057ff] hover:bg-[#0057ff] group"
+              type="button"
+            >
+              <ChevronLeft className="h-5 w-5 text-[#0057ff] transition-colors group-hover:text-white" />
+            </button>
+
+            <div className="overflow-hidden rounded-3xl">
+              <AnimatePresence custom={direction} mode="wait">
+                <motion.div
+                  key={current}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    duration: 0.45,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="rounded-3xl border border-[#d7e5ff] bg-white p-10 shadow-soft"
+                >
+                  <div className="mb-6">
+                    <Quote className="h-10 w-10 text-[#0057ff] opacity-30" />
+                  </div>
+
+                  <div className="mb-5 flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-[#f59e0b] text-[#f59e0b]"
+                      />
                     ))}
                   </div>
-                  <motion.div
-                    className="mt-5 inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-base font-medium uppercase tracking-normal text-gold"
-                    animate={{ scale: [1, 1.04, 1] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    Proven Results
-                  </motion.div>
-                  <div className="mt-6">
-                    <div className="font-semibold text-slate-900">{testimonial.name}</div>
-                    <div className="text-sm text-text-muted">
-                      {testimonial.designation}, {testimonial.company}
+
+                  <p className="mb-8 text-lg font-medium leading-relaxed text-[#0f172a]">
+                    "{enhancedTestimonials[current].quote}"
+                  </p>
+
+                  <div className="mb-6 h-px bg-[#d7e5ff]" />
+
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white"
+                      style={{ background: 'linear-gradient(135deg, #0057ff, #3d8bff)' }}
+                    >
+                      {enhancedTestimonials[current].avatar}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[#0f172a]">
+                        {enhancedTestimonials[current].name}
+                      </p>
+                      <p className="text-sm text-[#5f6f89]">
+                        {enhancedTestimonials[current].designation} · {` `}
+                        {enhancedTestimonials[current].company}
+                      </p>
+                    </div>
+                    <div className="ml-auto flex items-center gap-2">
+                      <span className="text-xl">
+                        {enhancedTestimonials[current].flag}
+                      </span>
+                      <span className="rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-semibold text-[#0057ff]">
+                        {enhancedTestimonials[current].category}
+                      </span>
                     </div>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <button
+              onClick={goNext}
+              className="absolute right-0 top-1/2 z-10 flex h-11 w-11 translate-x-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d7e5ff] bg-white shadow-soft transition-all duration-200 hover:border-[#0057ff] hover:bg-[#0057ff] group"
+              type="button"
+            >
+              <ChevronRight className="h-5 w-5 text-[#0057ff] transition-colors group-hover:text-white" />
+            </button>
+
+            <div className="mt-8 flex justify-center gap-2">
+              {enhancedTestimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setDirection(i > current ? 1 : -1)
+                    setCurrent(i)
+                  }}
+                  className="rounded-full transition-all duration-300"
+                  style={{
+                    width: i === current ? '28px' : '8px',
+                    height: '8px',
+                    background: i === current ? '#0057ff' : '#d7e5ff',
+                  }}
+                  type="button"
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
