@@ -457,7 +457,7 @@ function FeedbackSection() {
             whileInView="visible"
           >
             <motion.div
-              className="mx-auto inline-flex items-center gap-2 rounded-full border border-accent/20 bg-white/70 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.32em] text-accent backdrop-blur-xl"
+              className="mx-auto inline-flex items-center gap-2 rounded-full border border-accent/20 bg-white/70 px-4 py-2 text-base font-medium uppercase tracking-normal text-accent backdrop-blur-xl"
               variants={cardMotion}
               custom={0}
             >
@@ -523,7 +523,7 @@ function FeedbackSection() {
                   transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="mb-8">
-                    <div className="text-xs uppercase tracking-[0.3em] text-text-muted">Your Opinion Matters</div>
+                    <div className="text-base uppercase tracking-normal text-text-muted">Your Opinion Matters</div>
                     <h3 className="mt-3 text-[24px] font-bold text-slate-900">Leave Your Feedback</h3>
                     <p className="mt-2 text-sm leading-6 text-text-muted">
                       Takes less than 2 minutes · Used to improve our Oracle delivery for global clients
@@ -988,7 +988,7 @@ function FeedbackSection() {
                       <MessageSquare className="h-5 w-5" />
                     </span>
                     <div>
-                      <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Why Share Your Feedback?</div>
+                      <div className="text-base uppercase tracking-normal text-text-muted">Why Share Your Feedback?</div>
                       <h4 className="mt-2 text-xl font-bold text-slate-900">Why It Matters</h4>
                     </div>
                   </div>
@@ -1022,7 +1022,7 @@ function FeedbackSection() {
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Global Client Base</div>
+                <div className="text-base uppercase tracking-normal text-text-muted">Global Client Base</div>
                 <h4 className="mt-2 text-xl font-bold text-slate-900">Our Clients Are From</h4>
                 <div className="mt-6 space-y-4">
                   {progressItems.map((item) => (
@@ -1057,7 +1057,7 @@ function FeedbackSection() {
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Quick Stats</div>
+                <div className="text-base uppercase tracking-normal text-text-muted">Quick Stats</div>
                 <h4 className="mt-2 text-xl font-bold text-slate-900">Performance Snapshot</h4>
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   {[
@@ -1084,7 +1084,7 @@ function FeedbackSection() {
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <div className="text-xs uppercase tracking-[0.26em] text-text-muted">Prefer To Talk?</div>
+                <div className="text-base uppercase tracking-normal text-text-muted">Prefer To Talk?</div>
                 <h4 className="mt-2 text-xl font-bold text-slate-900">Speak With Our Team Directly</h4>
                 <p className="mt-3 text-sm leading-6 text-text-muted">Rather speak with our team directly?</p>
                 <div className="mt-5 space-y-3 text-sm text-slate-900">

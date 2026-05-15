@@ -226,7 +226,7 @@ function Home() {
       </section>
 
       <section
-        className="py-8 sm:py-10 lg:py-12 relative overflow-hidden border-y border-[#d7e5ff] bg-[#0a2540]"
+        className="py-12 sm:py-14 lg:py-16 relative overflow-hidden border-y border-[#d7e5ff] bg-[#0a2540]"
         style={{
           backgroundImage:
             'linear-gradient(rgba(10, 37, 64, 0.78), rgba(10, 37, 64, 0.78)), url("/bgimage.png")',
@@ -425,7 +425,7 @@ function Home() {
                 <Card className="p-7">
                   <AnimatedCounter suffix={item.suffix} value={item.value} />
                   <motion.div className="mt-4 h-1 w-16 rounded-full bg-gold" initial={{ scaleX: 0, originX: 0 }} transition={{ duration: 0.6, delay: index * 0.12 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} />
-                  <p className="mt-4 text-sm uppercase tracking-[0.24em] text-text-muted">{item.label}</p>
+                  <p className="mt-4 text-base uppercase tracking-normal text-text-muted">{item.label}</p>
                 </Card>
               </motion.div>
             ))}
@@ -442,7 +442,7 @@ function Home() {
                 <motion.div className="group min-w-[320px] flex-1 md:min-w-[360px]" transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} whileHover={{ y: -6 }}>
                   <Card className="h-full p-7 transition-all duration-300 group-hover:border-accent/30 group-hover:shadow-[0_24px_60px_rgba(0,87,255,0.13)]">
                     <Badge className="border-accent/20 bg-blue-50 text-accent">{study.category}</Badge>
-                    <div className="mt-5 text-sm uppercase tracking-[0.24em] text-text-muted">{study.company}</div>
+                    <div className="mt-5 text-base uppercase tracking-normal text-text-muted">{study.company}</div>
                     <h3 className="mt-3 text-2xl font-semibold text-slate-900">{study.title}</h3>
                     <p className="mt-4 text-sm leading-7 text-text-muted">{study.summary}</p>
                     <Link className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent" to="/case-studies">
@@ -524,7 +524,7 @@ function Home() {
                     ))}
                   </div>
                   <motion.div
-                    className="mt-5 inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-xs font-medium uppercase tracking-[0.24em] text-gold"
+                    className="mt-5 inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-base font-medium uppercase tracking-normal text-gold"
                     animate={{ scale: [1, 1.04, 1] }}
                     transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
                   >
@@ -584,7 +584,7 @@ function Home() {
               </div>
 
               <Card className="p-6">
-                <div className="text-sm uppercase tracking-[0.24em] text-text-muted">What you get</div>
+                <div className="text-base uppercase tracking-normal text-text-muted">What you get</div>
                 <div className="mt-4 space-y-3 text-slate-900">
                   <div>30-min free consultation</div>
                   <div>No commitment</div>

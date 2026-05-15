@@ -60,7 +60,7 @@ function About() {
         <div className="section-shell grid gap-6 lg:grid-cols-2">
           <motion.div initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <Card className="h-full p-8">
-              <div className="text-sm uppercase tracking-[0.24em] text-accent">Mission</div>
+              <div className="text-base uppercase tracking-normal text-accent">Mission</div>
               <h2 className="mt-4 text-3xl font-bold text-slate-900">Build Oracle Cloud programs that create real business momentum.</h2>
               <p className="mt-4 text-base leading-8 text-text-muted">
                 We focus on implementation quality, adoption, and outcomes that matter to leadership teams, not just technical completion.
@@ -69,7 +69,7 @@ function About() {
           </motion.div>
           <motion.div initial="hidden" variants={slideRight} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <Card className="h-full p-8">
-              <div className="text-sm uppercase tracking-[0.24em] text-accent">Vision</div>
+              <div className="text-base uppercase tracking-normal text-accent">Vision</div>
               <h2 className="mt-4 text-3xl font-bold text-slate-900">Become the most trusted Oracle Cloud transformation partner for growth-stage enterprises.</h2>
               <p className="mt-4 text-base leading-8 text-text-muted">
                 CloudStand aims to combine global delivery discipline with the agility and attention clients often miss in larger consulting models.

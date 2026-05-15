@@ -124,7 +124,7 @@ function ServiceDetail() {
               {service.benefits.map((benefit, index) => (
                 <motion.div key={benefit} variants={staggerItem}>
                   <Card className="p-6">
-                    <div className="text-sm uppercase tracking-[0.24em] text-accent">Benefit {index + 1}</div>
+                    <div className="text-base uppercase tracking-normal text-accent">Benefit {index + 1}</div>
                     <p className="mt-3 text-base leading-8 text-slate-900">{benefit}</p>
                   </Card>
                 </motion.div>

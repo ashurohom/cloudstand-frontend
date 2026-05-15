@@ -141,7 +141,7 @@ function Contact() {
                           <Icon className="h-5 w-5" />
                         </motion.span>
                         <div>
-                          <div className="text-sm uppercase tracking-[0.24em] text-text-muted">{item.title}</div>
+                          <div className="text-base uppercase tracking-normal text-text-muted">{item.title}</div>
                           <div className="mt-2 text-base leading-7 text-slate-900">{item.value}</div>
                         </div>
                       </div>
@@ -153,7 +153,7 @@ function Contact() {
 
             <Card className="flex min-h-[220px] items-center justify-center p-8">
               <div className="text-center">
-                <div className="text-sm uppercase tracking-[0.24em] text-text-muted">Map</div>
+                <div className="text-base uppercase tracking-normal text-text-muted">Map</div>
                 <div className="mt-4 text-2xl font-semibold text-slate-900">Google Maps Placeholder</div>
               </div>
             </Card>

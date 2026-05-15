@@ -291,7 +291,7 @@ function ResolveQuery() {
                       type="button"
                     >
                       <div>
-                        <div className="mb-2 text-xs font-medium uppercase tracking-[0.24em] text-text-muted">{entry.category}</div>
+                        <div className="mb-2 text-base font-medium uppercase tracking-normal text-text-muted">{entry.category}</div>
                         <h3 className="text-lg font-semibold leading-7 text-slate-900 sm:text-xl">
                           {highlightMatch(entry.question, searchTerm)}
                         </h3>
