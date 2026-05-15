@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, BarChart3, Check, ChevronLeft, ChevronRight, Cpu, DollarSign, GitBranch, Quote, Star, TrendingUp, Users } from 'lucide-react'
+import { ArrowRight, BarChart3, Check, ChevronLeft, ChevronRight, Cpu, DollarSign, GitBranch, Quote, Sparkles, Star, TrendingUp, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button'
@@ -210,22 +210,87 @@ function Home() {
                 End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts who focus on outcomes, not just go-lives.
               </motion.p>
               <motion.div
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-10 flex flex-col gap-4 sm:flex-row"
-                initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-10"
               >
-                <div>
-                  <Button size="lg" to="/contact" variant="solid">
-                    Rescue Enquiry
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </div>
-                <div>
-                  <Button size="lg" to="/case-studies" variant="ghost">
-                    View Our Work
-                  </Button>
-                </div>
+                <Link to="/about">
+                  <motion.button
+                    initial="rest"
+                    whileHover="hover"
+                    whileTap={{ scale: 0.97 }}
+                    className="relative group flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-base font-semibold text-white shadow-glow"
+                    style={{
+                      background: 'linear-gradient(135deg, #0a2540 0%, #0057ff 60%, #3d8bff 100%)',
+                      backgroundSize: '200% 200%',
+                    }}
+                  >
+                    <motion.span
+                      variants={{
+                        rest: { x: '-100%', opacity: 0 },
+                        hover: { x: '100%', opacity: 1 },
+                      }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-0 h-full w-full"
+                      style={{
+                        background: 'linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.18) 50%, transparent 80%)',
+                        pointerEvents: 'none',
+                      }}
+                    />
+
+                    <motion.span
+                      animate={{
+                        scale: [1, 1.12, 1],
+                        opacity: [0.4, 0, 0.4],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        border: '2px solid #0057ff',
+                        pointerEvents: 'none',
+                      }}
+                    />
+
+                    <motion.span
+                      variants={{
+                        rest: { rotate: 0, scale: 1 },
+                        hover: { rotate: 20, scale: 1.2 },
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Sparkles className="h-5 w-5 text-[#00FFFF]" />
+                    </motion.span>
+
+                    <span className="relative z-10 tracking-normal">
+                      Let&apos;s Connect &amp; Explore Solution
+                    </span>
+
+                    <motion.span
+                      variants={{
+                        rest: { x: 0 },
+                        hover: { x: 5 },
+                      }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                      className="relative z-10"
+                    >
+                      <ArrowRight className="h-5 w-5" />
+                    </motion.span>
+                  </motion.button>
+                </Link>
+
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                  className="mt-3 text-center text-xs tracking-normal text-[#5f6f89]"
+                >
+                  No commitment · Free consultation
+                </motion.p>
               </motion.div>
             </div>
 
