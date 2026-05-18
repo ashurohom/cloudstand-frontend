@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, TrendingUp, X } from 'lucide-react'
+import Badge from '../ui/Badge'
 
 const countryProjects = {
   IN: {
@@ -153,213 +154,201 @@ function GlobalDelivery() {
   const [selectedCountry, setSelectedCountry] = useState('US')
   const [slideIndex, setSlideIndex] = useState(0)
 
+  const activeCountry = selectedCountry ? countryProjects[selectedCountry] : null
+  const activeProject = activeCountry ? activeCountry.projects[slideIndex] : null
+
   return (
-    <section className="section-padding overflow-hidden bg-[#f5f9ff]">
-      <div className="section-shell mb-12 text-center">
-        <span className="mb-3 block text-sm font-semibold uppercase tracking-normal text-[#EA580C]">
-          Global Delivery
-        </span>
-        <h2 className="mb-4 text-4xl font-bold leading-tight text-[#0f172a] md:text-5xl lg:text-6xl">
-          Delivering Value
-          <br />
-          Across the World
-        </h2>
-        <p className="mx-auto max-w-2xl text-lg text-[#5f6f89]">
-          We partner with organizations across the globe to deliver Oracle Cloud transformation with measurable business impact.
-        </p>
-      </div>
+    <section className="overflow-hidden bg-white py-8 sm:py-10 lg:py-12">
+      <div className="section-shell">
+        <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
+          <Badge className="mb-3 border-accent/20 bg-white/70 text-slate-900">Global Delivery</Badge>
+          <h2 className="text-3xl font-bold leading-tight text-[#0f172a] sm:text-4xl lg:text-5xl">
+            Delivering Oracle Cloud outcomes across the world
+          </h2>
+        </div>
 
-      <div className="relative w-full" style={{ height: '520px' }}>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
-          alt="World Map"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{
-            filter: 'grayscale(1) opacity(0.15)',
-            objectPosition: 'center',
-          }}
-        />
+        <div className="relative mx-auto mt-2 max-w-[1280px]">
+          <div
+            className="pointer-events-none absolute left-1/2 top-2 hidden h-20 w-20 -translate-x-1/2 rounded-full blur-3xl md:block"
+            style={{ background: 'rgba(61,139,255,0.08)' }}
+          />
 
-        {Object.entries(countryProjects).map(([code, country]) => (
-          <motion.button
-            key={code}
-            className="group absolute z-10"
-            style={{
-              left: country.x,
-              top: country.y,
-              transform: 'translate(-50%, -50%)',
-            }}
-            onClick={() => {
-              setSelectedCountry(selectedCountry === code ? null : code)
-              setSlideIndex(0)
-            }}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.95 }}
-            type="button"
-          >
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              animate={{
-                scale: [1, 2.2],
-                opacity: [0.5, 0],
+          <div className="relative overflow-hidden min-h-[220px] sm:min-h-[260px] md:min-h-[300px]">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
+              alt="World Map"
+              className="absolute inset-0 h-full w-full object-contain object-center"
+              style={{
+                filter: 'grayscale(1) opacity(0.14) contrast(0.9)',
+                transform: 'scale(1.02)',
               }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                ease: 'easeOut',
-              }}
-              style={{ background: country.color }}
             />
 
-            <div
-              className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-white text-xs font-bold text-white shadow-lg"
-              style={{ background: country.color }}
-            >
-              {country.flag}
-            </div>
-
-            <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[#0f172a] px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-              {country.name} · {country.projects.length} Projects
-            </div>
-          </motion.button>
-        ))}
-
-        <AnimatePresence>
-          {selectedCountry && (() => {
-            const country = countryProjects[selectedCountry]
-            const project = country.projects[slideIndex]
-
-            return (
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-8 left-8 z-20 w-80 overflow-hidden rounded-2xl bg-white shadow-soft"
+            {Object.entries(countryProjects).map(([code, country]) => (
+              <motion.button
+                key={code}
+                className="group absolute z-10"
                 style={{
-                  border: '1px solid #d7e5ff',
-                  backdropFilter: 'blur(12px)',
+                  left: country.x,
+                  top: country.y,
+                  transform: 'translate(-50%, -50%)',
                 }}
+                onClick={() => {
+                  setSelectedCountry(selectedCountry === code ? null : code)
+                  setSlideIndex(0)
+                }}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                type="button"
               >
-                <div
-                  className="flex items-center justify-between px-5 py-4"
-                  style={{
-                    background: `${country.color}15`,
-                    borderBottom: '1px solid #d7e5ff',
+                <motion.span
+                  className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  animate={{
+                    scale: [1, 1.9],
+                    opacity: [0.3, 0],
                   }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    ease: 'easeOut',
+                  }}
+                  style={{ background: country.color }}
+                />
+
+                <span
+                  className="relative block h-3.5 w-3.5 rounded-full border-2 border-white shadow-[0_0_0_6px_rgba(255,255,255,0.75)] transition-transform duration-200 group-hover:scale-110"
+                  style={{ background: country.color }}
+                />
+              </motion.button>
+            ))}
+
+            <AnimatePresence>
+              {activeCountry && activeProject ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 18, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 12, scale: 0.96 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute bottom-2 right-0 z-20 w-[280px] max-w-[88vw] rounded-[22px] bg-white/96 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur md:bottom-4 md:right-4 md:w-[320px]"
                 >
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-[#0f172a]">{country.flag}</span>
+                  <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="text-sm font-bold text-[#0f172a]">{country.name}</p>
-                      <p className="text-xs text-[#5f6f89]">
-                        {slideIndex + 1} of {country.projects.length} Projects
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg font-bold text-[#0f172a]">{activeCountry.flag}</span>
+                        <p className="text-sm font-semibold text-[#0f172a]">{activeCountry.name}</p>
+                      </div>
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-[#5f6f89]">
+                        Project {slideIndex + 1} of {activeCountry.projects.length}
                       </p>
                     </div>
-                  </div>
-                  <button
-                    onClick={() => setSelectedCountry(null)}
-                    className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f5f9ff] text-[#5f6f89] transition-all duration-200 hover:bg-[#EA580C] hover:text-white"
-                    type="button"
-                  >
-                    <X className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={slideIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.25 }}
-                    className="px-5 py-4"
-                  >
-                    <span
-                      className="mb-3 inline-block rounded-full px-2 py-0.5 text-xs font-semibold text-white"
-                      style={{ background: country.color }}
-                    >
-                      {project.service}
-                    </span>
-                    <h4 className="mb-1 text-sm font-bold text-[#0f172a]">{project.title}</h4>
-                    <p className="mb-3 text-xs leading-relaxed text-[#5f6f89]">{project.description}</p>
-                    <div className="flex items-center gap-1.5 rounded-lg bg-[#eef5ff] px-3 py-2">
-                      <TrendingUp className="h-3 w-3 text-[#0057ff]" />
-                      <p className="text-xs font-semibold text-[#0057ff]">{project.result}</p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-
-                <div className="flex items-center justify-between px-5 pb-4">
-                  <div className="flex gap-1.5">
                     <button
-                      onClick={() => setSlideIndex((p) => (p - 1 + country.projects.length) % country.projects.length)}
-                      className="flex h-7 w-7 items-center justify-center rounded-full border border-[#d7e5ff] text-[#5f6f89] transition-all duration-200 hover:border-[#EA580C] hover:bg-[#EA580C] hover:text-white"
+                      onClick={() => setSelectedCountry(null)}
+                      className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f4f8ff] text-[#5f6f89] transition-colors duration-200 hover:bg-[#EA580C] hover:text-white"
                       type="button"
+                      aria-label="Close project details"
                     >
-                      <ChevronLeft className="h-3.5 w-3.5" />
-                    </button>
-                    <button
-                      onClick={() => setSlideIndex((p) => (p + 1) % country.projects.length)}
-                      className="flex h-7 w-7 items-center justify-center rounded-full border border-[#d7e5ff] text-[#5f6f89] transition-all duration-200 hover:border-[#EA580C] hover:bg-[#EA580C] hover:text-white"
-                      type="button"
-                    >
-                      <ChevronRight className="h-3.5 w-3.5" />
+                      <X className="h-3.5 w-3.5" />
                     </button>
                   </div>
-                  <div className="flex gap-1">
-                    {country.projects.map((_, i) => (
+
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${selectedCountry}-${slideIndex}`}
+                      initial={{ opacity: 0, x: 14 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -14 }}
+                      transition={{ duration: 0.25 }}
+                      className="mt-4"
+                    >
+                      <span
+                        className="inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white"
+                        style={{ background: activeCountry.color }}
+                      >
+                        {activeProject.service}
+                      </span>
+                      <h4 className="mt-3 text-sm font-bold leading-6 text-[#0f172a]">{activeProject.title}</h4>
+                      <p className="mt-2 text-xs leading-6 text-[#5f6f89]">{activeProject.description}</p>
+                      <div className="mt-3 flex items-center gap-2 rounded-2xl bg-[#f7fbff] px-3 py-2">
+                        <TrendingUp className="h-3.5 w-3.5 text-[#0057ff]" />
+                        <p className="text-xs font-semibold text-[#0057ff]">{activeProject.result}</p>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex gap-1.5">
                       <button
-                        key={i}
-                        onClick={() => setSlideIndex(i)}
-                        style={{
-                          width: i === slideIndex ? '20px' : '6px',
-                          height: '6px',
-                          borderRadius: '9999px',
-                          background: i === slideIndex ? country.color : '#d7e5ff',
-                          border: 'none',
-                          cursor: 'pointer',
-                          transition: 'all 0.3s',
-                        }}
+                        onClick={() => setSlideIndex((p) => (p - 1 + activeCountry.projects.length) % activeCountry.projects.length)}
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-[#d7e5ff] text-[#5f6f89] transition-all duration-200 hover:border-[#EA580C] hover:bg-[#EA580C] hover:text-white"
                         type="button"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })()}
-        </AnimatePresence>
-      </div>
+                        aria-label="Previous project"
+                      >
+                        <ChevronLeft className="h-3.5 w-3.5" />
+                      </button>
+                      <button
+                        onClick={() => setSlideIndex((p) => (p + 1) % activeCountry.projects.length)}
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-[#d7e5ff] text-[#5f6f89] transition-all duration-200 hover:border-[#EA580C] hover:bg-[#EA580C] hover:text-white"
+                        type="button"
+                        aria-label="Next project"
+                      >
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
 
-      <div className="section-shell mt-10">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {Object.entries(countryProjects).map(([code, country], i) => (
-            <motion.button
-              key={code}
-              onClick={() => {
-                setSelectedCountry(code)
-                setSlideIndex(0)
-              }}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
-              whileHover={{ y: -3 }}
-              className="flex items-center gap-3 rounded-2xl p-4 text-left transition-all duration-200"
-              style={{
-                border: selectedCountry === code ? `2px solid ${country.color}` : '1px solid #d7e5ff',
-                background: selectedCountry === code ? `${country.color}10` : '#ffffff',
-              }}
-              type="button"
-            >
-              <span className="text-2xl font-bold text-[#0f172a]">{country.flag}</span>
-              <div>
+                    <div className="flex gap-1">
+                      {activeCountry.projects.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setSlideIndex(i)}
+                          style={{
+                            width: i === slideIndex ? '18px' : '6px',
+                            height: '6px',
+                            borderRadius: '9999px',
+                            background: i === slideIndex ? activeCountry.color : '#d7e5ff',
+                            border: 'none',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                          }}
+                          type="button"
+                          aria-label={`Show project ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-[#e7eefc] pt-5">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-0">
+            {Object.entries(countryProjects).map(([code, country], i) => (
+              <motion.button
+                key={code}
+                onClick={() => {
+                  setSelectedCountry(code)
+                  setSlideIndex(0)
+                }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: i * 0.08, duration: 0.4 }}
+                whileHover={{ y: -2 }}
+                className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white py-3 text-center transition-colors duration-200 md:px-4 md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-[#e7eefc]"
+                type="button"
+              >
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors duration-200"
+                  style={{ color: selectedCountry === code ? country.color : '#EA580C' }}
+                >
+                  {country.flag}
+                </span>
                 <p className="text-sm font-semibold text-[#0f172a]">{country.name}</p>
                 <p className="text-xs text-[#5f6f89]">{country.projects.length} Projects</p>
-              </div>
-            </motion.button>
-          ))}
+              </motion.button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
