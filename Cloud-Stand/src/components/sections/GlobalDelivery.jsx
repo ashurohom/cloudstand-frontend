@@ -151,36 +151,39 @@ const countryProjects = {
 }
 
 function GlobalDelivery() {
-  const [selectedCountry, setSelectedCountry] = useState('US')
+  const [selectedCountry, setSelectedCountry] = useState(null)
   const [slideIndex, setSlideIndex] = useState(0)
 
   const activeCountry = selectedCountry ? countryProjects[selectedCountry] : null
   const activeProject = activeCountry ? activeCountry.projects[slideIndex] : null
 
   return (
-    <section className="overflow-hidden bg-white py-8 sm:py-10 lg:py-12">
-      <div className="section-shell">
-        <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
+    <section className="bg-white py-6 sm:py-8 lg:py-10">
+      <div className="w-full">
+        <div className="section-shell mx-auto mb-6 max-w-5xl text-center sm:mb-7">
           <Badge className="mb-3 border-accent/20 bg-white/70 text-slate-900">Global Delivery</Badge>
-          <h2 className="text-3xl font-bold leading-tight text-[#0f172a] sm:text-4xl lg:text-5xl">
-            Delivering Oracle Cloud outcomes across the world
+          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] text-[#0f172a] sm:text-4xl lg:text-[3.0rem]">
+            Oracle Cloud delivery, across regions
           </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm font-medium leading-6 text-[#5f6f89] sm:text-base">
+            Local insight, global execution for enterprise transformation programs.
+          </p>
         </div>
 
-        <div className="relative mx-auto mt-2 max-w-[1280px]">
+        <div className="relative mt-2 w-full">
           <div
             className="pointer-events-none absolute left-1/2 top-2 hidden h-20 w-20 -translate-x-1/2 rounded-full blur-3xl md:block"
             style={{ background: 'rgba(61,139,255,0.08)' }}
           />
 
-          <div className="relative overflow-hidden min-h-[220px] sm:min-h-[260px] md:min-h-[300px]">
+          <div className="relative min-h-[180px] overflow-visible sm:min-h-[220px] md:min-h-[250px] lg:min-h-[280px]">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
               alt="World Map"
-              className="absolute inset-0 h-full w-full object-contain object-center"
+              className="absolute inset-0 h-full w-full object-cover object-center"
               style={{
                 filter: 'grayscale(1) opacity(0.14) contrast(0.9)',
-                transform: 'scale(1.02)',
+                transform: 'scale(1.12)',
               }}
             />
 
@@ -229,7 +232,7 @@ function GlobalDelivery() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 12, scale: 0.96 }}
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-2 right-0 z-20 w-[280px] max-w-[88vw] rounded-[22px] bg-white/96 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur md:bottom-4 md:right-4 md:w-[320px]"
+                  className="absolute bottom-3 right-4 z-20 w-[280px] max-w-[88vw] rounded-[22px] bg-white/96 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur md:bottom-5 md:right-8 md:w-[320px]"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -321,8 +324,8 @@ function GlobalDelivery() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-[#e7eefc] pt-5">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-0">
+        <div className="section-shell mt-6 border-t border-[#e7eefc] pt-4">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0">
             {Object.entries(countryProjects).map(([code, country], i) => (
               <motion.button
                 key={code}
@@ -335,7 +338,7 @@ function GlobalDelivery() {
                 viewport={{ once: false }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
                 whileHover={{ y: -2 }}
-                className="group flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white py-3 text-center transition-colors duration-200 md:px-4 md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-[#e7eefc]"
+                className="group flex flex-col items-center justify-center gap-1 rounded-2xl bg-white py-3 text-center transition-colors duration-200 md:px-4 md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-[#e7eefc]"
                 type="button"
               >
                 <span
@@ -345,7 +348,6 @@ function GlobalDelivery() {
                   {country.flag}
                 </span>
                 <p className="text-sm font-semibold text-[#0f172a]">{country.name}</p>
-                <p className="text-xs text-[#5f6f89]">{country.projects.length} Projects</p>
               </motion.button>
             ))}
           </div>
