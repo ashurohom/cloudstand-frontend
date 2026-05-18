@@ -23,7 +23,7 @@ export default function RotatingText() {
   }, []);
 
   const currentWord = words[index];
-  const characters = currentWord.split('');
+  const wordParts = currentWord.split(' ');
 
   return (
     <span
@@ -46,6 +46,7 @@ export default function RotatingText() {
           key={currentWord}
           style={{
             display: 'inline-flex',
+            gap: '0.35em',
             overflow: 'hidden',
             color: '#C74634',
             fontWeight: 700,
@@ -53,7 +54,7 @@ export default function RotatingText() {
             lineHeight: 1.4,
           }}
         >
-          {characters.map((char, i) => (
+          {wordParts.map((part, i) => (
             <motion.span
               key={i}
               initial={{ y: '-120%', opacity: 0 }}
@@ -66,11 +67,11 @@ export default function RotatingText() {
               }}
               style={{
                 display: 'inline-block',
-                whiteSpace: char === ' ' ? 'pre' : 'normal',
+                whiteSpace: 'nowrap',
                 lineHeight: 1.4,
               }}
             >
-              {char === ' ' ? '\u00A0' : char}
+              {part}
             </motion.span>
           ))}
         </motion.span>

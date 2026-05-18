@@ -9,6 +9,7 @@ import Badge from '../components/ui/Badge'
 import HeroTitle from '../components/ui/HeroTitle'
 import RotatingText from '../components/ui/RotatingText'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
+import GlobalDelivery from '../components/sections/GlobalDelivery'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
 import { caseStudies } from '../data/caseStudies'
@@ -218,14 +219,14 @@ function Home() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-10"
+                className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-stretch"
               >
-                <Link to="/about">
+                <Link className="w-full sm:w-auto" to="/contact">
                   <motion.button
                     initial="rest"
                     whileHover="hover"
                     whileTap={{ scale: 0.97 }}
-                    className="relative group flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-base font-semibold text-white shadow-glow"
+                    className="relative group flex h-14 w-full min-w-[220px] items-center justify-center gap-3 overflow-hidden rounded-full px-8 text-base font-semibold text-white shadow-glow sm:w-auto"
                     style={{
                       background: 'linear-gradient(135deg, #0a2540 0%, #0057ff 60%, #3d8bff 100%)',
                       backgroundSize: '200% 200%',
@@ -272,7 +273,7 @@ function Home() {
                     </motion.span>
 
                     <span className="relative z-10 tracking-normal">
-                      Let&apos;s Connect &amp; Explore Solution
+                      Let&apos;s Connect
                     </span>
 
                     <motion.span
@@ -288,14 +289,24 @@ function Home() {
                   </motion.button>
                 </Link>
 
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9, duration: 0.5 }}
-                  className="mt-3 text-center text-xs tracking-normal text-[#5f6f89]"
-                >
-                  Free consultation
-                </motion.p>
+                <Link className="w-full sm:w-auto" to="/services">
+                  <motion.button
+                    className="group inline-flex h-14 w-full min-w-[220px] items-center justify-center gap-3 rounded-full border border-[#bfd4ff] bg-white/85 px-8 text-base font-semibold text-[#0a2540] shadow-[0_14px_32px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-colors duration-300 hover:border-[#0057ff] hover:bg-white sm:w-auto"
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, delay: 0.78, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ y: -2, boxShadow: '0 18px 36px rgba(0,87,255,0.14)' }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span>Explore Solutions</span>
+                    <motion.span
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <ArrowRight className="h-5 w-5 text-[#0057ff]" />
+                    </motion.span>
+                  </motion.button>
+                </Link>
               </motion.div>
             </div>
 
@@ -402,6 +413,8 @@ function Home() {
           </motion.div>
         </div>
       </section>
+
+      <GlobalDelivery />
 
       <section className="py-8 sm:py-10 lg:py-12 bg-primary">
         <div className="section-shell">
@@ -637,7 +650,7 @@ function Home() {
           <div className="relative mx-auto w-full max-w-3xl">
             <button
               onClick={goPrev}
-              className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-x-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d7e5ff] bg-white shadow-soft transition-all duration-200 hover:border-[#0057ff] hover:bg-[#0057ff] group"
+              className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-x-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d7e5ff] bg-white transition-all duration-200 hover:border-[#0057ff] hover:bg-[#0057ff] group"
               type="button"
             >
               <ChevronLeft className="h-5 w-5 text-[#0057ff] transition-colors group-hover:text-white" />
@@ -708,7 +721,7 @@ function Home() {
 
             <button
               onClick={goNext}
-              className="absolute right-0 top-1/2 z-10 flex h-11 w-11 translate-x-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d7e5ff] bg-white shadow-soft transition-all duration-200 hover:border-[#0057ff] hover:bg-[#0057ff] group"
+              className="absolute right-0 top-1/2 z-10 flex h-11 w-11 translate-x-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d7e5ff] bg-white transition-all duration-200 hover:border-[#0057ff] hover:bg-[#0057ff] group"
               type="button"
             >
               <ChevronRight className="h-5 w-5 text-[#0057ff] transition-colors group-hover:text-white" />
