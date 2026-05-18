@@ -26,6 +26,7 @@ function AnimatedRoutes() {
         <Route element={<ServiceDetail />} path="/services/:slug" />
         <Route element={<CaseStudies />} path="/case-studies" />
         <Route element={<Blog />} path="/blog" />
+        <Route element={<ResolveQuery />} path="/rescue-hub" />
         <Route element={<ResolveQuery />} path="/resolve-query" />
         <Route element={<Careers />} path="/careers" />
         <Route element={<Contact />} path="/contact" />

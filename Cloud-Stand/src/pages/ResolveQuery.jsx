@@ -82,7 +82,7 @@ function highlightMatch(text, query) {
 }
 
 function ResolveQuery() {
-  useDocumentTitle('Resolve Your Query | CloudStand Consulting')
+  useDocumentTitle('Rescue Hub | CloudStand Consulting')
 
   const [searchTerm, setSearchTerm] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
@@ -151,12 +151,12 @@ function ResolveQuery() {
           >
             <Badge className="inline-flex items-center gap-2">
               <CircleHelp className="h-4 w-4 text-accent" />
-              <span>Resolve Your Query</span>
+              <span>Rescue Hub</span>
             </Badge>
           </motion.div>
           <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] text-slate-900 md:text-4xl lg:text-5xl">
-            <HeroTitle text="Find Answers." />
-            <HeroTitle text="Get Clarity." gradient />
+            <HeroTitle text="Fast Answers." />
+            <HeroTitle text="Expert Recovery Support." gradient />
           </h1>
           <motion.p
             animate={{ opacity: 1, y: 0 }}
@@ -164,7 +164,7 @@ function ResolveQuery() {
             initial={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            Browse common questions, filter by topic, and quickly find the Oracle Cloud answers you need.
+            Explore urgent Oracle Cloud guidance, service answers, and escalation-ready information in one place.
           </motion.p>
 
           <motion.div

@@ -1094,7 +1094,7 @@ function FeedbackSection() {
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="h-4.5 w-4.5 text-accent-light" />
-                    <span>hr@cloudstandconsulting.com</span>
+                    <span>info@cloudstand.com</span>
                   </div>
                 </div>
                 <button

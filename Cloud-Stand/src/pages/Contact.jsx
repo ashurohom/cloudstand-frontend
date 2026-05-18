@@ -122,7 +122,7 @@ function Contact() {
               {[
                 { icon: MapPin, title: 'Address', value: 'Office No.19, Nirvana Hub, Z Corner, Mundhwa-Manjari Rd, Manjri Bk., Pune - 412307' },
                 { icon: Phone, title: 'Phone', value: '+91 9049020793' },
-                { icon: Mail, title: 'Email', value: 'hr@cloudstandconsulting.com' },
+                { icon: Mail, title: 'Email', value: 'info@cloudstand.com' },
                 { icon: Clock3, title: 'Working Hours', value: 'Monday to Friday, 9:30 AM - 6:30 PM IST' },
               ].map((item) => {
                 const Icon = item.icon

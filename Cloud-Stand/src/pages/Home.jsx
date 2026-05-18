@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, BarChart3, Check, ChevronLeft, ChevronRight, Cpu, DollarSign, GitBranch, Sparkles, TrendingUp, Users } from 'lucide-react'
+import { ArrowRight, BarChart3, Check, ChevronLeft, ChevronRight, Cpu, DollarSign, GitBranch, TrendingUp, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
-import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
-import HeroTitle from '../components/ui/HeroTitle'
-import RotatingText from '../components/ui/RotatingText'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
+import HeroSection from '../components/sections/HeroSection'
 import GlobalDelivery from '../components/sections/GlobalDelivery'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
@@ -154,158 +152,46 @@ function Home() {
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="hero-particles gpu-layer relative isolate min-h-[calc(100vh-5rem)] overflow-hidden">
-        <AICloudBackground />
-        <div className="section-shell relative z-10 flex min-h-[calc(100vh-5rem)] flex-col justify-center py-6">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.9fr)]">
-            <div className="max-w-4xl">
+      <HeroSection />
+
+      <section className="py-12">
+        <div className="section-shell">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-2 md:grid-cols-4"
+          >
+            {overviewStats.map((stat, i) => (
               <motion.div
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                className="mb-6 inline-flex"
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: '-40px' }}
+                transition={{
+                  duration: 0.45,
+                  delay: i * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="flex flex-col items-center justify-center border-r border-[#d7e5ff] px-4 py-6 last:border-r-0"
               >
-                <Badge className="border-accent/20 bg-white/70 text-slate-900">Oracle Cloud Specialists since 2022</Badge>
-              </motion.div>
-              <h1 className="max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-text-black md:text-4xl lg:text-5xl">
-                <HeroTitle text="Transform Your Business" />
-                <HeroTitle text="with Oracle Cloud" gradient />
-              </h1>
-              <div className="mt-5 inline-flex flex-wrap items-center gap-3 text-lg md:text-xl">
                 <span
-                  className="inline-flex items-center"
-                  style={{
-                    fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
-                    fontWeight: 600,
-                    color: '#0f172a',
-                    fontSize: 'inherit',
-                    letterSpacing: '-0.01em',
-                  }}
+                  className="mb-1 text-4xl font-bold"
+                  style={{ color: '#EA580C' }}
                 >
-                  Experts In
+                  {stat.number}
                 </span>
-                <RotatingText />
-              </div>
-              <motion.p
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-6 max-w-2xl text-lg leading-8 text-text-muted sm:text-xl"
-                initial={{ opacity: 0, y: 16 }}
-                transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              >
-                End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts who focus on outcomes, not just go-lives.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-stretch"
-              >
-                <Link className="w-full sm:w-auto" to="/contact">
-                  <motion.button
-                    initial="rest"
-                    whileHover="hover"
-                    whileTap={{ scale: 0.97 }}
-                    className="relative group flex h-14 w-full min-w-[220px] items-center justify-center gap-3 overflow-hidden rounded-full px-8 text-base font-semibold text-white shadow-glow sm:w-auto"
-                    style={{
-                      background: 'linear-gradient(135deg, #0a2540 0%, #0057ff 60%, #3d8bff 100%)',
-                      backgroundSize: '200% 200%',
-                    }}
-                  >
-                    <motion.span
-                      variants={{
-                        rest: { x: '-100%', opacity: 0 },
-                        hover: { x: '100%', opacity: 1 },
-                      }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0 h-full w-full"
-                      style={{
-                        background: 'linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.18) 50%, transparent 80%)',
-                        pointerEvents: 'none',
-                      }}
-                    />
-
-                    <motion.span
-                      animate={{
-                        scale: [1, 1.12, 1],
-                        opacity: [0.4, 0, 0.4],
-                      }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }}
-                      className="absolute inset-0 rounded-full"
-                      style={{
-                        border: '2px solid #0057ff',
-                        pointerEvents: 'none',
-                      }}
-                    />
-
-                    <motion.span
-                      variants={{
-                        rest: { rotate: 0, scale: 1 },
-                        hover: { rotate: 20, scale: 1.2 },
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Sparkles className="h-5 w-5 text-[#00FFFF]" />
-                    </motion.span>
-
-                    <span className="relative z-10 tracking-normal">
-                      Let&apos;s Connect
-                    </span>
-
-                    <motion.span
-                      variants={{
-                        rest: { x: 0 },
-                        hover: { x: 5 },
-                      }}
-                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                      className="relative z-10"
-                    >
-                      <ArrowRight className="h-5 w-5" />
-                    </motion.span>
-                  </motion.button>
-                </Link>
-
-                <Link className="w-full sm:w-auto" to="/services">
-                  <motion.button
-                    className="group inline-flex h-14 w-full min-w-[220px] items-center justify-center gap-3 rounded-full border border-[#bfd4ff] bg-white/85 px-8 text-base font-semibold text-[#0a2540] shadow-[0_14px_32px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-colors duration-300 hover:border-[#0057ff] hover:bg-white sm:w-auto"
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.78, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={{ y: -2, boxShadow: '0 18px 36px rgba(0,87,255,0.14)' }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span>Explore Solutions</span>
-                    <motion.span
-                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <ArrowRight className="h-5 w-5 text-[#0057ff]" />
-                    </motion.span>
-                  </motion.button>
-                </Link>
+                <span className="text-sm font-medium text-[#5f6f89]">
+                  {stat.label}
+                </span>
               </motion.div>
-            </div>
-
-            <motion.div
-              className="flex justify-center lg:justify-end"
-              initial={{ opacity: 0, x: 40, scale: 0.96 }}
-              transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true }}
-            >
-              <img
-                alt="Oracle Cloud memory illustration"
-                className="h-auto w-full max-w-[440px] object-contain"
-                src="/home-page-memory.svg"
-              />
-            </motion.div>
-          </div>
-
+            ))}
+          </motion.div>
         </div>
       </section>
+
+      <GlobalDelivery />
 
       <section
         className="py-12 sm:py-14 lg:py-16 relative overflow-hidden border-y border-[#d7e5ff] bg-[#0a2540]"
@@ -355,45 +241,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <section className="py-12">
-        <div className="section-shell">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-40px' }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4"
-          >
-            {overviewStats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: '-40px' }}
-                transition={{
-                  duration: 0.45,
-                  delay: i * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="flex flex-col items-center justify-center border-r border-[#d7e5ff] px-4 py-6 last:border-r-0"
-              >
-                <span
-                  className="mb-1 text-4xl font-bold"
-                  style={{ color: '#EA580C' }}
-                >
-                  {stat.number}
-                </span>
-                <span className="text-sm font-medium text-[#5f6f89]">
-                  {stat.label}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <GlobalDelivery />
 
       <section className="py-8 sm:py-10 lg:py-12 bg-primary">
         <div className="section-shell">
@@ -548,6 +395,7 @@ function Home() {
               </motion.div>
             ))}
           </motion.div>
+
         </div>
       </section>
 
@@ -595,6 +443,7 @@ function Home() {
               </motion.div>
             ))}
           </motion.div>
+
         </div>
       </section>
 

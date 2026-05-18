@@ -190,17 +190,6 @@ function Navbar() {
               </Button>
             </motion.div>
             <motion.div variants={fadeUp}>
-              <motion.div
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                whileHover={{ scale: 1.04, boxShadow: '0 8px 24px rgba(0,87,255,0.3)' }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <Button to="/contact" variant="solid">
-                  Rescue Enquiry
-                </Button>
-              </motion.div>
-            </motion.div>
-            <motion.div variants={fadeUp}>
               <img
                 alt="Oracle Partner"
                 className="h-14 w-auto object-contain"
@@ -285,18 +274,13 @@ function Navbar() {
 
               <motion.div
                 animate="visible"
-                className="mt-4 grid grid-cols-2 gap-3"
+                className="mt-4"
                 initial="hidden"
                 variants={staggerContainer}
               >
                 <motion.div variants={staggerItem}>
-                  <Button className="w-full" to="/contact" variant="ghost">
-                    Contact
-                  </Button>
-                </motion.div>
-                <motion.div variants={staggerItem}>
                   <Button className="w-full" to="/contact" variant="solid">
-                    Rescue Enquiry
+                    Contact
                   </Button>
                 </motion.div>
               </motion.div>

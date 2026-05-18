@@ -45,7 +45,7 @@ function Footer() {
                   </svg>
                 </a>
                 <a
-                  href="mailto:hr@cloudstandconsulting.com"
+                  href="mailto:info@cloudstand.com"
                   className="text-gray-300 transition duration-200 hover:text-orange-400"
                 >
                   <Mail className="h-5 w-5" />
@@ -58,7 +58,7 @@ function Footer() {
                 </a>
               </div>
               <p className="mt-6 text-sm text-gray-400">
-                © {currentYear} CloudStand Consulting. All rights reserved.
+                &copy; {currentYear} CloudStand Consulting. All rights reserved.
               </p>
             </div>
 
@@ -92,27 +92,32 @@ function Footer() {
               <h3 className="text-base font-semibold text-white">Get in Touch</h3>
               <div className="mt-5 space-y-4 text-sm leading-7 text-gray-300">
                 <p className="cursor-pointer transition duration-200 hover:text-orange-400">
-                  📍 Office No.19, Nirvana Hub, Z Corner, Mundhwa-Manjari Rd, Manjri Bk., Pune - 412307
+                  Office No.19, Nirvana Hub, Z Corner, Mundhwa-Manjari Rd, Manjri Bk., Pune - 412307
                 </p>
                 <a
                   href="tel:+919049020793"
                   className="block cursor-pointer transition duration-200 hover:text-orange-400"
                 >
-                  📞 +91 9049020793
+                  +91 9049020793
                 </a>
                 <a
-                  href="mailto:hr@cloudstandconsulting.com"
+                  href="mailto:info@cloudstand.com"
                   className="block cursor-pointer transition duration-200 hover:text-orange-400"
                 >
-                  ✉️ hr@cloudstandconsulting.com
+                  info@cloudstand.com
+                </a>
+                <a
+                  href="mailto:careers@cloudstand.com"
+                  className="block cursor-pointer transition duration-200 hover:text-orange-400"
+                >
+                  careers@cloudstand.com
                 </a>
                 <p className="cursor-pointer transition duration-200 hover:text-orange-400">
-                  🕒 Mon - Fri, 9:30 AM - 6:30 PM IST
+                  Mon - Fri, 9:30 AM - 6:30 PM IST
                 </p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </footer>
