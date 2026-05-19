@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, BarChart3, Check, ChevronLeft, ChevronRight, Cpu, DollarSign, GitBranch, TrendingUp, Users } from 'lucide-react'
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button'
@@ -9,22 +9,16 @@ import AnimatedCounter from '../components/ui/AnimatedCounter'
 import HeroSection from '../components/sections/HeroSection'
 import GlobalDelivery from '../components/sections/GlobalDelivery'
 import useDocumentTitle from '../hooks/useDocumentTitle'
-import { services } from '../data/services'
 import { caseStudies } from '../data/caseStudies'
 import { testimonials } from '../data/testimonials'
 import { stats } from '../data/stats'
 import {
-  cardHover,
-  iconPop,
-  lineDraw,
   pageVariants,
   slideLeft,
   slideRight,
   staggerContainer,
   staggerItem,
 } from '../animations/variants'
-
-const iconMap = { Users, BarChart3, DollarSign, GitBranch, TrendingUp, Cpu }
 
 const timelineSteps = [
   {
@@ -52,45 +46,6 @@ const overviewStats = [
   { number: '15+', label: 'Experts' },
   { number: '3', label: 'Countries' },
 ]
-
-const serviceBackgrounds = {
-  hcm: {
-    background:
-      'radial-gradient(circle at 18% 22%, rgba(0,87,255,0.34), transparent 26%), linear-gradient(145deg, #0d2040 0%, #132d5d 52%, #0b1732 100%)',
-    pattern:
-      'linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px)',
-  },
-  erp: {
-    background:
-      'radial-gradient(circle at 82% 18%, rgba(61,139,255,0.32), transparent 28%), linear-gradient(145deg, #10254d 0%, #17386d 48%, #0c1832 100%)',
-    pattern:
-      'linear-gradient(135deg, rgba(255,255,255,0.14) 0 2px, transparent 2px 100%), linear-gradient(45deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 100%)',
-  },
-  payroll: {
-    background:
-      'radial-gradient(circle at 22% 20%, rgba(245,158,11,0.34), transparent 24%), linear-gradient(145deg, #3c2506 0%, #6a4308 48%, #201205 100%)',
-    pattern:
-      'repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0 10px, transparent 10px 22px), repeating-linear-gradient(0deg, rgba(255,255,255,0.07) 0 10px, transparent 10px 22px)',
-  },
-  oic: {
-    background:
-      'radial-gradient(circle at 78% 24%, rgba(79,124,255,0.34), transparent 24%), linear-gradient(145deg, #0d1d45 0%, #18326d 50%, #09142d 100%)',
-    pattern:
-      'linear-gradient(60deg, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(120deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
-  },
-  'bi-analytics': {
-    background:
-      'radial-gradient(circle at 20% 18%, rgba(20,184,166,0.3), transparent 26%), linear-gradient(145deg, #082c33 0%, #0d4852 46%, #071920 100%)',
-    pattern:
-      'linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
-  },
-  'ai-solutions': {
-    background:
-      'radial-gradient(circle at 75% 18%, rgba(139,92,246,0.34), transparent 26%), linear-gradient(145deg, #1f1540 0%, #32205f 48%, #130d2b 100%)',
-    pattern:
-      'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.12) 0 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 0 2px, transparent 2px)',
-  },
-}
 
 function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true }) {
   return (
@@ -239,114 +194,6 @@ function Home() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-8 sm:py-10 lg:py-12 bg-primary">
-        <div className="section-shell">
-          <HomeSectionTitle eyebrow="Services" title="Our Oracle Cloud Services" subtitle="End-to-end implementation, support, and training" />
-          <motion.div
-            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
-            initial="hidden"
-            variants={staggerContainer}
-            viewport={{ once: true, margin: '-100px' }}
-            whileInView="visible"
-          >
-            {services.map((service, index) => {
-              const Icon = iconMap[service.icon]
-              const serviceBackground = serviceBackgrounds[service.slug]
-              const titleClassName = 'text-slate-900'
-              const linkClassName = 'text-accent hover:text-accent-light'
-
-              return (
-                <motion.div
-                  key={service.slug}
-                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, margin: '-60px' }}
-                  transition={{
-                    duration: 0.65,
-                    delay: index * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <motion.div className="group h-full">
-                    <Card className="relative h-full overflow-hidden rounded-[28px] border border-[#d7e5ff] bg-white p-0 transition-all duration-300 hover:translate-y-0 hover:border-accent/30 hover:shadow-[0_24px_60px_rgba(0,87,255,0.13)]">
-                      <div className="relative h-full min-h-[320px] overflow-hidden">
-                        <motion.div className="absolute inset-0">
-                          <div className="absolute inset-0" style={{ background: '#ffffff' }} />
-                          <div
-                            className="absolute inset-0 opacity-20"
-                            style={{
-                              backgroundImage: serviceBackground.pattern,
-                              backgroundSize: '120px 120px',
-                            }}
-                          />
-                          <div
-                            className="absolute -left-8 top-10 h-28 w-28 rounded-full blur-3xl"
-                            style={{ background: `${service.color}55` }}
-                          />
-                          <div
-                            className="absolute -right-10 bottom-8 h-36 w-36 rounded-full blur-3xl"
-                            style={{ background: `${service.color}35` }}
-                          />
-                          <div className="absolute right-5 top-4 text-[72px] font-black tracking-[-0.08em] text-slate-900/5">
-                            {service.shortTitle}
-                          </div>
-                          <div className="absolute bottom-24 left-5 right-5 flex items-end justify-between">
-                            <div className="space-y-2">
-                              <div className="h-2 w-16 rounded-full bg-[#d7e5ff]" />
-                              <div className="h-2 w-24 rounded-full bg-[#d7e5ff]/75" />
-                              <div className="h-2 w-12 rounded-full bg-[#d7e5ff]/55" />
-                            </div>
-                            <div className="grid grid-cols-3 gap-2">
-                              {[0, 1, 2, 3, 4, 5].map((item) => (
-                                <span
-                                  key={item}
-                                  className="h-3 w-3 rounded-full border border-[#d7e5ff] bg-white/80 backdrop-blur-sm"
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-white/92 via-white/45 to-transparent" />
-
-                        <div className="absolute inset-x-4 bottom-4 rounded-[24px] border border-[#d7e5ff] bg-white/90 p-5 backdrop-blur-md">
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="min-w-0">
-                              <div className="flex items-center gap-3">
-                                <motion.div
-                                  className="inline-flex h-12 w-12 items-center justify-center rounded-2xl"
-                                  initial="rest"
-                                  style={{ background: `linear-gradient(135deg, ${service.color}, rgba(255,255,255,0.16))` }}
-                                  variants={iconPop}
-                                  whileHover="hover"
-                                >
-                                  <Icon className="h-5 w-5 text-white" />
-                                </motion.div>
-                                <h3 className={`text-2xl font-semibold ${titleClassName}`}>{service.title}</h3>
-                              </div>
-                              <p className="mt-4 text-sm leading-7 text-text-muted">{service.tagline}</p>
-                            </div>
-
-                            <Link
-                              aria-label={`Explore ${service.title}`}
-                              className={`mt-1 inline-flex h-12 w-12 flex-none items-center justify-center rounded-full border border-[#d7e5ff] bg-white transition ${linkClassName}`}
-                              to={`/services/${service.slug}`}
-                            >
-                              <motion.span whileHover={{ x: 4 }}>
-                                <ArrowRight className="h-5 w-5" />
-                              </motion.span>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                </motion.div>
-              )
-            })}
-          </motion.div>
         </div>
       </section>
 

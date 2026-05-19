@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
-import Button from '../ui/Button'
 import { services } from '../../data/services'
 import { fadeUp, staggerContainer, staggerItem } from '../../animations/variants'
 
@@ -12,6 +11,7 @@ const navLinks = [
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'Blog', path: '/blog' },
   { label: 'Careers', path: '/careers' },
+  { label: 'Contact', path: '/contact' },
 ]
 
 function Navbar() {
@@ -180,15 +180,10 @@ function Navbar() {
 
           <motion.div
             animate="visible"
-            className="hidden items-center gap-3 lg:flex"
+            className="hidden items-center lg:flex"
             initial="hidden"
             variants={staggerContainer}
           >
-            <motion.div variants={fadeUp}>
-              <Button to="/contact" variant="ghost">
-                Contact
-              </Button>
-            </motion.div>
             <motion.div variants={fadeUp}>
               <img
                 alt="Oracle Partner"
@@ -269,19 +264,6 @@ function Navbar() {
                       </Link>
                     </motion.div>
                   ))}
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                animate="visible"
-                className="mt-4"
-                initial="hidden"
-                variants={staggerContainer}
-              >
-                <motion.div variants={staggerItem}>
-                  <Button className="w-full" to="/contact" variant="solid">
-                    Contact
-                  </Button>
                 </motion.div>
               </motion.div>
               <motion.div

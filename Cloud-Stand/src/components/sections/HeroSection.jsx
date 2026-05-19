@@ -5,6 +5,7 @@ const DEFAULT_SLIDES = [
   '/Slider/slider-1.jpeg',
   '/Slider/slider-2.jpeg',
   '/Slider/slider-3.jpeg',
+  '/Slider/slider-4.jpeg',
 ]
 
 const AUTO_SLIDE_MS = 5000
