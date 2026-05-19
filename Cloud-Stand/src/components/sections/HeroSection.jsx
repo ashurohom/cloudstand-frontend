@@ -102,24 +102,24 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
             End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
             <Link
               to="/contact"
-              className="inline-flex min-w-[210px] items-center justify-center rounded-full bg-[#EA580C] px-8 py-3.5 text-base font-semibold text-white shadow-[0_16px_34px_rgba(234,88,12,0.28)] transition-all duration-300 hover:bg-[#f97316] hover:shadow-[0_20px_40px_rgba(234,88,12,0.34)]"
+              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border border-white/20 bg-white/5 px-8 py-3.5 text-base font-semibold text-white/95 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#f97316] hover:bg-[#f97316] hover:text-white hover:shadow-[0_16px_36px_rgba(249,115,22,0.3)]"
             >
               Let&apos;s Connect
             </Link>
 
             <Link
               to="/services"
-              className="inline-flex min-w-[210px] items-center justify-center rounded-full border border-white/70 bg-white/5 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/12"
+              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border border-white/20 bg-white/5 px-8 py-3.5 text-base font-semibold text-white/95 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#f97316] hover:bg-[#f97316] hover:text-white hover:shadow-[0_16px_36px_rgba(249,115,22,0.3)]"
             >
               Explore Solutions
             </Link>
 
             <Link
               to="/rescue-hub"
-              className="inline-flex min-w-[210px] items-center justify-center rounded-full border border-[#EA580C]/80 bg-[#EA580C]/18 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#EA580C]/28"
+              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border border-white/15 bg-white/[0.04] px-8 py-3.5 text-base font-semibold text-white/80 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#f97316] hover:bg-[#f97316] hover:text-white hover:shadow-[0_16px_32px_rgba(249,115,22,0.24)]"
             >
               Rescue Hub
             </Link>
