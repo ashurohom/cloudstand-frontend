@@ -1,19 +1,20 @@
 import { motion } from 'framer-motion'
-import { counterVariants } from '../../animations/variants'
 import { useCounterAnimation } from '../../hooks/useCounterAnimation'
 
-function AnimatedCounter({ value, suffix = '', prefix = '' }) {
+function AnimatedCounter({ value, suffix = '', prefix = '', className, duration = 2200, delay = 0 }) {
   const formattedTarget = `${value}${suffix}`
-  const { count, ref, suffix: derivedSuffix } = useCounterAnimation(formattedTarget, 2200)
+  const { count, ref, suffix: derivedSuffix } = useCounterAnimation(formattedTarget, duration)
+  const counterClassName =
+    className || 'inline-block font-syne text-4xl font-bold tracking-tight text-text-orange sm:text-5xl'
 
   return (
     <motion.span
-      className="inline-block font-syne text-4xl font-bold tracking-tight text-text-orange sm:text-5xl"
-      initial="hidden"
+      className={counterClassName}
+      initial={{ opacity: 0, y: 14 }}
       ref={ref}
-      variants={counterVariants}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: '-80px' }}
-      whileInView="visible"
+      whileInView={{ opacity: 1, y: 0 }}
     >
       {prefix}
       {count}

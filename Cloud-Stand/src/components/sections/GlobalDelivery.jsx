@@ -7,7 +7,7 @@ const countryProjects = {
   IN: {
     name: 'India',
     flag: 'IN',
-    color: '#FF9933',
+    color: '#EA580C',
     x: '68%',
     y: '46%',
     projects: [
@@ -52,7 +52,7 @@ const countryProjects = {
   US: {
     name: 'United States',
     flag: 'US',
-    color: '#0057FF',
+    color: '#D63B25',
     x: '18%',
     y: '36%',
     projects: [
@@ -88,7 +88,7 @@ const countryProjects = {
   GB: {
     name: 'United Kingdom',
     flag: 'GB',
-    color: '#3D8BFF',
+    color: '#0EA5E9',
     x: '45%',
     y: '27%',
     projects: [
@@ -115,7 +115,7 @@ const countryProjects = {
   AE: {
     name: 'United Arab Emirates',
     flag: 'AE',
-    color: '#14B8A6',
+    color: '#0EA5E9',
     x: '58%',
     y: '42%',
     projects: [
@@ -161,11 +161,11 @@ function GlobalDelivery() {
     <section className="bg-white py-6 sm:py-8 lg:py-10">
       <div className="w-full">
         <div className="section-shell mx-auto mb-6 max-w-5xl text-center sm:mb-7">
-          <Badge className="mb-3 border-accent/20 bg-white/70 text-slate-900">Global Delivery</Badge>
-          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] text-[#0f172a] sm:text-4xl lg:text-[3.0rem]">
+          <Badge className="mb-3 border-sky-200 bg-white text-black">Global Delivery</Badge>
+          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] text-black sm:text-4xl lg:text-[3.0rem]">
             Oracle Cloud delivery, across regions
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm font-medium leading-6 text-[#5f6f89] sm:text-base">
+          <p className="mx-auto mt-3 max-w-2xl text-sm font-medium leading-6 text-black sm:text-base">
             Local insight, global execution for enterprise transformation programs.
           </p>
         </div>
@@ -173,7 +173,7 @@ function GlobalDelivery() {
         <div className="relative mt-2 w-full">
           <div
             className="pointer-events-none absolute left-1/2 top-2 hidden h-20 w-20 -translate-x-1/2 rounded-full blur-3xl md:block"
-            style={{ background: 'rgba(61,139,255,0.08)' }}
+            style={{ background: 'rgba(14,165,233,0.12)' }}
           />
 
           <div className="relative min-h-[180px] overflow-visible sm:min-h-[220px] md:min-h-[250px] lg:min-h-[280px]">
@@ -232,21 +232,21 @@ function GlobalDelivery() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 12, scale: 0.96 }}
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-3 right-4 z-20 w-[280px] max-w-[88vw] rounded-[22px] bg-white/96 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur md:bottom-5 md:right-8 md:w-[320px]"
+                  className="absolute bottom-3 right-4 z-20 w-[280px] max-w-[88vw] rounded-[22px] border border-sky-200 bg-white p-4 shadow-[0_18px_45px_rgba(0,0,0,0.12)] md:bottom-5 md:right-8 md:w-[320px]"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-[#0f172a]">{activeCountry.flag}</span>
-                        <p className="text-sm font-semibold text-[#0f172a]">{activeCountry.name}</p>
+                        <span className="text-lg font-bold text-black">{activeCountry.flag}</span>
+                        <p className="text-sm font-semibold text-black">{activeCountry.name}</p>
                       </div>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-[#5f6f89]">
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-black">
                         Project {slideIndex + 1} of {activeCountry.projects.length}
                       </p>
                     </div>
                     <button
                       onClick={() => setSelectedCountry(null)}
-                      className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f4f8ff] text-[#5f6f89] transition-colors duration-200 hover:bg-[#EA580C] hover:text-white"
+                      className="flex h-7 w-7 items-center justify-center rounded-full border border-sky-200 bg-white text-black transition-colors duration-200 hover:border-orange-400 hover:bg-orange-500 hover:text-white"
                       type="button"
                       aria-label="Close project details"
                     >
@@ -269,11 +269,11 @@ function GlobalDelivery() {
                       >
                         {activeProject.service}
                       </span>
-                      <h4 className="mt-3 text-sm font-bold leading-6 text-[#0f172a]">{activeProject.title}</h4>
-                      <p className="mt-2 text-xs leading-6 text-[#5f6f89]">{activeProject.description}</p>
-                      <div className="mt-3 flex items-center gap-2 rounded-2xl bg-[#f7fbff] px-3 py-2">
-                        <TrendingUp className="h-3.5 w-3.5 text-[#0057ff]" />
-                        <p className="text-xs font-semibold text-[#0057ff]">{activeProject.result}</p>
+                      <h4 className="mt-3 text-sm font-bold leading-6 text-black">{activeProject.title}</h4>
+                      <p className="mt-2 text-xs leading-6 text-black">{activeProject.description}</p>
+                      <div className="mt-3 flex items-center gap-2 rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2">
+                        <TrendingUp className="h-3.5 w-3.5 text-sky-500" />
+                        <p className="text-xs font-semibold text-sky-500">{activeProject.result}</p>
                       </div>
                     </motion.div>
                   </AnimatePresence>
@@ -282,7 +282,7 @@ function GlobalDelivery() {
                     <div className="flex gap-1.5">
                       <button
                         onClick={() => setSlideIndex((p) => (p - 1 + activeCountry.projects.length) % activeCountry.projects.length)}
-                        className="flex h-7 w-7 items-center justify-center rounded-full border border-[#d7e5ff] text-[#5f6f89] transition-all duration-200 hover:border-[#EA580C] hover:bg-[#EA580C] hover:text-white"
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-sky-200 text-black transition-all duration-200 hover:border-orange-400 hover:bg-orange-500 hover:text-white"
                         type="button"
                         aria-label="Previous project"
                       >
@@ -290,7 +290,7 @@ function GlobalDelivery() {
                       </button>
                       <button
                         onClick={() => setSlideIndex((p) => (p + 1) % activeCountry.projects.length)}
-                        className="flex h-7 w-7 items-center justify-center rounded-full border border-[#d7e5ff] text-[#5f6f89] transition-all duration-200 hover:border-[#EA580C] hover:bg-[#EA580C] hover:text-white"
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-sky-200 text-black transition-all duration-200 hover:border-orange-400 hover:bg-orange-500 hover:text-white"
                         type="button"
                         aria-label="Next project"
                       >
@@ -307,7 +307,7 @@ function GlobalDelivery() {
                             width: i === slideIndex ? '18px' : '6px',
                             height: '6px',
                             borderRadius: '9999px',
-                            background: i === slideIndex ? activeCountry.color : '#d7e5ff',
+                            background: i === slideIndex ? activeCountry.color : '#bae6fd',
                             border: 'none',
                             cursor: 'pointer',
                             transition: 'all 0.25s ease',
@@ -324,7 +324,7 @@ function GlobalDelivery() {
           </div>
         </div>
 
-        <div className="section-shell mt-6 border-t border-[#e7eefc] pt-4">
+        <div className="section-shell mt-6 border-t border-sky-200 pt-4">
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0">
             {Object.entries(countryProjects).map(([code, country], i) => (
               <motion.button
@@ -338,7 +338,7 @@ function GlobalDelivery() {
                 viewport={{ once: false }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
                 whileHover={{ y: -2 }}
-                className="group flex flex-col items-center justify-center gap-1 rounded-2xl bg-white py-3 text-center transition-colors duration-200 md:px-4 md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-[#e7eefc]"
+                className="group flex flex-col items-center justify-center gap-1 rounded-2xl bg-white py-3 text-center transition-colors duration-200 md:px-4 md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-sky-200"
                 type="button"
               >
                 <span
@@ -347,7 +347,7 @@ function GlobalDelivery() {
                 >
                   {country.flag}
                 </span>
-                <p className="text-sm font-semibold text-[#0f172a]">{country.name}</p>
+                <p className="text-sm font-semibold text-black">{country.name}</p>
               </motion.button>
             ))}
           </div>

@@ -104,7 +104,7 @@ select {
 
 @layer components {
   .glass-panel {
-    @apply border border-[#d7e5ff] bg-white/85 backdrop-blur-xl shadow-[0_20px_50px_rgba(24,67,148,0.08)];
+    @apply border border-sky-200 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)];
   }
 
   .section-shell {
@@ -126,7 +126,7 @@ select {
   }
 
   .button-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-primary;
+    @apply focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-white;
   }
 
   .hero-mesh {

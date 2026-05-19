@@ -67,11 +67,11 @@ function AIChatbot() {
 
         <button
           aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}
-          className="button-ring inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-light text-white shadow-[0_18px_36px_rgba(0,87,255,0.32)] transition hover:scale-[1.02]"
+          className="button-ring inline-flex h-16 w-16 items-center justify-center rounded-full border border-[#0EA5E9] bg-[#0EA5E9] text-white shadow-[0_18px_36px_rgba(14,165,233,0.22)] transition hover:scale-[1.02]"
           onClick={() => setIsOpen((current) => !current)}
           type="button"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
+          {isOpen ? <X className="h-6 w-6 text-white" /> : <MessageSquare className="h-6 w-6 text-white" />}
         </button>
       </div>
 

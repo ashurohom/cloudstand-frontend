@@ -4,11 +4,11 @@ import { buttonHover } from '../../animations/variants'
 
 const variants = {
   solid:
-    'bg-accent text-white hover:bg-accent-light shadow-[0_16px_30px_rgba(0,87,255,0.28)]',
+    'bg-orange-500 text-white hover:bg-[#d63b25] shadow-[0_16px_30px_rgba(234,88,12,0.24)]',
   ghost:
-    'border border-slate-300 bg-white text-slate-900 hover:border-accent/60 hover:bg-blue-50',
+    'border border-sky-200 bg-white text-black hover:border-orange-400 hover:bg-orange-500 hover:text-white',
   white:
-    'bg-white text-accent hover:bg-slate-100 shadow-[0_16px_30px_rgba(255,255,255,0.12)]',
+    'border border-sky-200 bg-white text-black hover:border-orange-400 hover:bg-orange-500 hover:text-white shadow-[0_16px_30px_rgba(0,0,0,0.08)]',
 }
 
 const sizes = {

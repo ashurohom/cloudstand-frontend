@@ -105,21 +105,21 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
             <Link
               to="/contact"
-              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border border-white/20 bg-white/5 px-8 py-3.5 text-base font-semibold text-white/95 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#f97316] hover:bg-[#f97316] hover:text-white hover:shadow-[0_16px_36px_rgba(249,115,22,0.3)]"
+              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border-[0.5px] border-orange-400 bg-transparent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:border-[#d63b25] hover:bg-[#d63b25] hover:text-white hover:shadow-[0_16px_36px_rgba(234,88,12,0.28)]"
             >
               Let&apos;s Connect
             </Link>
 
             <Link
               to="/services"
-              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border border-white/20 bg-white/5 px-8 py-3.5 text-base font-semibold text-white/95 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#f97316] hover:bg-[#f97316] hover:text-white hover:shadow-[0_16px_36px_rgba(249,115,22,0.3)]"
+              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border-[0.5px] border-orange-400 bg-transparent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:border-[#d63b25] hover:bg-[#d63b25] hover:text-white hover:shadow-[0_16px_36px_rgba(234,88,12,0.28)]"
             >
               Explore Solutions
             </Link>
 
             <Link
               to="/rescue-hub"
-              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border border-white/15 bg-white/[0.04] px-8 py-3.5 text-base font-semibold text-white/80 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-[#f97316] hover:bg-[#f97316] hover:text-white hover:shadow-[0_16px_32px_rgba(249,115,22,0.24)]"
+              className="inline-flex min-w-[210px] items-center justify-center rounded-lg border-[0.5px] border-orange-400 bg-transparent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:border-[#d63b25] hover:bg-[#d63b25] hover:text-white hover:shadow-[0_16px_32px_rgba(234,88,12,0.24)]"
             >
               Rescue Hub
             </Link>
@@ -135,7 +135,7 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
             type="button"
             onClick={() => goToSlide(index, true)}
             className={`rounded-full transition-all duration-300 ${
-              index === currentSlide ? 'h-2.5 w-8 bg-white' : 'h-2.5 w-2.5 bg-white/50 hover:bg-white/80'
+              index === currentSlide ? 'h-2.5 w-8 bg-orange-500' : 'h-2.5 w-2.5 bg-sky-200 hover:bg-white'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
