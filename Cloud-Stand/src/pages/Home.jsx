@@ -79,7 +79,7 @@ function Home() {
   useDocumentTitle('CloudStand Consulting | Oracle Cloud Transformation Partner')
   const featuredCaseStudies = caseStudies.slice(0, 3).map((study, index) => ({
     ...study,
-    accent: ['#D63B25', '#EA580C', '#0EA5E9'][index] || '#0EA5E9',
+    accent: '#EA580C',
   }))
   const enhancedTestimonials = testimonials.map((testimonial, index) => ({
     ...testimonial,
@@ -239,9 +239,9 @@ function Home() {
             {stats.map((item, index) => (
               <motion.div key={item.label} variants={staggerItem}>
                 <Card className="p-7">
-                  <AnimatedCounter suffix={item.suffix} value={item.value} />
-                  <motion.div className="mt-4 h-1 w-16 rounded-full bg-orange-500" initial={{ scaleX: 0, originX: 0 }} transition={{ duration: 0.6, delay: index * 0.12 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} />
-                  <p className="mt-4 text-base uppercase tracking-normal text-black">{item.label}</p>
+                  <AnimatedCounter className="inline-block font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl" suffix={item.suffix} value={item.value} />
+                  <motion.div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" initial={{ scaleX: 0, originX: 0 }} transition={{ duration: 0.6, delay: index * 0.12 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} />
+                  <p className="mt-4 text-base uppercase tracking-normal text-[#D63B25]">{item.label}</p>
                 </Card>
               </motion.div>
             ))}
@@ -250,7 +250,51 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-[#FAFCFF] py-8 sm:py-10 lg:py-12">
+      <section className="relative overflow-hidden bg-[#FAFCFF] py-8 sm:py-10 lg:py-12">
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          style={{
+            backgroundImage: `
+              linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,249,255,0.9)),
+              radial-gradient(circle at 18% 20%, rgba(14,165,233,0.035) 0, transparent 20%),
+              radial-gradient(circle at 82% 78%, rgba(14,165,233,0.025) 0, transparent 16%)
+            `,
+            backgroundSize: 'cover, auto, auto',
+          }}
+        >
+          <div
+            className="absolute -left-20 -top-12 h-[320px] w-[760px]"
+            style={{
+              backgroundImage: `
+                linear-gradient(135deg,
+                  transparent 0 18px,
+                  rgba(255,255,255,0.97) 18px 82px,
+                  transparent 82px 104px
+                )
+              `,
+              backgroundSize: '104px 104px',
+              filter: 'drop-shadow(0 10px 14px rgba(203,213,225,0.22))',
+              opacity: 0.95,
+              transform: 'rotate(-12deg)',
+            }}
+          />
+          <div
+            className="absolute -left-6 -top-4 h-[260px] w-[620px]"
+            style={{
+              backgroundImage: `
+                linear-gradient(135deg,
+                  transparent 0 16px,
+                  rgba(255,255,255,0.94) 16px 72px,
+                  transparent 72px 92px
+                )
+              `,
+              backgroundSize: '92px 92px',
+              filter: 'drop-shadow(0 8px 12px rgba(203,213,225,0.18))',
+              opacity: 0.8,
+              transform: 'rotate(-12deg)',
+            }}
+          />
+        </div>
         <div className="section-shell">
           <HomeSectionTitle eyebrow="Success Stories" title="Transformation outcomes that stand up in the boardroom" showLine={false} />
           <motion.div
@@ -275,7 +319,7 @@ function Home() {
 
                   <div className="h-full">
                     <div className="flex items-center gap-3">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-500">{study.category}</div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#EA580C]">{study.category}</div>
                       <span className="h-px flex-1 bg-sky-200 md:hidden" />
                     </div>
                     <div className="mt-4 text-sm font-medium uppercase tracking-[0.12em] text-black">{study.company}</div>
@@ -283,7 +327,7 @@ function Home() {
                       {study.title}
                     </h3>
                     <p className="mt-4 max-w-[34ch] text-sm leading-7 text-black">{study.summary}</p>
-                    <Link className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-sky-500 hover:text-[#d63b25]" to="/case-studies">
+                    <Link className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-[#EA580C] hover:text-[#d63b25]" to="/case-studies">
                       Read Case Study
                       <motion.span whileHover={{ x: 4 }}>
                         <ArrowRight className="h-4 w-4" />
