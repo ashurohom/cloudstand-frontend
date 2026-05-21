@@ -11,7 +11,6 @@ import GlobalDelivery from '../components/sections/GlobalDelivery'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { caseStudies } from '../data/caseStudies'
 import { testimonials } from '../data/testimonials'
-import { stats } from '../data/stats'
 import {
   pageVariants,
   slideLeft,
@@ -47,9 +46,9 @@ const overviewStats = [
   { value: 3, suffix: '', label: 'Countries' },
 ]
 
-function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true }) {
+function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className = '' }) {
   return (
-    <div className="mb-12 flex max-w-3xl flex-col gap-4 items-start text-left">
+    <div className={`mb-12 flex max-w-3xl flex-col gap-4 items-start text-left ${className}`}>
       {eyebrow ? <Badge className="bg-white">{eyebrow}</Badge> : null}
       <motion.h2
         initial={{ opacity: 0, y: 35, scale: 0.93 }}
@@ -201,48 +200,153 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-8 sm:py-10 lg:py-12">
-        <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <motion.div initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
+      {/* Why CloudStand — Redesigned Premium Section */}
+      <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
+        {/* Subtle geometric SVG dot-grid background texture */}
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="why-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#why-dot-grid)" />
+        </svg>
+
+        {/* Subtle corner accent blobs */}
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }}
+        />
+        <div
+          className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(234,88,12,0.06) 0%, transparent 70%)' }}
+        />
+
+        <div className="section-shell relative z-10 grid items-start gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+
+          {/* ── LEFT: Heading + Checklist ── */}
+          <motion.div
+            initial="hidden"
+            variants={slideLeft}
+            viewport={{ once: true, margin: '-80px' }}
+            whileInView="visible"
+            className="flex flex-col"
+          >
             <HomeSectionTitle
+              className="!mb-6"
               eyebrow="Why CloudStand"
               title="Why Industry Leaders Choose CloudStand"
               subtitle="We combine enterprise-grade Oracle expertise with fast, accountable delivery."
             />
-            <div className="space-y-4">
+
+            <div className="flex flex-col gap-3">
               {[
                 'Oracle-certified consultants with deep domain expertise',
                 'Fixed-price engagements with guaranteed timelines',
                 '24/7 post-go-live hypercare support',
                 'Agile methodology with weekly sprint reviews',
-              ].map((item) => (
-                <div
+              ].map((item, i) => (
+                <motion.div
                   key={item}
-                  className="flex gap-4 rounded-2xl border border-sky-200 bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
+                  initial={{ opacity: 0, x: -18 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.45, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
+                  className="group flex items-center gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
                 >
-                  <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-50 text-[#EA580C]">
-                    <Check className="h-4 w-4" />
+                  {/* Orange check icon in sky-blue pill */}
+                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                   </span>
-                  <p className="text-base leading-7 text-black">{item}</p>
-                </div>
+                  <p className="text-sm font-medium leading-snug text-black">{item}</p>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
+          {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
           <motion.div
-            className="grid gap-5 sm:grid-cols-2"
+            className="grid grid-cols-2 gap-5 mt-10 lg:mt-16"
             initial="hidden"
             variants={slideRight}
             viewport={{ once: true, margin: '-80px' }}
             whileInView="visible"
           >
-            {stats.map((item, index) => (
-              <motion.div key={item.label} variants={staggerItem}>
-                <Card className="p-7">
-                  <AnimatedCounter className="inline-block font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl" suffix={item.suffix} value={item.value} />
-                  <motion.div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" initial={{ scaleX: 0, originX: 0 }} transition={{ duration: 0.6, delay: index * 0.12 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} />
-                  <p className="mt-4 text-base uppercase tracking-normal text-[#D63B25]">{item.label}</p>
-                </Card>
+            {[
+              {
+                value: 50, suffix: '+', label: 'Projects Delivered',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-3-3v6M3 7l4-4h10l4 4v13H3V7z" />
+                  </svg>
+                ),
+              },
+              {
+                value: 98, suffix: '%', label: 'Client Satisfaction',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+                  </svg>
+                ),
+              },
+              {
+                value: 3, suffix: '', label: 'Countries Served',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2 12h20M12 2c-2.5 3-4 6.5-4 10s1.5 7 4 10M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10" />
+                  </svg>
+                ),
+              },
+              {
+                value: 15, suffix: '+', label: 'Certified Experts',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20H7a5 5 0 0 1 0-10h.27A6 6 0 1 1 18 14.83" />
+                  </svg>
+                ),
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.label}
+                variants={staggerItem}
+                whileHover={{ y: -5, boxShadow: '0 22px 48px rgba(14,165,233,0.13)' }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="group flex flex-col gap-3 rounded-3xl border border-[rgba(14,165,233,0.22)] bg-white p-6 shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+              >
+                {/* Minimal icon */}
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(14,165,233,0.18)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
+                  {item.icon}
+                </span>
+
+                {/* Animated number */}
+                <AnimatedCounter
+                  className="font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl"
+                  suffix={item.suffix}
+                  value={item.value}
+                  delay={index * 0.12}
+                  duration={1800}
+                />
+
+                {/* Accent line */}
+                <motion.div
+                  className="h-0.5 w-10 rounded-full bg-[#0EA5E9] opacity-50"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.14 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                />
+
+                {/* Orange label */}
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#EA580C]">
+                  {item.label}
+                </p>
               </motion.div>
             ))}
           </motion.div>
