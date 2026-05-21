@@ -220,7 +220,7 @@ function Home() {
                   key={item}
                   className="flex gap-4 rounded-2xl border border-sky-200 bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
                 >
-                  <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-50 text-sky-500">
+                  <span className="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-50 text-[#EA580C]">
                     <Check className="h-4 w-4" />
                   </span>
                   <p className="text-base leading-7 text-black">{item}</p>
