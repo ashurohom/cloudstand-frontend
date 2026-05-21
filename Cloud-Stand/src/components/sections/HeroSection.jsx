@@ -185,7 +185,7 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
             key={activeTextSlide}
             className={`hero-slide-copy ${isTextVisible ? 'hero-slide-copy--visible' : 'hero-slide-copy--hidden'}`}
           >
-            <h1 className="hero-slide-heading text-4xl font-extrabold leading-tight tracking-[-0.03em] text-white drop-shadow-[0_6px_22px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">
+            <h1 className="hero-slide-heading text-[2.1rem] font-extrabold leading-tight tracking-[-0.03em] text-white drop-shadow-[0_6px_22px_rgba(0,0,0,0.55)] sm:text-[2.7rem] lg:text-[3.35rem]">
               {safeSlides[activeTextSlide]?.heading}
             </h1>
 
