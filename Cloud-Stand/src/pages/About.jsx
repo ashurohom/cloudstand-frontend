@@ -13,9 +13,26 @@ const values = [
 ]
 
 const team = [
-  { initials: 'AS', name: 'Aditi Shah', title: 'Founder & Oracle Cloud Director' },
-  { initials: 'RM', name: 'Rohan Mehta', title: 'Delivery Lead, ERP & Finance' },
-  { initials: 'NK', name: 'Nisha Kulkarni', title: 'Practice Lead, HCM & Payroll' },
+  {
+    initials: 'AS',
+    name: 'Aditi Shah',
+    title: 'Founder & Oracle Cloud Director',
+  },
+  {
+    initials: 'RM',
+    name: 'Rohan Mehta',
+    title: 'Delivery Lead, ERP & Finance',
+  },
+  {
+    initials: 'NK',
+    name: 'Nisha Kulkarni',
+    title: 'Practice Lead, HCM & Payroll',
+  },
+  {
+    initials: 'CS',
+    name: 'Client Success Desk',
+    title: 'Program Coordination & Support',
+  },
 ]
 
 const storyMilestones = [
@@ -185,7 +202,7 @@ function About() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className={`${aboutSectionSpacing} relative overflow-hidden bg-[rgba(14,165,233,0.03)]`}>
+      <section className={`${aboutSectionSpacing} relative flex min-h-[calc(100vh-5rem)] items-center overflow-hidden bg-[rgba(14,165,233,0.03)]`}>
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -342,33 +359,34 @@ function About() {
       <section className={`${aboutSectionSpacing} bg-white`}>
         <div className="section-shell">
           <AboutSectionHeader eyebrow="Leadership" title="A focused team with enterprise delivery instincts" />
-          <motion.div
-            className="grid gap-6 md:grid-cols-3"
-            initial="hidden"
-            variants={staggerContainer}
-            viewport={{ once: true, margin: '-80px' }}
-            whileInView="visible"
-          >
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {team.map((member) => (
-              <motion.div key={member.name} variants={staggerItem}>
-                <div className="rounded-[28px] border border-[rgba(14,165,233,0.22)] bg-white p-7 shadow-[0_18px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)]">
-                  <motion.div
-                    className="flex h-20 w-20 items-center justify-center rounded-full border border-[rgba(14,165,233,0.24)] bg-[#EA580C] font-syne text-2xl font-bold text-white"
-                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={{ scale: 1.06, boxShadow: '0 16px 36px rgba(0,0,0,0.12)' }}
-                  >
-                    {member.initials}
-                  </motion.div>
-                  <h3 className="mt-5 text-2xl font-semibold text-black">{member.name}</h3>
-                  <p className="mt-2 text-sm text-black/75">{member.title}</p>
-                  <motion.a className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[#D63B25]" href="#" whileHover={{ x: 4 }}>
-                    LinkedIn
-                    <ArrowUpRight className="h-4 w-4" />
-                  </motion.a>
+              <div key={member.name}>
+                <div className="mx-auto flex h-[355px] w-full max-w-[270px] flex-col overflow-hidden rounded-[30px] border border-[rgba(14,165,233,0.22)] bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)]">
+                  <div className="relative h-28 overflow-hidden bg-[linear-gradient(135deg,rgba(14,165,233,0.14),rgba(234,88,12,0.14))]">
+                    <div className="absolute inset-x-0 bottom-0 h-px bg-[rgba(14,165,233,0.18)]" />
+                  </div>
+
+                  <div className="relative flex flex-1 flex-col px-5 pb-6 pt-16 text-center">
+                    <div className="absolute left-1/2 top-0 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[6px] border-white bg-[#EA580C] font-syne text-3xl font-bold text-white shadow-[0_10px_22px_rgba(0,0,0,0.10)]">
+                      {member.initials}
+                    </div>
+
+                    <div className="flex h-[170px] flex-col justify-center rounded-[22px] border border-[rgba(14,165,233,0.14)] bg-[rgba(14,165,233,0.03)] px-4 py-5">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#0EA5E9]">Team ID</p>
+                      <h3 className="mt-3 min-h-[64px] text-2xl font-semibold leading-tight text-black">{member.name}</h3>
+                      <p className="mt-3 min-h-[48px] text-sm leading-6 text-black/75">{member.title}</p>
+                    </div>
+
+                    <a className="mt-auto inline-flex items-center justify-center gap-2 pt-5 text-sm font-medium text-[#D63B25]" href="#">
+                      LinkedIn
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
