@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight, BarChart3, Cloud, Handshake, Lightbulb, Spark
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import useDocumentTitle from '../hooks/useDocumentTitle'
-import { iconPop, pageVariants, slideLeft, slideRight, staggerContainer, staggerItem } from '../animations/variants'
+import { fadeUp, iconPop, pageVariants, slideLeft, slideRight, staggerContainer, staggerItem } from '../animations/variants'
 
 const values = [
   ['Innovation', 'We modernize enterprise operations with practical, future-ready Oracle Cloud thinking.'],
@@ -56,8 +56,15 @@ function AboutSectionHeader({ eyebrow, title, subtitle, align = 'left', showLine
         </span>
       ) : null}
       {showLine ? <div className="h-1 w-20 rounded-full bg-[#0EA5E9]" /> : null}
-      <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">{title}</h2>
-      {subtitle ? <p className="text-base leading-7 text-black/75 sm:text-lg">{subtitle}</p> : null}
+      <motion.div
+        initial="hidden"
+        variants={fadeUp}
+        viewport={{ once: false, margin: '-60px' }}
+        whileInView="visible"
+      >
+        <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">{title}</h2>
+        {subtitle ? <p className="mt-4 text-base leading-7 text-black/75 sm:text-lg">{subtitle}</p> : null}
+      </motion.div>
     </div>
   )
 }
@@ -202,7 +209,7 @@ function About() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className={`${aboutSectionSpacing} relative flex min-h-[calc(100vh-5rem)] items-center overflow-hidden bg-[rgba(14,165,233,0.03)]`}>
+      <section className={`${aboutSectionSpacing} relative flex min-h-[calc(100vh-5rem)] items-center overflow-hidden bg-[rgba(14,165,233,0.018)]`}>
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -230,25 +237,16 @@ function About() {
             </h1>
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 max-w-3xl text-lg leading-8 text-black/75"
+              className="mt-6 max-w-3xl text-justify text-lg leading-8 text-black/75"
               initial={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               A Pune-based Oracle Cloud consulting firm helping global clients modernize operations through sharper delivery, stronger governance, and measurable business outcomes. We partner with organizations across HCM, ERP, Payroll, OIC, BI, and AI initiatives to simplify transformation, improve execution quality, and build long-term operational resilience.
             </motion.p>
-            <motion.div
-              animate={{ opacity: [0.55, 1, 0.55], x: [0, 8, 0] }}
-              className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#EA580C] px-4 py-2 text-sm font-medium text-[#EA580C]"
-              initial={{ opacity: 0, y: 12 }}
-              transition={{
-                opacity: { duration: 2.2, repeat: Infinity, ease: 'easeInOut' },
-                x: { duration: 2.2, repeat: Infinity, ease: 'easeInOut' },
-                y: { duration: 0.45, delay: 0.75, ease: [0.22, 1, 0.36, 1] },
-              }}
-            >
+            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#EA580C] px-4 py-2 text-sm font-medium text-[#EA580C]">
               <Cloud className="h-4 w-4" />
               <span>Trusted Oracle Cloud focused on clarity, speed, and lasting business impact.</span>
-            </motion.div>
+            </div>
           </div>
 
           <motion.div

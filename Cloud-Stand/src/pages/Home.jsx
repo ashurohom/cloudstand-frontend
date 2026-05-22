@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button'
@@ -98,14 +98,6 @@ function Home() {
 
     return () => clearInterval(timer)
   }, [total])
-
-  const goNext = () => {
-    setCurrent((prev) => (prev + 1) % total)
-  }
-
-  const goPrev = () => {
-    setCurrent((prev) => (prev - 1 + total) % total)
-  }
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
@@ -267,6 +259,22 @@ function Home() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Link
+                className="inline-flex items-center gap-2 rounded-full border border-[#EA580C] px-5 py-3 text-sm font-medium text-[#EA580C] transition-all duration-300 hover:bg-[#EA580C] hover:text-white"
+                to="/about"
+              >
+                View More
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
@@ -365,7 +373,7 @@ function Home() {
 
                 {/* Accent line */}
                 <motion.div
-                  className="h-0.5 w-10 rounded-full bg-[#0EA5E9] opacity-50"
+                  className="h-0.5 w-10 rounded-full bg-[#EA580C] opacity-100"
                   initial={{ scaleX: 0, originX: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.14 }}
                   whileInView={{ scaleX: 1 }}
@@ -373,7 +381,7 @@ function Home() {
                 />
 
                 {/* Orange label */}
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#EA580C]">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black">
                   {item.label}
                 </p>
               </motion.div>
@@ -384,95 +392,84 @@ function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#FAFCFF] py-8 sm:py-10 lg:py-12">
-        <div
-          className="pointer-events-none absolute inset-0 overflow-hidden"
-          style={{
-            backgroundImage: `
-              linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,249,255,0.9)),
-              radial-gradient(circle at 18% 20%, rgba(14,165,233,0.035) 0, transparent 20%),
-              radial-gradient(circle at 82% 78%, rgba(14,165,233,0.025) 0, transparent 16%)
-            `,
-            backgroundSize: 'cover, auto, auto',
-          }}
-        >
-          <div
-            className="absolute -left-20 -top-12 h-[320px] w-[760px]"
-            style={{
-              backgroundImage: `
-                linear-gradient(135deg,
-                  transparent 0 18px,
-                  rgba(255,255,255,0.97) 18px 82px,
-                  transparent 82px 104px
-                )
-              `,
-              backgroundSize: '104px 104px',
-              filter: 'drop-shadow(0 10px 14px rgba(203,213,225,0.22))',
-              opacity: 0.95,
-              transform: 'rotate(-12deg)',
-            }}
-          />
-          <div
-            className="absolute -left-6 -top-4 h-[260px] w-[620px]"
-            style={{
-              backgroundImage: `
-                linear-gradient(135deg,
-                  transparent 0 16px,
-                  rgba(255,255,255,0.94) 16px 72px,
-                  transparent 72px 92px
-                )
-              `,
-              backgroundSize: '92px 92px',
-              filter: 'drop-shadow(0 8px 12px rgba(203,213,225,0.18))',
-              opacity: 0.8,
-              transform: 'rotate(-12deg)',
-            }}
-          />
-        </div>
-        <div className="section-shell">
-          <HomeSectionTitle eyebrow="Success Stories" title="Transformation outcomes that stand up in the boardroom" showLine={false} />
+      <section className="relative overflow-hidden bg-white py-14 sm:py-16 lg:py-18">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.05),transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(249,115,22,0.05),transparent_35%)]" />
+        <div className="section-shell relative">
+          <div className="mb-6 inline-flex items-center rounded-full border border-[#f97316]/30 bg-white px-5 py-2">
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[#f97316]">
+              Success Stories
+            </span>
+          </div>
+
+          <div className="max-w-4xl">
+            <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-black md:text-5xl">
+              Transformation outcomes that
+              <br />
+              stand up in the boardroom
+            </h2>
+
+            <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+          </div>
+
           <motion.div
-            className="relative mt-10 grid gap-8 md:grid-cols-3 md:gap-0"
+            className="mt-12 grid gap-6 lg:grid-cols-3"
             initial="hidden"
             variants={staggerContainer}
             viewport={{ once: true, margin: '-80px' }}
             whileInView="visible"
           >
-            {featuredCaseStudies.map((study) => (
+            {featuredCaseStudies.map((study, index) => (
               <motion.div key={study.slug} variants={staggerItem}>
-                <motion.div
-                  className="group relative h-full pt-5 md:px-7 md:first:pl-0 md:last:pr-0"
-                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -4 }}
+                <div
+                  className={`group relative flex min-h-[345px] overflow-hidden rounded-[26px] bg-white p-4 transition-all duration-500 hover:-translate-y-2 ${
+                    index === 0
+                      ? 'border border-[#f97316]'
+                      : 'border border-[#ececec] hover:border-[#f97316]'
+                  }`}
                 >
-                  <div
-                    className="pointer-events-none absolute left-0 top-0 h-1 w-14 rounded-full transition-all duration-300 group-hover:w-20"
-                    style={{ background: study.accent }}
-                  />
-                  <div className="pointer-events-none absolute right-0 top-6 hidden h-[calc(100%-2.5rem)] w-px bg-sky-200 md:block group-last:hidden" />
+                  <div className="flex w-full flex-col">
+                    <div className="mb-5 flex items-center justify-between">
+                      <span className="rounded-full bg-[#fef1e8] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.24em] text-[#f97316]">
+                        {study.category}
+                      </span>
 
-                  <div className="h-full">
-                    <div className="flex items-center gap-3">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#EA580C]">{study.category}</div>
-                      <span className="h-px flex-1 bg-sky-200 md:hidden" />
+                      <div className="h-2.5 w-12 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
                     </div>
-                    <div className="mt-4 text-sm font-medium uppercase tracking-[0.12em] text-black">{study.company}</div>
-                    <h3 className="mt-4 max-w-[18ch] text-[1.9rem] font-semibold leading-[1.15] text-black">
+
+                    <h3 className="max-w-sm min-h-[104px] text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                       {study.title}
                     </h3>
-                    <p className="mt-4 max-w-[34ch] text-sm leading-7 text-black">{study.summary}</p>
-                    <Link className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-[#EA580C] hover:text-[#d63b25]" to="/case-studies">
-                      Read Case Study
-                      <motion.span whileHover={{ x: 4 }}>
+
+                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#0EA5E9]">
+                      {study.company}
+                    </p>
+
+                    <p className="mt-4 min-h-[78px] text-[13px] leading-6 text-[#5f6368]">
+                      {study.summary}
+                    </p>
+
+                    <div className="mt-auto h-px w-full bg-[#ececec]" />
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <Link
+                        className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300 group-hover:gap-4"
+                        to="/case-studies"
+                      >
+                        View Story
+                        <span className="transition-colors duration-300 group-hover:text-[#EA580C]">
+                          <ArrowRight className="h-4 w-4" />
+                        </span>
+                      </Link>
+
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fef1e8] text-[#f97316] transition-all duration-300 group-hover:bg-[#E0F2FE] group-hover:text-[#0EA5E9]">
                         <ArrowRight className="h-4 w-4" />
-                      </motion.span>
-                    </Link>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
-
         </div>
       </section>
 
@@ -518,127 +515,89 @@ function Home() {
         </div>
       </section>
 
-      <section
-        className="relative overflow-hidden bg-[#FAFCFF] py-6"
-      >
+      <section className="relative overflow-hidden bg-[#F8FAFF] py-16 sm:py-20 lg:py-24">
         <div
-          className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full"
+          className="pointer-events-none absolute inset-0"
           style={{
-            background: 'radial-gradient(circle, rgba(234,88,12,0.1) 0%, transparent 72%)',
-            transform: 'translate(28%, -28%)',
+            backgroundImage: `
+              radial-gradient(circle at 18% 24%, rgba(14,165,233,0.08) 0, transparent 28%),
+              radial-gradient(circle at 84% 78%, rgba(14,165,233,0.06) 0, transparent 26%),
+              linear-gradient(135deg, rgba(255,255,255,0.98), rgba(244,248,255,0.92))
+            `,
           }}
         />
 
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 72%)',
-            transform: 'translate(-28%, 28%)',
-          }}
-        />
-
-        <div className="section-shell relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-60px' }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-4"
-          >
-            <Badge className="mb-3 border-sky-200 bg-white text-black">Testimonials</Badge>
-            <h2 className="text-2xl font-bold leading-tight text-black md:text-[2rem]">
-              Client feedback
+        <div className="section-shell relative z-10 grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="max-w-xl">
+            <Badge className="border-[rgba(234,88,12,0.25)] bg-white text-[#EA580C] shadow-[0_10px_24px_rgba(14,165,233,0.08)]">
+              Testimonials
+            </Badge>
+            <h2 className="mt-8 text-4xl font-bold leading-tight text-black sm:text-5xl">
+              What Our Clients Say
             </h2>
-          </motion.div>
+            <p className="mt-6 max-w-md text-base leading-8 text-black sm:text-lg">
+              Trusted by growing enterprises for Oracle Cloud transformation, implementation and long-term support.
+            </p>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-60px' }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-transparent py-1"
-          >
-            <div className="flex flex-col gap-4">
-              <div className="min-w-0">
-                <span className="mb-3 inline-flex px-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-orange-500">
-                  {enhancedTestimonials[current].category}
-                </span>
-
-                <AnimatePresence mode="wait">
-                  <motion.blockquote
-                    key={`${current}-quote`}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-full max-w-none pr-0 text-sm leading-6 text-black sm:text-[15px] md:text-base"
+          <div className="min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                animate={{ opacity: 1, x: 0 }}
+                className="max-w-3xl"
+                exit={{ opacity: 0, x: -36 }}
+                initial={{ opacity: 0, x: 42 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="mb-3">
+                  <svg
+                    aria-hidden="true"
+                    className="h-[54px] w-[48px]"
+                    viewBox="0 0 56 62"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    "{enhancedTestimonials[current].quote}"
-                  </motion.blockquote>
-                </AnimatePresence>
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`${current}-meta`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.25 }}
-                    className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm"
-                  >
-                    <span className="font-semibold text-black">
-                      {enhancedTestimonials[current].name}
-                    </span>
-                    <span className="text-sky-500">/</span>
-                    <span className="text-black">
-                      {enhancedTestimonials[current].designation}, {enhancedTestimonials[current].company}
-                    </span>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex gap-1.5">
-                  {enhancedTestimonials.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCurrent(i)}
-                      style={{
-                        width: i === current ? '18px' : '6px',
-                        height: '6px',
-                        borderRadius: '9999px',
-                        background: i === current ? '#EA580C' : '#bae6fd',
-                        border: 'none',
-                        cursor: 'pointer',
-                        transition: 'all 0.25s ease',
-                      }}
-                      type="button"
-                      aria-label={`Show testimonial ${i + 1}`}
-                    />
-                  ))}
+                    <g fill="none" stroke="#D96A2B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="6">
+                      <path d="M19 6c-7 0-11 5-11 12v14c0 7 4 11 11 11h1c0 7-4 12-10 16" />
+                      <path d="M45 6c-7 0-11 5-11 12v14c0 7 4 11 11 11h1c0 7-4 12-10 16" />
+                    </g>
+                  </svg>
                 </div>
 
-                <div className="flex gap-2">
-                  <button
-                    onClick={goPrev}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-sky-200 bg-white text-black transition-all duration-200 hover:border-orange-400 hover:bg-orange-500 hover:text-white"
-                    type="button"
-                    aria-label="Previous testimonial"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={goNext}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-sky-200 bg-white text-black transition-all duration-200 hover:border-orange-400 hover:bg-orange-500 hover:text-white"
-                    type="button"
-                    aria-label="Next testimonial"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
+                <blockquote className="-mt-1 text-lg leading-7 text-black sm:text-xl lg:text-[1.6rem] lg:leading-[1.45]">
+                  {enhancedTestimonials[current].quote}
+                </blockquote>
+
+                <div className="mt-8 h-[3px] w-24 rounded-full bg-[#EA580C]" />
+
+                <div className="mt-8 flex flex-wrap items-center gap-4 text-sm sm:text-base">
+                  <span className="font-semibold text-[#EA580C]">{enhancedTestimonials[current].name}</span>
+                  <span className="font-semibold uppercase tracking-[0.12em] text-black">IN</span>
+                  <span className="inline-flex items-center rounded-full bg-sky-50 px-4 py-2 text-sm font-medium text-sky-600">
+                    {enhancedTestimonials[current].category}
+                  </span>
                 </div>
-              </div>
+
+                <p className="mt-4 text-sm text-black/70 sm:text-base">
+                  {enhancedTestimonials[current].designation} · {enhancedTestimonials[current].company}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="mt-12 flex items-center gap-5">
+              {enhancedTestimonials.map((_, i) => (
+                <button
+                  key={i}
+                  aria-label={`Show testimonial ${i + 1}`}
+                  className={`rounded-full border-0 transition-all duration-300 ${
+                    i === current ? 'w-12 bg-[#D76527]' : 'w-4 bg-[#CFD7E6]'
+                  } h-4 cursor-pointer`}
+                  onClick={() => setCurrent(i)}
+                  type="button"
+                />
+              ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
