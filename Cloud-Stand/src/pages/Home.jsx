@@ -193,7 +193,7 @@ function Home() {
       </section>
 
       {/* Why CloudStand — Redesigned Premium Section */}
-      <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-14">
         {/* Subtle geometric SVG dot-grid background texture */}
         <svg
           aria-hidden="true"
@@ -259,22 +259,6 @@ function Home() {
                 </motion.div>
               ))}
             </div>
-
-            <motion.div
-              className="mt-8"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.45, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Link
-                className="inline-flex items-center gap-2 rounded-full border border-[#EA580C] px-5 py-3 text-sm font-medium text-[#EA580C] transition-all duration-300 hover:bg-[#EA580C] hover:text-white"
-                to="/about"
-              >
-                View More
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </motion.div>
           </motion.div>
 
           {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
@@ -315,41 +299,11 @@ function Home() {
               whileInView="visible"
             >
               {[
-                {
-                  value: 50, suffix: '+', label: 'Projects Delivered',
-                  icon: (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-3-3v6M3 7l4-4h10l4 4v13H3V7z" />
-                  </svg>
-                ),
-              },
-              {
-                value: 98, suffix: '%', label: 'Client Satisfaction',
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-                  </svg>
-                ),
-              },
-              {
-                value: 3, suffix: '', label: 'Countries Served',
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2 12h20M12 2c-2.5 3-4 6.5-4 10s1.5 7 4 10M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10" />
-                  </svg>
-                ),
-              },
-              {
-                value: 15, suffix: '+', label: 'Certified Experts',
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-6 w-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20H7a5 5 0 0 1 0-10h.27A6 6 0 1 1 18 14.83" />
-                  </svg>
-                ),
-              },
-            ].map((item, index) => (
+                { value: 50, suffix: '+', label: 'Projects Delivered' },
+                { value: 98, suffix: '%', label: 'Client Satisfaction' },
+                { value: 3, suffix: '', label: 'Countries Served' },
+                { value: 15, suffix: '+', label: 'Certified Experts' },
+              ].map((item, index) => (
               <motion.div
                 key={item.label}
                 variants={staggerItem}
@@ -357,11 +311,6 @@ function Home() {
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="group flex flex-col gap-3 rounded-3xl border border-[rgba(14,165,233,0.22)] bg-white p-6 shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
               >
-                {/* Minimal icon */}
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(14,165,233,0.18)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
-                  {item.icon}
-                </span>
-
                 {/* Animated number */}
                 <AnimatedCounter
                   className="font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl"
@@ -387,6 +336,22 @@ function Home() {
               </motion.div>
             ))}
           </motion.div>
+
+            <motion.div
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Link
+                className="inline-flex items-center gap-2 rounded-full border border-[#EA580C] px-5 py-3 text-sm font-medium text-[#EA580C] transition-all duration-300 hover:bg-[#EA580C] hover:text-white"
+                to="/about"
+              >
+                View More
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
           </div>
 
         </div>
@@ -460,10 +425,6 @@ function Home() {
                           <ArrowRight className="h-4 w-4" />
                         </span>
                       </Link>
-
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fef1e8] text-[#f97316] transition-all duration-300 group-hover:bg-[#E0F2FE] group-hover:text-[#0EA5E9]">
-                        <ArrowRight className="h-4 w-4" />
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -515,27 +476,55 @@ function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#F8FAFF] py-16 sm:py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage: `
-              radial-gradient(circle at 18% 24%, rgba(14,165,233,0.08) 0, transparent 28%),
-              radial-gradient(circle at 84% 78%, rgba(14,165,233,0.06) 0, transparent 26%),
-              linear-gradient(135deg, rgba(255,255,255,0.98), rgba(244,248,255,0.92))
+              linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,1))
             `,
           }}
         />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.32]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+            `,
+            backgroundPosition: '0 0, 0 0',
+            backgroundSize: '24px 24px, 24px 24px',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.28]"
+          style={{
+            backgroundImage:
+              'radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px)',
+            backgroundPosition: '12px 12px',
+            backgroundSize: '18px 18px',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-52 opacity-[0.62]"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 100%), repeating-linear-gradient(120deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 14px)',
+          }}
+        />
 
-        <div className="section-shell relative z-10 grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="section-shell relative z-10 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="max-w-xl">
             <Badge className="border-[rgba(234,88,12,0.25)] bg-white text-[#EA580C] shadow-[0_10px_24px_rgba(14,165,233,0.08)]">
               Testimonials
             </Badge>
-            <h2 className="mt-8 text-4xl font-bold leading-tight text-black sm:text-5xl">
+            <h2 className="mt-5 text-4xl font-bold leading-tight text-black sm:text-5xl">
               What Our Clients Say
             </h2>
-            <p className="mt-6 max-w-md text-base leading-8 text-black sm:text-lg">
+            <p className="mt-4 max-w-md text-base leading-7 text-black sm:text-lg">
               Trusted by growing enterprises for Oracle Cloud transformation, implementation and long-term support.
             </p>
           </div>
@@ -550,17 +539,15 @@ function Home() {
                 initial={{ opacity: 0, x: 42 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="mb-3">
+                <div className="mb-4">
                   <svg
                     aria-hidden="true"
-                    className="h-[54px] w-[48px]"
-                    viewBox="0 0 56 62"
+                    className="h-10 w-10 text-[#EA580C]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g fill="none" stroke="#D96A2B" strokeLinecap="round" strokeLinejoin="round" strokeWidth="6">
-                      <path d="M19 6c-7 0-11 5-11 12v14c0 7 4 11 11 11h1c0 7-4 12-10 16" />
-                      <path d="M45 6c-7 0-11 5-11 12v14c0 7 4 11 11 11h1c0 7-4 12-10 16" />
-                    </g>
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
                 </div>
 
@@ -568,23 +555,25 @@ function Home() {
                   {enhancedTestimonials[current].quote}
                 </blockquote>
 
-                <div className="mt-8 h-[3px] w-24 rounded-full bg-[#EA580C]" />
+                <div className="mt-6 h-[3px] w-24 rounded-full bg-[#EA580C]" />
 
-                <div className="mt-8 flex flex-wrap items-center gap-4 text-sm sm:text-base">
-                  <span className="font-semibold text-[#EA580C]">{enhancedTestimonials[current].name}</span>
-                  <span className="font-semibold uppercase tracking-[0.12em] text-black">IN</span>
-                  <span className="inline-flex items-center rounded-full bg-sky-50 px-4 py-2 text-sm font-medium text-sky-600">
-                    {enhancedTestimonials[current].category}
+                <div className="mt-6 flex flex-col gap-1 text-sm sm:text-base">
+                  <span className="text-lg font-semibold text-[#EA580C]">{enhancedTestimonials[current].name}</span>
+                  <span className="text-black/70">
+                    {enhancedTestimonials[current].designation} · {enhancedTestimonials[current].company}
                   </span>
                 </div>
 
-                <p className="mt-4 text-sm text-black/70 sm:text-base">
-                  {enhancedTestimonials[current].designation} · {enhancedTestimonials[current].company}
-                </p>
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <span className="font-semibold uppercase tracking-[0.12em] text-black">IN</span>
+                  <span className="inline-flex items-center rounded-full bg-sky-50 px-4 py-1.5 text-sm font-semibold tracking-wide text-sky-600">
+                    {enhancedTestimonials[current].category}
+                  </span>
+                </div>
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-12 flex items-center gap-5">
+            <div className="mt-8 flex items-center gap-5">
               {enhancedTestimonials.map((_, i) => (
                 <button
                   key={i}
@@ -621,7 +610,7 @@ function Home() {
                 </p>
                 <div className="mt-8">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Button className="!bg-transparent !text-black !shadow-none hover:!border-orange-400 hover:!bg-orange-500 hover:!text-white" size="lg" to="/contact" variant="white">
+                    <Button className="!border-orange-500 !bg-orange-500 !text-white !shadow-none hover:!border-orange-400 hover:!bg-orange-600 hover:!text-white" size="lg" to="/contact" variant="white">
                       Schedule a Free Call
                       <motion.span whileHover={{ x: 4 }}>
                         <ArrowRight className="h-4 w-4" />

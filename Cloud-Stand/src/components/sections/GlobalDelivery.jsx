@@ -7,9 +7,12 @@ const countryProjects = {
   IN: {
     name: 'India',
     flag: 'IN',
-    color: '#EA580C',
-    x: '68%',
-    y: '46%',
+    flagIcon: '🇮🇳',
+    flagSrc: 'https://flagcdn.com/w40/in.png',
+    color: '#f97316',
+    x: '72%',
+    y: '36%',
+    summary: 'Our delivery hub powering global projects with skilled Oracle Cloud professionals.',
     projects: [
       {
         id: 1,
@@ -18,7 +21,7 @@ const countryProjects = {
         duration: '4 Months',
         service: 'HCM',
         result: '60% faster HR processing',
-        description: 'Full Oracle HCM Cloud rollout for 3,000 employees across 5 locations in India.',
+        description: 'Our delivery hub powering global projects with skilled Oracle Cloud professionals.',
       },
       {
         id: 2,
@@ -52,9 +55,12 @@ const countryProjects = {
   US: {
     name: 'United States',
     flag: 'US',
-    color: '#D63B25',
-    x: '18%',
-    y: '36%',
+    flagIcon: '🇺🇸',
+    flagSrc: 'https://flagcdn.com/w40/us.png',
+    color: '#2563eb',
+    x: '22%',
+    y: '22%',
+    summary: 'Delivering end-to-end Oracle Cloud solutions for enterprises across industries.',
     projects: [
       {
         id: 1,
@@ -88,9 +94,12 @@ const countryProjects = {
   GB: {
     name: 'United Kingdom',
     flag: 'GB',
-    color: '#0EA5E9',
-    x: '45%',
-    y: '27%',
+    flagIcon: '🇬🇧',
+    flagSrc: 'https://flagcdn.com/w40/gb.png',
+    color: '#dc2626',
+    x: '48%',
+    y: '12%',
+    summary: 'Enabling digital transformation with Oracle Cloud expertise and local knowledge.',
     projects: [
       {
         id: 1,
@@ -115,9 +124,12 @@ const countryProjects = {
   AE: {
     name: 'United Arab Emirates',
     flag: 'AE',
-    color: '#0EA5E9',
-    x: '58%',
-    y: '42%',
+    flagIcon: '🇦🇪',
+    flagSrc: 'https://flagcdn.com/w40/ae.png',
+    color: '#16a34a',
+    x: '63%',
+    y: '34%',
+    summary: 'Driving innovation and efficiency through Oracle Cloud implementations across the UAE.',
     projects: [
       {
         id: 1,
@@ -190,38 +202,44 @@ function GlobalDelivery() {
             {Object.entries(countryProjects).map(([code, country]) => (
               <motion.button
                 key={code}
-                className="group absolute z-10"
+                className="group absolute z-10 flex flex-col items-center"
                 style={{
                   left: country.x,
                   top: country.y,
-                  transform: 'translate(-50%, -50%)',
+                  transform: 'translate(-50%, -36px)',
                 }}
                 onClick={() => {
                   setSelectedCountry(selectedCountry === code ? null : code)
                   setSlideIndex(0)
                 }}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
                 type="button"
               >
+                {/* Pulse Rings */}
                 <motion.span
-                  className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  animate={{
-                    scale: [1, 1.9],
-                    opacity: [0.3, 0],
-                  }}
-                  transition={{
-                    duration: 1.8,
-                    repeat: Infinity,
-                    ease: 'easeOut',
-                  }}
+                  className="absolute top-[36px] left-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  animate={{ scale: [1, 2.5], opacity: [0.25, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+                  style={{ border: `2px solid ${country.color}` }}
+                />
+                <motion.span
+                  className="absolute top-[36px] left-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  animate={{ scale: [1, 2], opacity: [0.2, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 0.8 }}
                   style={{ background: country.color }}
                 />
 
-                <span
-                  className="relative block h-3.5 w-3.5 rounded-full border-2 border-white shadow-[0_0_0_6px_rgba(255,255,255,0.75)] transition-transform duration-200 group-hover:scale-110"
-                  style={{ background: country.color }}
-                />
+                {/* SVG Pin */}
+                <div className="relative z-10 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" fill={country.color} className="h-10 w-10 drop-shadow-md">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                  <div className="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-[60%] rounded-full bg-white shadow-sm" />
+                </div>
+
+                {/* Label */}
+                <div className="mt-1 whitespace-nowrap rounded-lg bg-white px-3 py-1.5 text-[11px] font-bold text-black shadow-md border border-slate-100 transition-colors duration-200 group-hover:border-slate-200">
+                  {country.name}
+                </div>
               </motion.button>
             ))}
 
@@ -237,7 +255,11 @@ function GlobalDelivery() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-black">{activeCountry.flag}</span>
+                        <img
+                          src={activeCountry.flagSrc}
+                          alt={`${activeCountry.name} flag`}
+                          className="h-5 w-5 rounded-full object-cover"
+                        />
                         <p className="text-sm font-semibold text-black">{activeCountry.name}</p>
                       </div>
                       <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-black">
@@ -324,8 +346,8 @@ function GlobalDelivery() {
           </div>
         </div>
 
-        <div className="section-shell mt-6 border-t border-sky-200 pt-4">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-0">
+        <div className="section-shell mt-8">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
             {Object.entries(countryProjects).map(([code, country], i) => (
               <motion.button
                 key={code}
@@ -337,17 +359,33 @@ function GlobalDelivery() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
-                whileHover={{ y: -2 }}
-                className="group flex flex-col items-center justify-center gap-1 rounded-2xl bg-white py-3 text-center transition-colors duration-200 md:px-4 md:[&:not(:last-child)]:border-r md:[&:not(:last-child)]:border-sky-200"
+                whileHover={{ y: -4 }}
+                className="group rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-sky-200 hover:shadow-[0_14px_40px_rgba(37,99,235,0.10)]"
+                style={{
+                  boxShadow: selectedCountry === code
+                    ? `0 16px 40px rgba(37,99,235,0.10), inset 0 0 0 1px ${country.color}22`
+                    : undefined,
+                }}
                 type="button"
               >
-                <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors duration-200"
-                  style={{ color: selectedCountry === code ? country.color : '#EA580C' }}
-                >
-                  {country.flag}
-                </span>
-                <p className="text-sm font-semibold text-black">{country.name}</p>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 shadow-sm ring-1 ring-slate-100">
+                    <img
+                      src={country.flagSrc}
+                      alt={`${country.name} flag`}
+                      className="h-7 w-7 rounded-full object-cover"
+                    />
+                  </div>
+                  <p className="text-[0.98rem] font-bold leading-6 text-black sm:text-[1.05rem]">{country.name}</p>
+                </div>
+                <div
+                  className="mt-3 h-0.5 w-10 rounded-full"
+                  style={{ background: selectedCountry === code ? country.color : '#3b82f6' }}
+                />
+                <div className="mt-3 h-px w-full bg-slate-200" />
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {country.summary}
+                </p>
               </motion.button>
             ))}
           </div>

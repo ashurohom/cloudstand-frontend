@@ -8,6 +8,7 @@ import { fadeUp, staggerContainer, staggerItem } from '../../animations/variants
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
+  { label: 'Background Designs', path: '/background-designs' },
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'Blog', path: '/blog' },
   { label: 'Careers', path: '/careers' },

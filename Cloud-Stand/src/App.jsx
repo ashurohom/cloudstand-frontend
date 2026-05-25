@@ -13,6 +13,7 @@ import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import ResolveQuery from './pages/ResolveQuery'
+import BackgroundDesigns from './pages/BackgroundDesigns'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -30,6 +31,7 @@ function AnimatedRoutes() {
         <Route element={<ResolveQuery />} path="/resolve-query" />
         <Route element={<Careers />} path="/careers" />
         <Route element={<Contact />} path="/contact" />
+        <Route element={<BackgroundDesigns />} path="/background-designs" />
         <Route element={<NotFound />} path="*" />
       </Routes>
     </AnimatePresence>
