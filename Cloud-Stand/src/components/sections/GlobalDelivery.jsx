@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, TrendingUp, X } from 'lucide-react'
+import { BarChart3, ChevronLeft, ChevronRight, Globe, ShieldCheck, TrendingUp, Users, X } from 'lucide-react'
 import Badge from '../ui/Badge'
 
 const countryProjects = {
@@ -161,6 +161,13 @@ const countryProjects = {
     ],
   },
 }
+
+const deliveryStats = [
+  { value: '4+', label: 'Regions', Icon: Globe },
+  { value: '50+', label: 'Global Clients', Icon: Users },
+  { value: '100+', label: 'Projects Delivered', Icon: BarChart3 },
+  { value: '100%', label: 'Commitment to Excellence', Icon: ShieldCheck },
+]
 
 function GlobalDelivery() {
   const [selectedCountry, setSelectedCountry] = useState(null)
@@ -388,6 +395,25 @@ function GlobalDelivery() {
                 </p>
               </motion.button>
             ))}
+          </div>
+
+          <div className="mx-auto mt-5 max-w-[58rem] rounded-[22px] border border-slate-200 bg-white px-4 py-3 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 xl:gap-0">
+              {deliveryStats.map(({ value, label, Icon }, index) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-2.5 xl:px-5 xl:[&:not(:last-child)]:border-r xl:[&:not(:last-child)]:border-slate-200"
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-50">
+                    <Icon className="h-4.5 w-4.5 text-[#EA580C]" strokeWidth={1.8} />
+                  </div>
+                  <div>
+                    <p className="text-[1.35rem] font-bold leading-none text-[#0EA5E9]">{value}</p>
+                    <p className="mt-0.5 text-[13px] font-medium leading-4.5 text-slate-700">{label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
