@@ -160,6 +160,29 @@ select {
     animation: linePulse 2.5s ease-in-out infinite;
   }
 
+  .why-partner-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #d63b25 transparent;
+  }
+
+  .why-partner-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .why-partner-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .why-partner-scroll::-webkit-scrollbar-thumb {
+    background: #d63b25;
+    border-radius: 999px;
+    border: 0;
+  }
+
+  .why-partner-scroll::-webkit-scrollbar-thumb:hover {
+    background: #d63b25;
+  }
+
   .orb-drift {
     animation: drift 18s ease-in-out infinite;
   }

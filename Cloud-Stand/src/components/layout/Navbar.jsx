@@ -149,7 +149,7 @@ function Navbar() {
                 {servicesOpen ? (
                   <motion.div
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className="absolute left-1/2 top-full mt-3 w-[420px] -translate-x-1/2 overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
+                    className="absolute left-0 top-full mt-3 w-[420px] overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
                     exit={{ opacity: 0, y: -4, scale: 0.98 }}
                     initial={{ opacity: 0, y: -8, scale: 0.97 }}
                     transition={{ duration: 0.25, ease: 'easeOut' }}
@@ -158,12 +158,12 @@ function Navbar() {
                       {serviceItems.map((item) => (
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
-                            className="flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:bg-sky-50 hover:text-[#0EA5E9]"
+                            className="group flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:text-[#0EA5E9]"
                             to={item.path}
                           >
                             <span
                               aria-hidden="true"
-                              className="h-0 w-0 shrink-0 border-b-[5px] border-l-[8px] border-t-[5px] border-b-transparent border-l-[#EA580C] border-t-transparent"
+                              className="h-0 w-0 shrink-0 border-b-[5px] border-l-[8px] border-t-[5px] border-b-transparent border-l-current border-t-transparent text-[#EA580C] transition-colors duration-200 group-hover:text-[#0EA5E9]"
                             />
                             <span className="block flex-1 leading-6">{item.label}</span>
                           </Link>
@@ -225,7 +225,7 @@ function Navbar() {
                 {careersOpen ? (
                   <motion.div
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className="absolute left-1/2 top-full mt-3 w-[240px] -translate-x-1/2 overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
+                    className="absolute left-0 top-full mt-3 w-[240px] overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
                     exit={{ opacity: 0, y: -4, scale: 0.98 }}
                     initial={{ opacity: 0, y: -8, scale: 0.97 }}
                     transition={{ duration: 0.22, ease: 'easeOut' }}
@@ -234,10 +234,14 @@ function Navbar() {
                       {careerItems.map((item) => (
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
-                            className="block rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-200 hover:bg-sky-50 hover:text-[#0EA5E9]"
+                            className="group flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-200 hover:text-[#0EA5E9]"
                             to={item.path}
                           >
-                            {item.label}
+                            <span
+                              aria-hidden="true"
+                              className="h-0 w-0 shrink-0 border-b-[5px] border-l-[8px] border-t-[5px] border-b-transparent border-l-current border-t-transparent text-[#EA580C] transition-colors duration-200 group-hover:text-[#0EA5E9]"
+                            />
+                            <span className="block flex-1">{item.label}</span>
                           </Link>
                         </motion.div>
                       ))}

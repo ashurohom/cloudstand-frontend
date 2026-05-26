@@ -46,6 +46,19 @@ const overviewStats = [
   { value: 3, suffix: '', label: 'Countries' },
 ]
 
+const whyPartnerPoints = [
+  'Proven global expertise delivering Oracle solutions across major international markets',
+  'Center of Excellence driving AI automation and reusable accelerators',
+  'Delivery-first approach ensuring measurable outcomes with precision and accountability',
+  'Experienced architects and dynamic professionals driving innovation and agility',
+  'Real onsite experience enabling practical, scalable, business-driven solutions delivery',
+  'Complementary health checks, audits, and access to in-house tools',
+  'Global delivery model enabling 24/7 support and seamless execution',
+  'Business-enabled delivery with documentation, KT, transparency, and reduced dependency',
+  'Committed to long-term delivery excellence and trusted client partnerships',
+  'Flexible, cost-effective engagement with on-demand support and complementary resources',
+]
+
 function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className = '' }) {
   return (
     <div className={`mb-12 flex max-w-3xl flex-col gap-4 items-start text-left ${className}`}>
@@ -192,7 +205,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Why CloudStand — Redesigned Premium Section */}
+      {/* Why Partner With Cloud Stand — Redesigned Premium Section */}
       <section className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-14">
         {/* Subtle geometric SVG dot-grid background texture */}
         <svg
@@ -230,18 +243,13 @@ function Home() {
           >
             <HomeSectionTitle
               className="!mb-6"
-              eyebrow="Why CloudStand"
-              title="Why Industry Leaders Choose CloudStand"
+              eyebrow="Why Partner With Cloud Stand"
+              title="Why Industry Leaders Partner With Cloud Stand"
               subtitle="We combine enterprise-grade Oracle expertise with fast, accountable delivery."
             />
 
-            <div className="flex flex-col gap-3">
-              {[
-                'Oracle-certified consultants with deep domain expertise',
-                'Fixed-price engagements with guaranteed timelines',
-                '24/7 post-go-live hypercare support',
-                'Agile methodology with weekly sprint reviews',
-              ].map((item, i) => (
+            <div className="why-partner-scroll max-h-[360px] space-y-3 overflow-y-auto pr-2">
+              {whyPartnerPoints.map((item, i) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: -18 }}
