@@ -50,8 +50,8 @@ function Services() {
         <div className="section-shell">
           <SectionTitle
             eyebrow="Capabilities"
-            title="Six core service lines designed for end-to-end transformation"
-            subtitle="From implementation strategy to post-go-live stabilization."
+            title="Eight service lines designed around real Oracle Cloud delivery needs"
+            subtitle="From transformation strategy and managed support to AI enablement and workforce capability."
           />
           <motion.div
             className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"

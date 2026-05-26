@@ -41,9 +41,6 @@ function Navbar() {
       services.map((service) => ({
         label: service.title,
         path: `/services/${service.slug}`,
-        tagline: service.tagline,
-        shortTitle: service.shortTitle,
-        color: service.color,
       })),
     [],
   )
@@ -152,29 +149,23 @@ function Navbar() {
                 {servicesOpen ? (
                   <motion.div
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className="absolute left-1/2 top-full mt-3 w-[270px] -translate-x-1/2 overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
+                    className="absolute left-1/2 top-full mt-3 w-[420px] -translate-x-1/2 overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
                     exit={{ opacity: 0, y: -4, scale: 0.98 }}
                     initial={{ opacity: 0, y: -8, scale: 0.97 }}
                     transition={{ duration: 0.25, ease: 'easeOut' }}
                   >
-                    <motion.div animate="visible" className="grid gap-2" initial="hidden" variants={staggerContainer}>
+                    <motion.div animate="visible" className="grid gap-1" initial="hidden" variants={staggerContainer}>
                       {serviceItems.map((item) => (
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
-                            className="flex items-center gap-3 px-2 py-2 transition-all duration-200 hover:bg-sky-50"
+                            className="flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:bg-sky-50 hover:text-[#0EA5E9]"
                             to={item.path}
                           >
-                            <div
-                              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white"
-                              style={{ backgroundColor: item.color }}
-                            >
-                              {item.shortTitle}
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <div className="truncate text-sm font-medium text-black">
-                                {item.label}
-                              </div>
-                            </div>
+                            <span
+                              aria-hidden="true"
+                              className="h-0 w-0 shrink-0 border-b-[5px] border-l-[8px] border-t-[5px] border-b-transparent border-l-[#EA580C] border-t-transparent"
+                            />
+                            <span className="block flex-1 leading-6">{item.label}</span>
                           </Link>
                         </motion.div>
                       ))}
