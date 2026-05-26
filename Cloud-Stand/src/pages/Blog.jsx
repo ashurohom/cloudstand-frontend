@@ -11,7 +11,7 @@ import { blogCategories, blogs } from '../data/blogs'
 import { pageVariants, staggerContainer, staggerItem } from '../animations/variants'
 
 function Blog() {
-  useDocumentTitle('Insights & Perspectives | CloudStand Blog')
+  useDocumentTitle('Insights & Perspectives | CloudStand Insights')
   const [activeCategory, setActiveCategory] = useState('All')
 
   useEffect(() => {

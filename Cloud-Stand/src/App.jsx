@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
@@ -14,6 +14,8 @@ import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import ResolveQuery from './pages/ResolveQuery'
 import BackgroundDesigns from './pages/BackgroundDesigns'
+import TeamCloudStand from './pages/TeamCloudStand'
+import EmpoweringTalent from './pages/EmpoweringTalent'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -26,7 +28,10 @@ function AnimatedRoutes() {
         <Route element={<Services />} path="/services" />
         <Route element={<ServiceDetail />} path="/services/:slug" />
         <Route element={<CaseStudies />} path="/case-studies" />
-        <Route element={<Blog />} path="/blog" />
+        <Route element={<Blog />} path="/insights" />
+        <Route element={<Navigate replace to="/insights" />} path="/blog" />
+        <Route element={<TeamCloudStand />} path="/team-cloudstand" />
+        <Route element={<EmpoweringTalent />} path="/empowering-talent" />
         <Route element={<ResolveQuery />} path="/rescue-hub" />
         <Route element={<ResolveQuery />} path="/resolve-query" />
         <Route element={<Careers />} path="/careers" />

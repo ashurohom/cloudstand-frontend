@@ -263,34 +263,6 @@ function Home() {
 
           {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
           <div className="relative mt-10 lg:mt-16">
-            {/* Abstract Tech Network Background Texture */}
-            <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-[0.15] overflow-visible">
-              <svg className="w-[180%] max-w-[800px] h-auto text-[#0EA5E9]" viewBox="0 0 400 400" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                {/* Connecting Lines */}
-                <path d="M100 150 L200 80 L300 140 L250 250 L120 280 Z" opacity="0.5" />
-                <path d="M100 150 L250 250 L320 300" opacity="0.3" />
-                <path d="M200 80 L250 250 L180 320 L120 280" opacity="0.4" />
-                <path d="M300 140 L320 300" opacity="0.3" />
-                <path d="M100 150 L120 280" opacity="0.4" />
-                <path d="M300 140 L200 200 L250 250" opacity="0.3" />
-                
-                {/* Highlight Rings */}
-                <circle cx="250" cy="250" r="24" strokeDasharray="4 6" opacity="0.8" />
-                <circle cx="200" cy="80" r="16" opacity="0.6" />
-                <circle cx="120" cy="280" r="12" strokeDasharray="2 4" opacity="0.6" />
-                
-                {/* Nodes */}
-                <circle cx="100" cy="150" r="4" fill="currentColor" />
-                <circle cx="200" cy="80" r="5" fill="currentColor" />
-                <circle cx="300" cy="140" r="4" fill="currentColor" />
-                <circle cx="250" cy="250" r="6" fill="currentColor" />
-                <circle cx="120" cy="280" r="4" fill="currentColor" />
-                <circle cx="180" cy="320" r="3" fill="currentColor" />
-                <circle cx="320" cy="300" r="4" fill="currentColor" />
-                <circle cx="200" cy="200" r="3" fill="currentColor" />
-              </svg>
-            </div>
-
             <motion.div
               className="grid grid-cols-2 gap-5"
               initial="hidden"

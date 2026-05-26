@@ -16,7 +16,7 @@ function Footer() {
   const companyLinks = [
     ['About Us', '/about'],
     ['Careers', '/careers'],
-    ['Blog', '/blog'],
+    ['Insights', '/insights'],
     ['Case Studies', '/case-studies'],
     ['Resolve Query', '/resolve-query'],
   ]
@@ -25,13 +25,13 @@ function Footer() {
     'cursor-pointer text-sm text-sky-100 transition duration-200 hover:text-orange-500'
 
   return (
-    <footer className="relative overflow-hidden bg-[#020617] text-white">
+    <footer className="relative overflow-hidden bg-[#111827] text-white">
       {/* Top Border Glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0EA5E9]/40 to-transparent" />
       
       {/* Premium Glow Accents */}
-      <div className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#0EA5E9] opacity-[0.06] blur-[100px]" />
-      <div className="pointer-events-none absolute -bottom-40 -right-40 h-[400px] w-[400px] rounded-full bg-[#EA580C] opacity-[0.06] blur-[100px]" />
+      {/* <div className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#0EA5E9] opacity-[0.06] blur-[100px]" /> */}
+      {/* <div className="pointer-events-none absolute -bottom-40 -right-40 h-[400px] w-[400px] rounded-full bg-[#EA580C] opacity-[0.06] blur-[100px]" /> */}
       
       <div className="relative z-10 px-6 py-16">
         <div className="mx-auto max-w-7xl">
