@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { ArrowRight, ArrowUpRight, BarChart3, Cloud, Handshake, Lightbulb, Sparkles, Target, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import Badge from '../components/ui/Badge'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { fadeUp, iconPop, pageVariants, slideLeft, slideRight, staggerContainer, staggerItem } from '../animations/variants'
 
@@ -50,11 +51,7 @@ function AboutSectionHeader({ eyebrow, title, subtitle, align = 'left', showLine
 
   return (
     <div className={`mb-12 flex max-w-3xl flex-col gap-4 ${isCenter ? 'mx-auto items-center text-center' : 'items-start text-left'}`}>
-      {eyebrow ? (
-        <span className="inline-flex items-center rounded-full border border-[rgba(14,165,233,0.28)] bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#D63B25]">
-          {eyebrow}
-        </span>
-      ) : null}
+      {eyebrow ? <Badge>{eyebrow}</Badge> : null}
       {showLine ? <div className="h-1 w-20 rounded-full bg-[#0EA5E9]" /> : null}
       <motion.div
         initial="hidden"
@@ -228,11 +225,9 @@ function About() {
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="inline-flex items-center rounded-full border border-[rgba(14,165,233,0.28)] bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#D63B25]">
-                About CloudStand
-              </span>
+              <Badge>About CloudStand</Badge>
             </motion.div>
-            <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-4xl lg:text-5xl">
+            <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-[2.75rem] lg:text-[3rem]">
               We Are CloudStand
             </h1>
             <motion.p
@@ -270,7 +265,7 @@ function About() {
         <div className="section-shell grid gap-6 lg:grid-cols-2">
           <motion.div initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <div className="h-full rounded-[28px] border border-[rgba(14,165,233,0.22)] bg-white p-8 shadow-[0_18px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)]">
-              <div className="text-base uppercase tracking-normal text-[#EA580C]">Mission</div>
+              <Badge>Mission</Badge>
               <h2 className="mt-4 text-3xl font-bold text-black">Build Oracle Cloud programs that create real business momentum.</h2>
               <p className="mt-4 text-base leading-8 text-black/75">
                 We focus on implementation quality, adoption, and outcomes that matter to leadership teams, not just technical completion.
@@ -279,7 +274,7 @@ function About() {
           </motion.div>
           <motion.div initial="hidden" variants={slideRight} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <div className="h-full rounded-[28px] border border-[rgba(14,165,233,0.22)] bg-white p-8 shadow-[0_18px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)]">
-              <div className="text-base uppercase tracking-normal text-[#EA580C]">Vision</div>
+              <Badge>Vision</Badge>
               <h2 className="mt-4 text-3xl font-bold text-black">Become the most trusted Oracle Cloud transformation partner for growth-stage enterprises.</h2>
               <p className="mt-4 text-base leading-8 text-black/75">
                 CloudStand aims to combine global delivery discipline with the agility and attention clients often miss in larger consulting models.

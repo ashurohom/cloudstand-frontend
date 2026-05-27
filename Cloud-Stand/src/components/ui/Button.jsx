@@ -16,9 +16,9 @@ const sizes = {
   lg: 'px-6 py-3.5 text-sm sm:text-base',
 }
 
-const MotionLink = motion(Link)
-const MotionAnchor = motion.a
-const MotionButton = motion.button
+const MotionLink = motion.create(Link)
+const MotionAnchor = motion.create('a')
+const MotionButton = motion.create('button')
 
 function Button({
   children,

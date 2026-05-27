@@ -180,7 +180,7 @@ function GlobalDelivery() {
     <section className="bg-white py-6 sm:py-8 lg:py-10">
       <div className="w-full">
         <div className="section-shell mx-auto mb-6 max-w-5xl text-center sm:mb-7">
-          <Badge className="mb-3 border-sky-200 bg-white text-black">Global Delivery</Badge>
+          <Badge className="mb-3 border-sky-200 bg-white text-[#EA580C]">Global Delivery</Badge>
           <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] text-black sm:text-4xl lg:text-[3.0rem]">
             Oracle Cloud delivery, across regions
           </h2>
@@ -390,7 +390,7 @@ function GlobalDelivery() {
                   style={{ background: selectedCountry === code ? country.color : '#3b82f6' }}
                 />
                 <div className="mt-3 h-px w-full bg-slate-200" />
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-3 text-[13px] leading-5 text-slate-600">
                   {country.summary}
                 </p>
               </motion.button>

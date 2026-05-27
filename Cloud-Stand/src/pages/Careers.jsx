@@ -150,20 +150,7 @@ function Careers() {
     {/* TOP */}
     <div className="max-w-4xl">
 
-      <div className="flex items-center gap-4">
-
-        {/* BLUE + ORANGE LINE */}
-        <div className="h-[2px] w-5 bg-[#3b82f6]" />
-
-        <div className="h-[2px] w-5 bg-[#EA580C]" />
-
-        <span className="text-[14px] font-medium uppercase tracking-[0.24em] text-[#64748b]">
-
-          Why Work With Us
-
-        </span>
-
-      </div>
+      <Badge>Why Work With Us</Badge>
 
       {/* TITLE */}
       <h2 className="mt-4 max-w-4xl text-[2.1rem] font-bold leading-[1.02] tracking-[-0.02em] text-[#020617] md:text-[3rem]">
@@ -267,20 +254,7 @@ function Careers() {
     {/* HEADING */}
     <div className="max-w-4xl">
 
-      <div className="flex items-center gap-4">
-
-        {/* BLUE + ORANGE LINE */}
-        <div className="h-[2px] w-6 bg-[#0EA5E9]" />
-
-        <div className="h-[2px] w-6 bg-[#EA580C]" />
-
-        <span className="text-[14px] font-medium uppercase tracking-[0.24em] text-[#64748b]">
-
-          Open Roles
-
-        </span>
-
-      </div>
+      <Badge>Open Roles</Badge>
 
       {/* TITLE */}
       <h2 className="mt-4 max-w-4xl text-[2.2rem] font-bold leading-[1.02] tracking-[-0.02em] text-[#000000] md:text-[3.1rem]">
@@ -430,15 +404,7 @@ function Careers() {
           <div className="max-w-[360px] self-start pt-1">
 
             {/* LABEL */}
-            <div className="flex items-center gap-3">
-
-              <div className="h-[2px] w-9 bg-[#EA580C]" />
-
-              <span className="text-[10px] font-medium uppercase tracking-[0.24em] text-[#EA580C]">
-                Application Form
-              </span>
-
-            </div>
+            <Badge>Application Form</Badge>
 
             {/* HEADING */}
             <h2 className="mt-4 text-[2.45rem] font-bold leading-[0.95] tracking-[-0.035em] text-[#020617]">

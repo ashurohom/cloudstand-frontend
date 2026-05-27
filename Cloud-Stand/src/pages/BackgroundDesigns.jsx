@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Badge from '../components/ui/Badge'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { pageVariants, staggerContainer, staggerItem } from '../animations/variants'
 
@@ -302,9 +303,7 @@ function BackgroundDesigns() {
     >
       <section className="border-b border-slate-200 bg-white py-14 sm:py-16">
         <div className="section-shell">
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#EA580C]">
-            Temporary Client Review Page
-          </p>
+          <Badge>Temporary Client Review Page</Badge>
           <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight text-black sm:text-5xl">
             Background Design Options
           </h1>
@@ -331,9 +330,7 @@ function BackgroundDesigns() {
               <div className="border-b border-slate-200 bg-white px-6 py-5 sm:px-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#EA580C]">
-                      Design {design.id}
-                    </p>
+                    <Badge>{`Design ${design.id}`}</Badge>
                     <h2 className="mt-2 text-2xl font-bold text-black">{design.name}</h2>
                   </div>
                   <p className="max-w-xl text-sm leading-6 text-black/65 sm:text-right">

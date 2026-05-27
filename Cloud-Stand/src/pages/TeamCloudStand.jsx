@@ -21,7 +21,7 @@ function TeamCloudStand() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-5xl"
           >
-            <Badge className="border-sky-200 bg-white text-[#D63B25]">Team CloudStand</Badge>
+            <Badge className="border-sky-200 bg-white text-[#EA580C]">Team CloudStand</Badge>
             <h1 className="mt-6 text-4xl font-bold leading-tight text-black sm:text-5xl">
               The people behind
               <br />

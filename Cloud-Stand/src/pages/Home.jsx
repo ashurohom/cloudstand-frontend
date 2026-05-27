@@ -12,6 +12,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle'
 import { caseStudies } from '../data/caseStudies'
 import { testimonials } from '../data/testimonials'
 import {
+  fadeUp,
   pageVariants,
   slideLeft,
   slideRight,
@@ -116,7 +117,7 @@ function Home() {
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <HeroSection />
 
-      <section className="bg-white py-12">
+      <section className="bg-white py-8 sm:py-9">
         <div className="section-shell">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -136,16 +137,16 @@ function Home() {
                   delay: i * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="flex flex-col items-center justify-center border-r border-sky-200 px-4 py-6 last:border-r-0"
+                className="flex flex-col items-center justify-center border-r border-sky-200 px-3 py-4 last:border-r-0"
               >
                 <AnimatedCounter
-                  className="mb-1 inline-block text-4xl font-bold text-sky-500"
+                  className="mb-1 inline-block text-3xl font-bold text-sky-500"
                   delay={i * 0.12}
                   duration={1800}
                   suffix={stat.suffix}
                   value={stat.value}
                 />
-                <span className="text-sm font-medium text-black">
+                <span className="text-xs font-medium text-black sm:text-sm">
                   {stat.label}
                 </span>
               </motion.div>
@@ -178,7 +179,7 @@ function Home() {
               viewport={{ once: false, margin: '-40px' }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Badge className="border-sky-200 bg-white text-[#d63b25]">Trusted by growing enterprises</Badge>
+              <Badge className="border-sky-200 bg-white text-[#EA580C]">Trusted by growing enterprises</Badge>
             </motion.div>
           </div>
         </motion.div>
@@ -206,7 +207,16 @@ function Home() {
       </section>
 
       {/* Why Partner With Cloud Stand — Redesigned Premium Section */}
-      <section className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-14">
+      <section
+        className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-14"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage:
+            `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         {/* Subtle geometric SVG dot-grid background texture */}
         <svg
           aria-hidden="true"
@@ -231,7 +241,25 @@ function Home() {
           style={{ background: 'radial-gradient(circle, rgba(234,88,12,0.06) 0%, transparent 70%)' }}
         />
 
-        <div className="section-shell relative z-10 grid items-start gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="section-shell relative z-10">
+          <motion.div
+            className="mx-auto max-w-4xl text-center"
+            initial="hidden"
+            variants={fadeUp}
+            viewport={{ once: true, margin: '-80px' }}
+            whileInView="visible"
+          >
+            <Badge className="border-sky-200 bg-white text-[#EA580C]">Why Partner With Cloud Stand</Badge>
+            <h2 className="mt-6 text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-[2.75rem] lg:text-[3rem]">
+              Why Industry Leaders Partner With Cloud Stand
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
+              We combine enterprise-grade Oracle expertise with fast, accountable delivery.
+            </p>
+          </motion.div>
+
+          <div className="mt-14 grid items-start gap-8 lg:grid-cols-[7fr_3fr]">
 
           {/* ── LEFT: Heading + Checklist ── */}
           <motion.div
@@ -241,38 +269,31 @@ function Home() {
             whileInView="visible"
             className="flex flex-col"
           >
-            <HomeSectionTitle
-              className="!mb-6"
-              eyebrow="Why Partner With Cloud Stand"
-              title="Why Industry Leaders Partner With Cloud Stand"
-              subtitle="We combine enterprise-grade Oracle expertise with fast, accountable delivery."
-            />
-
-            <div className="why-partner-scroll max-h-[360px] space-y-3 overflow-y-auto pr-2">
+            <div className="grid gap-3">
               {whyPartnerPoints.map((item, i) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: -18 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.45, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
-                  className="group flex items-center gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                  className="group flex items-start gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
                 >
                   {/* Orange check icon in sky-blue pill */}
                   <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
                     <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                   </span>
-                  <p className="text-sm font-medium leading-snug text-black">{item}</p>
+                  <p className="text-sm font-medium leading-6 text-black">{item}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
-          <div className="relative mt-10 lg:mt-16">
+          <div className="relative self-center">
             <motion.div
-              className="grid grid-cols-2 gap-5"
+              className="grid gap-4"
               initial="hidden"
               variants={slideRight}
               viewport={{ once: true, margin: '-80px' }}
@@ -287,32 +308,31 @@ function Home() {
               <motion.div
                 key={item.label}
                 variants={staggerItem}
-                whileHover={{ y: -5, boxShadow: '0 22px 48px rgba(14,165,233,0.13)' }}
+                whileHover={{ y: -4, boxShadow: '0 18px 38px rgba(14,165,233,0.11)' }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex flex-col gap-3 rounded-3xl border border-[rgba(14,165,233,0.22)] bg-white p-6 shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                className="group flex items-center gap-5 rounded-3xl border border-[rgba(14,165,233,0.22)] bg-white p-5 shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
               >
-                {/* Animated number */}
-                <AnimatedCounter
-                  className="font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl"
-                  suffix={item.suffix}
-                  value={item.value}
-                  delay={index * 0.12}
-                  duration={1800}
-                />
-
-                {/* Accent line */}
-                <motion.div
-                  className="h-0.5 w-10 rounded-full bg-[#EA580C] opacity-100"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.14 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                />
-
-                {/* Orange label */}
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black">
-                  {item.label}
-                </p>
+                <div className="min-w-[88px]">
+                  <AnimatedCounter
+                    className="font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl"
+                    suffix={item.suffix}
+                    value={item.value}
+                    delay={index * 0.12}
+                    duration={1800}
+                  />
+                </div>
+                <div className="flex-1">
+                  <motion.div
+                    className="mb-3 h-0.5 w-10 rounded-full bg-[#EA580C] opacity-100"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.14 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                  />
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black">
+                    {item.label}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -333,18 +353,13 @@ function Home() {
               </Link>
             </motion.div>
           </div>
-
+        </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-14 sm:py-16 lg:py-18">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.05),transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(249,115,22,0.05),transparent_35%)]" />
+      <section className="bg-white py-14 sm:py-16 lg:py-18">
         <div className="section-shell relative">
-          <div className="mb-6 inline-flex items-center rounded-full border border-[#f97316]/30 bg-white px-5 py-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[#f97316]">
-              Success Stories
-            </span>
-          </div>
+          <Badge className="mb-6">Success Stories</Badge>
 
           <div className="max-w-4xl">
             <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-black md:text-5xl">
@@ -366,15 +381,11 @@ function Home() {
             {featuredCaseStudies.map((study, index) => (
               <motion.div key={study.slug} variants={staggerItem}>
                 <div
-                  className={`group relative flex min-h-[345px] overflow-hidden rounded-[26px] bg-white p-4 transition-all duration-500 hover:-translate-y-2 ${
-                    index === 0
-                      ? 'border border-[#f97316]'
-                      : 'border border-[#ececec] hover:border-[#f97316]'
-                  }`}
+                  className="group relative flex min-h-[345px] overflow-hidden rounded-[26px] border border-[#ececec] bg-white p-4 transition-all duration-500 hover:-translate-y-2 hover:border-[#f97316]"
                 >
                   <div className="flex w-full flex-col">
                     <div className="mb-5 flex items-center justify-between">
-                      <span className="rounded-full bg-[#fef1e8] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.24em] text-[#f97316]">
+                      <span className="inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#EA580C]">
                         {study.category}
                       </span>
 
@@ -581,7 +592,7 @@ function Home() {
               whileInView={{ opacity: 1, y: 0 }}
             >
               <div>
-                <Badge className="border-sky-200 bg-white text-black">Free Strategy Session</Badge>
+                <Badge className="border-sky-200 bg-white text-[#EA580C]">Free Strategy Session</Badge>
                 <h2 className="mt-6 max-w-3xl text-4xl font-bold text-black sm:text-5xl">
                   Ready to Modernize Your Oracle Ecosystem?
                 </h2>
