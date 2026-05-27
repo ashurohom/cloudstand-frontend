@@ -59,6 +59,14 @@ function Navbar() {
     })
   }
 
+  const handleNavClick = () => {
+    setMenuOpen(false)
+    setServicesOpen(false)
+    setCareersOpen(false)
+    setHoveredPath('')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const renderUnderline = (active) =>
     active ? (
       <motion.div
@@ -80,7 +88,7 @@ function Navbar() {
             initial={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Link aria-label="CloudStand home" className="flex items-center gap-3" to="/">
+            <Link aria-label="CloudStand home" className="flex items-center gap-3" onClick={handleNavClick} to="/">
               <img
                 alt="CloudStand Consulting"
                 className="h-12 w-auto object-contain sm:h-14"
@@ -99,6 +107,7 @@ function Navbar() {
               <motion.div custom={index} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
+                  onClick={handleNavClick}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath('')}
                   to={item.path}
@@ -132,6 +141,7 @@ function Navbar() {
             >
               <NavLink
                 className="relative flex items-center gap-1 py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
+                onClick={handleNavClick}
                 to="/services"
               >
                 {({ isActive }) => (
@@ -159,6 +169,7 @@ function Navbar() {
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
                             className="group flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:text-[#0EA5E9]"
+                            onClick={handleNavClick}
                             to={item.path}
                           >
                             <span
@@ -179,6 +190,7 @@ function Navbar() {
               <motion.div custom={index + 4} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
+                  onClick={handleNavClick}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath('')}
                   to={item.path}
@@ -212,6 +224,7 @@ function Navbar() {
             >
               <NavLink
                 className="relative flex items-center gap-1 py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
+                onClick={handleNavClick}
                 to="/careers"
               >
                 <span className={isCareersActive || careersOpen ? 'text-[#0EA5E9]' : ''}>Careers</span>
@@ -235,6 +248,7 @@ function Navbar() {
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
                             className="group flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-200 hover:text-[#0EA5E9]"
+                            onClick={handleNavClick}
                             to={item.path}
                           >
                             <span
@@ -255,6 +269,7 @@ function Navbar() {
               <motion.div custom={index + 8} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
+                  onClick={handleNavClick}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath('')}
                   to={item.path}
@@ -327,7 +342,7 @@ function Navbar() {
                   <motion.div key={item.path} variants={staggerItem}>
                     <NavLink
                       className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm text-black transition hover:border-orange-400 hover:bg-sky-50"
-                      onClick={() => setMenuOpen(false)}
+                      onClick={handleNavClick}
                       to={item.path}
                     >
                       <span className="inline-flex items-center gap-2">
@@ -351,7 +366,7 @@ function Navbar() {
                     <motion.div key={item.path} variants={staggerItem}>
                       <Link
                         className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm transition hover:border-orange-400 hover:bg-sky-50"
-                        onClick={() => setMenuOpen(false)}
+                        onClick={handleNavClick}
                         to={item.path}
                       >
                         <div className="font-medium text-black">{item.label}</div>
@@ -373,7 +388,7 @@ function Navbar() {
                     <motion.div key={item.path} variants={staggerItem}>
                       <Link
                         className="block rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-white"
-                        onClick={() => setMenuOpen(false)}
+                        onClick={handleNavClick}
                         to={item.path}
                       >
                         {item.label}

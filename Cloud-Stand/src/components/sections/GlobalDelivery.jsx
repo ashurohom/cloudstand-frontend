@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BarChart3, ChevronLeft, ChevronRight, Globe, ShieldCheck, TrendingUp, Users, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, TrendingUp, X } from 'lucide-react'
 import Badge from '../ui/Badge'
 
 const countryProjects = {
@@ -162,13 +162,6 @@ const countryProjects = {
   },
 }
 
-const deliveryStats = [
-  { value: '4+', label: 'Regions', Icon: Globe },
-  { value: '50+', label: 'Global Clients', Icon: Users },
-  { value: '100+', label: 'Projects Delivered', Icon: BarChart3 },
-  { value: '100%', label: 'Commitment to Excellence', Icon: ShieldCheck },
-]
-
 function GlobalDelivery() {
   const [selectedCountry, setSelectedCountry] = useState(null)
   const [slideIndex, setSlideIndex] = useState(0)
@@ -269,9 +262,6 @@ function GlobalDelivery() {
                         />
                         <p className="text-sm font-semibold text-black">{activeCountry.name}</p>
                       </div>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-black">
-                        Project {slideIndex + 1} of {activeCountry.projects.length}
-                      </p>
                     </div>
                     <button
                       onClick={() => setSelectedCountry(null)}
@@ -353,69 +343,6 @@ function GlobalDelivery() {
           </div>
         </div>
 
-        <div className="section-shell mt-8">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {Object.entries(countryProjects).map(([code, country], i) => (
-              <motion.button
-                key={code}
-                onClick={() => {
-                  setSelectedCountry(code)
-                  setSlideIndex(0)
-                }}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
-                whileHover={{ y: -4 }}
-                className="group rounded-[24px] border border-slate-200 bg-white px-5 py-4 text-left shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-sky-200 hover:shadow-[0_14px_40px_rgba(37,99,235,0.10)]"
-                style={{
-                  boxShadow: selectedCountry === code
-                    ? `0 16px 40px rgba(37,99,235,0.10), inset 0 0 0 1px ${country.color}22`
-                    : undefined,
-                }}
-                type="button"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 shadow-sm ring-1 ring-slate-100">
-                    <img
-                      src={country.flagSrc}
-                      alt={`${country.name} flag`}
-                      className="h-7 w-7 rounded-full object-cover"
-                    />
-                  </div>
-                  <p className="text-[0.98rem] font-bold leading-6 text-black sm:text-[1.05rem]">{country.name}</p>
-                </div>
-                <div
-                  className="mt-3 h-0.5 w-10 rounded-full"
-                  style={{ background: selectedCountry === code ? country.color : '#3b82f6' }}
-                />
-                <div className="mt-3 h-px w-full bg-slate-200" />
-                <p className="mt-3 text-[13px] leading-5 text-slate-600">
-                  {country.summary}
-                </p>
-              </motion.button>
-            ))}
-          </div>
-
-          <div className="mx-auto mt-5 max-w-[58rem] rounded-[22px] border border-slate-200 bg-white px-4 py-3 shadow-[0_8px_30px_rgba(15,23,42,0.05)]">
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 xl:gap-0">
-              {deliveryStats.map(({ value, label, Icon }, index) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-2.5 xl:px-5 xl:[&:not(:last-child)]:border-r xl:[&:not(:last-child)]:border-slate-200"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-50">
-                    <Icon className="h-4.5 w-4.5 text-[#EA580C]" strokeWidth={1.8} />
-                  </div>
-                  <div>
-                    <p className="text-[1.35rem] font-bold leading-none text-[#0EA5E9]">{value}</p>
-                    <p className="mt-0.5 text-[13px] font-medium leading-4.5 text-slate-700">{label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

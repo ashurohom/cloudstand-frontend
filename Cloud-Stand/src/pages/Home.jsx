@@ -206,7 +206,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Why Partner With Cloud Stand — Redesigned Premium Section */}
+      {/* Why Partner With CloudStand — Redesigned Premium Section */}
       <section
         className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-14"
         style={{
@@ -249,9 +249,9 @@ function Home() {
             viewport={{ once: true, margin: '-80px' }}
             whileInView="visible"
           >
-            <Badge className="border-sky-200 bg-white text-[#EA580C]">Why Partner With Cloud Stand</Badge>
+            <Badge className="border-sky-200 bg-white text-[#EA580C]">Why Partner With CloudStand</Badge>
             <h2 className="mt-6 text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-[2.75rem] lg:text-[3rem]">
-              Why Industry Leaders Partner With Cloud Stand
+              Why Partner With CloudStand
             </h2>
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
             <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
