@@ -5,20 +5,19 @@ function Footer() {
   const currentYear = new Date().getFullYear()
 
   const serviceLinks = [
-    ['Oracle HCM Cloud', '/services/hcm'],
-    ['Oracle ERP Cloud', '/services/erp'],
-    ['Oracle Payroll', '/services/payroll'],
-    ['Oracle Integration Cloud', '/services/oic'],
-    ['BI & Analytics', '/services/bi-analytics'],
-    ['AI Solutions', '/services/ai-solutions'],
+    ['Agentic AI and Digital Enablment', '/services/agentic-ai'],
+    ['Managed Service', '/services/managed-service'],
+    ['Health Check and Advisory Services', '/services/health-check'],
+    ['Seasonal Supoort - Benefits and EOY', '/services/seasonal-support'],
+    ['Staffing and Training', '/services/staffing-training'],
   ]
 
   const companyLinks = [
-    ['About Us', '/about'],
+    ['Home', '/'],
+    ['AI Labs', '/ai-labs'],
+    ['About', '/about'],
+    ['Contact', '/contact'],
     ['Careers', '/careers'],
-    ['Insights', '/insights'],
-    ['Case Studies', '/case-studies'],
-    ['Resolve Query', '/resolve-query'],
   ]
 
   const listItemClassName =
@@ -29,60 +28,26 @@ function Footer() {
       {/* Top Border Glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0EA5E9]/40 to-transparent" />
       
-      {/* Premium Glow Accents */}
-      {/* <div className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#0EA5E9] opacity-[0.06] blur-[100px]" /> */}
-      {/* <div className="pointer-events-none absolute -bottom-40 -right-40 h-[400px] w-[400px] rounded-full bg-[#EA580C] opacity-[0.06] blur-[100px]" /> */}
-      
-      <div className="relative z-10 px-6 py-16">
+      <div className="relative z-10 px-6 pt-16 pb-0">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <p className="max-w-xs text-sm leading-7 text-sky-100">
-                Oracle Cloud Specialists since 2022, delivering end-to-end HCM, ERP, Payroll, OIC, BI & AI solutions.
-              </p>
-              <div className="mt-6 flex items-center gap-4">
-                <a
-                  href="https://linkedin.com/company/cloudstandconsulting"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sky-100 transition duration-200 hover:text-orange-500"
-                >
-                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">
-                    <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9h4v12H3zm7 0h3.83v1.64h.05c.53-1 1.84-2.06 3.79-2.06C21.5 8.58 22 11.1 22 14.38V21h-4v-5.87c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z" />
-                  </svg>
-                </a>
-                <a
-                  href="mailto:info@cloudstand.com"
-                  className="text-sky-100 transition duration-200 hover:text-orange-500"
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
-                <a
-                  href="tel:+919049020793"
-                  className="text-sky-100 transition duration-200 hover:text-orange-500"
-                >
-                  <Phone className="h-5 w-5" />
-                </a>
-              </div>
-              <p className="mt-6 text-sm text-sky-100">
-                &copy; {currentYear} CloudStand Consulting. All rights reserved.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-base font-semibold text-white">Services</h3>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 justify-items-center text-center">
+            
+            {/* Column 1: Services */}
+            <div className="flex flex-col items-center">
+              <h3 className="text-base font-semibold text-white">Service</h3>
               <ul className="mt-5 space-y-3">
-                {serviceLinks.map(([label, to]) => (
-                  <li key={to}>
-                    <Link className={listItemClassName} to={to}>
+                {serviceLinks.map(([label]) => (
+                  <li key={label}>
+                    <span className="text-sm text-sky-100">
                       {label}
-                    </Link>
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
+            {/* Column 2: Company */}
+            <div className="flex flex-col items-center">
               <h3 className="text-base font-semibold text-white">Company</h3>
               <ul className="mt-5 space-y-3">
                 {companyLinks.map(([label, to]) => (
@@ -95,35 +60,89 @@ function Footer() {
               </ul>
             </div>
 
-            <div>
-              <h3 className="text-base font-semibold text-white">Get in Touch</h3>
-              <div className="mt-5 space-y-4 text-sm leading-7 text-sky-100">
-                <p className="cursor-pointer transition duration-200 hover:text-orange-500">
-                  Office No.19, Nirvana Hub, Z Corner, Mundhwa-Manjari Rd, Manjri Bk., Pune - 412307
+            {/* Column 3: Contact */}
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-4 mb-6">
+                <a
+                  href="https://linkedin.com/company/cloudstandconsulting"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sky-100 transition duration-200 hover:text-orange-500"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+                    <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9h4v12H3zm7 0h3.83v1.64h.05c.53-1 1.84-2.06 3.79-2.06C21.5 8.58 22 11.1 22 14.38V21h-4v-5.87c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z" />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sky-100 transition duration-200 hover:text-orange-500"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+                    <path d="M21.582 6.186a2.665 2.665 0 0 0-1.876-1.884C17.953 3.84 12 3.84 12 3.84s-5.953 0-7.706.462a2.665 2.665 0 0 0-1.876 1.884C1.953 7.95 1.953 12 1.953 12s0 4.05.465 5.814a2.665 2.665 0 0 0 1.876 1.884c1.753.462 7.706.462 7.706.462s5.953 0 7.706-.462a2.665 2.665 0 0 0 1.876-1.884c.465-1.764.465-5.814.465-5.814s0-4.05-.465-5.814ZM9.953 15.545V8.454l6.327 3.546-6.327 3.545Z" />
+                  </svg>
+                </a>
+              </div>
+
+              <h3 className="text-base font-semibold text-white mb-4">Contact</h3>
+              <div className="space-y-4 text-sm leading-7 text-sky-100 flex flex-col items-center">
+                <p className="font-medium text-white">
+                  India | USA
                 </p>
-                <a
-                  href="tel:+919049020793"
-                  className="block cursor-pointer transition duration-200 hover:text-orange-500"
-                >
-                  +91 9049020793
-                </a>
-                <a
-                  href="mailto:info@cloudstand.com"
-                  className="block cursor-pointer transition duration-200 hover:text-orange-500"
-                >
-                  info@cloudstand.com
-                </a>
-                <a
-                  href="mailto:careers@cloudstand.com"
-                  className="block cursor-pointer transition duration-200 hover:text-orange-500"
-                >
-                  careers@cloudstand.com
-                </a>
-                <p className="cursor-pointer transition duration-200 hover:text-orange-500">
-                  Mon - Fri, 9:30 AM - 6:30 PM IST
-                </p>
+                <div className="flex items-center justify-center gap-3">
+                  <Mail className="h-4 w-4 shrink-0 text-[#EA580C]" />
+                  <a
+                    href="mailto:info@cloudsandconsulting.com"
+                    className="cursor-pointer transition duration-200 hover:text-orange-500"
+                  >
+                    info@cloudsandconsulting.com
+                  </a>
+                </div>
+                <div className="flex items-center justify-center gap-3">
+                  <Phone className="h-4 w-4 shrink-0 text-[#EA580C]" />
+                  <div className="flex items-center gap-2">
+                    <a href="tel:+91XXXXXXXXX" className="cursor-pointer transition duration-200 hover:text-orange-500">
+                      +91-XXXXXXXXX
+                    </a>
+                    <span className="text-sky-100/50">|</span>
+                    <a href="tel:+1XXXXXXXXXX" className="cursor-pointer transition duration-200 hover:text-orange-500">
+                      +1-XXX-XXX-XXXX
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* Column 4: Ask an Expert & Partner Logo */}
+            <div className="flex flex-col items-center">
+              <Link 
+                to="/contact" 
+                className="inline-block px-6 py-2.5 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-6 shadow-md"
+              >
+                Ask an Expert
+              </Link>
+              
+              <div className="flex flex-col items-center gap-4">
+                <img 
+                  src="/oracle-partner-logo.png" 
+                  alt="Oracle Partner" 
+                  className="h-14 w-auto object-contain bg-white px-3 py-2 rounded-md shadow-sm"
+                />
+                <img 
+                  src="/oracle-partner-logo.png" 
+                  alt="Oracle Partner Transparent" 
+                  className="h-14 w-auto object-contain"
+                />
+              </div>
+            </div>
+
+          </div>
+
+          <div className="mt-16 border-t border-sky-100/10 pt-6 pb-6 flex justify-center items-center">
+            <p className="text-sm text-sky-100/70 text-center">
+              &copy; {currentYear} CloudStand Consulting. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

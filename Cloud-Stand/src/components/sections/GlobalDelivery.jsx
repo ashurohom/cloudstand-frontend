@@ -174,7 +174,7 @@ function GlobalDelivery() {
       <div className="w-full">
         <div className="section-shell mx-auto mb-6 max-w-5xl text-center sm:mb-7">
           <Badge className="mb-3 border-sky-200 bg-white text-[#EA580C]">Global Delivery</Badge>
-          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.05] text-black sm:text-4xl lg:text-[3.0rem]">
+          <h2 className="mx-auto max-w-4xl text-[40px] font-bold leading-[1.05] text-black">
             Oracle Cloud delivery, across regions
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm font-medium leading-6 text-black sm:text-base">

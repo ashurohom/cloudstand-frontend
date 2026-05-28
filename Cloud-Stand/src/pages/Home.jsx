@@ -20,26 +20,46 @@ import {
   staggerItem,
 } from '../animations/variants'
 
-const timelineSteps = [
+const deliveryModelSteps = [
   {
-    title: 'Strategy & Discovery',
-    description: 'Understanding enterprise priorities, operational challenges, and transformation goals to establish a scalable and outcome-driven roadmap.',
+    title: 'Discover & Assess',
+    description: 'Business Discovery / Analysis',
   },
   {
-    title: 'Experience & Solution Design',
-    description: 'Designing intelligent Oracle ecosystems focused on scalability, governance, user experience, process efficiency, and future business growth.',
+    title: 'Design & Align',
+    description: 'Solution Design, CRP & Business Alignment',
   },
   {
-    title: 'Transformation & Enablement',
-    description: 'Executing agile implementations, integrations, migrations, testing, and workforce enablement to accelerate enterprise-wide adoption.',
+    title: 'Build, Test & Validate',
+    description: 'Configuration, SIT, UAT, Integration & Data Validation',
   },
   {
-    title: 'Optimization & Continuous Evolution',
-    description: 'Driving long-term operational stability, performance optimization, continuous improvement, and scalable digital transformation outcomes.',
+    title: 'Prepare & Transition',
+    description: 'Go-Live Readiness & Cutover Management',
+  },
+  {
+    title: 'Go-Live & Stabilize',
+    description: 'Production Deployment & Operational Stabilization',
+  },
+  {
+    title: 'Hypercare & Continuous Enablement',
+    description: 'Business Transparency, KT, & Real time use of CloudStand Accelerators',
   },
 ]
 
-const trustLogos = ['Northstar Group', 'Zenith Retail', 'Meridian Health', 'Apex Works', 'Nova Services', 'Global Edge']
+const clientExperienceList = [
+  'Bukhatir', 'M Group', 'Herriat Watt University', 'Cooper Vision USA', 
+  'Higher College Technologies', 'Royal Cargo', 'Envision HealthCare', 
+  'Crawford and Company', 'The River Side Group', 'Hoya INC', 
+  'Resource Innovation USA', 'Emaar', 'Naresco', 'Aster', 
+  'Abu Dhabi Islamic Bank', 'Almana Group', 'Vodafone', 'Clayco', 
+  'Rashed al Rashed', 'Zameel', 'MHp Group', 'American Express', 
+  'Ford Motors', 'AT & T', 'Technip Energies', 'Zameel Group', 
+  'Rheem Manufacturing', 'United Lex'
+]
+
+const marqueeRow1 = clientExperienceList.slice(0, 14)
+const marqueeRow2 = clientExperienceList.slice(14)
 const overviewStats = [
   { value: 50, suffix: '+', label: 'Projects' },
   { value: 30, suffix: '+', label: 'Clients' },
@@ -196,53 +216,66 @@ function Home() {
 
       <GlobalDelivery />
 
-      <section
-        className="py-12 sm:py-14 lg:py-16 relative overflow-hidden border-y border-sky-200 bg-black"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)), url("/bgimage.png")',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }}
-      >
-        <motion.div
-          className="section-shell relative z-10 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          viewport={{ once: true, margin: '-80px' }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          <div className="flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85, y: 16 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: false, margin: '-40px' }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Badge className="border-sky-200 bg-white text-[#EA580C]">Trusted by growing enterprises</Badge>
-            </motion.div>
-          </div>
-        </motion.div>
-        <div className="relative w-full overflow-hidden">
-          <div
-            style={{
-              display: 'flex',
-              width: 'max-content',
-              animation: 'marquee 25s linear infinite',
-            }}
-          >
-            {[...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos].map((name, index) => (
-              <motion.div
-                className="rounded-full border border-sky-200 bg-black px-6 py-4 text-sm font-medium text-white"
-                key={`${name}-${index}`}
-                style={{ marginRight: '20px', flexShrink: 0 }}
-                transition={{ duration: 0.2 }}
-                whileHover={{ opacity: 1 }}
-              >
-                {name}
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <section className="bg-white py-20 sm:py-24 border-y border-sky-100 relative overflow-hidden">
+        {(() => {
+          const clientLogos = [
+            "1_Bukhatir.png", "2_mgroup_primarylogo_gradient_bluetext_rgb.png", "3. Herriat Watt University.png",
+            "4. CooperVision.webp", "5. Higher College Technologies.png", "6. Royal Cargo.png",
+            "7. Envision HealthCare.png", "8. Crawford and Company.png", "9. The River Side Group.png",
+            "10. Hoya Inc.png", "11. Resource Innovation USA.png", "12. Emaar UAE.png",
+            "13. Naresco.png", "14. Aster.png", "15. Abu Dhabi Islamic Bank.png",
+            "16. Almana Group.png", "17. Vodafone.png", "18. Clayco USA.png",
+            "19. Rashed al Rashed.png", "20_Zameel.webp", "21_MHp Group.png",
+            "22_American Express.png", "23_Ford Motors.png", "24_AT & T.png",
+            "25_Technip Energies.png", "26_Zameel Group.webp", "27_Rheem Manufacturing.png",
+            "28_United Lex.png"
+          ];
+          return (
+            <>
+              <style>
+              {`
+                @keyframes marquee {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .animate-marquee {
+                  animation: marquee 60s linear infinite;
+                }
+                .animate-marquee:hover {
+                  animation-play-state: paused;
+                }
+              `}
+              </style>
+              <div className="section-shell relative z-10">
+                <div className="text-center max-w-5xl mx-auto mb-16">
+                  <h2 className="text-[40px] font-bold tracking-tight text-black">
+                    Proven Team Experience
+                  </h2>
+                  <p className="mt-6 text-[17px] sm:text-[18px] leading-relaxed text-black/80 font-medium">
+                    Our team brings global delivery experience across North America, EMEA, and APAC, contributing to successful Oracle transformation programs through strategic partnerships and subcontracting models.
+                  </p>
+                </div>
+
+                <div className="w-full relative overflow-hidden py-4">
+                  <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+                  <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+                  
+                  <div className="animate-marquee flex w-max gap-16 items-center px-8">
+                    {[...clientLogos, ...clientLogos].map((logo, idx) => (
+                      <img
+                        key={idx}
+                        src={`/Client Logo/${logo}`}
+                        alt="Client Logo"
+                        className="h-16 md:h-20 w-auto max-w-[200px] object-contain transition-transform duration-300 drop-shadow-sm cursor-pointer hover:scale-105"
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        })()}
       </section>
 
       {/* Why Partner With CloudStand — Redesigned Premium Section */}
@@ -289,7 +322,7 @@ function Home() {
             whileInView="visible"
           >
             <Badge className="border-sky-200 bg-white text-[#EA580C]">Why Partner With CloudStand</Badge>
-            <h2 className="mt-6 text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-[2.75rem] lg:text-[3rem]">
+            <h2 className="mt-6 text-[40px] font-extrabold leading-[1.02] tracking-[-0.03em] text-black">
               Why Global Enterprises Choose Cloudstand
             </h2>
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
@@ -432,12 +465,21 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-14 sm:py-16 lg:py-18">
-        <div className="section-shell relative">
+      <section className="relative overflow-hidden bg-white py-14 sm:py-16 lg:py-18">
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-[55%] w-full"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q25,0 50,50 T100,50 L100,100 L0,100 Z' fill='rgba(14,165,233,0.04)'/%3E%3Cpath d='M0,70 Q25,20 50,70 T100,70 L100,100 L0,100 Z' fill='rgba(234,88,12,0.04)'/%3E%3C/svg%3E")`,
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'bottom',
+          }}
+        />
+        <div className="section-shell relative z-10">
           <Badge className="mb-6">Transformation Stories</Badge>
 
           <div className="max-w-4xl">
-            <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-black md:text-5xl">
+            <h2 className="text-[40px] font-black leading-[1.15] tracking-tight text-black">
               Driving Scalable Business
               <br />
               Transformation Across Industries
@@ -503,44 +545,76 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-8 sm:py-10 lg:py-12">
+      <section className="bg-[#FFFFFF] py-12 sm:py-16 lg:py-20" style={{ fontFamily: "'Open Sans', sans-serif" }}>
         <div className="section-shell">
-          <HomeSectionTitle eyebrow="Transformation Lifecycle " title="From Strategy to Scalable Business Transformation" />
-          <div className="relative mt-10">
-            <motion.div
-              className="line-pulse absolute left-0 top-6 hidden h-px w-full bg-sky-200 lg:block"
-              initial={{ scaleX: 0, originX: 0 }}
-              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, margin: '-100px' }}
-              whileInView={{ scaleX: 1 }}
-            />
-            <motion.div
-              className="grid gap-8 lg:grid-cols-4"
-              initial="hidden"
-              variants={staggerContainer}
-              viewport={{ once: true, margin: '-80px' }}
-              whileInView="visible"
-            >
-              {timelineSteps.map((step, index) => (
-                <motion.div key={step.title} variants={staggerItem}>
-                  <div className="relative rounded-[28px] border border-sky-200 bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-                    <motion.div
-                      className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-sky-500 text-lg font-bold text-white"
-                      initial={{ scale: 0 }}
-                      transition={{ type: 'spring', stiffness: 260, damping: 18, delay: index * 0.18 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.span initial={{ rotate: -10 }} transition={{ duration: 0.35, delay: index * 0.18 + 0.12 }} whileInView={{ rotate: 0 }} viewport={{ once: true }}>
-                        {index + 1}
-                      </motion.span>
-                    </motion.div>
-                    <h3 className="text-xl font-semibold text-black">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-black">{step.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-[40px] font-bold leading-tight tracking-tight text-[#000000]">
+              Oracle Transformation Delivery Model
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-[#000000]/80">
+              A structured, business-focused delivery framework designed to accelerate Oracle Cloud transformation with reduced risk, strong governance, data integrity, and long-term business sustainability.
+            </p>
+          </div>
+
+          <div className="mt-16 w-full overflow-x-auto pb-8" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="min-w-[1000px] w-full relative">
+              <div className="grid grid-cols-6 gap-2 relative">
+                {/* Central Horizontal Line */}
+                <motion.div 
+                  className="absolute top-1/2 left-0 right-0 h-[1px] bg-slate-200 -translate-y-1/2 z-0"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: false, margin: '-50px' }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  style={{ originX: 0 }}
+                />
+
+                {deliveryModelSteps.map((step, index) => {
+                  const isTop = index % 2 === 0
+                  const titleColor = '#0EA5E9'
+                  const circleColor = '#EA580C'
+
+                  return (
+                    <div key={step.title} className="relative flex justify-center h-[280px]">
+                      {/* Vertical Connecting Line */}
+                      <motion.div 
+                        className={`absolute left-1/2 w-[2px] -translate-x-1/2 z-10 ${
+                          isTop ? 'bottom-1/2 h-[20px] origin-bottom' : 'top-1/2 h-[20px] origin-top'
+                        }`}
+                        style={{ backgroundColor: circleColor }}
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: false, margin: '-50px' }}
+                        transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                      />
+
+                      {/* Content */}
+                      <motion.div
+                        className={`absolute w-[130%] px-1 text-center flex flex-col items-center z-30 ${
+                          isTop ? 'bottom-[calc(50%+28px)]' : 'top-[calc(50%+28px)]'
+                        }`}
+                        initial={{ opacity: 0, y: isTop ? 20 : -20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, margin: '-50px' }}
+                        transition={{ 
+                          duration: 0.6, 
+                          delay: index * 0.1,
+                          type: 'spring', 
+                          stiffness: 80 
+                        }}
+                      >
+                        <h3 className="text-[18px] font-medium mb-1.5" style={{ color: titleColor }}>
+                          {step.title}
+                        </h3>
+                        <p className="text-[14px] font-normal text-black leading-relaxed">
+                          {step.description}
+                        </p>
+                      </motion.div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -590,7 +664,7 @@ function Home() {
             <Badge className="border-[rgba(234,88,12,0.25)] bg-white text-[#EA580C] shadow-[0_10px_24px_rgba(14,165,233,0.08)]">
               Testimonials
             </Badge>
-            <h2 className="mt-5 text-4xl font-bold leading-tight text-black sm:text-5xl">
+            <h2 className="mt-5 text-[40px] font-bold leading-tight text-black">
               What Our Clients Say
             </h2>
             <p className="mt-4 max-w-md text-base leading-7 text-black sm:text-lg">
@@ -659,17 +733,25 @@ function Home() {
       </section>
 
       <section className="bg-white py-8 sm:py-10 lg:py-12">
-        <div className="section-shell">
-          <div className="relative overflow-hidden rounded-[40px] border border-sky-200 bg-white p-8 sm:p-12">
+        <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <div
+            className="relative overflow-hidden rounded-[40px] border border-sky-200 bg-white p-6 sm:p-8"
+            style={{
+              backgroundColor: '#ffffff',
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 50,50 0,100 20,100 70,50 20,0' fill='rgba(14,165,233,0.05)'/%3E%3Cpolygon points='30,0 80,50 30,100 50,100 100,50 50,0' fill='rgba(234,88,12,0.04)'/%3E%3C/svg%3E")`,
+              backgroundSize: '100% 100%',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
             <motion.div
-              className="grid items-center gap-8 lg:grid-cols-[1fr_320px]"
+              className="grid items-center gap-8 lg:grid-cols-[1fr_500px]"
               initial={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: '-80px' }}
               whileInView={{ opacity: 1, y: 0 }}
             >
               <div>
-                <h2 className="mt-6 max-w-3xl text-4xl font-bold text-black sm:text-[44px]">
+                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-black">
                   Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
                 <div className="mt-8">
@@ -686,7 +768,7 @@ function Home() {
 
               <Card className="p-6">
                 <div className="text-base font-bold uppercase tracking-normal text-black">Value You Receive</div>
-                <ul className="mt-4 space-y-3 text-black">
+                <ul className="mt-4 space-y-3 text-black lg:whitespace-nowrap">
                   <li className="flex items-start gap-2.5">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
                       <Check className="h-3 w-3 stroke-[3]" />
