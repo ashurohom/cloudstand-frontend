@@ -1,11 +1,11 @@
 export const caseStudies = [
   {
     slug: 'global-manufacturer-hcm',
-    category: 'HCM',
-    company: 'Global Manufacturer',
+    category: 'HCM Transformation',
+    company: 'Global Manufacturing Enterprise',
     industry: 'Manufacturing',
-    title: 'Global Manufacturer Streamlines HR for 5,000 Employees',
-    summary: 'Reduced HR processing time by 60% using Oracle HCM Cloud.',
+    title: 'Global Workforce Transformation for 5,000+ Employees',
+    summary: 'Modernized HR operations and reduced manual processing effort through Oracle HCM Cloud transformation.',
     challenge:
       'The client operated across three countries with fragmented HR processes, inconsistent employee data, and limited visibility for leadership.',
     solution:
@@ -14,14 +14,15 @@ export const caseStudies = [
       'HR processing time fell by 60%, onboarding SLAs improved, and leadership gained real-time access to workforce metrics.',
     accent: '#0057FF',
     image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=HCM+Transformation',
+    cta: 'Explore Story',
   },
   {
     slug: 'retail-chain-erp',
-    category: 'ERP',
-    company: 'Retail Chain',
+    category: 'ERP Modernization',
+    company: 'Retail & Consumer Enterprise',
     industry: 'Retail',
-    title: 'Retail Chain Unifies Finance Across 12 Entities',
-    summary: 'Single source of truth for financial reporting in 90 days.',
+    title: 'Unified Financial Operations Across 12 Business Entities',
+    summary: 'Enabled connected financial reporting and streamlined enterprise visibility through Oracle ERP Cloud.',
     challenge:
       'Twelve business entities were running disconnected finance processes, resulting in manual consolidation and poor close-cycle visibility.',
     solution:
@@ -30,14 +31,15 @@ export const caseStudies = [
       'The client established a unified finance platform in 90 days and reduced month-end reconciliation friction across entities.',
     accent: '#3D8BFF',
     image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=ERP+Transformation',
+    cta: 'Explore Story',
   },
   {
     slug: 'healthcare-provider-oic',
-    category: 'OIC',
-    company: 'Healthcare Provider',
+    category: 'Integration & Automation',
+    company: 'Healthcare Organization',
     industry: 'Healthcare',
-    title: 'Healthcare Provider Integrates 8 Legacy Systems',
-    summary: 'Zero-downtime integration using Oracle Integration Cloud.',
+    title: 'Seamless Enterprise Integration Across Critical Systems',
+    summary: 'Implemented scalable Oracle Integration Cloud architecture for connected and uninterrupted operations.',
     challenge:
       'Eight legacy systems needed secure, bi-directional connectivity with zero downtime to support critical patient operations.',
     solution:
@@ -46,6 +48,7 @@ export const caseStudies = [
       'The healthcare group achieved zero-downtime deployment and improved data consistency across critical systems.',
     accent: '#4F7CFF',
     image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=OIC+Integration',
+    cta: 'Explore Story',
   },
   {
     slug: 'regional-services-payroll',

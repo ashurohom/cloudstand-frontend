@@ -4,28 +4,28 @@ import { Link } from 'react-router-dom'
 const DEFAULT_SLIDES = [
   {
     image: '/Slider/slider-1.jpeg',
-    heading: 'Transform Your Business with Oracle Cloud',
+    heading: 'Building Future-Ready Enterprises with Intelligent Oracle Transformation',
     subheading:
-      'End-to-end Oracle HCM, ERP, Payroll, OIC, BI and AI consulting delivered by certified experts.',
-    button: { label: "Let's Connect", to: '/contact' },
-  },
-  {
-    image: '/Slider/slider-2.jpeg',
-    heading: 'Accelerate HR with Oracle HCM Cloud',
-    subheading: 'Streamline hire-to-retire processes for a smarter, faster workforce.',
+      'Helping organizations modernize operations, empower people, and accelerate growth through Oracle Cloud, AI-driven innovation, and scalable digital experiences. ',
     button: { label: 'Explore Solutions', to: '/services' },
   },
   {
+    image: '/Slider/slider-2.jpeg',
+    heading: 'Reimagining Workforce Experiences with Oracle HCM Cloud ',
+    subheading: 'Streamline hire-to-retire operations, strengthen employee engagement, and enable smarter workforce decisions through connected HR transformation. ',
+    button: { label: 'Discover HCM', to: '/case-studies' },
+  },
+  {
     image: '/Slider/slider-3.jpeg',
-    heading: 'Unify Finance with Oracle ERP Cloud',
-    subheading: 'Real-time financial visibility across every entity, every region.',
-    button: { label: 'Rescue Hub', to: '/rescue-hub' },
+    heading: 'Enabling Smarter Financial Operations with Oracle ERP Cloud',
+    subheading: 'Create connected, agile, and data-driven enterprise processes that improve visibility, operational efficiency, and business performance. ',
+    button: { label: 'Explore ERP', to: '/case-studies' },
   },
   {
     image: '/Slider/slider-4.jpeg',
-    heading: 'Connect Everything with Oracle Integration Cloud',
-    subheading: 'Integrate legacy and cloud systems with zero downtime.',
-    button: { label: "Let's Connect", to: '/contact' },
+    heading: 'Connecting Enterprise Ecosystems Through Intelligent Integration ',
+    subheading: 'Seamlessly integrate applications, automate workflows, and create scalable digital environments with Oracle Integration Cloud solutions. ',
+    button: { label: 'Learn About Integrations', to: '/services/integrations-reports-analytics-solutions' },
   },
 ]
 

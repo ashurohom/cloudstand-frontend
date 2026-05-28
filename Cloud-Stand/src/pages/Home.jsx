@@ -22,20 +22,20 @@ import {
 
 const timelineSteps = [
   {
-    title: 'Discovery & Assessment',
-    description: 'Business process workshops, architecture review, and transformation prioritization.',
+    title: 'Strategy & Discovery',
+    description: 'Understanding enterprise priorities, operational challenges, and transformation goals to establish a scalable and outcome-driven roadmap.',
   },
   {
-    title: 'Solution Design',
-    description: 'Future-state design, roadmap definition, governance, and delivery planning.',
+    title: 'Experience & Solution Design',
+    description: 'Designing intelligent Oracle ecosystems focused on scalability, governance, user experience, process efficiency, and future business growth.',
   },
   {
-    title: 'Implementation',
-    description: 'Configuration, testing, data migration support, and user enablement.',
+    title: 'Transformation & Enablement',
+    description: 'Executing agile implementations, integrations, migrations, testing, and workforce enablement to accelerate enterprise-wide adoption.',
   },
   {
-    title: 'Hypercare & Support',
-    description: 'Stabilization, optimization, reporting refinement, and ongoing support.',
+    title: 'Optimization & Continuous Evolution',
+    description: 'Driving long-term operational stability, performance optimization, continuous improvement, and scalable digital transformation outcomes.',
   },
 ]
 
@@ -58,6 +58,13 @@ const whyPartnerPoints = [
   'Business-enabled delivery with documentation, KT, transparency, and reduced dependency',
   'Committed to long-term delivery excellence and trusted client partnerships',
   'Flexible, cost-effective engagement with on-demand support and complementary resources',
+]
+
+const whyPartnerStats = [
+  { value: 50, suffix: '+', label: 'Enterprise Transformation Projects' },
+  { value: 98, suffix: '%', label: 'Client Satisfaction Rate' },
+  { value: 5, suffix: '+', label: 'Global Delivery Regions' },
+  { value: 15, suffix: '+', label: 'Oracle Certified Specialists' },
 ]
 
 function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className = '' }) {
@@ -90,6 +97,8 @@ function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className
 
 function Home() {
   useDocumentTitle('CloudStand Consulting | Oracle Cloud Transformation Partner')
+  const leftPartnerPoints = whyPartnerPoints.slice(0, 5)
+  const rightPartnerPoints = whyPartnerPoints.slice(5)
   const featuredCaseStudies = caseStudies.slice(0, 3).map((study, index) => ({
     ...study,
     accent: '#EA580C',
@@ -116,6 +125,36 @@ function Home() {
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <HeroSection />
+
+      {/* Thin Animated Marquee Strip */}
+      <div className="flex overflow-hidden bg-[#0f172a] py-2.5 border-y border-[rgba(234,88,12,0.2)]">
+        <div
+          className="flex whitespace-nowrap"
+          style={{
+            width: 'max-content',
+            animation: 'marquee 80s linear infinite',
+          }}
+        >
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="flex items-center text-[11px] sm:text-[13px] font-semibold tracking-[0.15em] text-white/80 uppercase">
+              <span className="mx-5">Oracle HCM</span>
+              <span className="text-[#EA580C]">•</span>
+              <span className="mx-5">ERP Modernization</span>
+              <span className="text-[#EA580C]">•</span>
+              <span className="mx-5">AI Transformation</span>
+              <span className="text-[#EA580C]">•</span>
+              <span className="mx-5">Intelligent Integrations</span>
+              <span className="text-[#EA580C]">•</span>
+              <span className="mx-5">Redwood UX</span>
+              <span className="text-[#EA580C]">•</span>
+              <span className="mx-5">Payroll Transformation</span>
+              <span className="text-[#EA580C]">•</span>
+              <span className="mx-5">Global Delivery</span>
+              <span className="text-[#EA580C] mr-5">•</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <section className="bg-white py-8 sm:py-9">
         <div className="section-shell">
@@ -251,124 +290,163 @@ function Home() {
           >
             <Badge className="border-sky-200 bg-white text-[#EA580C]">Why Partner With CloudStand</Badge>
             <h2 className="mt-6 text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-[2.75rem] lg:text-[3rem]">
-              Why Partner With CloudStand
+              Why Global Enterprises Choose Cloudstand
             </h2>
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
             <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
-              We combine enterprise-grade Oracle expertise with fast, accountable delivery.
+              We combine deep Oracle expertise, agile delivery, and transformation-focused consulting to help organizations modernize operations with confidence
             </p>
           </motion.div>
 
-          <div className="mt-14 grid items-start gap-8 lg:grid-cols-[7fr_3fr]">
+          <div className="mt-14 grid items-start gap-6 xl:grid-cols-[4fr_4fr_2fr]">
 
-          {/* ── LEFT: Heading + Checklist ── */}
-          <motion.div
-            initial="hidden"
-            variants={slideLeft}
-            viewport={{ once: true, margin: '-80px' }}
-            whileInView="visible"
-            className="flex flex-col"
-          >
-            <div className="grid gap-3">
-              {whyPartnerPoints.map((item, i) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, x: -18 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
-                  className="group flex items-start gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
-                >
-                  {/* Orange check icon in sky-blue pill */}
-                  <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
-                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
-                  </span>
-                  <p className="text-sm font-medium leading-6 text-black">{item}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
-          <div className="relative self-center">
+            {/* ── LEFT: Heading + Checklist ── */}
             <motion.div
-              className="grid gap-4"
+              initial="hidden"
+              variants={slideLeft}
+              viewport={{ once: true, margin: '-80px' }}
+              whileInView="visible"
+              className="flex flex-col"
+            >
+              <div className="grid gap-3">
+                {leftPartnerPoints.map((item, i) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, x: -18 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
+                    className="group flex items-start gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                  >
+                    {/* Orange check icon in sky-blue pill */}
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
+                      <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                    </span>
+                    <p className="text-sm font-medium leading-6 text-black">{item}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
+            <motion.div
               initial="hidden"
               variants={slideRight}
               viewport={{ once: true, margin: '-80px' }}
               whileInView="visible"
+              className="flex flex-col"
             >
-              {[
-                { value: 50, suffix: '+', label: 'Projects Delivered' },
-                { value: 98, suffix: '%', label: 'Client Satisfaction' },
-                { value: 3, suffix: '', label: 'Countries Served' },
-                { value: 15, suffix: '+', label: 'Certified Experts' },
-              ].map((item, index) => (
-              <motion.div
-                key={item.label}
-                variants={staggerItem}
-                whileHover={{ y: -4, boxShadow: '0 18px 38px rgba(14,165,233,0.11)' }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex items-center gap-5 rounded-3xl border border-[rgba(14,165,233,0.22)] bg-white p-5 shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
-              >
-                <div className="min-w-[88px]">
-                  <AnimatedCounter
-                    className="font-syne text-4xl font-bold tracking-tight text-[#0EA5E9] sm:text-5xl"
-                    suffix={item.suffix}
-                    value={item.value}
-                    delay={index * 0.12}
-                    duration={1800}
-                  />
-                </div>
-                <div className="flex-1">
+              <div className="grid gap-3">
+                {rightPartnerPoints.map((item, i) => (
                   <motion.div
-                    className="mb-3 h-0.5 w-10 rounded-full bg-[#EA580C] opacity-100"
-                    initial={{ scaleX: 0, originX: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.14 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                  />
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black">
-                    {item.label}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-            <motion.div
-              className="mt-8 flex justify-center"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.45, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Link
-                className="inline-flex items-center gap-2 rounded-full border border-[#EA580C] px-5 py-3 text-sm font-medium text-[#EA580C] transition-all duration-300 hover:bg-[#EA580C] hover:text-white"
-                to="/about"
-              >
-                View More
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+                    key={item}
+                    initial={{ opacity: 0, x: 18 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
+                    className="group flex items-start gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                  >
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
+                      <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                    </span>
+                    <p className="text-sm font-medium leading-6 text-black">{item}</p>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
+
+            <div className="relative self-stretch">
+              <motion.div
+                className="grid auto-rows-fr grid-cols-2 gap-3 xl:grid-cols-1 xl:gap-2.5"
+                initial="hidden"
+                variants={slideRight}
+                viewport={{ once: true, margin: '-80px' }}
+                whileInView="visible"
+              >
+                {whyPartnerStats.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    variants={staggerItem}
+                    whileHover={{ y: -4, boxShadow: '0 18px 38px rgba(14,165,233,0.11)' }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                    className="group flex min-h-[104px] flex-col items-center justify-center rounded-[2rem] border border-[rgba(14,165,233,0.22)] bg-white px-3 py-4 text-center shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)] sm:min-h-[112px] xl:min-h-[86px] xl:rounded-[1.75rem] xl:px-2.5 xl:py-3"
+                  >
+                    <AnimatedCounter
+                      className="font-syne text-3xl font-bold tracking-tight text-[#0EA5E9] sm:text-[2.6rem] xl:text-[2.2rem]"
+                      suffix={item.suffix}
+                      value={item.value}
+                      delay={index * 0.12}
+                      duration={1800}
+                    />
+                    <motion.div
+                      className="my-2 h-0.5 w-8 rounded-full bg-[#EA580C] opacity-100 xl:my-1.5 xl:w-7"
+                      initial={{ scaleX: 0, originX: 0.5 }}
+                      transition={{ duration: 0.6, delay: index * 0.14 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                    />
+                    <p className="max-w-[8rem] text-[10px] font-semibold uppercase tracking-[0.12em] text-black sm:text-[10px] xl:max-w-[7rem] xl:text-[0.62rem]">
+                      {item.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+            </div>
           </div>
-        </div>
+
+          <motion.div
+            className="mt-8 flex flex-col items-center justify-center"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.45, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link
+              className="inline-flex items-center gap-2 rounded-full border border-[#EA580C] px-5 py-3 text-sm font-medium text-[#EA580C] transition-all duration-300 hover:bg-[#EA580C] hover:text-white"
+              to="/about"
+            >
+              Explore Our Expertise
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            {/* Premium Trust Strip Below CTA */}
+            <motion.div
+              className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+            >
+              <span>Oracle Cloud</span>
+              <span className="text-sky-300">|</span>
+              <span>AI Transformation</span>
+              <span className="text-sky-300">|</span>
+              <span>Redwood Expertise</span>
+              <span className="text-sky-300">|</span>
+              <span>Global Delivery</span>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       <section className="bg-white py-14 sm:py-16 lg:py-18">
         <div className="section-shell relative">
-          <Badge className="mb-6">Success Stories</Badge>
+          <Badge className="mb-6">Transformation Stories</Badge>
 
           <div className="max-w-4xl">
             <h2 className="text-3xl font-black leading-[1.15] tracking-tight text-black md:text-5xl">
-              Transformation outcomes that
+              Driving Scalable Business
               <br />
-              stand up in the boardroom
+              Transformation Across Industries
             </h2>
 
             <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+            <p className="mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
+              From workforce transformation to enterprise integrations, we help organizations modernize operations, improve efficiency, and create long-term business value.
+            </p>
           </div>
 
           <motion.div
@@ -411,7 +489,7 @@ function Home() {
                         className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300 group-hover:gap-4"
                         to="/case-studies"
                       >
-                        View Story
+                        {study.cta || 'View Story'}
                         <span className="transition-colors duration-300 group-hover:text-[#EA580C]">
                           <ArrowRight className="h-4 w-4" />
                         </span>
@@ -427,7 +505,7 @@ function Home() {
 
       <section className="bg-white py-8 sm:py-10 lg:py-12">
         <div className="section-shell">
-          <HomeSectionTitle eyebrow="Process" title="Our Engagement Model" />
+          <HomeSectionTitle eyebrow="Transformation Lifecycle " title="From Strategy to Scalable Business Transformation" />
           <div className="relative mt-10">
             <motion.div
               className="line-pulse absolute left-0 top-6 hidden h-px w-full bg-sky-200 lg:block"
@@ -569,9 +647,8 @@ function Home() {
                 <button
                   key={i}
                   aria-label={`Show testimonial ${i + 1}`}
-                  className={`rounded-full border-0 transition-all duration-300 ${
-                    i === current ? 'w-12 bg-[#D76527]' : 'w-4 bg-[#CFD7E6]'
-                  } h-4 cursor-pointer`}
+                  className={`rounded-full border-0 transition-all duration-300 ${i === current ? 'w-12 bg-[#D76527]' : 'w-4 bg-[#CFD7E6]'
+                    } h-4 cursor-pointer`}
                   onClick={() => setCurrent(i)}
                   type="button"
                 />
@@ -592,17 +669,13 @@ function Home() {
               whileInView={{ opacity: 1, y: 0 }}
             >
               <div>
-                <Badge className="border-sky-200 bg-white text-[#EA580C]">Free Strategy Session</Badge>
-                <h2 className="mt-6 max-w-3xl text-4xl font-bold text-black sm:text-5xl">
-                  Ready to Modernize Your Oracle Ecosystem?
+                <h2 className="mt-6 max-w-3xl text-4xl font-bold text-black sm:text-[44px]">
+                  Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
-                <p className="mt-4 max-w-2xl text-lg leading-8 text-black">
-                  Let&apos;s discuss your transformation roadmap with a free 30-minute consultation.
-                </p>
                 <div className="mt-8">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
                     <Button className="!border-orange-500 !bg-orange-500 !text-white !shadow-none hover:!border-orange-400 hover:!bg-orange-600 hover:!text-white" size="lg" to="/contact" variant="white">
-                      Schedule a Free Call
+                      Schedule Free System Health Check Analysis
                       <motion.span whileHover={{ x: 4 }}>
                         <ArrowRight className="h-4 w-4" />
                       </motion.span>
@@ -612,12 +685,33 @@ function Home() {
               </div>
 
               <Card className="p-6">
-                <div className="text-base uppercase tracking-normal text-black">What you get</div>
-                <div className="mt-4 space-y-3 text-black">
-                  <div>30-min free consultation</div>
-                  <div>No commitment</div>
-                  <div>Oracle experts</div>
-                </div>
+                <div className="text-base font-bold uppercase tracking-normal text-black">Value You Receive</div>
+                <ul className="mt-4 space-y-3 text-black">
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
+                      <Check className="h-3 w-3 stroke-[3]" />
+                    </span>
+                    <span className="leading-6">Diagnostic Assessment Reports</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
+                      <Check className="h-3 w-3 stroke-[3]" />
+                    </span>
+                    <span className="leading-6">Fit-Gap Analysis & Recommendation Roadmap</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
+                      <Check className="h-3 w-3 stroke-[3]" />
+                    </span>
+                    <span className="leading-6">240-Hour Complimentary Engagement</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
+                      <Check className="h-3 w-3 stroke-[3]" />
+                    </span>
+                    <span className="leading-6">No-Obligation, Zero-Pressure Approach</span>
+                  </li>
+                </ul>
               </Card>
             </motion.div>
           </div>
