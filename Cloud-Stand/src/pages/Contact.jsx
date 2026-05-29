@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, ChevronDown, Clock3, Globe2, Mail, MapPin, Phone, ShieldCheck, Sparkles } from 'lucide-react'
+import { Activity, ArrowRight, ChevronDown, Clock3, Cloud, Globe2, Mail, MapPin, Phone, ShieldCheck, Sparkles } from 'lucide-react'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
@@ -176,7 +176,7 @@ New York, NY 10001`,
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section
 
-        className="relative overflow-hidden pt-20 pb-24 lg:min-h-[88vh] lg:flex lg:items-center"
+        className="relative overflow-hidden pt-12 pb-16 lg:min-h-[60vh] lg:flex lg:items-center"
 
         style={{
 
@@ -198,38 +198,11 @@ New York, NY 10001`,
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
 
         <div className="section-shell relative z-20 w-full">
-          {/* RIGHT TYPOGRAPHY BACKGROUND */}
-
-          <div className="pointer-events-none absolute right-[-40px] top-1/2 hidden -translate-y-1/2 select-none lg:block">
-
-            <div className="text-right leading-[0.8]">
-
-              <div className="text-[7rem] font-black tracking-[-0.08em] text-[#EA580C]/[0.12]">
-
-                ORACLE
-
-              </div>
-
-              <div className="mt-2 text-[6rem] font-black tracking-[-0.08em] text-[#EA580C]/[0.10]">
-
-                CLOUD
-
-              </div>
-
-              <div className="mt-2 text-[5rem] font-black tracking-[-0.08em] text-[#EA580C]/[0.08]">
-
-                CONSULTING
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* LEFT CONTENT */}
-          <div className="max-w-[760px]">
 
 
+          <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            {/* LEFT CONTENT */}
+            <div className="max-w-[760px] lg:w-[55%] flex flex-col items-center text-center">
 
             <motion.div
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -240,12 +213,12 @@ New York, NY 10001`,
             </motion.div>
 
             {/* BLUE LINE */}
-            <div className="mt-7 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+            <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
 
             <motion.h1
               animate={{ opacity: 1, y: 0 }}
-              className="mt-7 text-[3.6rem] font-bold leading-[0.92] tracking-[-0.07em] text-black"
+              className="mt-4 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center"
               initial={{ opacity: 0, y: 25 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
@@ -260,7 +233,7 @@ New York, NY 10001`,
             {/* DESCRIPTION */}
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 max-w-[700px] text-[20px] leading-9 text-[#475569]"
+              className="mt-4 max-w-[700px] text-[18px] leading-8 text-[#475569] text-center"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
@@ -276,7 +249,7 @@ New York, NY 10001`,
             {/* BUTTONS */}
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="mt-12 flex flex-wrap items-center gap-5"
+              className="mt-6 flex flex-wrap justify-center items-center gap-5"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
@@ -328,13 +301,85 @@ New York, NY 10001`,
               </button>
 
             </motion.div>
+            </div>
 
+            {/* RIGHT VISUAL - PREMIUM MODERN IMAGE */}
+            <motion.div
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-16 hidden lg:mt-0 lg:block lg:w-[45%]"
+            >
+              <div className="relative mx-auto w-full max-w-[440px]">
+                {/* Layered blurred accents behind the main composition */}
+                <div className="absolute -inset-8 z-0 rounded-[100px] bg-gradient-to-tr from-[#0EA5E9]/10 to-[#EA580C]/10 blur-3xl" />
+                <div className="absolute -bottom-16 -right-16 z-0 h-64 w-64 rounded-full bg-[#EA580C]/15 blur-3xl" />
+                <div className="absolute -left-16 -top-16 z-0 h-64 w-64 rounded-full bg-[#0EA5E9]/15 blur-3xl" />
+                
+                {/* Main Asymmetrical Container */}
+                <motion.div
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative z-10 overflow-hidden rounded-[40px] rounded-bl-[80px] rounded-tr-[100px] border border-white/40 bg-white/30 p-2 shadow-[0_24px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl"
+                >
+                  <div className="overflow-hidden rounded-[32px] rounded-bl-[72px] rounded-tr-[92px] border border-white/60 bg-white/60">
+                    <img
+                      src="/Contact_Header.jpeg"
+                      alt="Sophisticated Enterprise Cloud Operations Dashboard"
+                      className="h-auto w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    />
+                  </div>
+                </motion.div>
 
+                {/* Floating Mini Card 1: Uptime */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                  className="absolute -left-8 top-16 z-20 flex items-center gap-3 rounded-2xl border border-white/50 bg-white/80 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] backdrop-blur-md"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                    <Activity className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#0EA5E9]">Availability</p>
+                    <p className="text-sm font-bold text-[#EA580C]">99.9% Uptime</p>
+                  </div>
+                </motion.div>
 
+                {/* Floating Mini Card 2: Enterprise Cloud */}
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                  className="absolute -right-6 top-1/2 z-20 flex -translate-y-1/2 items-center gap-3 rounded-2xl border border-white/50 bg-white/80 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] backdrop-blur-md"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-50 text-sky-600">
+                    <Cloud className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#0EA5E9]">Oracle Solutions</p>
+                    <p className="text-sm font-bold text-[#EA580C]">Enterprise Cloud</p>
+                  </div>
+                </motion.div>
+
+                {/* Floating Mini Card 3: AI Automation */}
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  className="absolute -bottom-6 left-12 z-20 flex items-center gap-3 rounded-2xl border border-white/50 bg-white/80 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] backdrop-blur-md"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-orange-600">
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#0EA5E9]">Operations</p>
+                    <p className="text-sm font-bold text-[#EA580C]">AI Automation</p>
+                  </div>
+                </motion.div>
+
+              </div>
+            </motion.div>
           </div>
-
         </div>
-
       </section>
 
 
@@ -367,7 +412,7 @@ New York, NY 10001`,
             <div className="mt-6 h-1 w-14 rounded-full bg-[#0EA5E9]" />
 
             {/* HEADING */}
-            <h2 className="mt-7 text-[30px] md:text-[44px] lg:text-[48px] font-bold leading-[0.95] tracking-[-0.06em] text-black">
+            <h2 className="mt-6 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
               Our Global Offices
             </h2>
 
@@ -382,37 +427,37 @@ New York, NY 10001`,
           </div>
 
           {/* OFFICES CARDS */}
-          <div className="mt-14 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-12 grid max-w-[1050px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
 
             {/* PUNE */}
             <motion.div
-              whileHover={{ y: -6 }}
-              className="group flex flex-col overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white shadow-[0_8px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(15,23,42,0.08)]"
+              whileHover={{ y: -4 }}
+              className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[240px] w-full overflow-hidden">
+              <div className="relative h-[160px] w-full overflow-hidden">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/View_of_garden.jpg/1280px-View_of_garden.jpg"
+                  src="/pune.jpeg"
                   alt="Pune City"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-8 text-left">
-                <h3 className="text-[2rem] font-bold leading-none tracking-[-0.05em] text-black">
+              <div className="flex flex-1 flex-col p-5 text-left">
+                <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
                   Pune, India
                 </h3>
-                <div className="mt-5 mb-5 h-px w-full bg-slate-100" />
+                <div className="my-4 h-px w-full bg-slate-100" />
 
-                <div className="space-y-4">
-                  <p className="text-[15px] leading-relaxed text-[#475569]">
+                <div className="space-y-2.5">
+                  <p className="text-[14px] leading-snug text-[#475569]">
                     Office No.19, Nirvana Hub,<br />
                     Mundhwa-Manjari Road,<br />
                     Pune - 412307
                   </p>
-                  <p className="text-[16px] font-medium text-black">
+                  <p className="text-[14.5px] font-semibold text-black">
                     info@cloudstand.com
                   </p>
-                  <p className="text-[16px] font-medium text-black">
+                  <p className="text-[14.5px] font-semibold text-black">
                     +91 90490 20793
                   </p>
                 </div>
@@ -421,33 +466,33 @@ New York, NY 10001`,
 
             {/* TEXAS */}
             <motion.div
-              whileHover={{ y: -6 }}
-              className="group flex flex-col overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white shadow-[0_8px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(15,23,42,0.08)]"
+              whileHover={{ y: -4 }}
+              className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[240px] w-full overflow-hidden">
+              <div className="relative h-[160px] w-full overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800"
+                  src="/texas.jpeg"
                   alt="Dallas Skyline"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-8 text-left">
-                <h3 className="text-[2rem] font-bold leading-none tracking-[-0.05em] text-black">
+              <div className="flex flex-1 flex-col p-5 text-left">
+                <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
                   Texas, USA
                 </h3>
-                <div className="mt-5 mb-5 h-px w-full bg-slate-100" />
+                <div className="my-4 h-px w-full bg-slate-100" />
 
-                <div className="space-y-4">
-                  <p className="text-[15px] leading-relaxed text-[#475569]">
+                <div className="space-y-2.5">
+                  <p className="text-[14px] leading-snug text-[#475569]">
                     5430 Lyndon B Johnson Fwy,<br />
                     Suite 1200,<br />
                     Dallas, Texas 75240
                   </p>
-                  <p className="text-[16px] font-medium text-black">
+                  <p className="text-[14.5px] font-semibold text-black">
                     texas@cloudstand.com
                   </p>
-                  <p className="text-[16px] font-medium text-black">
+                  <p className="text-[14.5px] font-semibold text-black">
                     +1 (469) 555-1208
                   </p>
                 </div>
@@ -456,33 +501,33 @@ New York, NY 10001`,
 
             {/* NEW YORK */}
             <motion.div
-              whileHover={{ y: -6 }}
-              className="group flex flex-col overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white shadow-[0_8px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(15,23,42,0.08)]"
+              whileHover={{ y: -4 }}
+              className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[240px] w-full overflow-hidden">
+              <div className="relative h-[160px] w-full overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800"
+                  src="/newyork.jpeg"
                   alt="New York Skyline"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-8 text-left">
-                <h3 className="text-[2rem] font-bold leading-none tracking-[-0.05em] text-black">
+              <div className="flex flex-1 flex-col p-5 text-left">
+                <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
                   New York, USA
                 </h3>
-                <div className="mt-5 mb-5 h-px w-full bg-slate-100" />
+                <div className="my-4 h-px w-full bg-slate-100" />
 
-                <div className="space-y-4">
-                  <p className="text-[15px] leading-relaxed text-[#475569]">
+                <div className="space-y-2.5">
+                  <p className="text-[14px] leading-snug text-[#475569]">
                     1178 Broadway,<br />
                     Manhattan,<br />
                     New York, NY 10001
                   </p>
-                  <p className="text-[16px] font-medium text-black">
+                  <p className="text-[14.5px] font-semibold text-black">
                     usa@cloudstand.com
                   </p>
-                  <p className="text-[16px] font-medium text-black">
+                  <p className="text-[14.5px] font-semibold text-black">
                     +1 (646) 555-9087
                   </p>
                 </div>
@@ -494,12 +539,12 @@ New York, NY 10001`,
       </section>
 
       {/* EMBEDDED CONTACT FORM SECTION */}
-      <section className="relative overflow-hidden bg-[#F7F9FC] py-24">
+      <section className="relative overflow-hidden bg-[#F7F9FC] py-16">
         <div className="section-shell relative z-10 max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-0 overflow-hidden rounded-[24px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] border border-[#e2e8f0]">
 
             {/* LEFT SIDE - IMAGE */}
-            <div className="relative h-[300px] lg:h-auto overflow-hidden bg-slate-900">
+            <div className="relative h-[250px] lg:h-auto overflow-hidden bg-slate-900">
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000"
                 alt="Cloud Infrastructure"
@@ -507,30 +552,30 @@ New York, NY 10001`,
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/50 to-[#0f172a]/90" />
 
-              <div className="absolute bottom-8 left-8 right-8 text-white z-10 lg:bottom-12 lg:left-12 lg:right-12">
-                <div className="h-1.5 w-12 bg-[#F97316] rounded-full mb-6" />
-                <h3 className="text-[28px] font-bold leading-tight tracking-tight mb-3">
+              <div className="absolute bottom-6 left-6 right-6 text-white z-10 lg:bottom-10 lg:left-10 lg:right-10">
+                <div className="h-1.5 w-12 bg-[#F97316] rounded-full mb-4" />
+                <h3 className="text-[26px] font-bold leading-tight tracking-tight mb-2">
                   Enterprise Cloud Solutions
                 </h3>
-                <p className="text-white/80 text-[15px] max-w-[300px] leading-relaxed">
+                <p className="text-white/80 text-[14.5px] max-w-[300px] leading-relaxed">
                   Accelerating digital transformation with proven Oracle Cloud expertise.
                 </p>
               </div>
             </div>
 
             {/* RIGHT SIDE - FORM */}
-            <div className="p-8 md:p-12 lg:p-16">
-              <div className="mb-10">
+            <div className="p-6 md:p-8 lg:p-10">
+              <div className="mb-6 flex flex-col items-center text-center">
                 <Badge>Premium Inquiry</Badge>
-                <h2 className="mt-5 text-[32px] md:text-[38px] font-bold leading-[1.1] tracking-tight text-[#111827]">
+                <h2 className="mt-4 text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
                   Tell Us About Your Project
                 </h2>
-                <p className="mt-4 text-[16px] leading-relaxed text-[#475569]">
+                <p className="mt-2 text-[15px] leading-relaxed text-[#475569] text-center">
                   Let’s discuss your cloud transformation and enterprise technology needs.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="grid gap-6 md:grid-cols-2">
+              <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
                 {/* FULL NAME */}
                 <div className="md:col-span-1">
                   <input
@@ -539,7 +584,7 @@ New York, NY 10001`,
                     placeholder="Full Name"
                     value={form.name}
                     onChange={handleChange}
-                    className="h-[56px] w-full rounded-[14px] border border-[#e2e8f0] bg-[#F7F9FC] px-5 text-[15px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
                   />
                 </div>
 
@@ -551,7 +596,7 @@ New York, NY 10001`,
                     placeholder="Email Address"
                     value={form.email}
                     onChange={handleChange}
-                    className="h-[56px] w-full rounded-[14px] border border-[#e2e8f0] bg-[#F7F9FC] px-5 text-[15px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
                   />
                 </div>
 
@@ -563,7 +608,7 @@ New York, NY 10001`,
                     placeholder="Company Name"
                     value={form.company}
                     onChange={handleChange}
-                    className="h-[56px] w-full rounded-[14px] border border-[#e2e8f0] bg-[#F7F9FC] px-5 text-[15px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
                   />
                 </div>
 
@@ -575,7 +620,7 @@ New York, NY 10001`,
                     placeholder="Phone Number"
                     value={form.phone}
                     onChange={handleChange}
-                    className="h-[56px] w-full rounded-[14px] border border-[#e2e8f0] bg-[#F7F9FC] px-5 text-[15px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
                   />
                 </div>
 
@@ -585,7 +630,7 @@ New York, NY 10001`,
                     name="serviceInterested"
                     value={form.serviceInterested}
                     onChange={handleChange}
-                    className="h-[56px] w-full appearance-none rounded-[14px] border border-[#e2e8f0] bg-[#F7F9FC] px-5 text-[15px] text-[#111827] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                    className="h-[48px] w-full appearance-none rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
                   >
                     {services.map((service) => (
                       <option key={service.slug} value={service.title}>
@@ -593,7 +638,7 @@ New York, NY 10001`,
                       </option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-[#2563EB]">
+                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
                     <ChevronDown className="h-5 w-5" />
                   </div>
                 </div>
@@ -605,15 +650,15 @@ New York, NY 10001`,
                     placeholder="Tell us about your project requirements..."
                     value={form.message}
                     onChange={handleChange}
-                    className="min-h-[140px] w-full rounded-[14px] border border-[#e2e8f0] bg-[#F7F9FC] p-5 text-[15px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none resize-y"
+                    className="min-h-[100px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] p-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none resize-y"
                   />
                 </div>
 
                 {/* BUTTON */}
-                <div className="md:col-span-2 mt-2">
+                <div className="md:col-span-2 mt-1">
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-10 py-4 text-[15px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1"
+                    className="inline-flex items-center justify-center gap-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1"
                   >
                     Send Inquiry
                     <ArrowRight className="h-4 w-4" />
@@ -642,16 +687,16 @@ New York, NY 10001`,
         <div className="section-shell relative z-10">
 
           {/* TOP */}
-          <div className="max-w-[760px]">
+          <div className="max-w-[760px] mx-auto flex flex-col items-center text-center">
 
             {/* BADGE */}
             <Badge>Visit Our Headquarters</Badge>
 
             {/* LINE */}
-            <div className="mt-7 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+            <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
             {/* HEADING */}
-            <h2 className="mt-7 text-[3rem] font-bold leading-[0.95] tracking-[-0.06em] text-black">
+            <h2 className="mt-6 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
 
               Our Global
 
@@ -661,7 +706,7 @@ New York, NY 10001`,
             </h2>
 
             {/* DESCRIPTION */}
-            <p className="mt-7 max-w-[650px] text-[17px] leading-8 text-[#475569]">
+            <p className="mt-6 max-w-[650px] text-[17px] leading-8 text-[#475569] text-center">
 
               CloudStand Consulting headquarters serves as the
               strategic center for Oracle Cloud transformation,
@@ -741,15 +786,15 @@ New York, NY 10001`,
               {/* BLUE BLUR */}
               <div className="absolute bottom-0 right-0 h-[220px] w-[220px] rounded-full bg-[#0EA5E9]/[0.05] blur-3xl" />
 
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col items-center text-center">
 
                 <Badge>Frequently Asked Questions</Badge>
 
                 {/* LINE */}
-                <div className="mt-7 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+                <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
                 {/* HEADING */}
-                <h2 className="mt-7 text-[3rem] font-bold leading-[0.95] tracking-[-0.06em] text-black">
+                <h2 className="mt-6 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
 
                   Everything You
                   <br />
@@ -759,7 +804,7 @@ New York, NY 10001`,
                 </h2>
 
                 {/* TEXT */}
-                <p className="mt-7 text-[17px] leading-8 text-[#475569]">
+                <p className="mt-6 text-[17px] leading-8 text-[#475569] text-center">
 
                   Helpful answers about our Oracle Cloud consulting,
                   implementation process, support model and
@@ -839,8 +884,8 @@ New York, NY 10001`,
                         {/* ICON */}
                         <span
                           className={`flex h-7 w-7 items-center justify-center rounded-full border transition-all duration-300 ${isOpen
-                              ? 'border-[#EA580C] bg-[#fff7ed] text-[#EA580C]'
-                              : 'border-[#dbeafe] bg-[#f8fbff] text-[#0EA5E9]'
+                            ? 'border-[#EA580C] bg-[#fff7ed] text-[#EA580C]'
+                            : 'border-[#dbeafe] bg-[#f8fbff] text-[#0EA5E9]'
                             }`}
                         >
 

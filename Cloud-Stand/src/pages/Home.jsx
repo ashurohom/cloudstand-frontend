@@ -73,7 +73,7 @@ const whyPartnerPoints = [
   'Delivery-first approach ensuring measurable outcomes with precision and accountability',
   'Experienced architects and dynamic professionals driving innovation and agility',
   'Real onsite experience enabling practical, scalable, business-driven solutions delivery',
-  'Complementary health checks, audits, and access to in-house tools',
+  <>Complementary health checks, audits, and access to in-house <br /> tools</>,
   'Global delivery model enabling 24/7 support and seamless execution',
   'Business-enabled delivery with documentation, KT, transparency, and reduced dependency',
   'Committed to long-term delivery excellence and trusted client partnerships',
@@ -123,10 +123,7 @@ function Home() {
     ...study,
     accent: '#EA580C',
   }))
-  const enhancedTestimonials = testimonials.map((testimonial, index) => ({
-    ...testimonial,
-    category: ['HCM', 'ERP', 'OIC'][index] || 'Oracle Cloud',
-  }))
+  const enhancedTestimonials = testimonials
   const [current, setCurrent] = useState(0)
   const total = enhancedTestimonials.length
 
@@ -255,22 +252,20 @@ function Home() {
                     Our team brings global delivery experience across North America, EMEA, and APAC, contributing to successful Oracle transformation programs through strategic partnerships and subcontracting models.
                   </p>
                 </div>
+              </div>
 
-                <div className="w-full relative overflow-hidden py-4">
-                  <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-                  <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
-                  
-                  <div className="animate-marquee flex w-max gap-16 items-center px-8">
-                    {[...clientLogos, ...clientLogos].map((logo, idx) => (
-                      <img
-                        key={idx}
-                        src={`/Client Logo/${logo}`}
-                        alt="Client Logo"
-                        className="h-16 md:h-20 w-auto max-w-[200px] object-contain transition-transform duration-300 drop-shadow-sm cursor-pointer hover:scale-105"
-                        loading="lazy"
-                      />
-                    ))}
-                  </div>
+              {/* Full Width Marquee (Outside section-shell) */}
+              <div className="w-full relative overflow-hidden py-4 z-10">
+                <div className="animate-marquee flex w-max gap-16 items-center px-8">
+                  {[...clientLogos, ...clientLogos].map((logo, idx) => (
+                    <img
+                      key={idx}
+                      src={`/Client Logo/${logo}`}
+                      alt="Client Logo"
+                      className="h-16 md:h-20 w-auto max-w-[200px] object-contain transition-transform duration-300 drop-shadow-sm cursor-pointer hover:scale-105"
+                      loading="lazy"
+                    />
+                  ))}
                 </div>
               </div>
             </>
@@ -331,9 +326,9 @@ function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-14 grid items-start gap-6 xl:grid-cols-[4fr_4fr_2fr]">
+          <div className="mt-14 grid items-start gap-6 md:grid-cols-2 max-w-6xl mx-auto">
 
-            {/* ── LEFT: Heading + Checklist ── */}
+            {/* ── LEFT: Checklist ── */}
             <motion.div
               initial="hidden"
               variants={slideLeft}
@@ -350,19 +345,21 @@ function Home() {
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                     whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
-                    className="group flex items-start gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                    className="group flex items-center gap-4 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-5 py-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
                   >
-                    {/* Orange check icon in sky-blue pill */}
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
-                      <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                    <span className="inline-flex shrink-0 items-center justify-center text-[#EA580C]">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
                     </span>
-                    <p className="text-sm font-medium leading-6 text-black">{item}</p>
+                    <p className="text-[15px] font-medium leading-relaxed text-black">{item}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* ── RIGHT: 2×2 Floating Stat Cards ── */}
+            {/* ── RIGHT: Checklist ── */}
             <motion.div
               initial="hidden"
               variants={slideRight}
@@ -379,55 +376,20 @@ function Home() {
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                     whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
-                    className="group flex items-start gap-3 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                    className="group flex items-center gap-4 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-5 py-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
                   >
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[rgba(14,165,233,0.2)] bg-sky-50 text-[#EA580C] transition-colors duration-200 group-hover:bg-sky-100">
-                      <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                    <span className="inline-flex shrink-0 items-center justify-center text-[#EA580C]">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
                     </span>
-                    <p className="text-sm font-medium leading-6 text-black">{item}</p>
+                    <p className="text-[15px] font-medium leading-relaxed text-black">{item}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            <div className="relative self-stretch">
-              <motion.div
-                className="grid auto-rows-fr grid-cols-2 gap-3 xl:grid-cols-1 xl:gap-2.5"
-                initial="hidden"
-                variants={slideRight}
-                viewport={{ once: true, margin: '-80px' }}
-                whileInView="visible"
-              >
-                {whyPartnerStats.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    variants={staggerItem}
-                    whileHover={{ y: -4, boxShadow: '0 18px 38px rgba(14,165,233,0.11)' }}
-                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                    className="group flex min-h-[104px] flex-col items-center justify-center rounded-[2rem] border border-[rgba(14,165,233,0.22)] bg-white px-3 py-4 text-center shadow-[0_6px_24px_rgba(0,0,0,0.05)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)] sm:min-h-[112px] xl:min-h-[86px] xl:rounded-[1.75rem] xl:px-2.5 xl:py-3"
-                  >
-                    <AnimatedCounter
-                      className="font-syne text-3xl font-bold tracking-tight text-[#0EA5E9] sm:text-[2.6rem] xl:text-[2.2rem]"
-                      suffix={item.suffix}
-                      value={item.value}
-                      delay={index * 0.12}
-                      duration={1800}
-                    />
-                    <motion.div
-                      className="my-2 h-0.5 w-8 rounded-full bg-[#EA580C] opacity-100 xl:my-1.5 xl:w-7"
-                      initial={{ scaleX: 0, originX: 0.5 }}
-                      transition={{ duration: 0.6, delay: index * 0.14 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                    />
-                    <p className="max-w-[8rem] text-[10px] font-semibold uppercase tracking-[0.12em] text-black sm:text-[10px] xl:max-w-[7rem] xl:text-[0.62rem]">
-                      {item.label}
-                    </p>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-            </div>
           </div>
 
           <motion.div
@@ -476,17 +438,17 @@ function Home() {
           }}
         />
         <div className="section-shell relative z-10">
-          <Badge className="mb-6">Transformation Stories</Badge>
+          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <Badge className="mb-6">Transformation Stories</Badge>
 
-          <div className="max-w-4xl">
             <h2 className="text-[40px] font-black leading-[1.15] tracking-tight text-black">
               Driving Scalable Business
               <br />
               Transformation Across Industries
             </h2>
 
-            <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
-            <p className="mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
+            <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
               From workforce transformation to enterprise integrations, we help organizations modernize operations, improve efficiency, and create long-term business value.
             </p>
           </div>
@@ -545,8 +507,16 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-[#FFFFFF] py-12 sm:py-16 lg:py-20" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-        <div className="section-shell">
+      <section 
+        className="relative overflow-hidden bg-[#FFFFFF] py-12 sm:py-16 lg:py-20" 
+        style={{ 
+          fontFamily: "'Open Sans', sans-serif",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.04)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.04)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.02)' /%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="section-shell relative z-10">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-[40px] font-bold leading-tight tracking-tight text-[#000000]">
               Oracle Transformation Delivery Model
@@ -576,17 +546,28 @@ function Home() {
 
                   return (
                     <div key={step.title} className="relative flex justify-center h-[280px]">
-                      {/* Vertical Connecting Line */}
-                      <motion.div 
-                        className={`absolute left-1/2 w-[2px] -translate-x-1/2 z-10 ${
-                          isTop ? 'bottom-1/2 h-[20px] origin-bottom' : 'top-1/2 h-[20px] origin-top'
-                        }`}
-                        style={{ backgroundColor: circleColor }}
-                        initial={{ scaleY: 0 }}
-                        whileInView={{ scaleY: 1 }}
-                        viewport={{ once: false, margin: '-50px' }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                      />
+                      {/* Popping Ring Node */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10">
+                        <motion.div
+                          animate={{ 
+                            scale: [0.6, 1.2, 1.8, 2.4], 
+                            opacity: [0, 1, 0.6, 0] 
+                          }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity, 
+                            ease: "easeOut",
+                            times: [0, 0.15, 0.5, 1],
+                            delay: index * 0.15
+                          }}
+                          className="absolute w-4 h-4 rounded-full border-[2px] bg-transparent"
+                          style={{ borderColor: circleColor }}
+                        />
+                        <div 
+                          className="relative w-2 h-2 rounded-full z-20"
+                          style={{ backgroundColor: circleColor }}
+                        />
+                      </div>
 
                       {/* Content */}
                       <motion.div
@@ -672,7 +653,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="min-w-0">
+          <div className="min-w-0 h-[480px] sm:h-[400px] lg:h-[360px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -694,7 +675,7 @@ function Home() {
                   </svg>
                 </div>
 
-                <blockquote className="-mt-1 text-lg leading-7 text-black sm:text-xl lg:text-[1.6rem] lg:leading-[1.45]">
+                <blockquote className="-mt-1 text-sm leading-relaxed text-black sm:text-base lg:text-lg lg:leading-[1.7]">
                   {enhancedTestimonials[current].quote}
                 </blockquote>
 
@@ -703,15 +684,12 @@ function Home() {
                 <div className="mt-6 flex flex-col gap-1 text-sm sm:text-base">
                   <span className="text-lg font-semibold text-[#EA580C]">{enhancedTestimonials[current].name}</span>
                   <span className="text-black/70">
-                    {enhancedTestimonials[current].designation} · {enhancedTestimonials[current].company}
+                    {enhancedTestimonials[current].designation}
                   </span>
                 </div>
 
                 <div className="mt-4 flex flex-wrap items-center gap-3">
-                  <span className="font-semibold uppercase tracking-[0.12em] text-black">IN</span>
-                  <span className="inline-flex items-center rounded-full bg-sky-50 px-4 py-1.5 text-sm font-semibold tracking-wide text-sky-600">
-                    {enhancedTestimonials[current].category}
-                  </span>
+                  <span className="font-semibold uppercase tracking-[0.12em] text-black">{enhancedTestimonials[current].region}</span>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -735,7 +713,7 @@ function Home() {
       <section className="bg-white py-8 sm:py-10 lg:py-12">
         <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div
-            className="relative overflow-hidden rounded-[40px] border border-sky-200 bg-white p-6 sm:p-8"
+            className="relative flex flex-col justify-center overflow-hidden rounded-[40px] border border-sky-200 bg-white p-6 sm:p-10 lg:p-12 min-h-[420px]"
             style={{
               backgroundColor: '#ffffff',
               backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 50,50 0,100 20,100 70,50 20,0' fill='rgba(14,165,233,0.05)'/%3E%3Cpolygon points='30,0 80,50 30,100 50,100 100,50 50,0' fill='rgba(234,88,12,0.04)'/%3E%3C/svg%3E")`,
@@ -743,15 +721,23 @@ function Home() {
               backgroundRepeat: 'no-repeat',
             }}
           >
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              src="/Video/HPV3.mp4" 
+            />
             <motion.div
-              className="grid items-center gap-8 lg:grid-cols-[1fr_500px]"
+              className="relative z-10 grid items-center gap-8 lg:grid-cols-[1fr_500px]"
               initial={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: '-80px' }}
               whileInView={{ opacity: 1, y: 0 }}
             >
               <div>
-                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-black">
+                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-white">
                   Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
                 <div className="mt-8">
@@ -766,30 +752,42 @@ function Home() {
                 </div>
               </div>
 
-              <Card className="p-6">
-                <div className="text-base font-bold uppercase tracking-normal text-black">Value You Receive</div>
-                <ul className="mt-4 space-y-3 text-black lg:whitespace-nowrap">
-                  <li className="flex items-start gap-2.5">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
-                      <Check className="h-3 w-3 stroke-[3]" />
+              <Card className="p-6 !bg-white/10 backdrop-blur-md !border-white/20">
+                <div className="text-base font-bold uppercase tracking-normal text-white">Value You Receive</div>
+                <ul className="mt-4 space-y-3 text-white lg:whitespace-nowrap">
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
                     </span>
                     <span className="leading-6">Diagnostic Assessment Reports</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
-                      <Check className="h-3 w-3 stroke-[3]" />
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
                     </span>
                     <span className="leading-6">Fit-Gap Analysis & Recommendation Roadmap</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
-                      <Check className="h-3 w-3 stroke-[3]" />
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
                     </span>
                     <span className="leading-6">240-Hour Complimentary Engagement</span>
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-white shadow-[0_2px_8px_rgba(234,88,12,0.25)]">
-                      <Check className="h-3 w-3 stroke-[3]" />
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
                     </span>
                     <span className="leading-6">No-Obligation, Zero-Pressure Approach</span>
                   </li>

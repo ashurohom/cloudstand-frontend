@@ -2,16 +2,28 @@ import { motion } from 'framer-motion'
 import { badgeVariants } from '../../animations/variants'
 
 function Badge({ children, className = '' }) {
+  // Strip out old background, border, text, and shadow classes so the new clean design works universally
+  const cleanClassName = className
+    .split(' ')
+    .filter(c => !c.startsWith('bg-') && !c.startsWith('border') && !c.startsWith('text-') && !c.startsWith('shadow'))
+    .join(' ')
+
   return (
-    <motion.span
-      className={`badge-breathe inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#EA580C] ${className}`}
+    <motion.div
+      className={`inline-flex items-center gap-3 ${cleanClassName}`}
       initial="hidden"
       variants={badgeVariants}
       viewport={{ once: true, margin: '-60px' }}
       whileInView="visible"
     >
-      {children}
-    </motion.span>
+      <div className="flex items-center gap-1.5">
+        <span className="h-[9px] w-[9px] rounded-full bg-[#EA580C]"></span>
+        <span className="h-[9px] w-[9px] rounded-full bg-[#0EA5E9]"></span>
+      </div>
+      <span className="text-[0.8rem] font-bold uppercase tracking-[0.25em] text-black sm:text-xs">
+        {children}
+      </span>
+    </motion.div>
   )
 }
 

@@ -36,13 +36,7 @@ const team = [
   },
 ]
 
-const storyMilestones = [
-  { label: 'Founded', Icon: Users, accent: '#0EA5E9' },
-  { label: 'Growth', Icon: BarChart3, accent: '#EA580C' },
-  { label: 'Innovation', Icon: Lightbulb, accent: '#0EA5E9' },
-  { label: 'Partnership', Icon: Handshake, accent: '#EA580C' },
-  { label: 'Impact', Icon: Target, accent: '#0EA5E9' },
-]
+
 
 const aboutSectionSpacing = 'py-10 sm:py-12 lg:py-14'
 
@@ -66,136 +60,7 @@ function AboutSectionHeader({ eyebrow, title, subtitle, align = 'left', showLine
   )
 }
 
-function StoryIllustration() {
-  return (
-    <div className="relative h-[320px] overflow-hidden sm:h-[380px] lg:h-[420px]">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(14,165,233,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(14,165,233,0.06) 1px, transparent 1px)
-          `,
-          backgroundSize: '42px 42px',
-        }}
-      />
 
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[42%] opacity-80">
-        <div
-          className="absolute inset-x-[8%] bottom-[8%] h-[48%]"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle, rgba(14,165,233,0.28) 0 1.6px, transparent 1.7px)',
-            backgroundSize: '10px 10px',
-            clipPath: 'polygon(8% 42%, 22% 28%, 35% 34%, 49% 22%, 60% 30%, 78% 18%, 91% 28%, 86% 63%, 67% 88%, 44% 79%, 28% 91%, 12% 72%)',
-          }}
-        />
-        {[12, 42, 71, 88].map((left) => (
-          <div
-            key={left}
-            className="absolute bottom-[10%] h-3.5 w-3.5 rounded-full border-2 border-[#EA580C] shadow-[0_0_0_6px_rgba(234,88,12,0.10)]"
-            style={{ backgroundColor: 'rgba(14,165,233,0.12)', left: `${left}%` }}
-          />
-        ))}
-        <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-          <path d="M12 76 C24 50, 35 90, 42 58 S63 28, 71 62 S84 40, 88 26" fill="none" stroke="rgba(234,88,12,0.35)" strokeWidth="0.4" />
-          <path d="M12 76 C24 50, 35 90, 42 58 S63 28, 71 62 S84 40, 88 26" fill="none" stroke="rgba(14,165,233,0.22)" strokeWidth="0.7" />
-        </svg>
-      </div>
-
-      <div className="pointer-events-none absolute right-[7%] top-[10%] flex h-[34%] items-end gap-2 opacity-85">
-        {[38, 54, 72, 108, 82, 128, 92].map((height) => (
-          <div
-            key={height}
-            className="w-7 rounded-t-[12px] border border-[rgba(14,165,233,0.18)]"
-            style={{ background: 'linear-gradient(180deg, rgba(14,165,233,0.32), rgba(14,165,233,0.08))', height }}
-          >
-            <div className="mx-auto mt-3 h-[72%] w-[62%] opacity-60" style={{ backgroundImage: 'radial-gradient(circle, rgba(14,165,233,0.9) 0 1px, transparent 1.2px)', backgroundSize: '6px 8px' }} />
-          </div>
-        ))}
-        <motion.div
-          animate={{ y: [0, -8, 0] }}
-          className="absolute -right-2 bottom-0 h-28 w-20"
-          transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <div className="absolute bottom-0 left-8 h-20 w-3 rounded-full bg-[rgba(14,165,233,0.20)]" />
-          <div className="absolute bottom-10 left-3 h-20 w-14 rounded-t-[999px] rounded-b-[18px] border border-[rgba(14,165,233,0.22)] [clip-path:polygon(50%_0%,100%_65%,70%_65%,70%_100%,30%_100%,30%_65%,0%_65%)]" style={{ background: 'linear-gradient(180deg, rgba(14,165,233,1), rgba(14,165,233,0.18))' }} />
-        </motion.div>
-      </div>
-
-      <div className="absolute left-[7%] top-[13%]">
-        <motion.div
-          animate={{ y: [0, -6, 0] }}
-          className="relative rounded-[30px] border border-[rgba(14,165,233,0.25)] px-8 py-7 shadow-[0_16px_34px_rgba(14,165,233,0.12)]"
-          style={{ background: 'linear-gradient(180deg, rgba(14,165,233,0.08), rgba(14,165,233,0.02))' }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <div className="absolute -inset-3 rounded-[38px] border border-[rgba(14,165,233,0.10)]" />
-          <Cloud className="h-20 w-20 text-[#0EA5E9]" strokeWidth={1.7} />
-        </motion.div>
-      </div>
-
-      <svg className="absolute bottom-[16%] left-[10%] h-[48%] w-[78%]" viewBox="0 0 100 36" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="story-road-fill" x1="0%" x2="100%" y1="0%" y2="0%">
-            <stop offset="0%" stopColor="rgba(14,165,233,0.22)" />
-            <stop offset="100%" stopColor="rgba(14,165,233,0.36)" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M0 30 C10 26, 12 11, 24 14 S39 29, 50 23 S61 8, 73 12 S87 28, 100 4"
-          fill="none"
-          stroke="rgba(14,165,233,0.12)"
-          strokeLinecap="round"
-          strokeWidth="9"
-        />
-        <path
-          d="M0 30 C10 26, 12 11, 24 14 S39 29, 50 23 S61 8, 73 12 S87 28, 100 4"
-          fill="none"
-          stroke="url(#story-road-fill)"
-          strokeLinecap="round"
-          strokeWidth="6"
-        />
-        <path
-          d="M0 30 C10 26, 12 11, 24 14 S39 29, 50 23 S61 8, 73 12 S87 28, 100 4"
-          fill="none"
-          stroke="rgba(234,88,12,0.55)"
-          strokeDasharray="2 3"
-          strokeLinecap="round"
-          strokeWidth="0.8"
-        />
-      </svg>
-
-      <div className="absolute inset-x-[7%] bottom-[16%] top-[34%]">
-        {storyMilestones.map(({ label, Icon, accent }, index) => {
-          const positions = [
-            'left-[0%] top-[60%]',
-            'left-[21%] top-[40%]',
-            'left-[43%] top-[28%]',
-            'left-[64%] top-[17%]',
-            'left-[83%] top-[2%]',
-          ]
-
-          return (
-            <motion.div
-              key={label}
-              animate={{ y: [0, -5, 0] }}
-              className={`absolute ${positions[index]} flex flex-col items-center`}
-              transition={{ duration: 3 + index * 0.35, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <div className="mb-2 text-xs font-semibold text-[#0EA5E9]">{label}</div>
-              <div className="rounded-full border border-[rgba(14,165,233,0.18)] p-2 shadow-[0_14px_26px_rgba(14,165,233,0.10)]" style={{ background: 'linear-gradient(180deg, rgba(14,165,233,0.10), rgba(14,165,233,0.03))' }}>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(14,165,233,0.18)] shadow-[inset_0_-8px_18px_rgba(14,165,233,0.10)]" style={{ background: 'linear-gradient(180deg, rgba(14,165,233,0.12), rgba(14,165,233,0.03))' }}>
-                  <Icon className="h-6 w-6" color={accent} strokeWidth={1.9} />
-                </div>
-              </div>
-            </motion.div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
 function About() {
   useDocumentTitle('About CloudStand | Oracle Cloud Consulting Team')
@@ -218,27 +83,46 @@ function About() {
             backgroundSize: '56px 56px',
           }}
         />
-        <div className="section-shell relative z-10 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          <div>
+        <div className="section-shell relative z-10 grid items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 pt-8 lg:pt-12">
+          <div className="flex flex-col justify-center">
             <motion.div
               animate={{ opacity: 1, scale: 1, y: 0 }}
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Badge>About CloudStand</Badge>
+              <Badge>Who we are</Badge>
             </motion.div>
-            <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[1.02] tracking-[-0.03em] text-black md:text-[2.75rem] lg:text-[3rem]">
-              We Are CloudStand
+            <h1 className="mt-6 max-w-5xl text-[40px] font-extrabold leading-[1.02] tracking-[-0.03em] text-black">
+              Transforming Oracle Cloud Investments into Business Value
             </h1>
-            <motion.p
+            <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 max-w-3xl text-justify text-lg leading-8 text-black/75"
+              className="mt-6 max-w-3xl space-y-4 text-justify text-base leading-7 text-black/75"
               initial={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              A Pune-based Oracle Cloud consulting firm helping global clients modernize operations through sharper delivery, stronger governance, and measurable business outcomes. We partner with organizations across HCM, ERP, Payroll, OIC, BI, and AI initiatives to simplify transformation, improve execution quality, and build long-term operational resilience.
-            </motion.p>
-            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#EA580C] px-4 py-2 text-sm font-medium text-[#EA580C]">
+              <p>
+                Cloudstand Vision is a fast‑growing, innovation‑driven Oracle Cloud consulting firm dedicated to helping global enterprises unlock measurable business value from their cloud investments. Founded in 2022 in India, we have rapidly expanded our global delivery presence with operational offices in the United States and India, supporting clients across North America, EMEA, and APAC.
+              </p>
+              <p>
+                We are recognized as rescue specialists, trusted by organizations to stabilize, recover, and deliver complex, long‑delayed Oracle HCM programs with precision and confidence. Our strength lies in deep expertise across the entire Oracle Cloud Suite, enterprise‑grade integrations, and emerging AI‑driven solutions that accelerate transformation outcomes.
+              </p>
+              <p>
+                Our services span consulting, implementation, and managed services, enabling enterprises to adopt scalable, future‑ready operating models. With strong capabilities in security, data governance, and risk management, we safeguard enterprise ecosystems through robust functional security practices, compliance‑aligned frameworks, and secure Oracle Cloud architectures.
+              </p>
+              <p>
+                To fuel continuous innovation, we operate a dedicated Cloud Science Center of Excellence (CoE) focused on building proprietary accelerators, advancing agentic AI capabilities, and strengthening integration frameworks—enhancing delivery efficiency, predictability, and business insights across engagements.
+              </p>
+              <p className="text-left font-semibold text-[#0EA5E9]">Our proven track record includes:</p>
+              <ul className="list-inside list-disc space-y-2 text-left pl-4 marker:text-[#EA580C]">
+                <li>Delivering Oracle Time &amp; Labor solutions for 200,000+ employees</li>
+                <li>Implementing Oracle Payroll solutions for 600,000+ employees across global regions</li>
+              </ul>
+              <p>
+                As a growing and ambitious organization, our focus is firmly on delivering quality, building credibility, and earning trust. This is further strengthened through complementary accelerators and service capabilities that enhance delivery efficiency and client outcomes.
+              </p>
+            </motion.div>
+            <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-[#EA580C] px-4 py-2 text-sm font-medium text-[#EA580C] w-fit">
               <Cloud className="h-4 w-4" />
               <span>Trusted Oracle Cloud focused on clarity, speed, and lasting business impact.</span>
             </div>
@@ -246,16 +130,25 @@ function About() {
 
           <motion.div
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            className="relative"
+            className="relative grid grid-cols-2 gap-4 h-full"
             initial={{ opacity: 0, scale: 0.96, x: 24 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="overflow-hidden rounded-[28px] border border-[rgba(14,165,233,0.22)] bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)]">
-              <img
-                src="/Aboutus.jpeg"
-                alt="CloudStand team collaboration"
-                className="h-full w-full object-cover"
-              />
+            <div className="flex flex-col gap-4 pt-10 h-full">
+              <div className="overflow-hidden rounded-[24px] border border-[rgba(14,165,233,0.22)] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex-1 min-h-[150px]">
+                <img src="/texas.jpeg" alt="CloudStand Operations" className="h-full w-full object-cover" />
+              </div>
+              <div className="overflow-hidden rounded-[24px] border border-[rgba(14,165,233,0.22)] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex-1 min-h-[150px]">
+                <img src="/Contact_Header.jpeg" alt="CloudStand Global" className="h-full w-full object-cover" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 pb-10 h-full">
+              <div className="overflow-hidden rounded-[24px] border border-[rgba(14,165,233,0.22)] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex-1 min-h-[150px]">
+                <img src="/Aboutus2.jpeg" alt="CloudStand Expertise" className="h-full w-full object-cover" />
+              </div>
+              <div className="overflow-hidden rounded-[24px] border border-[rgba(14,165,233,0.22)] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex-1 min-h-[150px]">
+                <img src="/newyork.jpeg" alt="Global Reach" className="h-full w-full object-cover" />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -266,63 +159,23 @@ function About() {
           <motion.div initial="hidden" variants={slideLeft} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <div className="h-full rounded-[28px] border border-[rgba(14,165,233,0.22)] bg-white p-8 shadow-[0_18px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)]">
               <Badge>Mission</Badge>
-              <h2 className="mt-4 text-3xl font-bold text-black">Build Oracle Cloud programs that create real business momentum.</h2>
               <p className="mt-4 text-base leading-8 text-black/75">
-                We focus on implementation quality, adoption, and outcomes that matter to leadership teams, not just technical completion.
+                To deliver Oracle Cloud transformation with integrity, innovation, and unwavering security—leveraging automation and AI to reduce risks, optimize costs, and accelerate business results for our clients.
               </p>
             </div>
           </motion.div>
           <motion.div initial="hidden" variants={slideRight} viewport={{ once: true, margin: '-80px' }} whileInView="visible">
             <div className="h-full rounded-[28px] border border-[rgba(14,165,233,0.22)] bg-white p-8 shadow-[0_18px_40px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)]">
               <Badge>Vision</Badge>
-              <h2 className="mt-4 text-3xl font-bold text-black">Become the most trusted Oracle Cloud transformation partner for growth-stage enterprises.</h2>
               <p className="mt-4 text-base leading-8 text-black/75">
-                CloudStand aims to combine global delivery discipline with the agility and attention clients often miss in larger consulting models.
+                To be the most trusted Oracle Cloud transformation partner by sustaining unwavering integrity, fostering world‑class talent, and continuously delivering success through automation, AI‑driven innovation, and outcome‑focused secured solutions.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <div className="section-shell bg-white">
-        <div className="flex items-center gap-2">
-          <div className="h-1 w-40 rounded-full bg-[#D63B25]" />
-          <div className="h-1 w-1 rounded-full bg-[#D63B25]" />
-          <div className="h-1 w-1 rounded-full bg-[#D63B25]" />
-        </div>
-      </div>
 
-      <section className={`${aboutSectionSpacing} bg-white`}>
-        <div className="section-shell grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-          <motion.div
-            className="relative"
-            initial="hidden"
-            variants={slideLeft}
-            viewport={{ once: true, margin: '-80px' }}
-            whileInView="visible"
-          >
-            <StoryIllustration />
-          </motion.div>
-          <motion.div
-            className="space-y-6 text-base leading-8 text-black/75"
-            initial="hidden"
-            variants={slideRight}
-            viewport={{ once: true, margin: '-80px' }}
-            whileInView="visible"
-          >
-            <AboutSectionHeader eyebrow="Our Story" title="Built by Oracle practitioners who value execution" showLine={false} />
-            <p>
-              Founded in 2022, CloudStand was built by Oracle practitioners who had seen both sides of enterprise transformation: ambitious leadership goals and the delivery gaps that often slow them down.
-            </p>
-            <p>
-              We created CloudStand to give clients a more focused Oracle Cloud partner, one that combines strategic clarity with hands-on delivery depth across HCM, ERP, Payroll, OIC, BI, and emerging AI use cases.
-            </p>
-            <p>
-              From Pune, we support global organizations that need a responsive, accountable team capable of guiding transformation from discovery through hypercare with the same rigor at every step.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       <section className={`${aboutSectionSpacing} bg-white`}>
         <div className="section-shell">
@@ -351,7 +204,7 @@ function About() {
 
       <section className={`${aboutSectionSpacing} bg-white`}>
         <div className="section-shell">
-          <AboutSectionHeader eyebrow="Leadership" title="A focused team with enterprise delivery instincts" />
+          <AboutSectionHeader align="center" eyebrow="Leadership" title="A focused team with enterprise delivery instincts" />
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {team.map((member) => (
               <div key={member.name}>
