@@ -175,9 +175,7 @@ New York, NY 10001`,
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section
-
-        className="relative overflow-hidden pt-12 pb-16 lg:min-h-[60vh] lg:flex lg:items-center"
-
+        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center"
         style={{
 
           backgroundColor: '#ffffff',
@@ -202,14 +200,14 @@ New York, NY 10001`,
 
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             {/* LEFT CONTENT */}
-            <div className="max-w-[760px] lg:w-[55%] flex flex-col items-center text-center">
+            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
 
             <motion.div
               animate={{ opacity: 1, scale: 1, y: 0 }}
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Badge>Contact CloudStand</Badge>
+              <Badge>CONTACT CLOUDSTAND</Badge>
             </motion.div>
 
             {/* BLUE LINE */}
@@ -218,22 +216,19 @@ New York, NY 10001`,
 
             <motion.h1
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center"
+              className="mt-6 text-[50px] lg:text-[60px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
               initial={{ opacity: 0, y: 25 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-
               Let’s Build Something
               <br />
-
               Exceptional
-
             </motion.h1>
 
             {/* DESCRIPTION */}
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 max-w-[700px] text-[18px] leading-8 text-[#475569] text-center"
+              className="mt-6 max-w-[600px] text-[18px] leading-8 text-[#475569] text-left"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
@@ -246,10 +241,9 @@ New York, NY 10001`,
             </motion.p>
 
             {/* BUTTONS */}
-            {/* BUTTONS */}
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 flex flex-wrap justify-center items-center gap-5"
+              className="mt-8 flex flex-wrap justify-start items-center gap-5"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
@@ -257,7 +251,7 @@ New York, NY 10001`,
               {/* ORANGE BUTTON */}
               <button
                 onClick={() =>
-                  document.getElementById('lets-talk')?.scrollIntoView({
+                  document.getElementById('premium-inquiry')?.scrollIntoView({
                     behavior: 'smooth',
                   })
                 }
@@ -303,80 +297,18 @@ New York, NY 10001`,
             </motion.div>
             </div>
 
-            {/* RIGHT VISUAL - PREMIUM MODERN IMAGE */}
+            {/* RIGHT VISUAL - TEXT WATERMARK */}
             <motion.div
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-16 hidden lg:mt-0 lg:block lg:w-[45%]"
+              className="hidden lg:flex lg:w-[40%] lg:justify-end lg:items-center select-none pointer-events-none translate-x-12 xl:translate-x-24 2xl:translate-x-32"
             >
-              <div className="relative mx-auto w-full max-w-[440px]">
-                {/* Layered blurred accents behind the main composition */}
-                <div className="absolute -inset-8 z-0 rounded-[100px] bg-gradient-to-tr from-[#0EA5E9]/10 to-[#EA580C]/10 blur-3xl" />
-                <div className="absolute -bottom-16 -right-16 z-0 h-64 w-64 rounded-full bg-[#EA580C]/15 blur-3xl" />
-                <div className="absolute -left-16 -top-16 z-0 h-64 w-64 rounded-full bg-[#0EA5E9]/15 blur-3xl" />
-                
-                {/* Main Asymmetrical Container */}
-                <motion.div
-                  animate={{ y: [0, -12, 0] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-                  className="relative z-10 overflow-hidden rounded-[40px] rounded-bl-[80px] rounded-tr-[100px] border border-white/40 bg-white/30 p-2 shadow-[0_24px_60px_rgba(0,0,0,0.08)] backdrop-blur-xl"
-                >
-                  <div className="overflow-hidden rounded-[32px] rounded-bl-[72px] rounded-tr-[92px] border border-white/60 bg-white/60">
-                    <img
-                      src="/Contact_Header.jpeg"
-                      alt="Sophisticated Enterprise Cloud Operations Dashboard"
-                      className="h-auto w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                    />
-                  </div>
-                </motion.div>
-
-                {/* Floating Mini Card 1: Uptime */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  className="absolute -left-8 top-16 z-20 flex items-center gap-3 rounded-2xl border border-white/50 bg-white/80 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] backdrop-blur-md"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                    <Activity className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#0EA5E9]">Availability</p>
-                    <p className="text-sm font-bold text-[#EA580C]">99.9% Uptime</p>
-                  </div>
-                </motion.div>
-
-                {/* Floating Mini Card 2: Enterprise Cloud */}
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                  className="absolute -right-6 top-1/2 z-20 flex -translate-y-1/2 items-center gap-3 rounded-2xl border border-white/50 bg-white/80 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] backdrop-blur-md"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-50 text-sky-600">
-                    <Cloud className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#0EA5E9]">Oracle Solutions</p>
-                    <p className="text-sm font-bold text-[#EA580C]">Enterprise Cloud</p>
-                  </div>
-                </motion.div>
-
-                {/* Floating Mini Card 3: AI Automation */}
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="absolute -bottom-6 left-12 z-20 flex items-center gap-3 rounded-2xl border border-white/50 bg-white/80 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] backdrop-blur-md"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-orange-600">
-                    <Sparkles className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#0EA5E9]">Operations</p>
-                    <p className="text-sm font-bold text-[#EA580C]">AI Automation</p>
-                  </div>
-                </motion.div>
-
-              </div>
+              <h2 className="text-[70px] xl:text-[90px] 2xl:text-[100px] font-black leading-[0.85] tracking-tight text-right text-[#EA580C]/10 uppercase">
+                ORACLE<br />
+                CLOUD<br />
+                CONSULTING
+              </h2>
             </motion.div>
           </div>
         </div>
@@ -539,7 +471,7 @@ New York, NY 10001`,
       </section>
 
       {/* EMBEDDED CONTACT FORM SECTION */}
-      <section className="relative overflow-hidden bg-[#F7F9FC] py-16">
+      <section id="premium-inquiry" className="relative overflow-hidden bg-[#F7F9FC] py-16">
         <div className="section-shell relative z-10 max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-0 overflow-hidden rounded-[24px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] border border-[#e2e8f0]">
 

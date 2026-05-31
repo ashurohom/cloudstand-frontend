@@ -95,30 +95,33 @@ function Footer() {
             </div>
 
             {/* Column 4: Ask an Expert & Partner Logo */}
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-center sm:items-start lg:items-center">
               <Link 
                 to="/contact" 
-                className="inline-block px-6 py-2.5 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-6 shadow-md"
+                className="inline-block px-6 py-2.5 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-8 shadow-md"
               >
                 Ask an Expert
               </Link>
               
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex w-full justify-center sm:justify-start lg:justify-center items-center gap-6 mb-8">
+                {/* LinkedIn Icon */}
                 <a
                   href="https://linkedin.com/company/cloudstandconsulting"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sky-100 transition duration-200 hover:text-orange-500"
+                  className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#0A66C2] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_24px_rgba(10,102,194,0.6)]"
                 >
-                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="relative z-10 h-8 w-8 fill-current">
                     <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9h4v12H3zm7 0h3.83v1.64h.05c.53-1 1.84-2.06 3.79-2.06C21.5 8.58 22 11.1 22 14.38V21h-4v-5.87c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z" />
                   </svg>
                 </a>
+                
+                {/* YouTube Icon */}
                 <a
                   href="#"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sky-100 transition duration-200 hover:text-orange-500"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1F2937] text-sky-100 transition-all duration-300 hover:scale-110 hover:bg-[#FF0000] hover:text-white"
                 >
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
                     <path d="M21.582 6.186a2.665 2.665 0 0 0-1.876-1.884C17.953 3.84 12 3.84 12 3.84s-5.953 0-7.706.462a2.665 2.665 0 0 0-1.876 1.884C1.953 7.95 1.953 12 1.953 12s0 4.05.465 5.814a2.665 2.665 0 0 0 1.876 1.884c1.753.462 7.706.462 7.706.462s5.953 0 7.706-.462a2.665 2.665 0 0 0 1.876-1.884c.465-1.764.465-5.814.465-5.814s0-4.05-.465-5.814ZM9.953 15.545V8.454l6.327 3.546-6.327 3.545Z" />
@@ -126,7 +129,7 @@ function Footer() {
                 </a>
               </div>
 
-              <div className="flex flex-col items-start gap-4">
+              <div className="flex w-full justify-center sm:justify-start lg:justify-center">
                 <img 
                   src="/oracle-partner-logo.png" 
                   alt="Oracle Partner" 
