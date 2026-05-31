@@ -28,8 +28,8 @@ function Footer() {
       {/* Top Border Glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0EA5E9]/40 to-transparent" />
       
-      <div className="relative z-10 px-6 pt-16 pb-0">
-        <div className="mx-auto max-w-7xl">
+      <div className="relative z-10 pt-16 pb-0">
+        <div className="section-shell">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:flex lg:justify-between justify-items-start text-left w-full">
             
             {/* Column 1: Company */}

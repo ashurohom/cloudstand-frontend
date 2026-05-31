@@ -764,10 +764,10 @@ function Home() {
               </div>
 
               <Card className="p-6 !bg-white/10 backdrop-blur-md !border-white/20">
-                <div className="text-base font-bold uppercase tracking-normal text-white">Value You Receive</div>
-                <ul className="mt-4 space-y-3 text-white lg:whitespace-nowrap">
+                <div className="text-base font-extrabold uppercase tracking-normal text-white drop-shadow-lg">Value You Receive</div>
+                <ul className="mt-4 space-y-3 text-white font-medium drop-shadow-md lg:whitespace-nowrap">
                   <li className="group flex items-start gap-3">
-                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
                       <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
                         <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
                         <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
@@ -776,7 +776,7 @@ function Home() {
                     <span className="leading-6">Diagnostic Assessment Reports</span>
                   </li>
                   <li className="group flex items-start gap-3">
-                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
                       <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
                         <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
                         <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
@@ -785,7 +785,7 @@ function Home() {
                     <span className="leading-6">Fit-Gap Analysis & Recommendation Roadmap</span>
                   </li>
                   <li className="group flex items-start gap-3">
-                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
                       <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
                         <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
                         <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
@@ -794,7 +794,7 @@ function Home() {
                     <span className="leading-6">240-Hour Complimentary Engagement</span>
                   </li>
                   <li className="group flex items-start gap-3">
-                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C]">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
                       <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
                         <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
                         <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
