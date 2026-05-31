@@ -255,16 +255,20 @@ function Home() {
               </div>
 
               {/* Full Width Marquee (Outside section-shell) */}
-              <div className="w-full relative overflow-hidden py-4 z-10">
-                <div className="animate-marquee flex w-max gap-16 items-center px-8">
+              <div className="w-full relative overflow-hidden py-8 z-10">
+                <div className="animate-marquee flex w-max gap-8 items-center px-4">
                   {[...clientLogos, ...clientLogos].map((logo, idx) => (
-                    <img
-                      key={idx}
-                      src={`/Client Logo/${logo}`}
-                      alt="Client Logo"
-                      className="h-16 md:h-20 w-auto max-w-[200px] object-contain transition-transform duration-300 drop-shadow-sm cursor-pointer hover:scale-105"
-                      loading="lazy"
-                    />
+                    <div 
+                      key={idx} 
+                      className="group flex h-[110px] w-[240px] shrink-0 items-center justify-center rounded-2xl border border-white/60 bg-slate-200/40 backdrop-blur-lg p-7 shadow-[0_8px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-200/60 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
+                    >
+                      <img
+                        src={`/Client Logo/${logo}`}
+                        alt="Client Logo"
+                        className="h-[42px] w-auto max-w-[160px] object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -531,7 +535,7 @@ function Home() {
               <div className="grid grid-cols-6 gap-2 relative">
                 {/* Central Horizontal Line */}
                 <motion.div 
-                  className="absolute top-1/2 left-0 right-0 h-[1px] bg-slate-200 -translate-y-1/2 z-0"
+                  className="absolute top-1/2 left-0 right-0 h-[1px] bg-[#EA580C] -translate-y-1/2 z-0"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: false, margin: '-50px' }}
@@ -546,6 +550,13 @@ function Home() {
 
                   return (
                     <div key={step.title} className="relative flex justify-center h-[280px]">
+                      {/* Vertical Line */}
+                      <div 
+                        className={`absolute left-1/2 w-[1px] bg-[#EA580C] -translate-x-1/2 z-0 ${
+                          isTop ? 'bottom-1/2 h-7' : 'top-1/2 h-7'
+                        }`}
+                      />
+                      
                       {/* Popping Ring Node */}
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10">
                         <motion.div
@@ -571,7 +582,7 @@ function Home() {
 
                       {/* Content */}
                       <motion.div
-                        className={`absolute w-[130%] px-1 text-center flex flex-col items-center z-30 ${
+                        className={`absolute w-[95%] px-1 text-center flex flex-col items-center z-30 ${
                           isTop ? 'bottom-[calc(50%+28px)]' : 'top-[calc(50%+28px)]'
                         }`}
                         initial={{ opacity: 0, y: isTop ? 20 : -20 }}

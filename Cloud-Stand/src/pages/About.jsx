@@ -113,11 +113,13 @@ function About() {
               <p>
                 To fuel continuous innovation, we operate a dedicated Cloud Science Center of Excellence (CoE) focused on building proprietary accelerators, advancing agentic AI capabilities, and strengthening integration frameworks—enhancing delivery efficiency, predictability, and business insights across engagements.
               </p>
-              <p className="text-left font-semibold text-[#0EA5E9]">Our proven track record includes:</p>
-              <ul className="list-inside list-disc space-y-2 text-left pl-4 marker:text-[#EA580C]">
-                <li>Delivering Oracle Time &amp; Labor solutions for 200,000+ employees</li>
-                <li>Implementing Oracle Payroll solutions for 600,000+ employees across global regions</li>
-              </ul>
+              <div className="mt-5 mb-4 rounded-2xl bg-[#0EA5E9]/5 p-6 text-left backdrop-blur-2xl border border-[#0EA5E9]/10">
+                <p className="font-semibold text-[#0EA5E9] mb-4">Our proven track record includes:</p>
+                <ul className="list-outside list-disc space-y-3 pl-6 marker:text-[#EA580C]">
+                  <li>Delivering Oracle Time &amp; Labor solutions for 200,000+ employees</li>
+                  <li>Implementing Oracle Payroll solutions for 600,000+ employees across global regions</li>
+                </ul>
+              </div>
               <p>
                 As a growing and ambitious organization, our focus is firmly on delivering quality, building credibility, and earning trust. This is further strengthened through complementary accelerators and service capabilities that enhance delivery efficiency and client outcomes.
               </p>
