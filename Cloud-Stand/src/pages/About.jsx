@@ -58,7 +58,7 @@ function About() {
         
         <div className="section-shell relative z-10 w-full pt-4 lg:pt-6">
           {/* Row 1: Left Image (40%), Right Text (60%) */}
-          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6 mb-6 lg:mb-8">
+          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6 mb-12 lg:mb-16">
             <motion.div 
               className="w-full lg:w-[40%]"
               initial={{ opacity: 0, x: -30 }}
@@ -67,7 +67,7 @@ function About() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center justify-center py-2 w-full">
-                <svg viewBox="0 0 100 100" className="w-48 h-48 lg:w-64 lg:h-64 fill-[#EA580C] drop-shadow-lg">
+                <svg viewBox="0 0 100 100" className="w-32 h-32 lg:w-48 lg:h-48 fill-[#EA580C] drop-shadow-lg">
                   <polygon points="0,0 100,50 0,100" />
                 </svg>
               </div>
@@ -115,7 +115,7 @@ function About() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center justify-center py-2 w-full">
-                <svg viewBox="0 0 100 100" className="w-48 h-48 lg:w-64 lg:h-64 fill-[#EA580C] drop-shadow-lg">
+                <svg viewBox="0 0 100 100" className="w-32 h-32 lg:w-48 lg:h-48 fill-[#EA580C] drop-shadow-lg">
                   <polygon points="100,0 0,50 100,100" />
                 </svg>
               </div>
