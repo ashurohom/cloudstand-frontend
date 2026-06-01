@@ -303,7 +303,7 @@ function BackgroundDesigns() {
     >
       <section className="border-b border-slate-200 bg-white py-14 sm:py-16">
         <div className="section-shell">
-          <Badge>Temporary Client Review Page</Badge>
+          <Badge>Temporary Texture Design Review Page</Badge>
           <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight text-black sm:text-5xl">
             Background Design Options
           </h1>
