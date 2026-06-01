@@ -48,13 +48,13 @@ const deliveryModelSteps = [
 ]
 
 const clientExperienceList = [
-  'Bukhatir', 'M Group', 'Herriat Watt University', 'Cooper Vision USA', 
-  'Higher College Technologies', 'Royal Cargo', 'Envision HealthCare', 
-  'Crawford and Company', 'The River Side Group', 'Hoya INC', 
-  'Resource Innovation USA', 'Emaar', 'Naresco', 'Aster', 
-  'Abu Dhabi Islamic Bank', 'Almana Group', 'Vodafone', 'Clayco', 
-  'Rashed al Rashed', 'Zameel', 'MHp Group', 'American Express', 
-  'Ford Motors', 'AT & T', 'Technip Energies', 'Zameel Group', 
+  'Bukhatir', 'M Group', 'Herriat Watt University', 'Cooper Vision USA',
+  'Higher College Technologies', 'Royal Cargo', 'Envision HealthCare',
+  'Crawford and Company', 'The River Side Group', 'Hoya INC',
+  'Resource Innovation USA', 'Emaar', 'Naresco', 'Aster',
+  'Abu Dhabi Islamic Bank', 'Almana Group', 'Vodafone', 'Clayco',
+  'Rashed al Rashed', 'Zameel', 'MHp Group', 'American Express',
+  'Ford Motors', 'AT & T', 'Technip Energies', 'Zameel Group',
   'Rheem Manufacturing', 'United Lex'
 ]
 
@@ -213,24 +213,32 @@ function Home() {
 
       <GlobalDelivery />
 
-      <section className="bg-white py-20 sm:py-24 border-y border-sky-100 relative overflow-hidden">
+      <section 
+        className="relative overflow-hidden py-20 sm:py-24 border-y border-sky-100/50"
+        style={{
+          backgroundColor: '#f8fafc',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C30,40 70,60 100,0 L100,100 L0,100 Z' fill='rgba(14,165,233,0.02)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         {(() => {
           const clientLogos = [
             "1_Bukhatir.png", "2_mgroup_primarylogo_gradient_bluetext_rgb.png", "3. Herriat Watt University.png",
-            "4. CooperVision.webp", "5. Higher College Technologies.png", "6. Royal Cargo.png",
+            "4. CooperVision.png", "5. Higher College Technologies.png", "6. Royal Cargo.png",
             "7. Envision HealthCare.png", "8. Crawford and Company.png", "9. The River Side Group.png",
             "10. Hoya Inc.png", "11. Resource Innovation USA.png", "12. Emaar UAE.png",
             "13. Naresco.png", "14. Aster.png", "15. Abu Dhabi Islamic Bank.png",
             "16. Almana Group.png", "17. Vodafone.png", "18. Clayco USA.png",
-            "19. Rashed al Rashed.png", "20_Zameel.webp", "21_MHp Group.png",
+            "19. Rashed al Rashed.png", "20_Zameel.png", "21_MHp Group.png",
             "22_American Express.png", "23_Ford Motors.png", "24_AT & T.png",
-            "25_Technip Energies.png", "26_Zameel Group.webp", "27_Rheem Manufacturing.png",
+            "25_Technip Energies.png", "26_Zameel Group.png", "27_Rheem Manufacturing.png",
             "28_United Lex.png"
           ];
           return (
             <>
               <style>
-              {`
+                {`
                 @keyframes marquee {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
@@ -248,7 +256,7 @@ function Home() {
                   <h2 className="text-[40px] font-bold tracking-tight text-black">
                     Proven Team Experience
                   </h2>
-                  <p className="mt-6 text-[17px] sm:text-[18px] leading-relaxed text-black/80 font-medium">
+                  <p className="mt-6 text-[17px] sm:text-[18px] leading-relaxed text-slate-600 font-medium">
                     Our team brings global delivery experience across North America, EMEA, and APAC, contributing to successful Oracle transformation programs through strategic partnerships and subcontracting models.
                   </p>
                 </div>
@@ -256,16 +264,21 @@ function Home() {
 
               {/* Full Width Marquee (Outside section-shell) */}
               <div className="w-full relative overflow-hidden py-8 z-10">
-                <div className="animate-marquee flex w-max gap-8 items-center px-4">
+                {/* Fade edges */}
+                <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-32 bg-gradient-to-r from-[#f8fafc] to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-32 bg-gradient-to-l from-[#f8fafc] to-transparent" />
+                
+                <div className="animate-marquee flex w-max gap-6 items-center px-4">
                   {[...clientLogos, ...clientLogos].map((logo, idx) => (
-                    <div 
-                      key={idx} 
-                      className="group flex h-[110px] w-[240px] shrink-0 items-center justify-center rounded-2xl border border-white/60 bg-slate-200/40 backdrop-blur-lg p-7 shadow-[0_8px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-200/60 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
+                    <div
+                      key={idx}
+                      className="group relative flex h-[130px] w-[240px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-[0_12px_40px_rgba(14,165,233,0.12)]"
                     >
+                      <div className="absolute inset-0 bg-gradient-to-br from-sky-50/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       <img
-                        src={`/Client Logo/${logo}`}
+                        src={`/Client Logo/Processed/${logo}`}
                         alt="Client Logo"
-                        className="h-[42px] w-auto max-w-[160px] object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                        className="relative z-10 h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.05]"
                         loading="lazy"
                       />
                     </div>
@@ -511,9 +524,9 @@ function Home() {
         </div>
       </section>
 
-      <section 
-        className="relative overflow-hidden bg-[#FFFFFF] py-12 sm:py-16 lg:py-20" 
-        style={{ 
+      <section
+        className="relative overflow-hidden bg-[#FFFFFF] py-12 sm:py-16 lg:py-20"
+        style={{
           fontFamily: "'Open Sans', sans-serif",
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.04)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.04)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.02)' /%3E%3C/svg%3E")`,
           backgroundSize: '100% 100%',
@@ -534,7 +547,7 @@ function Home() {
             <div className="min-w-[1000px] w-full relative">
               <div className="grid grid-cols-6 gap-2 relative">
                 {/* Central Horizontal Line */}
-                <motion.div 
+                <motion.div
                   className="absolute top-1/2 left-0 right-0 h-[1px] bg-[#EA580C] -translate-y-1/2 z-0"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -551,22 +564,21 @@ function Home() {
                   return (
                     <div key={step.title} className="relative flex justify-center h-[280px]">
                       {/* Vertical Line */}
-                      <div 
-                        className={`absolute left-1/2 w-[1px] bg-[#EA580C] -translate-x-1/2 z-0 ${
-                          isTop ? 'bottom-1/2 h-7' : 'top-1/2 h-7'
-                        }`}
+                      <div
+                        className={`absolute left-1/2 w-[1px] bg-[#EA580C] -translate-x-1/2 z-0 ${isTop ? 'bottom-1/2 h-7' : 'top-1/2 h-7'
+                          }`}
                       />
-                      
+
                       {/* Popping Ring Node */}
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10">
                         <motion.div
-                          animate={{ 
-                            scale: [0.6, 1.2, 1.8, 2.4], 
-                            opacity: [0, 1, 0.6, 0] 
+                          animate={{
+                            scale: [0.6, 1.2, 1.8, 2.4],
+                            opacity: [0, 1, 0.6, 0]
                           }}
-                          transition={{ 
-                            duration: 2, 
-                            repeat: Infinity, 
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
                             ease: "easeOut",
                             times: [0, 0.15, 0.5, 1],
                             delay: index * 0.15
@@ -574,7 +586,7 @@ function Home() {
                           className="absolute w-4 h-4 rounded-full border-[2px] bg-transparent"
                           style={{ borderColor: circleColor }}
                         />
-                        <div 
+                        <div
                           className="relative w-2 h-2 rounded-full z-20"
                           style={{ backgroundColor: circleColor }}
                         />
@@ -582,17 +594,16 @@ function Home() {
 
                       {/* Content */}
                       <motion.div
-                        className={`absolute w-[95%] px-1 text-center flex flex-col items-center z-30 ${
-                          isTop ? 'bottom-[calc(50%+28px)]' : 'top-[calc(50%+28px)]'
-                        }`}
+                        className={`absolute w-[95%] px-1 text-center flex flex-col items-center z-30 ${isTop ? 'bottom-[calc(50%+28px)]' : 'top-[calc(50%+28px)]'
+                          }`}
                         initial={{ opacity: 0, y: isTop ? 20 : -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: false, margin: '-50px' }}
-                        transition={{ 
-                          duration: 0.6, 
+                        transition={{
+                          duration: 0.6,
                           delay: index * 0.1,
-                          type: 'spring', 
-                          stiffness: 80 
+                          type: 'spring',
+                          stiffness: 80
                         }}
                       >
                         <h3 className="text-[18px] font-medium mb-1.5" style={{ color: titleColor }}>
@@ -732,13 +743,13 @@ function Home() {
               backgroundRepeat: 'no-repeat',
             }}
           >
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-              src="/Video/HPV3.mp4" 
+              src="/Video/HPV3.mp4"
             />
             <motion.div
               className="relative z-10 grid items-center gap-8 lg:grid-cols-[1fr_500px]"
