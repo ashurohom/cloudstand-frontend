@@ -523,8 +523,8 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-16 w-full pb-8 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="relative min-w-[1000px] lg:min-w-full px-4 lg:px-0">
+          <div className="mt-16 w-full pb-8 overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="relative min-w-[1000px] lg:min-w-full px-4 lg:px-10 xl:px-12">
               <div className="grid grid-cols-6 gap-0 relative">
                 {/* Central Horizontal Line */}
                 <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#EA580C] -translate-y-1/2 z-[5]" />
