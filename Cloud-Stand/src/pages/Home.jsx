@@ -525,7 +525,7 @@ function Home() {
       </section>
 
       <section
-        className="relative overflow-hidden bg-[#FFFFFF] py-12 sm:py-16 lg:py-20"
+        className="relative overflow-hidden bg-[#FFFFFF] py-16 sm:py-20 lg:py-28"
         style={{
           fontFamily: "'Open Sans', sans-serif",
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.04)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.04)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.02)' /%3E%3C/svg%3E")`,
@@ -562,7 +562,7 @@ function Home() {
                   const circleColor = '#EA580C'
 
                   return (
-                    <div key={step.title} className="relative flex justify-center h-[280px]">
+                    <div key={step.title} className="relative flex justify-center h-[320px]">
                       {/* Vertical Line */}
                       <div
                         className={`absolute left-1/2 w-[1px] bg-[#EA580C] -translate-x-1/2 z-0 ${isTop ? 'bottom-1/2 h-7' : 'top-1/2 h-7'
