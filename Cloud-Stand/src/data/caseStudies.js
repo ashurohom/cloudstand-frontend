@@ -1,101 +1,50 @@
+const detailedStudy = {
+  slug: 'global-hcm-security-optimization',
+  category: 'HCM Transformation',
+  title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
+  overview: [
+    'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
+    'With simultaneous rollout across multiple geographies, the organization required a scalable security model that could balance standardization, data protection, and operational efficiency without creating excessive role complexity.'
+  ],
+  businessChallenges: [
+    'Multi-country rollout requiring consistent security framework',
+    'Risk of data exposure due to overlapping functional roles',
+    'High role proliferation (10–12 roles per country becoming unsustainable)',
+    'Difficulty maintaining governance across HR, Payroll, and Benefits access',
+    'Complex combination of functional and data security requirements',
+    'Limited visibility into role assignments and security impact'
+  ],
+  solutionDelivered: 'CloudStand designed and implemented a global security optimization framework focusing on role simplification, governance, and controlled access design.',
+  keyComponents: [
+    'Consolidated global role design based on functional similarity (HR, Payroll, Benefits, Compensation)',
+    'Elimination of country-specific role duplication (e.g., HR US / HR UK / HR India merged into unified roles where functionality was identical)',
+    'Implementation of Area of Responsibility (AOR) for country-specific data security segregation',
+    'Use of Custom Security Criteria for granular access control where required',
+    'Development of a security analysis checklist framework before any role creation or assignment',
+    'Introduction of structured “do’s and don’ts” governance guidelines for IT security administrators',
+    'Prevention mechanism for role proliferation and uncontrolled access expansion'
+  ],
+  governanceIntro: 'To strengthen operational governance, CloudStand introduced:',
+  governance: [
+    'A backend security monitoring report tracking role assignments and modifications',
+    'Standardized checklist-driven approval workflow for role provisioning (especially for super users like Payroll/HR/Benefits Analysts)',
+    'Security journey templates defining standard practices, forbidden configurations, and risk impact of incorrect role assignments',
+    'Audit-ready tracking of security changes and user-role mapping',
+    'Improved visibility into “who changed what and why” across the security layer'
+  ],
+  businessImpact: [
+    'Significant reduction in number of roles required per country',
+    'Simplified global security architecture with improved maintainability',
+    'Reduced risk of data leakage and unauthorized access',
+    'Faster onboarding and role provisioning for HR and Payroll teams',
+    'Improved governance through checklist-driven enforcement model',
+    'Enhanced audit readiness and compliance traceability',
+    'Reduced operational effort in security troubleshooting and debugging'
+  ],
+  outcome: 'CloudStand enabled a successful multi-country Oracle HCM rollout by establishing a scalable and optimized security framework that reduced complexity, strengthened governance, and ensured consistent functional and data security across 13+ countries. The checklist-driven security model became a key differentiator in ensuring controlled and auditable role management throughout the implementation lifecycle.'
+};
+
 export const caseStudies = [
-  {
-    slug: 'global-manufacturer-hcm',
-    category: 'HCM Transformation',
-    company: 'Global Manufacturing Enterprise',
-    industry: 'Manufacturing',
-    title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
-    summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
-    challenge:
-      'The client operated across three countries with fragmented HR processes, inconsistent employee data, and limited visibility for leadership.',
-    solution:
-      'CloudStand designed a phased Oracle HCM Cloud rollout covering core HR, onboarding, talent workflows, and workforce dashboards.',
-    result:
-      'HR processing time fell by 60%, onboarding SLAs improved, and leadership gained real-time access to workforce metrics.',
-    accent: '#0057FF',
-    image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=HCM+Transformation',
-    cta: 'Explore Story',
-  },
-  {
-    slug: 'retail-chain-erp',
-    category: 'ERP Modernization',
-    company: 'Retail & Consumer Enterprise',
-    industry: 'Retail',
-    title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
-    summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
-    challenge:
-      'Twelve business entities were running disconnected finance processes, resulting in manual consolidation and poor close-cycle visibility.',
-    solution:
-      'CloudStand implemented Oracle ERP Cloud with harmonized chart-of-accounts design, approval workflows, and executive reporting packs.',
-    result:
-      'The client established a unified finance platform in 90 days and reduced month-end reconciliation friction across entities.',
-    accent: '#3D8BFF',
-    image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=ERP+Transformation',
-    cta: 'Explore Story',
-  },
-  {
-    slug: 'healthcare-provider-oic',
-    category: 'Integration & Automation',
-    company: 'Healthcare Organization',
-    industry: 'Healthcare',
-    title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
-    summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
-    challenge:
-      'Eight legacy systems needed secure, bi-directional connectivity with zero downtime to support critical patient operations.',
-    solution:
-      'CloudStand architected resilient Oracle Integration Cloud orchestrations, reusable connectors, and exception-monitoring dashboards.',
-    result:
-      'The healthcare group achieved zero-downtime deployment and improved data consistency across critical systems.',
-    accent: '#4F7CFF',
-    image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=OIC+Integration',
-    cta: 'Explore Story',
-  },
-  {
-    slug: 'regional-services-payroll',
-    category: 'Payroll',
-    company: 'Regional Services Group',
-    industry: 'Business Services',
-    title: 'Regional Services Group Stabilizes Multi-Location Payroll',
-    summary: 'Payroll accuracy improved through Oracle Payroll controls and automation.',
-    challenge:
-      'Payroll teams were managing location-specific rules manually, driving errors, late adjustments, and employee support tickets.',
-    solution:
-      'CloudStand restructured payroll rules, validations, and reconciliation views while guiding parallel test runs before go-live.',
-    result:
-      'The organization improved payroll confidence, reduced manual intervention, and created a stronger audit trail.',
-    accent: '#F59E0B',
-    image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=Payroll+Modernization',
-  },
-  {
-    slug: 'consumer-brand-bi',
-    category: 'BI',
-    company: 'Consumer Brand',
-    industry: 'Consumer Goods',
-    title: 'Consumer Brand Launches Board-Ready Performance Dashboards',
-    summary: 'Executive visibility improved with real-time sales and operations analytics.',
-    challenge:
-      'Leaders lacked a consistent KPI view and relied on manually assembled reports from multiple business teams.',
-    solution:
-      'CloudStand created a standardized metrics model and role-based dashboards for finance, operations, and leadership teams.',
-    result:
-      'Decision-makers gained real-time reporting confidence and reduced executive reporting prep effort each month.',
-    accent: '#14B8A6',
-    image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=BI+Dashboarding',
-  },
-  {
-    slug: 'enterprise-services-ai',
-    category: 'AI',
-    company: 'Enterprise Services Firm',
-    industry: 'Professional Services',
-    title: 'Enterprise Services Firm Automates High-Volume Request Workflows',
-    summary: 'AI-enabled triage and routing accelerated service operations.',
-    challenge:
-      'High request volumes were slowing shared services teams and creating inconsistent prioritization across work queues.',
-    solution:
-      'CloudStand identified priority AI use cases, introduced intelligent routing logic, and linked workflows to Oracle-backed reporting.',
-    result:
-      'Teams improved turnaround consistency and gained a scalable roadmap for operational AI adoption.',
-    accent: '#8B5CF6',
-    image: 'https://placehold.co/800x520/1E3050/FFFFFF?text=AI+Workflows',
-  },
-]
+  detailedStudy,
+  { ...detailedStudy, slug: 'global-hcm-security-optimization-2' }
+];

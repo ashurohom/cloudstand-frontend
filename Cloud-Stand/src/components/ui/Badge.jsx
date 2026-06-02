@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { badgeVariants } from '../../animations/variants'
 
-function Badge({ children, className = '' }) {
+function Badge({ children, className = '', light = false }) {
   // Strip out old background, border, text, and shadow classes so the new clean design works universally
   const cleanClassName = className
     .split(' ')
@@ -20,7 +20,7 @@ function Badge({ children, className = '' }) {
         <span className="h-[9px] w-[9px] rounded-full bg-[#EA580C]"></span>
         <span className="h-[9px] w-[9px] rounded-full bg-[#0EA5E9]"></span>
       </div>
-      <span className="text-[12px] font-bold uppercase tracking-[0.25em] text-black">
+      <span className={`text-[12px] font-bold uppercase tracking-[0.25em] ${light ? 'text-white drop-shadow-md' : 'text-black'}`}>
         {children}
       </span>
     </motion.div>

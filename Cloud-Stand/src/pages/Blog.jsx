@@ -176,9 +176,7 @@ function Blog() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="inline-flex items-center rounded-full bg-[#0EA5E9] px-5 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_12px_28px_rgba(14,165,233,0.20)]">
-                  Live Webinar
-                </span>
+                <Badge>Live Webinar</Badge>
               </motion.div>
 
               <motion.h1
@@ -355,9 +353,7 @@ function Blog() {
 
         <div className="section-shell relative z-10">
           <div className="mb-16 flex flex-col items-center text-center">
-            <span className="inline-flex items-center rounded-full bg-orange-500/10 border border-orange-500/20 px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-orange-400">
-              Video Showcase
-            </span>
+            <Badge light>Video Showcase</Badge>
             <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-[#0EA5E9] to-orange-500" />
             <h2 className="mt-6 font-['Open_Sans'] text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Expert Webinar Sessions
@@ -471,9 +467,7 @@ function Blog() {
             <div className="pointer-events-none absolute -left-20 -bottom-20 h-72 w-72 rounded-full bg-gradient-to-tr from-[#ea580c]/8 to-[#0ea5e9]/8 blur-3xl" />
 
             <div className="relative z-10 mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center rounded-full bg-[#0EA5E9]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#0EA5E9]">
-                Stay Ahead of the Curve
-              </span>
+              <Badge>Stay Ahead of the Curve</Badge>
               <h2 className="mt-6 font-['Open_Sans'] text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
                 Stay Ahead with <span className="text-gradient">CloudStand Insights</span>
               </h2>
