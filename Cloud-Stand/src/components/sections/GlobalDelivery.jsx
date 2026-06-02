@@ -115,20 +115,6 @@ function GlobalDelivery() {
                 className="absolute z-10"
                 style={{ left: country.x, top: country.y }}
               >
-                {/* Pulse animations starting exactly from pointer size (h-4 w-4) */}
-                <motion.span
-                  className="pointer-events-none absolute top-0 left-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  animate={{ scale: [1, 4], opacity: [0.6, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-                  style={{ border: `1.5px solid ${country.color}` }}
-                />
-                <motion.span
-                  className="pointer-events-none absolute top-0 left-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  animate={{ scale: [1, 4], opacity: [0.6, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 1 }}
-                  style={{ border: `1.5px solid ${country.color}` }}
-                />
-
                 <motion.button
                   className="group absolute flex flex-col items-center justify-center"
                   style={{ transform: 'translate(-50%, -50%)', width: '40px', height: '40px' }}
@@ -140,7 +126,19 @@ function GlobalDelivery() {
                 >
                   {/* Central Dot Pointer (instead of teardrop) */}
                   <div className="relative z-10 flex h-4 w-4 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-125 shadow-md" style={{ background: country.color }}>
-                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                    <motion.span
+                      className="pointer-events-none absolute inset-0 rounded-full"
+                      animate={{ scale: [1, 4], opacity: [0.6, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+                      style={{ border: `1.5px solid ${country.color}` }}
+                    />
+                    <motion.span
+                      className="pointer-events-none absolute inset-0 rounded-full"
+                      animate={{ scale: [1, 4], opacity: [0.6, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 1 }}
+                      style={{ border: `1.5px solid ${country.color}` }}
+                    />
+                    <div className="relative z-20 h-1.5 w-1.5 rounded-full bg-white" />
                   </div>
 
                   {/* Label (positioned absolutely below the pointer) */}
