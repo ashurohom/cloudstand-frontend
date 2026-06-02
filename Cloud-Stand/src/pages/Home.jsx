@@ -457,7 +457,7 @@ function Home() {
                       {study.title}
                     </h3>
 
-                    <p className="mt-4 mb-4 text-[13px] leading-6 text-[#5f6368]">
+                    <p className="mt-4 mb-4 text-[15px] leading-relaxed text-justify text-[#5f6368]">
                       {study.summary}
                     </p>
 
@@ -523,18 +523,11 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-16 w-full pb-8">
-            <div className="w-full relative">
+          <div className="mt-16 w-full pb-8 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="relative min-w-[1000px] lg:min-w-full px-4 lg:px-0">
               <div className="grid grid-cols-6 gap-0 relative">
                 {/* Central Horizontal Line */}
-                <motion.div
-                  className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#EA580C] -translate-y-1/2 z-0"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  style={{ originX: 0 }}
-                />
+                <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#EA580C] -translate-y-1/2 z-[5]" />
 
                 {deliveryModelSteps.map((step, index) => {
                   const isTop = index % 2 === 0

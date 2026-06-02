@@ -2,6 +2,7 @@ const detailedStudy = {
   slug: 'global-hcm-security-optimization',
   category: 'HCM Transformation',
   title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
+  summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
   overview: [
     'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
     'With simultaneous rollout across multiple geographies, the organization required a scalable security model that could balance standardization, data protection, and operational efficiency without creating excessive role complexity.'
@@ -46,5 +47,6 @@ const detailedStudy = {
 
 export const caseStudies = [
   detailedStudy,
-  { ...detailedStudy, slug: 'global-hcm-security-optimization-2' }
+  { ...detailedStudy, slug: 'global-hcm-security-optimization-2' },
+  { ...detailedStudy, slug: 'global-hcm-security-optimization-3' }
 ];
