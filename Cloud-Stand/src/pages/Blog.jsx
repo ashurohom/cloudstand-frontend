@@ -5,18 +5,14 @@ import {
   Clock3, 
   MonitorPlay, 
   Users, 
-  Play, 
   Sparkles, 
   Cpu, 
   Shield, 
   Mail, 
   ArrowUpRight, 
-  X, 
   Activity, 
   TrendingUp, 
-  ChevronRight, 
-  Video, 
-  ExternalLink 
+  ChevronRight
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Badge from '../components/ui/Badge'
@@ -43,7 +39,7 @@ const quarterlyUpdates = [
     description: 'Empower operational teams with next-gen autonomous agent reasoning for automatic ticket classification, intelligent routing, and summary dashboards.',
     tag: 'AI',
     Icon: Sparkles,
-    badgeColor: 'bg-indigo-50/80 text-indigo-600 border-indigo-200/50',
+    badgeColor: 'bg-indigo-50/80 text-[#EA580C] border-indigo-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]',
   },
   {
@@ -53,7 +49,7 @@ const quarterlyUpdates = [
     description: 'Automate finance close cycles with sub-ledger exception handling, predictive anomaly detection, and unified reporting pipelines.',
     tag: 'ERP',
     Icon: Cpu,
-    badgeColor: 'bg-emerald-50/80 text-emerald-600 border-emerald-200/50',
+    badgeColor: 'bg-emerald-50/80 text-[#EA580C] border-emerald-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]',
   },
   {
@@ -63,70 +59,12 @@ const quarterlyUpdates = [
     description: 'Elevate your cloud posture with decentralized key management, automated threat detection, and next-generation database hardware acceleration.',
     tag: 'OCI',
     Icon: Shield,
-    badgeColor: 'bg-amber-50/80 text-amber-600 border-amber-200/50',
+    badgeColor: 'bg-amber-50/80 text-[#EA580C] border-amber-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]',
   }
 ]
 
-const webinarVideos = [
-  // 2 Featured (large top)
-  {
-    id: 'webinar-1',
-    title: 'Architecting Oracle HCM Cloud for Global Scale',
-    speaker: 'Marcus Vance, Chief Enterprise Architect',
-    date: 'May 12, 2026',
-    duration: '45 mins',
-    category: 'HCM',
-    thumbnail: 'https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Dummy modal video
-    featured: true,
-  },
-  {
-    id: 'webinar-2',
-    title: 'Leveraging AI for Predictable ERP Insights',
-    speaker: 'Sarah Jenkins, VP of Financial Solutions',
-    date: 'Apr 28, 2026',
-    duration: '52 mins',
-    category: 'AI / ERP',
-    thumbnail: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    featured: true,
-  },
-  // 3 Smaller (bottom grid)
-  {
-    id: 'webinar-3',
-    title: 'Building Resilient Integration Bridges with OIC',
-    speaker: 'Dave Kincaid, Principal Integration Director',
-    date: 'Mar 15, 2026',
-    duration: '38 mins',
-    category: 'Integration',
-    thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    featured: false,
-  },
-  {
-    id: 'webinar-4',
-    title: 'Modernizing Oracle Database Security Policies',
-    speaker: 'Elena Rostova, Lead Cybersecurity Architect',
-    date: 'Feb 19, 2026',
-    duration: '42 mins',
-    category: 'OCI Security',
-    thumbnail: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    featured: false,
-  },
-  {
-    id: 'webinar-5',
-    title: 'Designing Real-time Dashboards for Oracle Analytics',
-    speaker: 'Rajesh Mehta, Head of Business Intelligence',
-    date: 'Jan 22, 2026',
-    duration: '35 mins',
-    category: 'Analytics',
-    thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    featured: false,
-  }
-]
+// webinarVideos removed — replaced by a single featured embed
 
 const recentActivities = [
   {
@@ -184,7 +122,6 @@ function Blog() {
   
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const [activeVideo, setActiveVideo] = useState(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -364,46 +301,41 @@ function Blog() {
                 <motion.div 
                   key={index}
                   variants={staggerItem}
-                  className={`group relative overflow-hidden rounded-[28px] border border-sky-200/60 bg-white p-8 shadow-[0_16px_36px_rgba(14,165,233,0.05)] transition-all duration-500 hover:-translate-y-2 hover:border-orange-300 hover:shadow-[0_22px_48px_rgba(0,87,255,0.08)] ${update.glowColor}`}
+                  className="group relative flex min-h-[345px] overflow-hidden rounded-[26px] border border-[#ececec] bg-white p-4 transition-all duration-500 hover:-translate-y-2 hover:border-[#f97316]"
                 >
-                  {/* Decorative Subtle Glowing Circle Behind Icon on Card Hover */}
-                  <div className="absolute -left-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-tr from-[#0ea5e9]/5 to-[#8b5cf6]/5 blur-2xl transition-all duration-500 group-hover:scale-125" />
+                  <div className="flex w-full flex-col">
+                    <div className="mb-5 flex items-center justify-between">
+                      <span className={`inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] ${update.badgeColor}`}>
+                        {update.quarter}
+                      </span>
 
-                  {/* Header Row */}
-                  <div className="relative flex items-center justify-between">
-                    <span className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider ${update.badgeColor}`}>
-                      {update.quarter}
-                    </span>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-                      {update.tag}
-                    </span>
-                  </div>
+                      <div className="h-2.5 w-12 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
+                    </div>
 
-                  {/* Icon Block */}
-                  <div className="relative mt-8 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-sky-100 bg-slate-50 text-[#0EA5E9] shadow-[0_8px_16px_rgba(14,165,233,0.04)] transition-all duration-300 group-hover:bg-[#0EA5E9] group-hover:text-white group-hover:shadow-[0_12px_24px_rgba(14,165,233,0.22)]">
-                    <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
-                  </div>
+                    <div className="relative mt-2 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-100 bg-white text-[#0EA5E9] shadow-[0_8px_16px_rgba(14,165,233,0.04)]">
+                      <Icon className="h-6 w-6" />
+                    </div>
 
-                  {/* Title & Description */}
-                  <h3 className="relative mt-6 font-['Open_Sans'] text-xl font-bold text-slate-900 group-hover:text-[#D63B25] transition-colors duration-300">
-                    {update.title}
-                  </h3>
-                  <p className="relative mt-4 text-[0.92rem] leading-7 text-text-muted">
-                    {update.description}
-                  </p>
+                    <h3 className="max-w-sm min-h-[72px] text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
+                      {update.title}
+                    </h3>
 
-                  {/* Footer Row CTA */}
-                  <div className="relative mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-medium text-slate-400 group-hover:text-[#0EA5E9] transition-colors">
-                      {update.category}
-                    </span>
-                    <button 
-                      type="button"
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-[#0EA5E9] transition-all duration-300 group-hover:gap-2 group-hover:text-[#D63B25]"
-                    >
-                      Read Update
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
+                    <p className="mt-1 min-h-[64px] text-[13px] leading-6 text-[#5f6368]">
+                      {update.description}
+                    </p>
+
+                    <div className="mt-auto h-px w-full bg-[#ececec]" />
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-sm font-semibold text-[#0EA5E9]">{update.category}</span>
+                      <button 
+                        type="button"
+                        className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300"
+                      >
+                        Read Update
+                        <ChevronRight className="h-4 w-4" />
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               )
@@ -435,124 +367,22 @@ function Blog() {
             </p>
           </div>
 
-          {/* Featured Top Webinars (2 Columns) */}
-          <div className="grid gap-8 lg:grid-cols-2">
-            {webinarVideos.filter(v => v.featured).map((video) => (
-              <motion.div 
-                key={video.id}
-                initial={{ opacity: 0, y: 30 }}
-                viewport={{ once: true, margin: '-60px' }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="group relative overflow-hidden rounded-[32px] border border-slate-800 bg-slate-900/60 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-md transition-all duration-500 hover:border-slate-700 hover:shadow-[0_24px_60px_rgba(14,165,233,0.12)]"
-              >
-                {/* Thumbnail Container */}
-                <div className="relative aspect-video overflow-hidden rounded-2xl bg-slate-950">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title} 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          <div className="mt-12 flex justify-center">
+            <div className="w-full max-w-4xl">
+              <div className="relative overflow-hidden rounded-[26px] border border-slate-800 bg-slate-900/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+                <div className="aspect-video rounded-lg overflow-hidden bg-black">
+                  <iframe
+                    className="h-full w-full"
+                    src="https://www.youtube.com/embed/qqAyn6sxn0E?si=SpkMVSiy3-ct8ZAH"
+                    title="CloudStand Featured Webinar"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                   />
-                  {/* Dark Vignette */}
-                  <div className="absolute inset-0 bg-slate-950/40 transition-opacity duration-500 group-hover:bg-slate-950/20" />
-                  
-                  {/* Play Button Glow Ring */}
-                  <button
-                    onClick={() => setActiveVideo(video)}
-                    className="absolute inset-0 flex items-center justify-center"
-                    type="button"
-                  >
-                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-orange-500 text-white shadow-[0_12px_28px_rgba(234,88,12,0.3)] transition-transform duration-300 group-hover:scale-110">
-                      <span className="absolute -inset-2 rounded-full border border-orange-500/30 animate-ping opacity-75" />
-                      <Play className="ml-1 h-8 w-8 fill-current" />
-                    </span>
-                  </button>
-
-                  {/* Duration Badge */}
-                  <span className="absolute bottom-4 right-4 rounded-lg bg-slate-950/80 px-2.5 py-1 text-xs font-semibold tracking-wider text-white backdrop-blur-sm">
-                    {video.duration}
-                  </span>
-                  {/* Category Tag */}
-                  <span className="absolute left-4 top-4 rounded-lg bg-orange-600/90 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
-                    {video.category}
-                  </span>
                 </div>
-
-                {/* Meta details */}
-                <div className="mt-6 px-2 pb-2">
-                  <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest">{video.date}</span>
-                  <h3 className="mt-2 font-['Open_Sans'] text-2xl font-bold leading-snug text-white transition-colors duration-300 group-hover:text-orange-400">
-                    {video.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-slate-400">
-                    Speaker: <strong className="font-semibold text-slate-200">{video.speaker}</strong>
-                  </p>
-                  
-                  <button 
-                    onClick={() => setActiveVideo(video)}
-                    className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:border-orange-500 hover:bg-orange-500"
-                    type="button"
-                  >
-                    <span>Watch Webinar</span>
-                    <Video className="h-4 w-4" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
+              </div>
+            </div>
           </div>
 
-          {/* Smaller Bottom Grid (3 Columns) */}
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {webinarVideos.filter(v => !v.featured).map((video) => (
-              <motion.div 
-                key={video.id}
-                initial={{ opacity: 0, y: 24 }}
-                viewport={{ once: true, margin: '-60px' }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="group relative overflow-hidden rounded-[24px] border border-slate-850 bg-slate-900/40 p-4 transition-all duration-500 hover:border-slate-750 hover:bg-slate-900 hover:shadow-[0_16px_36px_rgba(0,0,0,0.4)]"
-              >
-                {/* Thumbnail Container */}
-                <div className="relative aspect-video overflow-hidden rounded-xl bg-slate-950">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title} 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/50 transition-opacity duration-500 group-hover:bg-slate-950/30" />
-                  
-                  {/* Play Button Overlay */}
-                  <button
-                    onClick={() => setActiveVideo(video)}
-                    className="absolute inset-0 flex items-center justify-center"
-                    type="button"
-                  >
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
-                      <Play className="ml-0.5 h-5 w-5 fill-current" />
-                    </span>
-                  </button>
-
-                  <span className="absolute bottom-2 right-2 rounded bg-slate-950/80 px-2 py-0.5 text-[0.68rem] font-semibold tracking-wider text-white backdrop-blur-sm">
-                    {video.duration}
-                  </span>
-                </div>
-
-                {/* Info block */}
-                <div className="mt-4 px-1">
-                  <div className="flex items-center justify-between text-[0.68rem] font-semibold uppercase tracking-wider text-orange-400">
-                    <span>{video.category}</span>
-                    <span>{video.date}</span>
-                  </div>
-                  <h4 className="mt-2 font-['Open_Sans'] text-base font-bold leading-snug text-white transition-colors duration-300 group-hover:text-orange-400 line-clamp-2">
-                    {video.title}
-                  </h4>
-                  <p className="mt-2 text-xs text-slate-400 truncate">
-                    {video.speaker}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -707,89 +537,7 @@ function Blog() {
         </div>
       </section>
 
-      {/* ==========================================
-          VIDEO MODAL OVERLAY (DYNAMIC POPUP)
-          ========================================== */}
-      {activeVideo && (
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-md"
-            onClick={() => setActiveVideo(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 20, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.95, y: 20, opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-4xl overflow-hidden rounded-[32px] border border-slate-800 bg-slate-900 shadow-[0_24px_60px_rgba(0,0,0,0.8)]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Glow Effects */}
-              <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
-              <div className="pointer-events-none absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-orange-500/10 blur-3xl" />
-
-              {/* Modal Header */}
-              <div className="relative z-10 flex items-start justify-between border-b border-slate-800/80 px-6 py-5">
-                <div>
-                  <span className="inline-flex items-center rounded-full bg-orange-500/10 border border-orange-500/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-400">
-                    {activeVideo.category}
-                  </span>
-                  <h3 className="mt-2 font-['Open_Sans'] text-xl font-bold leading-snug text-white sm:text-2xl">
-                    {activeVideo.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-slate-400">
-                    {activeVideo.speaker} • <span className="font-semibold text-slate-300">{activeVideo.date}</span>
-                  </p>
-                </div>
-                <button
-                  onClick={() => setActiveVideo(null)}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all duration-300 hover:border-slate-700 hover:bg-slate-800 hover:text-white"
-                  type="button"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              {/* Video Screen Container */}
-              <div className="relative aspect-video bg-black">
-                <iframe
-                  className="h-full w-full"
-                  src={`${activeVideo.videoUrl}?autoplay=1&mute=1`}
-                  title={activeVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-
-              {/* Custom Mock Interactive Bar */}
-              <div className="relative z-10 border-t border-slate-800/80 px-6 py-4 bg-slate-950/40">
-                <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-medium text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Streaming in 1080p Ultra HD</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span>Duration: <strong className="text-white">{activeVideo.duration}</strong></span>
-                    <button 
-                      onClick={() => {
-                        window.open("https://www.oracle.com/cloud/", "_blank");
-                      }}
-                      className="inline-flex items-center gap-1 text-orange-400 transition hover:text-orange-300"
-                      type="button"
-                    >
-                      <span>Resource Library</span>
-                      <ExternalLink className="h-3 w-3" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-      )}
+      {/* Video modal removed — using a single embedded featured video instead */}
 
     </motion.main>
   )
