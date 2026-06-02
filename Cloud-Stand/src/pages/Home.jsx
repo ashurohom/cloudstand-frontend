@@ -442,7 +442,7 @@ function Home() {
             {featuredCaseStudies.map((study, index) => (
               <motion.div key={study.slug} variants={staggerItem}>
                 <div
-                  className="group relative flex min-h-[345px] overflow-hidden rounded-[26px] border border-[#ececec] bg-white p-4 transition-all duration-500 hover:-translate-y-2 hover:border-[#f97316]"
+                  className="group relative flex h-full overflow-hidden rounded-[26px] border border-[#ececec] bg-white p-4 sm:p-6 transition-all duration-500 hover:-translate-y-2 hover:border-[#f97316]"
                 >
                   <div className="flex w-full flex-col">
                     <div className="mb-5 flex items-center justify-between">
@@ -453,15 +453,11 @@ function Home() {
                       <div className="h-2.5 w-12 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
                     </div>
 
-                    <h3 className="max-w-sm min-h-[104px] text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
+                    <h3 className="max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                       {study.title}
                     </h3>
 
-                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#0EA5E9]">
-                      {study.company}
-                    </p>
-
-                    <p className="mt-4 min-h-[78px] text-[13px] leading-6 text-[#5f6368]">
+                    <p className="mt-4 mb-4 text-[13px] leading-6 text-[#5f6368]">
                       {study.summary}
                     </p>
 

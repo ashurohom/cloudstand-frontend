@@ -4,8 +4,8 @@ export const caseStudies = [
     category: 'HCM Transformation',
     company: 'Global Manufacturing Enterprise',
     industry: 'Manufacturing',
-    title: 'Global Workforce Transformation for 5,000+ Employees',
-    summary: 'Modernized HR operations and reduced manual processing effort through Oracle HCM Cloud transformation.',
+    title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
+    summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
     challenge:
       'The client operated across three countries with fragmented HR processes, inconsistent employee data, and limited visibility for leadership.',
     solution:
@@ -21,8 +21,8 @@ export const caseStudies = [
     category: 'ERP Modernization',
     company: 'Retail & Consumer Enterprise',
     industry: 'Retail',
-    title: 'Unified Financial Operations Across 12 Business Entities',
-    summary: 'Enabled connected financial reporting and streamlined enterprise visibility through Oracle ERP Cloud.',
+    title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
+    summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
     challenge:
       'Twelve business entities were running disconnected finance processes, resulting in manual consolidation and poor close-cycle visibility.',
     solution:
@@ -38,8 +38,8 @@ export const caseStudies = [
     category: 'Integration & Automation',
     company: 'Healthcare Organization',
     industry: 'Healthcare',
-    title: 'Seamless Enterprise Integration Across Critical Systems',
-    summary: 'Implemented scalable Oracle Integration Cloud architecture for connected and uninterrupted operations.',
+    title: 'Global Oracle HCM Security Optimization Across 13+ Countries',
+    summary: 'A global enterprise operating across 21+ countries engaged CloudStand as a subcontracting implementation partner to support a large-scale Oracle HCM rollout. A key focus area of the program was security optimization across Core HR, Payroll, Time & Labor, Benefits, and Compensation to ensure controlled access and compliance across regions.',
     challenge:
       'Eight legacy systems needed secure, bi-directional connectivity with zero downtime to support critical patient operations.',
     solution:
