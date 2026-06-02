@@ -20,7 +20,7 @@ function Badge({ children, className = '' }) {
         <span className="h-[9px] w-[9px] rounded-full bg-[#EA580C]"></span>
         <span className="h-[9px] w-[9px] rounded-full bg-[#0EA5E9]"></span>
       </div>
-      <span className="text-[0.8rem] font-bold uppercase tracking-[0.25em] text-black sm:text-xs">
+      <span className="text-[12px] font-bold uppercase tracking-[0.25em] text-black">
         {children}
       </span>
     </motion.div>

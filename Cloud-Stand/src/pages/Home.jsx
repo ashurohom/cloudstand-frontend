@@ -397,7 +397,7 @@ function Home() {
 
             {/* Premium Trust Strip Below CTA */}
             <motion.div
-              className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase"
+              className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[12px] font-bold tracking-widest text-slate-500 uppercase"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -723,7 +723,7 @@ function Home() {
               </div>
 
               <Card className="p-6 !bg-white/10 backdrop-blur-md !border-white/20">
-                <div className="text-base font-extrabold uppercase tracking-normal text-white drop-shadow-lg">Value You Receive</div>
+                <div className="text-[12px] font-extrabold uppercase tracking-normal text-white drop-shadow-lg">Value You Receive</div>
                 <ul className="mt-4 space-y-3 text-white font-medium drop-shadow-md lg:whitespace-nowrap">
                   <li className="group flex items-start gap-3">
                     <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
