@@ -12,44 +12,9 @@ const countryProjects = {
     color: '#f97316',
     x: '72%',
     y: '36%',
-    summary: 'Our delivery hub powering global projects with skilled Oracle Cloud professionals.',
     projects: [
-      {
-        id: 1,
-        title: 'Oracle HCM Implementation',
-        client: 'Manufacturing Enterprise',
-        duration: '4 Months',
-        service: 'HCM',
-        result: '60% faster HR processing',
-        description: 'Our delivery hub powering global projects with skilled Oracle Cloud professionals.',
-      },
-      {
-        id: 2,
-        title: 'Oracle ERP Cloud Rollout',
-        client: 'Retail Chain',
-        duration: '6 Months',
-        service: 'ERP',
-        result: 'Unified finance across 12 entities',
-        description: 'End-to-end ERP implementation covering finance, procurement and supply chain.',
-      },
-      {
-        id: 3,
-        title: 'OIC Integration Project',
-        client: 'Healthcare Provider',
-        duration: '3 Months',
-        service: 'OIC',
-        result: '8 legacy systems integrated',
-        description: 'Seamless Oracle Integration Cloud solution connecting all legacy platforms.',
-      },
-      {
-        id: 4,
-        title: 'BI & Analytics Dashboard',
-        client: 'Logistics Company',
-        duration: '2 Months',
-        service: 'BI',
-        result: 'Real-time visibility achieved',
-        description: 'Custom Oracle BI dashboards for real-time operational reporting.',
-      },
+      { id: 1, title: 'Demo Project 1' },
+      { id: 2, title: 'Demo Project 2' },
     ],
   },
   US: {
@@ -60,35 +25,15 @@ const countryProjects = {
     color: '#2563eb',
     x: '22%',
     y: '22%',
-    summary: 'Delivering end-to-end Oracle Cloud solutions for enterprises across industries.',
     projects: [
-      {
-        id: 1,
-        title: 'Global HCM Transformation',
-        client: 'Fortune 500 Firm',
-        duration: '8 Months',
-        service: 'HCM',
-        result: '12,000 employees onboarded',
-        description: 'Enterprise-wide Oracle HCM rollout across US, UK and India simultaneously.',
-      },
-      {
-        id: 2,
-        title: 'Oracle Payroll Configuration',
-        client: 'Financial Services Co.',
-        duration: '3 Months',
-        service: 'Payroll',
-        result: '99.8% payroll accuracy',
-        description: 'Full US payroll compliance configuration with multi-state tax setup.',
-      },
-      {
-        id: 3,
-        title: 'AI Solutions Implementation',
-        client: 'Tech Enterprise',
-        duration: '5 Months',
-        service: 'AI',
-        result: '40% automation achieved',
-        description: 'AI-powered workflow automation integrated with Oracle Cloud ecosystem.',
-      },
+      { id: 1, title: 'Cooper Vision USA' },
+      { id: 2, title: 'Envision HealthCare' },
+      { id: 3, title: 'Resource Innovation USA' },
+      { id: 4, title: 'Clayco' },
+      { id: 5, title: 'American Express' },
+      { id: 6, title: 'Ford Motors' },
+      { id: 7, title: 'Rheem Manufacturing' },
+      { id: 8, title: 'United Lex' },
     ],
   },
   GB: {
@@ -99,26 +44,13 @@ const countryProjects = {
     color: '#dc2626',
     x: '48%',
     y: '12%',
-    summary: 'Enabling digital transformation with Oracle Cloud expertise and local knowledge.',
     projects: [
-      {
-        id: 1,
-        title: 'ERP Finance Unification',
-        client: 'Stratford & Associates',
-        duration: '5 Months',
-        service: 'ERP',
-        result: 'GBP 2M saved in year one',
-        description: 'Oracle ERP Cloud deployed across 8 UK legal entities with full reporting.',
-      },
-      {
-        id: 2,
-        title: 'BI Dashboard Delivery',
-        client: 'Professional Services Firm',
-        duration: '6 Weeks',
-        service: 'BI',
-        result: 'Board-ready dashboards in 6 weeks',
-        description: 'Rapid Oracle BI deployment for executive reporting and board presentations.',
-      },
+      { id: 1, title: 'M Group' },
+      { id: 2, title: 'Herriot Watt University' },
+      { id: 3, title: 'Crawford and Company' },
+      { id: 4, title: 'The River Side Group' },
+      { id: 5, title: 'AT & T' },
+      { id: 6, title: 'Technip Energies' },
     ],
   },
   AE: {
@@ -129,35 +61,13 @@ const countryProjects = {
     color: '#16a34a',
     x: '63%',
     y: '34%',
-    summary: 'Driving innovation and efficiency through Oracle Cloud implementations across the UAE.',
     projects: [
-      {
-        id: 1,
-        title: 'UAE WPS Payroll Compliance',
-        client: 'Gulf Enterprise Holdings',
-        duration: '2 Months',
-        service: 'Payroll',
-        result: '100% WPS compliance achieved',
-        description: 'Oracle Payroll configured for full UAE Wage Protection System compliance.',
-      },
-      {
-        id: 2,
-        title: 'OIC Legacy Integration',
-        client: 'Emirates Solutions Group',
-        duration: '3 Months',
-        service: 'OIC',
-        result: '8 systems integrated in 90 days',
-        description: 'Oracle Integration Cloud connecting 8 legacy systems with zero downtime.',
-      },
-      {
-        id: 3,
-        title: 'HCM Regional Rollout',
-        client: 'Regional Conglomerate',
-        duration: '6 Months',
-        service: 'HCM',
-        result: '5,000 employees live on Oracle',
-        description: 'Full Oracle HCM deployment across GCC region with Arabic localization.',
-      },
+      { id: 1, title: 'Bukhatir' },
+      { id: 2, title: 'Higher College Technologies' },
+      { id: 3, title: 'Emaar' },
+      { id: 4, title: 'Naresco' },
+      { id: 5, title: 'Aster' },
+      { id: 6, title: 'Abu Dhabi Islamic Bank' },
     ],
   },
 }
@@ -200,47 +110,45 @@ function GlobalDelivery() {
             />
 
             {Object.entries(countryProjects).map(([code, country]) => (
-              <motion.button
+              <div 
                 key={code}
-                className="group absolute z-10 flex flex-col items-center"
-                style={{
-                  left: country.x,
-                  top: country.y,
-                  transform: 'translate(-50%, -36px)',
-                }}
-                onClick={() => {
-                  setSelectedCountry(selectedCountry === code ? null : code)
-                  setSlideIndex(0)
-                }}
-                type="button"
+                className="absolute z-10"
+                style={{ left: country.x, top: country.y }}
               >
-                {/* Pulse Rings */}
+                {/* Pulse animations starting exactly from pointer size (h-4 w-4) */}
                 <motion.span
-                  className="absolute top-[36px] left-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  animate={{ scale: [1, 2.5], opacity: [0.25, 0] }}
+                  className="pointer-events-none absolute top-0 left-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  animate={{ scale: [1, 4], opacity: [0.6, 0] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-                  style={{ border: `2px solid ${country.color}` }}
+                  style={{ border: `1.5px solid ${country.color}` }}
                 />
                 <motion.span
-                  className="absolute top-[36px] left-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                  animate={{ scale: [1, 2], opacity: [0.2, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 0.8 }}
-                  style={{ background: country.color }}
+                  className="pointer-events-none absolute top-0 left-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                  animate={{ scale: [1, 4], opacity: [0.6, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 1 }}
+                  style={{ border: `1.5px solid ${country.color}` }}
                 />
 
-                {/* SVG Pin */}
-                <div className="relative z-10 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110">
-                  <svg viewBox="0 0 24 24" fill={country.color} className="h-10 w-10 drop-shadow-md">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  </svg>
-                  <div className="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-[60%] rounded-full bg-white shadow-sm" />
-                </div>
+                <motion.button
+                  className="group absolute flex flex-col items-center justify-center"
+                  style={{ transform: 'translate(-50%, -50%)', width: '40px', height: '40px' }}
+                  onClick={() => {
+                    setSelectedCountry(selectedCountry === code ? null : code)
+                    setSlideIndex(0)
+                  }}
+                  type="button"
+                >
+                  {/* Central Dot Pointer (instead of teardrop) */}
+                  <div className="relative z-10 flex h-4 w-4 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-125 shadow-md" style={{ background: country.color }}>
+                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                  </div>
 
-                {/* Label */}
-                <div className="mt-1 whitespace-nowrap rounded-lg bg-white px-3 py-1.5 text-[11px] font-bold text-black shadow-md border border-slate-100 transition-colors duration-200 group-hover:border-slate-200">
-                  {country.name}
-                </div>
-              </motion.button>
+                  {/* Label (positioned absolutely below the pointer) */}
+                  <div className="absolute top-[100%] whitespace-nowrap rounded-lg bg-white px-3 py-1.5 text-[11px] font-bold text-black shadow-md border border-slate-100 transition-colors duration-200 group-hover:border-slate-200">
+                    {country.name}
+                  </div>
+                </motion.button>
+              </div>
             ))}
 
             <AnimatePresence>
@@ -282,18 +190,7 @@ function GlobalDelivery() {
                       transition={{ duration: 0.25 }}
                       className="mt-4"
                     >
-                      <span
-                        className="inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white"
-                        style={{ background: activeCountry.color }}
-                      >
-                        {activeProject.service}
-                      </span>
-                      <h4 className="mt-3 text-sm font-bold leading-6 text-black">{activeProject.title}</h4>
-                      <p className="mt-2 text-xs leading-6 text-black">{activeProject.description}</p>
-                      <div className="mt-3 flex items-center gap-2 rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2">
-                        <TrendingUp className="h-3.5 w-3.5 text-sky-500" />
-                        <p className="text-xs font-semibold text-sky-500">{activeProject.result}</p>
-                      </div>
+                      <h4 className="text-base font-bold leading-6 text-black">{activeProject.title}</h4>
                     </motion.div>
                   </AnimatePresence>
 

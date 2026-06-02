@@ -143,35 +143,6 @@ function Home() {
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <HeroSection />
 
-      {/* Thin Animated Marquee Strip */}
-      <div className="flex overflow-hidden bg-[#0f172a] py-2.5 border-y border-[rgba(234,88,12,0.2)]">
-        <div
-          className="flex whitespace-nowrap"
-          style={{
-            width: 'max-content',
-            animation: 'marquee 80s linear infinite',
-          }}
-        >
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="flex items-center text-[11px] sm:text-[13px] font-semibold tracking-[0.15em] text-white/80 uppercase">
-              <span className="mx-5">Oracle HCM</span>
-              <span className="text-[#EA580C]">•</span>
-              <span className="mx-5">ERP Modernization</span>
-              <span className="text-[#EA580C]">•</span>
-              <span className="mx-5">AI Transformation</span>
-              <span className="text-[#EA580C]">•</span>
-              <span className="mx-5">Intelligent Integrations</span>
-              <span className="text-[#EA580C]">•</span>
-              <span className="mx-5">Redwood UX</span>
-              <span className="text-[#EA580C]">•</span>
-              <span className="mx-5">Payroll Transformation</span>
-              <span className="text-[#EA580C]">•</span>
-              <span className="mx-5">Global Delivery</span>
-              <span className="text-[#EA580C] mr-5">•</span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       <section className="bg-white py-8 sm:py-9">
         <div className="section-shell">
@@ -272,7 +243,7 @@ function Home() {
                   {[...clientLogos, ...clientLogos].map((logo, idx) => (
                     <div
                       key={idx}
-                      className="group relative flex h-[130px] w-[240px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-[0_12px_40px_rgba(14,165,233,0.12)]"
+                      className="group relative flex h-[90px] w-[180px] shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-[0_12px_40px_rgba(14,165,233,0.12)]"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-sky-50/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       <img
@@ -445,15 +416,6 @@ function Home() {
       </section>
 
       <section className="relative overflow-hidden bg-white py-14 sm:py-16 lg:py-18">
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 h-[55%] w-full"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q25,0 50,50 T100,50 L100,100 L0,100 Z' fill='rgba(14,165,233,0.04)'/%3E%3Cpath d='M0,70 Q25,20 50,70 T100,70 L100,100 L0,100 Z' fill='rgba(234,88,12,0.04)'/%3E%3C/svg%3E")`,
-            backgroundSize: '100% 100%',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'bottom',
-          }}
-        />
         <div className="section-shell relative z-10">
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Badge className="mb-6">Transformation Stories</Badge>
@@ -528,11 +490,33 @@ function Home() {
         className="relative overflow-hidden bg-[#FFFFFF] py-16 sm:py-20 lg:py-28"
         style={{
           fontFamily: "'Open Sans', sans-serif",
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.04)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.04)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.02)' /%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
           backgroundSize: '100% 100%',
           backgroundRepeat: 'no-repeat',
         }}
       >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="delivery-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#delivery-dot-grid)" />
+        </svg>
+
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }}
+        />
+        <div
+          className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(234,88,12,0.06) 0%, transparent 70%)' }}
+        />
+
         <div className="section-shell relative z-10">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-[40px] font-bold leading-tight tracking-tight text-[#000000]">
@@ -543,15 +527,15 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-16 w-full overflow-x-auto pb-8" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div className="min-w-[1000px] w-full relative">
-              <div className="grid grid-cols-6 gap-2 relative">
+          <div className="mt-16 w-full pb-8">
+            <div className="w-full relative">
+              <div className="grid grid-cols-6 gap-0 relative">
                 {/* Central Horizontal Line */}
                 <motion.div
-                  className="absolute top-1/2 left-0 right-0 h-[1px] bg-[#EA580C] -translate-y-1/2 z-0"
+                  className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#EA580C] -translate-y-1/2 z-0"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  viewport={{ once: false, margin: '-50px' }}
+                  viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                   style={{ originX: 0 }}
                 />
@@ -594,10 +578,13 @@ function Home() {
 
                       {/* Content */}
                       <motion.div
-                        className={`absolute w-[95%] px-1 text-center flex flex-col items-center z-30 ${isTop ? 'bottom-[calc(50%+28px)]' : 'top-[calc(50%+28px)]'
-                          }`}
-                        initial={{ opacity: 0, y: isTop ? 20 : -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        className={`absolute px-1 text-center flex flex-col items-center z-30 ${isTop ? 'bottom-[calc(50%+28px)]' : 'top-[calc(50%+28px)]'}`}
+                        style={{
+                          width: index === 5 ? '180%' : '110%',
+                          left: '50%',
+                        }}
+                        initial={{ opacity: 0, y: isTop ? 20 : -20, x: index === 5 ? '-60%' : '-50%' }}
+                        whileInView={{ opacity: 1, y: 0, x: index === 5 ? '-60%' : '-50%' }}
                         viewport={{ once: false, margin: '-50px' }}
                         transition={{
                           duration: 0.6,
@@ -623,45 +610,6 @@ function Home() {
       </section>
 
       <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,1))
-            `,
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.32]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
-            `,
-            backgroundPosition: '0 0, 0 0',
-            backgroundSize: '24px 24px, 24px 24px',
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.28]"
-          style={{
-            backgroundImage:
-              'radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px)',
-            backgroundPosition: '12px 12px',
-            backgroundSize: '18px 18px',
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-52 opacity-[0.62]"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 100%), repeating-linear-gradient(120deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 14px)',
-          }}
-        />
-
         <div className="section-shell relative z-10 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="max-w-xl">
             <Badge className="border-[rgba(234,88,12,0.25)] bg-white text-[#EA580C] shadow-[0_10px_24px_rgba(14,165,233,0.08)]">
