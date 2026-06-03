@@ -1,18 +1,11 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import Badge from '../components/ui/Badge'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { caseStudies } from '../data/caseStudies'
 import { pageVariants } from '../animations/variants'
-
-const SVGIcon = () => (
-  <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-sm">
-    <svg viewBox="0 0 24 24" className="h-[20px] w-[20px] fill-current">
-      <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
-      <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
-    </svg>
-  </span>
-);
 
 function CaseStudies() {
   useDocumentTitle('Case Studies | CloudStand Oracle Cloud Success Stories')
@@ -23,163 +16,123 @@ function CaseStudies() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[72vh] lg:flex lg:items-center">
-        {/* DESIGN 21 BACKGROUND */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 50,50 0,100 20,100 70,50 20,0' fill='rgba(14,165,233,0.08)'/%3E%3Cpolygon points='30,0 80,50 30,100 50,100 100,50 50,0' fill='rgba(234,88,12,0.06)'/%3E%3C/svg%3E")`,
-            backgroundSize: '100% 100%',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            opacity: 1,
-          }}
-        />
-
-        {/* EXTRA SOFT WHITE OVERLAY */}
-        <div className="absolute inset-0 bg-white/40" />
-
-        {/* SOFT GLOW */}
-        <div className="absolute left-[-100px] top-[-100px] h-[340px] w-[340px] rounded-full bg-[#0EA5E9]/[0.08] blur-3xl" />
-        <div className="absolute right-[-120px] top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#EA580C]/[0.10] blur-3xl" />
-
-        <div className="section-shell relative z-10">
-          <motion.div
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Badge>Case Studies</Badge>
-          </motion.div>
-
-          <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
-
-          <div className="max-w-6xl pb-2">
-            <motion.h1
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 25 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-6 text-[30px] font-bold leading-[0.95] tracking-[-0.06em] text-black md:text-[44px] lg:text-[48px]"
-              style={{ fontFamily: 'Open Sans, sans-serif' }}
+      <section className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[90vh] lg:flex lg:items-center">
+        <div className="section-shell relative z-10 grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <motion.div
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             >
-              Transformation
-              <br />
-              outcomes that
-              <br />
-              stand up in the boardroom
-            </motion.h1>
+              <Badge>Case Studies</Badge>
+            </motion.div>
 
-            <motion.p
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-6 max-w-[760px] text-[20px] leading-[1.7] text-[#475569]"
-              style={{ fontFamily: 'Open Sans, sans-serif' }}
-            >
-              Explore Oracle Cloud transformation programs,
-              enterprise modernization initiatives and measurable
-              business outcomes delivered by CloudStand Consulting.
-            </motion.p>
+            <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+
+            <div className="pb-2">
+              <motion.h1
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 25 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="mt-6 text-[30px] font-bold leading-[0.95] tracking-[-0.06em] text-black md:text-[44px] lg:text-[48px]"
+                style={{ fontFamily: 'Open Sans, sans-serif' }}
+              >
+                Transformation
+                <br />
+                outcomes that
+                <br />
+                stand up in the boardroom
+              </motion.h1>
+
+              <motion.p
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="mt-6 max-w-[760px] text-[20px] leading-[1.7] text-[#475569]"
+                style={{ fontFamily: 'Open Sans, sans-serif' }}
+              >
+                Explore Oracle Cloud transformation programs,
+                enterprise modernization initiatives and measurable
+                business outcomes delivered by CloudStand Consulting.
+              </motion.p>
+            </div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="relative lg:ml-auto w-full max-w-lg"
+          >
+            <div className="relative overflow-hidden rounded-[32px] shadow-xl">
+              <img 
+                src="/CaseStudies/cs1.png" 
+                alt="Case Studies Hero" 
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            {/* Decorative background element for the image */}
+            <div className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-[#0EA5E9]/20 to-[#EA580C]/20 blur-xl opacity-70" />
+          </motion.div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-14 lg:py-20">
-        <div className="section-shell relative z-10 flex flex-col gap-16 lg:gap-24">
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6 }}
-              className="w-full rounded-[32px] border border-[rgba(14,165,233,0.3)] bg-white p-6 sm:p-10 lg:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
-            >
-              <div className="mb-10 flex flex-col items-start lg:items-center text-left lg:text-center">
-                <Badge className="mb-4">Case Study {index + 1}</Badge>
-                <h2 className="text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#000000] mt-4">
-                  {study.title}
-                </h2>
-              </div>
-              
-              <div className="space-y-12">
-                {/* Overview */}
-                <div>
-                  <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Overview</h3>
-                  {study.overview.map((para, i) => (
-                    <p key={i} className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-3 last:mb-0">
-                      {para}
-                    </p>
-                  ))}
+      <section className="bg-[#F8FAFC] py-14 lg:py-20">
+        <div className="section-shell relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-[1280px] mx-auto">
+            {caseStudies.slice(0, 9).map((study, index) => (
+              <motion.div
+                key={study.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
+                className="group relative flex h-full flex-col overflow-hidden rounded-[26px] border border-[#ececec] bg-white transition-all duration-500 hover:-translate-y-2 hover:border-[#f97316]"
+              >
+                <div className="h-48 w-full overflow-hidden shrink-0">
+                  <img src={study.image || '/About_Hero.png'} alt={study.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
+                
+                <div className="flex w-full flex-1 flex-col p-4 sm:p-6">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#EA580C]" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                      {study.category}
+                    </span>
+                    <div className="h-2.5 w-12 shrink-0 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
+                  </div>
 
-                {/* Business Challenges */}
-                <div>
-                  <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Business Challenges</h3>
-                  <ul className="space-y-2.5">
-                    {study.businessChallenges.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <SVGIcon />
-                        <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <h3 className="max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                    {study.title}
+                  </h3>
 
-                {/* Solution Delivered & Key Components */}
-                <div>
-                  <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Solution Delivered</h3>
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-5">
-                    {study.solutionDelivered}
+                  <p className="mt-4 mb-4 text-[15px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                    {study.summary}
+                    {study.result && (
+                      <>
+                        <br /><br />
+                        <span className="font-bold text-black">Result :</span> {study.result}
+                      </>
+                    )}
                   </p>
-                  <p className="font-bold text-[#0EA5E9] mb-3 text-[15px] xl:text-base">Key Solution Components:</p>
-                  <ul className="space-y-2.5">
-                    {study.keyComponents.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <SVGIcon />
-                        <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
 
-                {/* Governance */}
-                <div>
-                  <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Governance & Control Enhancements</h3>
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4">
-                    {study.governanceIntro}
-                  </p>
-                  <ul className="space-y-2.5">
-                    {study.governance.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <SVGIcon />
-                        <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div className="mt-auto h-px w-full bg-[#ececec] shrink-0" />
 
-                {/* Business Impact & Outcome */}
-                <div>
-                  <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Business Impact & Outcome</h3>
-                  <ul className="space-y-2.5 mb-8">
-                    {study.businessImpact.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <SVGIcon />
-                        <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="bg-[#f8fafc] rounded-2xl p-6 sm:p-8 border border-sky-100 shadow-sm">
-                    <p className="font-bold text-[#EA580C] mb-2 text-lg">Outcome</p>
-                    <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify">
-                      {study.outcome}
-                    </p>
+                  <div className="mt-4 flex items-center justify-between shrink-0">
+                    <Link
+                      className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300 group-hover:gap-4"
+                      to={`/case-studies/${study.slug}`}
+                      style={{ fontFamily: 'Open Sans, sans-serif' }}
+                    >
+                      Read more
+                      <span className="transition-colors duration-300 group-hover:text-[#EA580C]">
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </Link>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </motion.main>

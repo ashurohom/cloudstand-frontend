@@ -13,8 +13,8 @@ const countryProjects = {
     x: '72%',
     y: '36%',
     projects: [
-      { id: 1, title: 'Demo Project 1' },
-      { id: 2, title: 'Demo Project 2' },
+      { id: 1, title: 'Cloudstand Consulting Pvt. Ltd.' },
+      // { id: 2, title: 'Demo Project 2' },
     ],
   },
   US: {

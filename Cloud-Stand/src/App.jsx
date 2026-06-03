@@ -8,6 +8,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 import ServiceDetail from './pages/ServiceDetail'
 import CaseStudies from './pages/CaseStudies'
+import CaseStudyDetail from './pages/CaseStudyDetail'
 import Blog from './pages/Blog'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
@@ -28,6 +29,7 @@ function AnimatedRoutes() {
         <Route element={<Services />} path="/services" />
         <Route element={<ServiceDetail />} path="/services/:slug" />
         <Route element={<CaseStudies />} path="/case-studies" />
+        <Route element={<CaseStudyDetail />} path="/case-studies/:slug" />
         <Route element={<Blog />} path="/insights" />
         <Route element={<Navigate replace to="/insights" />} path="/blog" />
         <Route element={<TeamCloudStand />} path="/team-cloudstand" />

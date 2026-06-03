@@ -159,7 +159,7 @@ function About() {
                 transition={{ duration: 0.6 }}
                 className="relative rounded-[32px] overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)] h-[350px] lg:h-[450px]"
               >
-                <img src="/newyork.jpeg" alt="Innovation & Impact" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="/Contact/newyork.jpeg" alt="Innovation & Impact" className="absolute inset-0 w-full h-full object-cover" />
               </motion.div>
             </div>
           </div>

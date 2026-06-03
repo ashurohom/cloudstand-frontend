@@ -175,21 +175,7 @@ New York, NY 10001`,
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section
-        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center"
-        style={{
-
-          backgroundColor: '#ffffff',
-
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.085)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.08)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.04)' /%3E%3C/svg%3E")`,
-
-          backgroundSize: '100% 100%',
-
-          backgroundRepeat: 'no-repeat',
-
-          backgroundPosition: 'center',
-
-        }}
-
+        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white"
       >
 
         {/* SOFT OVERLAY */}
@@ -297,18 +283,20 @@ New York, NY 10001`,
             </motion.div>
             </div>
 
-            {/* RIGHT VISUAL - TEXT WATERMARK */}
+            {/* RIGHT VISUAL - IMAGE */}
             <motion.div
               animate={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 40 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="hidden lg:flex lg:w-[40%] lg:justify-end lg:items-center select-none pointer-events-none translate-x-12 xl:translate-x-24 2xl:translate-x-32"
+              className="hidden lg:flex lg:w-[45%] lg:justify-end lg:items-center relative"
             >
-              <h2 className="text-[70px] xl:text-[90px] 2xl:text-[100px] font-black leading-[0.85] tracking-tight text-right text-[#EA580C]/10 uppercase">
-                ORACLE<br />
-                CLOUD<br />
-                CONSULTING
-              </h2>
+              <div className="relative z-10 w-[90%] max-w-[600px] aspect-square rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-gradient-to-br from-[#0EA5E9]/5 to-[#EA580C]/5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-[6px] border-white overflow-hidden flex items-center justify-center scale-100 xl:scale-105">
+                <img 
+                  src="/Contact/hero.png" 
+                  alt="Contact Hero" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -368,7 +356,7 @@ New York, NY 10001`,
             >
               <div className="relative h-[160px] w-full overflow-hidden">
                 <img
-                  src="/pune.jpeg"
+                  src="/Contact/pune.jpeg"
                   alt="Pune City"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -403,7 +391,7 @@ New York, NY 10001`,
             >
               <div className="relative h-[160px] w-full overflow-hidden">
                 <img
-                  src="/texas.jpeg"
+                  src="/Contact/texas.jpeg"
                   alt="Dallas Skyline"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -438,7 +426,7 @@ New York, NY 10001`,
             >
               <div className="relative h-[160px] w-full overflow-hidden">
                 <img
-                  src="/newyork.jpeg"
+                  src="/Contact/newyork.jpeg"
                   alt="New York Skyline"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -876,129 +864,92 @@ New York, NY 10001`,
         </div>
 
       </section>
-      <section className="py-16 bg-white">
-
-        <div className="section-shell">
-
-          <motion.div
-            className="relative overflow-hidden rounded-[30px] border border-[#bfdbfe] bg-[#fcfcfc] px-7 py-8 lg:px-10 lg:py-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      <section className="bg-white py-8 sm:py-10 lg:py-12">
+        <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <div
+            className="relative flex flex-col justify-center overflow-hidden rounded-[40px] border border-sky-200 bg-white p-6 sm:p-10 lg:p-12 min-h-[420px]"
+            style={{
+              backgroundColor: '#ffffff',
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 50,50 0,100 20,100 70,50 20,0' fill='rgba(14,165,233,0.05)'/%3E%3Cpolygon points='30,0 80,50 30,100 50,100 100,50 50,0' fill='rgba(234,88,12,0.04)'/%3E%3C/svg%3E")`,
+              backgroundSize: '100% 100%',
+              backgroundRepeat: 'no-repeat',
+            }}
           >
-
-            {/* BACKGROUND TEXTURE */}
-            <div
-              className="absolute inset-0 opacity-[0.18]"
-              style={{
-                backgroundImage: `
-            linear-gradient(rgba(14,165,233,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(14,165,233,0.05) 1px, transparent 1px)
-          `,
-                backgroundSize: '24px 24px',
-              }}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              src="/Video/HPV3.mp4"
             />
-
-            <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_300px] lg:items-center">
-
-              {/* LEFT SIDE */}
-              <div className="max-w-[650px]">
-
-                {/* LABEL */}
-                <span className="inline-flex rounded-full border border-[#bfdbfe] bg-white px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-black">
-                  Free Strategy Session
-                </span>
-
-                {/* HEADING */}
-                <h2 className="mt-6 text-[2.6rem] font-bold leading-[0.95] tracking-[-0.06em] text-black">
-
-                  Ready to Modernize
-                  <br />
-
-                  Your Oracle Ecosystem?
-
+            <motion.div
+              className="relative z-10 grid items-center gap-8 lg:grid-cols-[1fr_500px]"
+              initial={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
+              <div>
+                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-white">
+                  Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
-
-                {/* TEXT */}
-                <p className="mt-5 max-w-[620px] text-[15px] leading-8 text-[#475569]">
-
-                  Let&apos;s discuss your Oracle Cloud roadmap with
-                  a focused 30-minute consultation designed around
-                  transformation, optimization and business growth.
-
-                </p>
-
-                {/* BUTTON */}
                 <div className="mt-8">
-
-                  <button
-                    onClick={() => scrollToSection('contact-form')}
-                    className="inline-flex items-center gap-3 rounded-full bg-[#EA580C] px-7 py-3.5 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#d9480f]"
-                  >
-
-                    Schedule a Free Call
-
-                    <ArrowRight className="h-4 w-4" />
-
-                  </button>
-
+                  <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+                    <Button className="!border-orange-500 !bg-orange-500 !text-white !shadow-none hover:!border-orange-400 hover:!bg-orange-600 hover:!text-white" size="lg" to="/contact" variant="white">
+                      Schedule Free System Health Check Analysis
+                      <motion.span whileHover={{ x: 4 }}>
+                        <ArrowRight className="h-4 w-4" />
+                      </motion.span>
+                    </Button>
+                  </motion.div>
                 </div>
-
               </div>
 
-              {/* RIGHT CARD */}
-              <div className="rounded-[26px] border border-[#bfdbfe] bg-white p-7 shadow-[0_15px_40px_rgba(15,23,42,0.04)]">
-
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0EA5E9]">
-                  What You Get
-                </p>
-
-                <div className="mt-6 space-y-5">
-
-                  {/* ITEM */}
-                  <div className="flex items-start gap-3">
-
-                    <div className="mt-2 h-2 w-2 rounded-full bg-[#EA580C]" />
-
-                    <p className="text-[15px] font-medium leading-7 text-black">
-                      30-minute free consultation
-                    </p>
-
-                  </div>
-
-                  {/* ITEM */}
-                  <div className="flex items-start gap-3">
-
-                    <div className="mt-2 h-2 w-2 rounded-full bg-[#0EA5E9]" />
-
-                    <p className="text-[15px] font-medium leading-7 text-black">
-                      No commitment required
-                    </p>
-
-                  </div>
-
-                  {/* ITEM */}
-                  <div className="flex items-start gap-3">
-
-                    <div className="mt-2 h-2 w-2 rounded-full bg-black" />
-
-                    <p className="text-[15px] font-medium leading-7 text-black">
-                      Direct Oracle experts access
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </motion.div>
-
+              <Card className="p-6 !bg-white/10 backdrop-blur-md !border-white/20">
+                <div className="text-[12px] font-extrabold uppercase tracking-normal text-white drop-shadow-lg">Value You Receive</div>
+                <ul className="mt-4 space-y-3 text-white font-medium drop-shadow-md lg:whitespace-nowrap">
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
+                    </span>
+                    <span className="leading-6">Diagnostic Assessment Reports</span>
+                  </li>
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
+                    </span>
+                    <span className="leading-6">Fit-Gap Analysis & Recommendation Roadmap</span>
+                  </li>
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
+                    </span>
+                    <span className="leading-6">240-Hour Complimentary Engagement</span>
+                  </li>
+                  <li className="group flex items-start gap-3">
+                    <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
+                      <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">
+                        <path d="M3 4.5h4.5L14 12l-6.5 7.5H3l6.5-7.5L3 4.5z" />
+                        <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
+                      </svg>
+                    </span>
+                    <span className="leading-6">No-Obligation, Zero-Pressure Approach</span>
+                  </li>
+                </ul>
+              </Card>
+            </motion.div>
+          </div>
         </div>
-
       </section>
     </motion.main>
   )

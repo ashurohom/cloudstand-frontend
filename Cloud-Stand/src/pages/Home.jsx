@@ -457,8 +457,14 @@ function Home() {
                       {study.title}
                     </h3>
 
-                    <p className="mt-4 mb-4 text-[15px] leading-relaxed text-justify text-[#5f6368]">
+                    <p className="mt-4 mb-4 text-[15px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                       {study.summary}
+                      {study.result && (
+                        <>
+                          <br /><br />
+                          <span className="font-bold text-black">Result :</span> {study.result}
+                        </>
+                      )}
                     </p>
 
                     <div className="mt-auto h-px w-full bg-[#ececec]" />
@@ -466,9 +472,9 @@ function Home() {
                     <div className="mt-4 flex items-center justify-between">
                       <Link
                         className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300 group-hover:gap-4"
-                        to="/case-studies"
+                        to={`/case-studies/${study.slug}`}
                       >
-                        {study.cta || 'View Story'}
+                        {study.cta || 'Read More'}
                         <span className="transition-colors duration-300 group-hover:text-[#EA580C]">
                           <ArrowRight className="h-4 w-4" />
                         </span>
@@ -478,6 +484,22 @@ function Home() {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+
+          <motion.div
+            className="mt-12 flex flex-col items-center justify-center"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.45, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link
+              className="inline-flex items-center gap-2 rounded-full border border-[#EA580C] px-5 py-3 text-sm font-medium text-[#EA580C] transition-all duration-300 hover:bg-[#EA580C] hover:text-white"
+              to="/case-studies"
+            >
+              View More
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </motion.div>
         </div>
       </section>
