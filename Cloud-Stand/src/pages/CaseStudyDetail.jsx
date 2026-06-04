@@ -56,48 +56,6 @@ function CaseStudyDetail() {
             Back to Case Studies
           </Link>
           <motion.div
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Badge>{study.category}</Badge>
-          </motion.div>
-
-          <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
-
-          <div className="max-w-4xl pb-2">
-            <motion.h1
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 25 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-6 text-[30px] font-bold leading-[1.1] tracking-[-0.02em] text-black md:text-[40px] lg:text-[44px]"
-              style={{ fontFamily: 'Open Sans, sans-serif' }}
-            >
-              {study.title}
-            </motion.h1>
-
-            <motion.p
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-6 text-[20px] leading-[1.7] text-[#475569] whitespace-pre-line"
-              style={{ fontFamily: 'Open Sans, sans-serif' }}
-            >
-              {study.summary}
-              {study.result && (
-                <>
-                  <br /><br />
-                  <span className="font-bold text-black">Result :</span> {study.result}
-                </>
-              )}
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-white py-14 lg:py-20">
-        <div className="section-shell relative z-10">
-          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
@@ -105,21 +63,62 @@ function CaseStudyDetail() {
             className="w-full rounded-[32px] border border-[rgba(14,165,233,0.3)] bg-white p-6 sm:p-10 lg:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
           >
             <div className="space-y-12">
+              {/* Header Content */}
+              <div>
+                <motion.div
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                  transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Badge>{study.category}</Badge>
+                </motion.div>
+
+                <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+
+                <div className="max-w-4xl pb-2">
+                  <motion.h1
+                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 25 }}
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                    className="mt-6 text-[30px] font-bold leading-[1.1] tracking-[-0.02em] text-black md:text-[40px] lg:text-[44px]"
+                    style={{ fontFamily: 'Open Sans, sans-serif' }}
+                  >
+                    {study.title}
+                  </motion.h1>
+
+                  <motion.p
+                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="mt-6 text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 whitespace-pre-line text-justify"
+                    style={{ fontFamily: 'Open Sans, sans-serif' }}
+                  >
+                    {study.summary}
+                    {study.result && (
+                      <>
+                        <br /><br />
+                        <span className="font-bold text-black">Result :</span> {study.result}
+                      </>
+                    )}
+                  </motion.p>
+                </div>
+              </div>
+
               {/* Overview */}
               <div>
                 <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Detailed Overview</h3>
                 {study.region && (
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 font-medium mb-1">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 font-medium mb-1">
                     <span className="font-bold">Region:</span> {study.region}
                   </p>
                 )}
                 {study.industry && (
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 font-medium mb-4">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 font-medium mb-4">
                     <span className="font-bold">Industry:</span> {study.industry}
                   </p>
                 )}
                 {study.overview.map((para, i) => (
-                  <p key={i} className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-3 last:mb-0">
+                  <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-3 last:mb-0">
                     {para}
                   </p>
                 ))}
@@ -132,7 +131,7 @@ function CaseStudyDetail() {
                   {study.businessChallenges.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <SVGIcon />
-                      <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
+                      <span className="text-[16px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -141,13 +140,13 @@ function CaseStudyDetail() {
               {/* Solution Delivered & Key Components */}
               <div>
                 <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Solution Delivered</h3>
-                <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-5">
+                <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-5">
                   {study.solutionDelivered}
                 </p>
                 {study.keyComponents && study.keyComponents.length > 0 && (
                   <>
                     {study.solutionComponentHeading !== false && (
-                      <p className="font-bold text-[#0EA5E9] mb-3 text-[15px] xl:text-base">
+                      <p className="font-bold text-[#0EA5E9] mb-3 text-[16px] xl:text-base">
                         {study.solutionComponentHeading || 'Key Solution Components:'}
                       </p>
                     )}
@@ -157,7 +156,7 @@ function CaseStudyDetail() {
                         return (
                           <li key={i} className="flex items-start gap-3">
                             <SVGIcon />
-                            <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">
+                            <span className="text-[16px] xl:text-base leading-normal text-black/80 font-medium">
                               {colonIndex !== -1 ? (
                                 <>
                                   <span className="font-bold text-black">{item.substring(0, colonIndex + 1)}</span>
@@ -174,7 +173,7 @@ function CaseStudyDetail() {
                   </>
                 )}
                 {study.solutionConclusion && (
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-5 mb-0">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-5 mb-0">
                     {study.solutionConclusion}
                   </p>
                 )}
@@ -185,12 +184,12 @@ function CaseStudyDetail() {
                 <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">{study.governanceHeading || 'Governance & Control Enhancements'}</h3>
                 {Array.isArray(study.governanceIntro) ? (
                   study.governanceIntro.map((para, i) => (
-                    <p key={i} className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4 whitespace-pre-line">
+                    <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4 whitespace-pre-line">
                       {para}
                     </p>
                   ))
                 ) : (
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4">
                     {study.governanceIntro}
                   </p>
                 )}
@@ -200,7 +199,7 @@ function CaseStudyDetail() {
                     return (
                       <li key={i} className="flex items-start gap-3">
                         <SVGIcon />
-                        <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">
+                        <span className="text-[16px] xl:text-base leading-normal text-black/80 font-medium">
                           {colonIndex !== -1 ? (
                             <>
                               <span className="font-bold text-black">{item.substring(0, colonIndex + 1)}</span>
@@ -215,7 +214,7 @@ function CaseStudyDetail() {
                   })}
                 </ul>
                 {study.governanceConclusion && (
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-4 mb-0">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-4 mb-0">
                     {study.governanceConclusion}
                   </p>
                 )}
@@ -228,13 +227,13 @@ function CaseStudyDetail() {
                   {study.businessImpact.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <SVGIcon />
-                      <span className="text-[15px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
+                      <span className="text-[16px] xl:text-base leading-normal text-black/80 font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="bg-[#f8fafc] rounded-2xl p-6 sm:p-8 border border-sky-100 shadow-sm">
                   <p className="font-bold text-[#EA580C] mb-2 text-lg">Outcome</p>
-                  <p className="text-[15px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify">
                     {study.outcome}
                   </p>
                 </div>

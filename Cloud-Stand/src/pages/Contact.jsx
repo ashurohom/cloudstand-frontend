@@ -8,14 +8,13 @@ import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
 import { fadeUp, pageVariants, staggerContainer, staggerItem } from '../animations/variants'
-
+import { API_ENDPOINTS } from '../config/api'
 
 const initialForm = {
   name: '',
   company: '',
   email: '',
   phone: '',
-  country: '',
   serviceInterested: services[0]?.title ?? '',
   message: '',
 }
@@ -96,6 +95,8 @@ function Contact() {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [openFaq, setOpenFaq] = useState(0)
   const [activeLocation, setActiveLocation] = useState('Pune')
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -109,14 +110,15 @@ function Contact() {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
     setErrors((current) => ({ ...current, [name]: '' }))
+    setSubmitError('')
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     const nextErrors = {}
 
-      ;['name', 'company', 'email', 'phone', 'country', 'serviceInterested', 'message'].forEach((field) => {
+      ;['name', 'email', 'phone', 'serviceInterested', 'message'].forEach((field) => {
         if (!form[field].trim()) {
           nextErrors[field] = 'This field is required'
         }
@@ -134,7 +136,42 @@ function Contact() {
     }
 
     setErrors({})
-    setSubmitted(true)
+    setIsSubmitting(true)
+    setSubmitError('')
+
+    try {
+      const response = await fetch(API_ENDPOINTS.contactInquiry, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          phone: form.phone,
+          service_interested: form.serviceInterested,
+          message: form.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      setSubmitted(true);
+      setForm(initialForm);
+      
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Failed to send inquiry. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const inputClass = (field) =>
@@ -495,97 +532,113 @@ New York, NY 10001`,
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
-                {/* FULL NAME */}
-                <div className="md:col-span-1">
-                  <input
-                    name="name"
-                    type="text"
-                    placeholder="Full Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
-                  />
-                </div>
-
-                {/* EMAIL */}
-                <div className="md:col-span-1">
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="Email Address"
-                    value={form.email}
-                    onChange={handleChange}
-                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
-                  />
-                </div>
-
-                {/* COMPANY NAME */}
-                <div className="md:col-span-1">
-                  <input
-                    name="company"
-                    type="text"
-                    placeholder="Company Name"
-                    value={form.company}
-                    onChange={handleChange}
-                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
-                  />
-                </div>
-
-                {/* PHONE NUMBER */}
-                <div className="md:col-span-1">
-                  <input
-                    name="phone"
-                    type="text"
-                    placeholder="Phone Number"
-                    value={form.phone}
-                    onChange={handleChange}
-                    className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
-                  />
-                </div>
-
-                {/* SERVICE DROPDOWN */}
-                <div className="md:col-span-2 relative">
-                  <select
-                    name="serviceInterested"
-                    value={form.serviceInterested}
-                    onChange={handleChange}
-                    className="h-[48px] w-full appearance-none rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
-                  >
-                    {services.map((service) => (
-                      <option key={service.slug} value={service.title}>
-                        {service.title}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
-                    <ChevronDown className="h-5 w-5" />
+              {submitted ? (
+                <div className="flex min-h-[300px] flex-col items-center justify-center text-center">
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+                    <svg className="h-8 w-8 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   </div>
+                  <h3 className="text-2xl font-bold text-[#111827] mb-2">Inquiry Submitted!</h3>
+                  <p className="text-[#475569]">Thank you for reaching out. We will get back to you shortly.</p>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
+                  {/* FULL NAME */}
+                  <div className="md:col-span-1">
+                    <input
+                      name="name"
+                      type="text"
+                      placeholder="Full Name *"
+                      value={form.name}
+                      onChange={handleChange}
+                      className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
+                    />
+                  </div>
 
-                {/* MESSAGE TEXTAREA */}
-                <div className="md:col-span-2">
-                  <textarea
-                    name="message"
-                    placeholder="Tell us about your project requirements..."
-                    value={form.message}
-                    onChange={handleChange}
-                    className="min-h-[100px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] p-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none resize-y"
-                  />
-                </div>
+                  {/* EMAIL */}
+                  <div className="md:col-span-1">
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="Email Address *"
+                      value={form.email}
+                      onChange={handleChange}
+                      className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
+                    />
+                  </div>
 
-                {/* BUTTON */}
-                <div className="md:col-span-2 mt-1">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1"
-                  >
-                    Send Inquiry
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                </div>
+                  {/* COMPANY NAME */}
+                  <div className="md:col-span-1">
+                    <input
+                      name="company"
+                      type="text"
+                      placeholder="Company Name (Optional)"
+                      value={form.company}
+                      onChange={handleChange}
+                      className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                    />
+                  </div>
 
-              </form>
+                  {/* PHONE NUMBER */}
+                  <div className="md:col-span-1">
+                    <input
+                      name="phone"
+                      type="text"
+                      placeholder="Phone Number *"
+                      value={form.phone}
+                      onChange={handleChange}
+                      className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
+                    />
+                  </div>
+
+                  {/* SERVICE DROPDOWN */}
+                  <div className="md:col-span-2 relative">
+                    <select
+                      name="serviceInterested"
+                      value={form.serviceInterested}
+                      onChange={handleChange}
+                      className={`h-[48px] w-full appearance-none rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.serviceInterested ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
+                    >
+                      {services.map((service) => (
+                        <option key={service.slug} value={service.title}>
+                          {service.title}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
+                      <ChevronDown className="h-5 w-5" />
+                    </div>
+                  </div>
+
+                  {/* MESSAGE TEXTAREA */}
+                  <div className="md:col-span-2">
+                    <textarea
+                      name="message"
+                      placeholder="Tell us about your project requirements... *"
+                      value={form.message}
+                      onChange={handleChange}
+                      className={`min-h-[100px] w-full rounded-[12px] border bg-[#F7F9FC] p-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none resize-y ${errors.message ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
+                    />
+                  </div>
+
+                  {submitError && (
+                    <div className="md:col-span-2 text-sm text-red-500 text-center font-medium">
+                      {submitError}
+                    </div>
+                  )}
+
+                  {/* BUTTON */}
+                  <div className="md:col-span-2 mt-1">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center justify-center gap-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Inquiry'}
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>

@@ -12,7 +12,8 @@ import {
   ArrowUpRight, 
   Activity, 
   TrendingUp, 
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Badge from '../components/ui/Badge'
@@ -123,6 +124,64 @@ function Blog() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [regForm, setRegForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    linkedin: ''
+  })
+  const [regErrors, setRegErrors] = useState({})
+  const [regSubmitted, setRegSubmitted] = useState(false)
+
+  const handleRegChange = (e) => {
+    const { name, value } = e.target
+    setRegForm(prev => ({ ...prev, [name]: value }))
+    setRegErrors(prev => ({ ...prev, [name]: '' }))
+  }
+
+  const closeRegModal = () => {
+    setIsModalOpen(false)
+    setTimeout(() => {
+      setRegSubmitted(false)
+      setRegForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        linkedin: ''
+      })
+      setRegErrors({})
+    }, 300)
+  }
+
+  const handleRegSubmit = (e) => {
+    e.preventDefault()
+    const newErrors = {}
+    if (!regForm.firstName.trim()) newErrors.firstName = 'Required'
+    if (!regForm.lastName.trim()) newErrors.lastName = 'Required'
+    if (!regForm.email.trim()) {
+      newErrors.email = 'Required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
+      newErrors.email = 'Invalid'
+    }
+    if (!regForm.linkedin.trim()) newErrors.linkedin = 'Required'
+
+    if (Object.keys(newErrors).length > 0) {
+      setRegErrors(newErrors)
+      return
+    }
+
+    setRegErrors({})
+    setRegSubmitted(true)
+
+    // Auto-close modal after 5 seconds
+    setTimeout(() => {
+      closeRegModal()
+    }, 5000)
+  }
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
@@ -146,53 +205,46 @@ function Blog() {
       <div aria-hidden="true" className="pointer-events-none absolute right-[-10%] top-[60%] h-[550px] w-[550px] rounded-full bg-gradient-to-bl from-[#ea580c]/8 to-[#8b5cf6]/10 blur-3xl orb-drift" style={{ animationDelay: '-6s' }} />
 
       {/* ==========================================
-          KEEP: Hero Section / Live Webinar (EXACTLY AS IT WAS)
+          Hero Section / Live Webinar (Contact Page Style)
           ========================================== */}
-      <section className="relative overflow-hidden bg-white py-14 sm:py-16 lg:py-20">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(circle at 12% 20%, rgba(14,165,233,0.12), transparent 28%), radial-gradient(circle at 88% 18%, rgba(214,59,37,0.08), transparent 24%), linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,1))',
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-[6%] top-24 h-40 w-40 rounded-full blur-3xl"
-          style={{ background: 'rgba(14,165,233,0.12)' }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-[8%] top-20 h-44 w-44 rounded-full blur-3xl"
-          style={{ background: 'rgba(214,59,37,0.10)' }}
-        />
+      <section
+        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white"
+      >
+        {/* SOFT OVERLAY */}
+        <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
 
-        <div className="section-shell relative z-10">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <div className="max-w-3xl">
+        <div className="section-shell relative z-20 w-full">
+          <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            {/* LEFT CONTENT */}
+            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
               <motion.div
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                initial={{ opacity: 0, scale: 0.9, y: 10 }}
                 transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Badge>Live Webinar</Badge>
               </motion.div>
 
+              {/* BLUE LINE */}
+              <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+
               <motion.h1
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-7 max-w-4xl font-['Open_Sans'] text-[30px] font-extrabold leading-[1.04] tracking-[-0.04em] text-black sm:text-[44px] xl:text-[48px]"
-                initial={{ opacity: 0, y: 18 }}
-                transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-6 text-[40px] lg:text-[50px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+                initial={{ opacity: 0, y: 25 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
               >
-                Future of <span className="text-[#D63B25]">Oracle</span> Cloud Infrastructure
+                Future of <span className="text-[#D63B25]">Oracle</span>
+                <br />
+                Cloud Infrastructure
               </motion.h1>
 
+              {/* DESCRIPTION */}
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 max-w-2xl font-['Open_Sans'] text-base leading-8 text-black/68 sm:text-lg"
-                initial={{ opacity: 0, y: 16 }}
-                transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-6 max-w-[600px] text-[18px] leading-8 text-[#475569] text-left"
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
               >
                 Join Cloud Stand experts to explore OCI modernization, AI integration, enterprise security, and scalable cloud solutions.
               </motion.p>
@@ -208,7 +260,7 @@ function Blog() {
                   <motion.div
                     key={label}
                     variants={staggerItem}
-                    className="rounded-[24px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-4 shadow-[0_18px_44px_rgba(14,165,233,0.08)] backdrop-blur-md"
+                    className="rounded-[24px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-4 shadow-[0_18px_44px_rgba(14,165,233,0.08)] backdrop-blur-md text-left"
                   >
                     <div className="flex items-start gap-4">
                       <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_8px_20px_rgba(14,165,233,0.08)]">
@@ -223,52 +275,54 @@ function Blog() {
                 ))}
               </motion.div>
 
-              <motion.div
-                className="mt-8 flex flex-wrap gap-4"
-                animate={{ opacity: 1, y: 0 }}
-                initial={{ opacity: 0, y: 16 }}
-                transition={{ duration: 0.5, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <button
-                  className="inline-flex items-center gap-2 rounded-full bg-[#D63B25] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_16px_36px_rgba(214,59,37,0.22)] transition-all duration-300 hover:bg-[#EA580C]"
-                  type="button"
-                >
-                  Register Now
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <button
-                  className="inline-flex items-center gap-2 rounded-full border border-black bg-white px-7 py-3.5 text-sm font-semibold text-black shadow-[0_12px_26px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[#D63B25] hover:text-[#D63B25]"
-                  type="button"
-                >
-                  Learn More
-                </button>
-              </motion.div>
-
-              <motion.p
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-5 text-sm font-medium text-black/70"
-                initial={{ opacity: 0, y: 14 }}
-                transition={{ duration: 0.5, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Only <span className="font-semibold text-[#D63B25]">50 Seats</span> Left! Reserve your spot now.
-              </motion.p>
             </div>
 
+            {/* RIGHT VISUAL - IMAGE AND BUTTON */}
             <motion.div
               animate={{ opacity: 1, x: 0 }}
-              className="relative mx-auto w-full max-w-[560px] lg:ml-auto"
-              initial={{ opacity: 0, x: 28 }}
-              transition={{ duration: 0.65, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, x: 40 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center justify-center w-full mt-10 lg:mt-0 lg:w-[45%] lg:items-end relative"
             >
-
-              <div className="relative overflow-hidden rounded-[24px] shadow-[0_12px_40px_rgba(14,165,233,0.1)] border border-slate-100">
-                <img
+              <div className="relative z-10 w-full max-w-[500px] rounded-[24px] shadow-[0_12px_40px_rgba(14,165,233,0.1)] border border-slate-100 overflow-hidden">
+                <img 
                   src={webinarPoster}
-                  alt="Webinar poster"
+                  alt="Webinar poster" 
                   className="block w-full h-auto object-cover"
                   loading="eager"
                 />
               </div>
+
+              {/* BUTTON UNDER IMAGE */}
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-8 flex justify-center w-full max-w-[500px]"
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+              >
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="inline-flex items-center justify-center gap-3 w-full rounded-full bg-[#EA580C] px-9 py-4 text-[15px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
+                  type="button"
+                >
+                  Register Now
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M5 12h14m-5-5 5 5-5 5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -532,6 +586,148 @@ function Blog() {
       </section>
 
       {/* Video modal removed — using a single embedded featured video instead */}
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+              onClick={closeRegModal}
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-2xl overflow-hidden rounded-[24px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.15)] border border-[#e2e8f0] z-10"
+            >
+              <button 
+                onClick={closeRegModal}
+                className="absolute right-5 top-5 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              <div className="p-6 md:p-10">
+                {!regSubmitted ? (
+                  <>
+                    <div className="mb-8 flex flex-col items-center text-center">
+                      <Badge>Webinar Registration</Badge>
+                      <h2 className="mt-4 text-[32px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
+                        Secure Your Spot
+                      </h2>
+                      <p className="mt-2 text-[15px] leading-relaxed text-[#475569] text-center max-w-[400px] mx-auto">
+                        Join our experts to explore the future of Oracle Cloud Infrastructure.
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleRegSubmit} className="grid gap-4 md:grid-cols-2">
+                      {/* FIRST NAME */}
+                      <div className="md:col-span-1">
+                        <input
+                          name="firstName"
+                          type="text"
+                          placeholder="First Name *"
+                          value={regForm.firstName}
+                          onChange={handleRegChange}
+                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.firstName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                        />
+                      </div>
+
+                      {/* LAST NAME */}
+                      <div className="md:col-span-1">
+                        <input
+                          name="lastName"
+                          type="text"
+                          placeholder="Last Name *"
+                          value={regForm.lastName}
+                          onChange={handleRegChange}
+                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.lastName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                        />
+                      </div>
+
+                      {/* EMAIL */}
+                      <div className="md:col-span-2">
+                        <input
+                          name="email"
+                          type="email"
+                          placeholder="Work Email Address *"
+                          value={regForm.email}
+                          onChange={handleRegChange}
+                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.email ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                        />
+                      </div>
+
+                      {/* PHONE NUMBER */}
+                      <div className="md:col-span-1">
+                        <input
+                          name="phone"
+                          type="text"
+                          placeholder="Contact Number (Optional)"
+                          value={regForm.phone}
+                          onChange={handleRegChange}
+                          className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                        />
+                      </div>
+
+                      {/* LINKEDIN */}
+                      <div className="md:col-span-1">
+                        <input
+                          name="linkedin"
+                          type="text"
+                          placeholder="LinkedIn URL *"
+                          value={regForm.linkedin}
+                          onChange={handleRegChange}
+                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.linkedin ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                        />
+                      </div>
+
+                      {/* BUTTON */}
+                      <div className="md:col-span-2 mt-4 text-center">
+                        <button
+                          type="submit"
+                          className="inline-flex items-center justify-center gap-3 w-full rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1"
+                        >
+                          Complete Registration
+                          <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </form>
+                  </>
+                ) : (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-10 text-center"
+                  >
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 mb-6">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                        <svg className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#111827] mb-2">Registration Successful</h3>
+                    <p className="text-[#475569] max-w-[350px] mx-auto">
+                      Thank you for securing your spot.
+                    </p>
+                    <button
+                      onClick={closeRegModal}
+                      className="mt-8 rounded-full border border-slate-200 bg-white px-8 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50"
+                    >
+                      Close Window
+                    </button>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </motion.main>
   )
