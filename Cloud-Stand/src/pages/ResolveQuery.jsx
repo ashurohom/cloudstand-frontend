@@ -160,7 +160,7 @@ function ResolveQuery() {
           </h1>
           <motion.p
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6 max-w-3xl font-dm-sans text-lg leading-8 text-text-muted"
+            className="mt-6 max-w-3xl text-[16px] leading-8 text-text-muted"
             initial={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -206,7 +206,7 @@ function ResolveQuery() {
         >
           <div className="mb-10 max-w-3xl">
             <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Choose a topic</h2>
-            <p className="mt-4 text-base leading-7 text-text-muted sm:text-lg">
+            <p className="mt-4 text-[16px] leading-7 text-text-muted ">
               Narrow the FAQ list by topic or keep everything visible while you search.
             </p>
           </div>
@@ -263,7 +263,7 @@ function ResolveQuery() {
           <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Frequently asked questions</h2>
-              <p className="mt-4 text-base leading-7 text-text-muted sm:text-lg">
+              <p className="mt-4 text-[16px] leading-7 text-text-muted ">
                 {filteredFaqs.length} result{filteredFaqs.length === 1 ? '' : 's'} for your current filter.
               </p>
             </div>

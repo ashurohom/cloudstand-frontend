@@ -8,7 +8,6 @@ import { fadeUp, staggerContainer, staggerItem } from '../../animations/variants
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
-  { label: 'Background Designs', path: '/background-designs' },
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'Insights', path: '/insights' },
   { label: 'Contact', path: '/contact' },
@@ -40,7 +39,7 @@ function Navbar() {
     () =>
       services.map((service) => ({
         label: service.title,
-        path: `/services/${service.slug}`,
+        path: `/services#${service.slug}`,
       })),
     [],
   )
@@ -59,12 +58,17 @@ function Navbar() {
     })
   }
 
-  const handleNavClick = () => {
+  const handleNavClick = (path) => {
     setMenuOpen(false)
     setServicesOpen(false)
     setCareersOpen(false)
     setHoveredPath('')
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (typeof path === 'string' && path.includes('#')) {
+      // The Services page useEffect will handle the scrolling, 
+      // just don't scroll to top here so they don't fight.
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   const renderUnderline = (active) =>
@@ -88,7 +92,7 @@ function Navbar() {
             initial={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Link aria-label="CloudStand home" className="flex items-center gap-3" onClick={handleNavClick} to="/">
+            <Link aria-label="CloudStand home" className="flex items-center gap-3" onClick={() => handleNavClick('/')} to="/">
               <img
                 alt="CloudStand Consulting"
                 className="h-12 w-auto object-contain sm:h-14"
@@ -107,7 +111,7 @@ function Navbar() {
               <motion.div custom={index} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
-                  onClick={handleNavClick}
+                  onClick={() => handleNavClick(item.path)}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath('')}
                   to={item.path}
@@ -139,21 +143,17 @@ function Navbar() {
               }}
               variants={fadeUp}
             >
-              <NavLink
-                className="relative flex items-center gap-1 py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
-                onClick={handleNavClick}
+              <Link
                 to="/services"
+                className="relative flex items-center gap-1 py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
+                onClick={() => handleNavClick('/services')}
               >
-                {({ isActive }) => (
-                  <>
-                    <span className={isActive || servicesOpen ? 'text-[#0EA5E9]' : ''}>Services</span>
-                    <motion.span animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                      <ChevronDown className="h-4 w-4" />
-                    </motion.span>
-                    {renderUnderline(isActive || servicesOpen || hoveredPath === '/services')}
-                  </>
-                )}
-              </NavLink>
+                <span className={servicesOpen || location.pathname.startsWith('/services') ? 'text-[#0EA5E9]' : ''}>Services</span>
+                <motion.span animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                  <ChevronDown className="h-4 w-4" />
+                </motion.span>
+                {renderUnderline(servicesOpen || location.pathname.startsWith('/services') || hoveredPath === '/services')}
+              </Link>
 
               <AnimatePresence mode="wait">
                 {servicesOpen ? (
@@ -169,7 +169,7 @@ function Navbar() {
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
                             className="group flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:text-[#0EA5E9]"
-                            onClick={handleNavClick}
+                            onClick={() => handleNavClick(item.path)}
                             to={item.path}
                           >
                             <span
@@ -186,11 +186,11 @@ function Navbar() {
               </AnimatePresence>
             </motion.div>
 
-            {navLinks.slice(2, 5).map((item, index) => (
+            {navLinks.slice(2, 4).map((item, index) => (
               <motion.div custom={index + 4} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
-                  onClick={handleNavClick}
+                  onClick={() => handleNavClick(item.path)}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath('')}
                   to={item.path}
@@ -210,7 +210,7 @@ function Navbar() {
 
             <motion.div
               className="relative"
-              custom={7}
+              custom={6}
               onMouseEnter={() => {
                 setHoveredPath('/careers')
                 setCareersOpen(true)
@@ -222,17 +222,16 @@ function Navbar() {
               }}
               variants={fadeUp}
             >
-              <NavLink
+              <button
                 className="relative flex items-center gap-1 py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
-                onClick={handleNavClick}
-                to="/careers"
+                onClick={() => setCareersOpen(!careersOpen)}
               >
                 <span className={isCareersActive || careersOpen ? 'text-[#0EA5E9]' : ''}>Careers</span>
                 <motion.span animate={{ rotate: careersOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
                   <ChevronDown className="h-4 w-4" />
                 </motion.span>
                 {renderUnderline(isCareersActive || careersOpen || hoveredPath === '/careers')}
-              </NavLink>
+              </button>
 
               <AnimatePresence mode="wait">
                 {careersOpen ? (
@@ -248,7 +247,7 @@ function Navbar() {
                         <motion.div key={item.path} variants={staggerItem}>
                           <Link
                             className="group flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-black transition-all duration-200 hover:text-[#0EA5E9]"
-                            onClick={handleNavClick}
+                            onClick={() => handleNavClick(item.path)}
                             to={item.path}
                           >
                             <span
@@ -265,11 +264,11 @@ function Navbar() {
               </AnimatePresence>
             </motion.div>
 
-            {navLinks.slice(5).map((item, index) => (
-              <motion.div custom={index + 8} key={item.path} variants={fadeUp}>
+            {navLinks.slice(4).map((item, index) => (
+              <motion.div custom={index + 7} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
-                  onClick={handleNavClick}
+                  onClick={() => handleNavClick(item.path)}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath('')}
                   to={item.path}
@@ -338,11 +337,11 @@ function Navbar() {
           >
             <div className="section-shell px-0">
               <motion.div animate="visible" className="flex flex-col gap-3" initial="hidden" variants={staggerContainer}>
-                {[...navLinks.slice(0, 2), { label: 'Services', path: '/services' }, ...navLinks.slice(2)].map((item) => (
+                {navLinks.map((item) => (
                   <motion.div key={item.path} variants={staggerItem}>
                     <NavLink
                       className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm text-black transition hover:border-orange-400 hover:bg-sky-50"
-                      onClick={handleNavClick}
+                      onClick={() => handleNavClick(item.path)}
                       to={item.path}
                     >
                       <span className="inline-flex items-center gap-2">
@@ -366,7 +365,7 @@ function Navbar() {
                     <motion.div key={item.path} variants={staggerItem}>
                       <Link
                         className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm transition hover:border-orange-400 hover:bg-sky-50"
-                        onClick={handleNavClick}
+                        onClick={() => handleNavClick(item.path)}
                         to={item.path}
                       >
                         <div className="font-medium text-black">{item.label}</div>
@@ -388,7 +387,7 @@ function Navbar() {
                     <motion.div key={item.path} variants={staggerItem}>
                       <Link
                         className="block rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-white"
-                        onClick={handleNavClick}
+                        onClick={() => handleNavClick(item.path)}
                         to={item.path}
                       >
                         {item.label}

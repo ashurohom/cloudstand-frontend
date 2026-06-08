@@ -92,7 +92,7 @@ function ServiceDetail() {
 
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 max-w-3xl text-lg leading-8 text-slate-600"
+                className="mt-6 max-w-3xl text-[16px] leading-8 text-slate-600"
                 initial={{ opacity: 0, y: 16 }}
                 transition={{
                   duration: 0.55,
@@ -121,7 +121,7 @@ function ServiceDetail() {
         </div>
       </section>
 
-      <section className="section-padding bg-white font-['Open_Sans']">
+      <section className="section-padding bg-white ">
         <div className="section-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Left Side */}
           <div>
@@ -249,7 +249,7 @@ function ServiceDetail() {
           </div>
         </div>
       </section>
-      <section className="relative overflow-hidden bg-white py-16 font-['Open_Sans']">
+      <section className="relative overflow-hidden bg-white py-16 ">
 
         {/* Background */}
         <div className="absolute inset-0">
@@ -347,7 +347,7 @@ function ServiceDetail() {
                   <div className="p-8">
                     <Badge>{relatedCaseStudy.category}</Badge>
                     <p className="mt-5 text-base leading-8 text-text-muted">{relatedCaseStudy.solution}</p>
-                    <p className="mt-4 text-lg font-medium text-slate-900">{relatedCaseStudy.result}</p>
+                    <p className="mt-4 text-[16px] font-medium text-slate-900">{relatedCaseStudy.result}</p>
                     <motion.div whileHover={{ x: 4 }}>
                       <Link className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent" to="/case-studies">
                         View More Case Studies
@@ -363,7 +363,7 @@ function ServiceDetail() {
       ) : null}
 
       <section
-        className="relative overflow-hidden bg-white py-20 font-['Open_Sans']"
+        className="relative overflow-hidden bg-white py-20 "
         style={{
           backgroundColor: '#ffffff',
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.04)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.04)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.02)' /%3E%3C/svg%3E")`,
@@ -394,7 +394,7 @@ function ServiceDetail() {
               Start the conversation
             </h2>
 
-            <p className="mt-5 max-w-2xl text-[15px] leading-8 text-slate-600">
+            <p className="mt-5 max-w-2xl text-[16px] leading-8 text-slate-600">
               Connect with our Oracle Cloud specialists for implementation,
               support, migration, and enterprise transformation services.
             </p>

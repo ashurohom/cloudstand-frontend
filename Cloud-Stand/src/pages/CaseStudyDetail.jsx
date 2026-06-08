@@ -81,7 +81,6 @@ function CaseStudyDetail() {
                     initial={{ opacity: 0, y: 25 }}
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="mt-6 text-[30px] font-bold leading-[1.1] tracking-[-0.02em] text-black md:text-[40px] lg:text-[44px]"
-                    style={{ fontFamily: 'Open Sans, sans-serif' }}
                   >
                     {study.title}
                   </motion.h1>
@@ -91,15 +90,8 @@ function CaseStudyDetail() {
                     initial={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className="mt-6 text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 whitespace-pre-line text-justify"
-                    style={{ fontFamily: 'Open Sans, sans-serif' }}
                   >
                     {study.summary}
-                    {study.result && (
-                      <>
-                        <br /><br />
-                        <span className="font-bold text-black">Result :</span> {study.result}
-                      </>
-                    )}
                   </motion.p>
                 </div>
               </div>
@@ -139,14 +131,14 @@ function CaseStudyDetail() {
 
               {/* Solution Delivered & Key Components */}
               <div>
-                <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Solution Delivered</h3>
+                <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Solution & Approach</h3>
                 <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-5">
                   {study.solutionDelivered}
                 </p>
                 {study.keyComponents && study.keyComponents.length > 0 && (
                   <>
                     {study.solutionComponentHeading !== false && (
-                      <p className="font-bold text-[#0EA5E9] mb-3 text-[16px] xl:text-base">
+                      <p className="font-bold text-black mb-3 text-[16px] xl:text-base">
                         {study.solutionComponentHeading || 'Key Solution Components:'}
                       </p>
                     )}
@@ -180,49 +172,54 @@ function CaseStudyDetail() {
               </div>
 
               {/* Governance */}
-              <div>
-                <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">{study.governanceHeading || 'Governance & Control Enhancements'}</h3>
-                {Array.isArray(study.governanceIntro) ? (
-                  study.governanceIntro.map((para, i) => (
-                    <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4 whitespace-pre-line">
-                      {para}
+              {study.governance && study.governance.length > 0 && (
+                <div>
+                  <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">{study.governanceHeading || 'Governance & Control Enhancements'}</h3>
+                  {Array.isArray(study.governanceIntro) ? (
+                    study.governanceIntro.map((para, i) => (
+                      <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4 whitespace-pre-line">
+                        {para}
+                      </p>
+                    ))
+                  ) : (
+                    study.governanceIntro && (
+                      <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4">
+                        {study.governanceIntro}
+                      </p>
+                    )
+                  )}
+                  <ul className="space-y-2.5">
+                    {study.governance.map((item, i) => {
+                      const colonIndex = item.indexOf(':');
+                      return (
+                        <li key={i} className="flex items-start gap-3">
+                          <SVGIcon />
+                          <span className="text-[16px] xl:text-base leading-normal text-black/80 font-medium">
+                            {colonIndex !== -1 ? (
+                              <>
+                                <span className="font-bold text-black">{item.substring(0, colonIndex + 1)}</span>
+                                {item.substring(colonIndex + 1)}
+                              </>
+                            ) : (
+                              item
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  {study.governanceConclusion && (
+                    <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-4 mb-0">
+                      {study.governanceConclusion}
                     </p>
-                  ))
-                ) : (
-                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4">
-                    {study.governanceIntro}
-                  </p>
-                )}
-                <ul className="space-y-2.5">
-                  {study.governance.map((item, i) => {
-                    const colonIndex = item.indexOf(':');
-                    return (
-                      <li key={i} className="flex items-start gap-3">
-                        <SVGIcon />
-                        <span className="text-[16px] xl:text-base leading-normal text-black/80 font-medium">
-                          {colonIndex !== -1 ? (
-                            <>
-                              <span className="font-bold text-black">{item.substring(0, colonIndex + 1)}</span>
-                              {item.substring(colonIndex + 1)}
-                            </>
-                          ) : (
-                            item
-                          )}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-                {study.governanceConclusion && (
-                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-4 mb-0">
-                    {study.governanceConclusion}
-                  </p>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
 
               {/* Business Impact & Outcome */}
               <div>
                 <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Business Impact & Outcome</h3>
+                <p className="font-bold text-black mb-3 text-[16px] xl:text-base">Business Benefits</p>
                 <ul className="space-y-2.5 mb-8">
                   {study.businessImpact.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -232,7 +229,7 @@ function CaseStudyDetail() {
                   ))}
                 </ul>
                 <div className="bg-[#f8fafc] rounded-2xl p-6 sm:p-8 border border-sky-100 shadow-sm">
-                  <p className="font-bold text-[#EA580C] mb-2 text-lg">Outcome</p>
+                  <p className="font-bold text-[#EA580C] mb-2 text-[16px]">Outcome</p>
                   <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify">
                     {study.outcome}
                   </p>

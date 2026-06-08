@@ -307,7 +307,7 @@ function BackgroundDesigns() {
           <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight text-black sm:text-5xl">
             Background Design Options
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-black/70 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-[16px] leading-7 text-black/70 ">
             Each section below shows one background treatment only, numbered in sequence for quick client feedback.
           </p>
         </div>

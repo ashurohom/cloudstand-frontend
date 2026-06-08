@@ -61,10 +61,10 @@ const clientExperienceList = [
 const marqueeRow1 = clientExperienceList.slice(0, 14)
 const marqueeRow2 = clientExperienceList.slice(14)
 const overviewStats = [
-  { value: 50, suffix: '+', label: 'Projects' },
-  { value: 30, suffix: '+', label: 'Clients' },
-  { value: 15, suffix: '+', label: 'Experts' },
-  { value: 3, suffix: '', label: 'Countries' },
+  { value: 3, suffix: '', label: 'Global Delivery Centers' },
+  { value: 45, suffix: '+', label: 'Oracle Cloud Consultants' },
+  { value: 35, suffix: '+', label: 'Project Deliveries' },
+  { value: 8, suffix: '+', label: 'Industry Verticals' },
 ]
 
 const whyPartnerPoints = [
@@ -110,7 +110,7 @@ function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className
           className="mt-2 h-1 w-16 rounded-full bg-sky-500"
         />
       ) : null}
-      {subtitle ? <p className="text-base leading-7 text-black sm:text-lg">{subtitle}</p> : null}
+      {subtitle ? <p className="text-[16px] leading-7 text-black ">{subtitle}</p> : null}
     </div>
   )
 }
@@ -144,40 +144,32 @@ function Home() {
       <HeroSection />
 
 
-      <section className="bg-white py-8 sm:py-9">
+      <section className="bg-white py-12 sm:py-16">
         <div className="section-shell">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: '-40px' }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4"
+            className="flex flex-col w-full max-w-5xl mx-auto px-2 sm:px-4"
           >
-            {overviewStats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: '-40px' }}
-                transition={{
-                  duration: 0.45,
-                  delay: i * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="flex flex-col items-center justify-center border-r border-sky-200 px-3 py-4 last:border-r-0"
-              >
-                <AnimatedCounter
-                  className="mb-1 inline-block text-3xl font-bold text-sky-500"
-                  delay={i * 0.12}
-                  duration={1800}
-                  suffix={stat.suffix}
-                  value={stat.value}
-                />
-                <span className="text-xs font-medium text-black sm:text-sm">
-                  {stat.label}
-                </span>
-              </motion.div>
-            ))}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 justify-items-center">
+              {overviewStats.map((stat, i) => (
+                <div key={`stat-${i}`} className="flex flex-col items-center w-full">
+                  <AnimatedCounter
+                    className="mb-3 text-4xl sm:text-5xl font-bold text-sky-500 text-center"
+                    delay={i * 0.12}
+                    duration={1800}
+                    suffix={stat.suffix}
+                    value={stat.value}
+                  />
+                  <div className="h-[2px] bg-sky-100 my-2 w-[100px]" />
+                  <span className="pt-1 text-[13px] sm:text-[15px] font-semibold text-slate-800 text-center">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -227,7 +219,7 @@ function Home() {
                   <h2 className="text-[40px] font-bold tracking-tight text-black">
                     Proven Team Experience
                   </h2>
-                  <p className="mt-6 text-[17px] sm:text-[18px] leading-relaxed text-slate-600 font-medium">
+                  <p className="mt-6 text-[16px] leading-relaxed text-slate-600 font-medium">
                     Our team brings global delivery experience across North America, EMEA, and APAC, contributing to successful Oracle transformation programs through strategic partnerships and subcontracting models.
                   </p>
                 </div>
@@ -309,7 +301,7 @@ function Home() {
               Why Global Enterprises Choose Cloudstand
             </h2>
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
+            <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-black ">
               We combine deep Oracle expertise, agile delivery, and transformation-focused consulting to help organizations modernize operations with confidence
             </p>
           </motion.div>
@@ -341,7 +333,7 @@ function Home() {
                         <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
                       </svg>
                     </span>
-                    <p className="text-[15px] font-medium leading-relaxed text-black">{item}</p>
+                    <p className="text-[16px] font-medium leading-relaxed text-black">{item}</p>
                   </motion.div>
                 ))}
               </div>
@@ -372,7 +364,7 @@ function Home() {
                         <path d="M10 4.5h4.5L21 12l-6.5 7.5H10l6.5-7.5L10 4.5z" />
                       </svg>
                     </span>
-                    <p className="text-[15px] font-medium leading-relaxed text-black">{item}</p>
+                    <p className="text-[16px] font-medium leading-relaxed text-black">{item}</p>
                   </motion.div>
                 ))}
               </div>
@@ -397,19 +389,19 @@ function Home() {
 
             {/* Premium Trust Strip Below CTA */}
             <motion.div
-              className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[12px] font-bold tracking-widest text-slate-500 uppercase"
+              className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-[12px] font-bold tracking-widest text-slate-500"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.35 }}
             >
-              <span>Oracle Cloud</span>
+              <span>ORACLE TRANSFORMATION</span>
               <span className="text-sky-300">|</span>
-              <span>AI Transformation</span>
+              <span>AI & AUTOMATION CoE</span>
               <span className="text-sky-300">|</span>
-              <span>Redwood Expertise</span>
+              <span>HEALTH CHECK & ADVISORY</span>
               <span className="text-sky-300">|</span>
-              <span>Global Delivery</span>
+              <span>MANAGED SUPPORT & TRAINING</span>
             </motion.div>
           </motion.div>
         </div>
@@ -427,7 +419,7 @@ function Home() {
             </h2>
 
             <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-black sm:text-lg">
+            <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-black ">
               From workforce transformation to enterprise integrations, we help organizations modernize operations, improve efficiency, and create long-term business value.
             </p>
           </div>
@@ -457,7 +449,7 @@ function Home() {
                       {study.title}
                     </h3>
 
-                    <p className="mt-4 mb-4 text-[15px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
+                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                       {study.summary}
                       {study.result && (
                         <>
@@ -507,7 +499,6 @@ function Home() {
       <section
         className="relative overflow-hidden bg-[#FFFFFF] py-16 sm:py-20 lg:py-28"
         style={{
-          fontFamily: "'Open Sans', sans-serif",
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
           backgroundSize: '100% 100%',
           backgroundRepeat: 'no-repeat',
@@ -540,7 +531,7 @@ function Home() {
             <h2 className="text-[40px] font-bold leading-tight tracking-tight text-[#000000]">
               Oracle Transformation Delivery Model
             </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-[#000000]/80">
+            <p className="mx-auto mt-4 max-w-3xl text-[16px] leading-relaxed text-[#000000]/80">
               A structured, business-focused delivery framework designed to accelerate Oracle Cloud transformation with reduced risk, strong governance, data integrity, and long-term business sustainability.
             </p>
           </div>
@@ -604,7 +595,7 @@ function Home() {
                           stiffness: 80
                         }}
                       >
-                        <h3 className="text-[18px] font-medium mb-1.5" style={{ color: titleColor }}>
+                        <h3 className="text-[16px] font-medium mb-1.5" style={{ color: titleColor }}>
                           {step.title}
                         </h3>
                         <p className="text-[14px] font-normal text-black leading-relaxed">
@@ -629,7 +620,7 @@ function Home() {
             <h2 className="mt-5 text-[40px] font-bold leading-tight text-black">
               What Our Clients Say
             </h2>
-            <p className="mt-4 max-w-md text-base leading-7 text-black sm:text-lg">
+            <p className="mt-4 max-w-md text-[16px] leading-7 text-black ">
               Trusted by growing enterprises for Oracle Cloud transformation, implementation and long-term support.
             </p>
           </div>

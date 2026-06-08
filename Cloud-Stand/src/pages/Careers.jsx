@@ -124,12 +124,12 @@ function Careers() {
             setSelectedRole(data[0].title)
           }
         } else {
-          setOpenRoles(fallbackJobs)
-          setSelectedRole(fallbackJobs[0]?.title ?? '')
+          setOpenRoles([])
+          setSelectedRole('')
         }
       } catch (e) {
-        setOpenRoles(fallbackJobs)
-        setSelectedRole(fallbackJobs[0]?.title ?? '')
+        setOpenRoles([])
+        setSelectedRole('')
       } finally {
         setRolesLoading(false)
       }
@@ -148,7 +148,7 @@ function Careers() {
         <div className="section-shell relative z-20 w-full">
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             {/* LEFT CONTENT */}
-            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
+            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-center text-center relative z-10 mx-auto lg:mx-0">
               <motion.div
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 initial={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -162,7 +162,7 @@ function Careers() {
 
               <motion.h1
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 text-[40px] lg:text-[50px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+                className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black"
                 initial={{ opacity: 0, y: 25 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
@@ -172,26 +172,26 @@ function Careers() {
               {/* DESCRIPTION */}
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 max-w-[600px] text-[18px] leading-8 text-[#475569] text-left"
+                className="mt-6 max-w-[600px] text-[16px] leading-relaxed text-[#475569]"
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                Work on meaningful Oracle Cloud transformation programs with a team that values trust, ownership and continuous learning.
+                Join CloudStand to be part of a fast-paced environment where real opportunities meet real ownership. Work on impactful Oracle transformation projects with global exposure and continuous learning.
                 <br />
                 <br />
-                Join a fast-growing consulting environment where innovation, collaboration and professional growth come together to create impactful enterprise solutions.
+                If you are ready to grow, innovate, and take ownership, this is where ambition turns into opportunity.
               </motion.p>
 
               {/* BUTTON */}
               <motion.div
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-8 flex flex-wrap justify-start items-center gap-5"
+                className="mt-8 flex flex-wrap justify-center items-center gap-5"
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
               >
                 <button
                   onClick={() => document.getElementById('open-roles')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="inline-flex items-center gap-3 rounded-full bg-[#EA580C] px-9 py-4 text-[15px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
+                  className="inline-flex items-center gap-3 rounded-full bg-[#EA580C] px-9 py-4 text-[16px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
                   type="button"
                 >
                   Explore Roles
@@ -234,7 +234,7 @@ function Careers() {
       </section>
 {/* WHY WORK WITH US */}
 
-<section className="relative overflow-hidden bg-[#fcfcfd] py-14">
+<section className="relative overflow-hidden bg-[#fcfcfd] py-10">
 
   {/* SOFT BACKGROUND */}
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.04),transparent_30%)]" />
@@ -245,34 +245,26 @@ function Careers() {
   <div className="section-shell relative z-10">
 
     {/* TOP */}
-    <div className="max-w-4xl">
+    <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
 
       <Badge>Why Work With Us</Badge>
 
       {/* TITLE */}
-      <h2 className="mt-4 max-w-4xl text-[2.1rem] font-bold leading-[1.02] tracking-[-0.02em] text-[#020617] md:text-[3rem]">
-
-        A place to grow
-
-        <br />
-
-        with purpose
-
+      <h2 className="mt-4 max-w-4xl text-[36px] font-bold leading-[1.02] tracking-[-0.02em] text-[#020617]">
+        A place to grow with purpose
       </h2>
 
       {/* TEXT */}
-      <p className="mt-4 max-w-2xl text-[14px] font-normal leading-7 text-[#64748b]">
-
+      <p className="mt-3 max-w-2xl text-[15px] font-normal leading-7 text-[#64748b]">
         We combine meaningful work, continuous learning,
         and a people-first culture to help you achieve
         more in your career.
-
       </p>
 
     </div>
 
     {/* BENEFITS */}
-    <div className="mt-10 grid gap-x-10 gap-y-10 md:grid-cols-2">
+    <div className="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-2">
 
       {perks.map((perk, index) => {
 
@@ -289,13 +281,13 @@ function Careers() {
               duration: 0.35,
               delay: index * 0.04,
             }}
-            className="group relative border-b border-[#edf2f7] pb-6"
+            className="group relative border-b border-[#edf2f7] pb-4"
           >
 
             <div className="flex items-start gap-4">
 
               {/* ICON */}
-              <div className="flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-2xl bg-[#EA580C]/10 transition-all duration-300 group-hover:bg-[#EA580C]/15">
+              <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[14px] bg-[#EA580C]/10 transition-all duration-300 group-hover:bg-[#EA580C]/15">
 
                 <Icon className="h-5 w-5 text-[#EA580C]" />
 
@@ -305,14 +297,14 @@ function Careers() {
               <div>
 
                 {/* TITLE */}
-                <h3 className="text-[21px] font-semibold tracking-[-0.02em] text-[#000000] transition-colors duration-300 group-hover:text-[#EA580C]">
+                <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-[#000000] transition-colors duration-300 group-hover:text-[#EA580C]">
 
                   {perk.title}
 
                 </h3>
 
                 {/* DESCRIPTION */}
-                <p className="mt-3 max-w-lg text-[14px] font-normal leading-7 text-[#64748b]">
+                <p className="mt-1.5 max-w-lg text-[14px] font-normal leading-relaxed text-[#64748b]">
 
                   {perk.text}
 
@@ -349,19 +341,19 @@ function Careers() {
   <div className="section-shell relative z-10">
 
     {/* HEADING */}
-    <div className="max-w-4xl">
+    <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
 
       <Badge>Open Roles</Badge>
 
       {/* TITLE */}
-      <h2 className="mt-4 max-w-4xl text-[2.2rem] font-bold leading-[1.02] tracking-[-0.02em] text-[#000000] md:text-[3.1rem]">
+      <h2 className="mt-4 max-w-4xl text-[36px] font-bold leading-[1.02] tracking-[-0.02em] text-[#000000]">
 
-        Current opportunities
+        Current Opportunities
 
       </h2>
 
       {/* TEXT */}
-      <p className="mt-4 max-w-2xl text-[15px] font-normal leading-7 text-[#64748b]">
+      <p className="mt-3 max-w-2xl text-[15px] font-normal leading-7 text-[#64748b]">
 
         Join enterprise Oracle Cloud transformation programs
         across ERP, HCM, integration and AI.
@@ -416,9 +408,63 @@ function Careers() {
           </div>
 
           {/* DESCRIPTION */}
-          <p className="mt-5 text-[14px] leading-relaxed text-[#64748b]">
+          <p className="mt-5 text-[14px] leading-relaxed text-[#64748b] text-justify">
             {job.summary}
           </p>
+
+          {/* EXTRA DETAILS FROM BACKEND */}
+          <div className="mt-6 space-y-4 text-[14px] text-[#475569]">
+            {job.key_responsibilities && (
+              <div>
+                <strong className="text-slate-800 block mb-1">Key Responsibilities:</strong>
+                <ul className="list-disc pl-5 space-y-1">
+                  {job.key_responsibilities.split('.').map((item, i) => (
+                    item.trim() && <li key={i}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {job.requirements && (
+              <div>
+                <strong className="text-slate-800 block mb-1">Requirements:</strong>
+                <ul className="list-disc pl-5 space-y-1">
+                  {job.requirements.split('.').map((item, i) => (
+                    item.trim() && <li key={i}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {job.preferred && (
+              <div>
+                <strong className="text-slate-800 block mb-1">Preferred:</strong>
+                <ul className="list-disc pl-5 space-y-1">
+                  {job.preferred.split('.').map((item, i) => (
+                    item.trim() && <li key={i}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {job.additional_advantage && (
+              <div>
+                <strong className="text-slate-800 block mb-1">Additional Advantage:</strong>
+                <ul className="list-disc pl-5 space-y-1">
+                  {job.additional_advantage.split('.').map((item, i) => (
+                    item.trim() && <li key={i}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {job.benefits && (
+              <div>
+                <strong className="text-slate-800 block mb-1">Benefits:</strong>
+                <ul className="list-disc pl-5 space-y-1">
+                  {job.benefits.split('.').map((item, i) => (
+                    item.trim() && <li key={i}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* BUTTON */}

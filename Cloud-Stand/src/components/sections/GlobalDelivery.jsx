@@ -10,8 +10,8 @@ const countryProjects = {
     flagIcon: '🇮🇳',
     flagSrc: 'https://flagcdn.com/w40/in.png',
     color: '#f97316',
-    x: '72%',
-    y: '36%',
+    x: '73.5%',
+    y: '29%',
     projects: [
       { id: 1, title: 'Cloudstand Consulting Pvt. Ltd.' },
       // { id: 2, title: 'Demo Project 2' },
@@ -23,8 +23,8 @@ const countryProjects = {
     flagIcon: '🇺🇸',
     flagSrc: 'https://flagcdn.com/w40/us.png',
     color: '#2563eb',
-    x: '22%',
-    y: '22%',
+    x: '19%',
+    y: '4%',
     projects: [
       { id: 1, title: 'Cooper Vision USA' },
       { id: 2, title: 'Envision HealthCare' },
@@ -43,7 +43,7 @@ const countryProjects = {
     flagSrc: 'https://flagcdn.com/w40/gb.png',
     color: '#dc2626',
     x: '48%',
-    y: '12%',
+    y: '-2%',
     projects: [
       { id: 1, title: 'M Group' },
       { id: 2, title: 'Herriot Watt University' },
@@ -60,7 +60,7 @@ const countryProjects = {
     flagSrc: 'https://flagcdn.com/w40/ae.png',
     color: '#16a34a',
     x: '63%',
-    y: '34%',
+    y: '30%',
     projects: [
       { id: 1, title: 'Bukhatir' },
       { id: 2, title: 'Higher College Technologies' },
@@ -80,14 +80,14 @@ function GlobalDelivery() {
   const activeProject = activeCountry ? activeCountry.projects[slideIndex] : null
 
   return (
-    <section className="bg-white py-6 sm:py-8 lg:py-10">
+    <section className="bg-white py-14 sm:py-16 lg:py-20">
       <div className="w-full">
-        <div className="section-shell mx-auto mb-6 max-w-5xl text-center sm:mb-7">
-          <Badge className="mb-3 border-sky-200 bg-white text-[#EA580C]">Global Delivery</Badge>
-          <h2 className="mx-auto max-w-4xl text-[40px] font-bold leading-[1.05] text-black">
+        <div className="section-shell mx-auto mb-10 md:mb-12 flex flex-col items-center text-center max-w-5xl">
+          <Badge className="mb-6 border-sky-200 bg-white text-[#EA580C]">Global Delivery</Badge>
+          <h2 className="mx-auto max-w-4xl text-[40px] font-bold leading-[1.15] text-black">
             Oracle Cloud delivery, across regions
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm font-medium leading-6 text-black sm:text-base">
+          <p className="mx-auto mt-6 max-w-2xl text-[16px] font-medium leading-7 text-[#5f6368]">
             Local insight, global execution for enterprise transformation programs.
           </p>
         </div>

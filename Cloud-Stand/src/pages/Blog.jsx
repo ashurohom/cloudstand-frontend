@@ -20,17 +20,7 @@ import Badge from '../components/ui/Badge'
 import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { pageVariants, staggerContainer, staggerItem } from '../animations/variants'
-
-const webinarInfo = [
-  { label: 'Date', value: '12 Aug 2026', Icon: CalendarDays },
-  { label: 'Time', value: '07:00 PM IST', Icon: Clock3 },
-  { label: 'Speaker', value: 'Oracle Experts', Icon: Users },
-  { label: 'Venue', value: 'Online Event', Icon: MonitorPlay },
-]
-
-// Place your uploaded webinar poster in the `public/` folder as `webinar-poster.png` (or .jpg/.webp)
-// The app will reference it from the public root at '/webinar-poster.png'
-const webinarPoster = '/webinar-poster.png'
+import { API_ENDPOINTS } from '../config/api'
 
 const quarterlyUpdates = [
   {
@@ -124,16 +114,83 @@ function Blog() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 
+  const [hasWebinar, setHasWebinar] = useState(true)
+  const [webinarData, setWebinarData] = useState({
+    title: 'Future of Oracle Cloud Infrastructure',
+    date: 'TBA',
+    time: 'TBA',
+    speaker: 'TBA',
+    venue: 'TBA',
+    image: '/webinar-poster.png'
+  })
+
+  useEffect(() => {
+    const fetchWebinar = async () => {
+      try {
+        const res = await fetch(API_ENDPOINTS.liveWebinar)
+        if (res.ok) {
+          const data = await res.json()
+          if (!data || Object.keys(data).length === 0 || (Array.isArray(data) && data.length === 0)) {
+            setHasWebinar(false)
+          } else {
+            setWebinarData({
+              title: data.title || 'Future of Oracle Cloud Infrastructure',
+              date: data.date || 'TBA',
+              time: data.time || 'TBA',
+              speaker: data.speaker || 'TBA',
+              venue: data.venue || 'TBA',
+              image: data.image || '/webinar-poster.png'
+            })
+            setHasWebinar(true)
+          }
+        } else {
+          setHasWebinar(false)
+        }
+      } catch (e) {
+        console.error("Failed to load webinar data", e)
+        setHasWebinar(false)
+      }
+    }
+    fetchWebinar()
+  }, [])
+
+  const [showcaseVideos, setShowcaseVideos] = useState({
+    featured: 'https://www.youtube.com/embed/qqAyn6sxn0E?si=SpkMVSiy3-ct8ZAH',
+    list: []
+  })
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const res = await fetch(API_ENDPOINTS.videoShowcase)
+        if (res.ok) {
+          const data = await res.json()
+          setShowcaseVideos({
+            featured: data.featured || 'https://www.youtube.com/embed/qqAyn6sxn0E?si=SpkMVSiy3-ct8ZAH',
+            list: data.list || []
+          })
+        }
+      } catch (e) {
+        console.error("Failed to load showcase videos", e)
+      }
+    }
+    fetchVideos()
+  }, [])
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [regForm, setRegForm] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
-    linkedin: ''
+    linkedin: '',
+    currentRole: '',
+    areaOfInterest: ''
   })
   const [regErrors, setRegErrors] = useState({})
   const [regSubmitted, setRegSubmitted] = useState(false)
+  const [regSubmitting, setRegSubmitting] = useState(false)
+  const [regSubmitError, setRegSubmitError] = useState('')
 
   const handleRegChange = (e) => {
     const { name, value } = e.target
@@ -150,23 +207,23 @@ function Blog() {
         lastName: '',
         email: '',
         phone: '',
-        linkedin: ''
+        linkedin: '',
+        currentRole: '',
+        areaOfInterest: ''
       })
       setRegErrors({})
+      setRegSubmitting(false)
+      setRegSubmitError('')
     }, 300)
   }
 
-  const handleRegSubmit = (e) => {
+  const handleRegSubmit = async (e) => {
     e.preventDefault()
     const newErrors = {}
-    if (!regForm.firstName.trim()) newErrors.firstName = 'Required'
     if (!regForm.lastName.trim()) newErrors.lastName = 'Required'
-    if (!regForm.email.trim()) {
-      newErrors.email = 'Required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
+    if (regForm.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
       newErrors.email = 'Invalid'
     }
-    if (!regForm.linkedin.trim()) newErrors.linkedin = 'Required'
 
     if (Object.keys(newErrors).length > 0) {
       setRegErrors(newErrors)
@@ -174,12 +231,50 @@ function Blog() {
     }
 
     setRegErrors({})
-    setRegSubmitted(true)
+    setRegSubmitting(true)
+    setRegSubmitError('')
 
-    // Auto-close modal after 5 seconds
-    setTimeout(() => {
-      closeRegModal()
-    }, 5000)
+    try {
+      const res = await fetch(API_ENDPOINTS.webinarRegistration, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name: regForm.firstName,
+          last_name: regForm.lastName,
+          email: regForm.email,
+          phone: regForm.phone,
+          linkedin_url: regForm.linkedin,
+          current_role: regForm.currentRole,
+          area_of_interest: regForm.areaOfInterest,
+          webinar_title: webinarData.title || 'Future of Oracle Cloud Infrastructure'
+        }),
+      })
+
+      if (!res.ok) {
+        let errorMsg = 'Failed to complete registration. Please try again.'
+        try {
+          const errorData = await res.json()
+          if (errorData && errorData.message) {
+            errorMsg = errorData.message
+          }
+        } catch (parseErr) {
+          // keep default error message
+        }
+        throw new Error(errorMsg)
+      }
+
+      setRegSubmitted(true)
+
+      // Auto-close modal after 5 seconds
+      setTimeout(() => {
+        closeRegModal()
+      }, 5000)
+    } catch (e) {
+      console.error(e)
+      setRegSubmitError(e.message || 'Failed to complete registration. Please try again.')
+    } finally {
+      setRegSubmitting(false)
+    }
   }
 
   useEffect(() => {
@@ -207,6 +302,62 @@ function Blog() {
       {/* ==========================================
           Hero Section / Live Webinar (Contact Page Style)
           ========================================== */}
+      {!hasWebinar ? (
+        <section className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white">
+          <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
+          <div className="section-shell relative z-20 w-full">
+            <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+              <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
+                <motion.div
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                  transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Badge>CloudStand Insights</Badge>
+                </motion.div>
+
+                <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+
+                <motion.h1
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+                  initial={{ opacity: 0, y: 25 }}
+                  transition={{ duration: 0.7, delay: 0.1 }}
+                >
+                  Enterprise Cloud Transformation & <span className="text-[#EA580C]">Expert Webinars</span>
+                </motion.h1>
+
+                <motion.p
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-left"
+                  initial={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                  Explore our latest research, industry perspectives, and technical roadmaps on Oracle Cloud implementations, AI adoption, and ERP modernization.
+                  <br /><br />
+                  We regularly host <span className="font-semibold text-[#EA580C]">live expert-led webinars</span> to share these exclusive insights. Stay tuned for our upcoming schedule!
+                </motion.p>
+              </div>
+
+              <motion.div
+                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 40 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col items-center justify-center w-full mt-10 lg:mt-0 lg:w-[45%] lg:items-end relative"
+              >
+                <div className="relative z-10 w-full max-w-[500px] rounded-[24px] shadow-[0_12px_40px_rgba(14,165,233,0.1)] border border-slate-100 overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80"
+                    alt="Cloud Insights" 
+                    className="block w-full h-auto object-cover aspect-[4/3]"
+                    loading="eager"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      ) : (
       <section
         className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white"
       >
@@ -214,7 +365,7 @@ function Blog() {
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
 
         <div className="section-shell relative z-20 w-full">
-          <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+          <div className="flex w-full flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             {/* LEFT CONTENT */}
             <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
               <motion.div
@@ -226,107 +377,141 @@ function Blog() {
               </motion.div>
 
               {/* BLUE LINE */}
-              <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+              <div className="mt-3 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
               <motion.h1
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 text-[40px] lg:text-[50px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+                className="mt-4 text-[36px] font-bold leading-[1.1] tracking-[-0.03em] text-black text-left"
                 initial={{ opacity: 0, y: 25 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
-                Future of <span className="text-[#D63B25]">Oracle</span>
-                <br />
-                Cloud Infrastructure
+                {webinarData.title}
               </motion.h1>
 
               {/* DESCRIPTION */}
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 max-w-[600px] text-[18px] leading-8 text-[#475569] text-left"
+                className="mt-4 max-w-[600px] text-[15px] leading-relaxed text-[#475569] text-left"
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
                 Join Cloud Stand experts to explore OCI modernization, AI integration, enterprise security, and scalable cloud solutions.
               </motion.p>
 
+              {/* COMPACT DETAILS SECTION */}
               <motion.div
-                className="mt-8 grid gap-4 sm:grid-cols-2"
+                className="mt-6 flex flex-col gap-3 w-full max-w-[580px]"
                 initial="hidden"
                 variants={staggerContainer}
                 viewport={{ once: true, margin: '-80px' }}
                 whileInView="visible"
               >
-                {webinarInfo.map(({ label, value, Icon }) => (
-                  <motion.div
-                    key={label}
-                    variants={staggerItem}
-                    className="rounded-[24px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-4 shadow-[0_18px_44px_rgba(14,165,233,0.08)] backdrop-blur-md text-left"
-                  >
-                    <div className="flex items-start gap-4">
-                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_8px_20px_rgba(14,165,233,0.08)]">
-                        <Icon className="h-5 w-5 text-[#0EA5E9]" strokeWidth={2} />
-                      </span>
-                      <div>
-                        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#D63B25]">{label}</p>
-                        <p className="mt-1 text-base font-semibold text-black">{value}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                {/* Date, Time & Venue row (3 columns) */}
+                <motion.div variants={staggerItem} className="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-[16px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-3 shadow-[0_12px_30px_rgba(14,165,233,0.06)] backdrop-blur-md">
+                   {/* Date */}
+                   <div className="flex items-center gap-3">
+                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_4px_10px_rgba(14,165,233,0.05)]">
+                       <CalendarDays className="h-4 w-4 text-[#0EA5E9]" strokeWidth={2} />
+                     </span>
+                     <div>
+                       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#D63B25]">Date</p>
+                       <p className="mt-0.5 text-[14px] font-semibold text-black">{webinarData.date}</p>
+                     </div>
+                   </div>
+
+                   {/* Time */}
+                   <div className="flex items-center gap-3">
+                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_4px_10px_rgba(14,165,233,0.05)]">
+                       <Clock3 className="h-4 w-4 text-[#0EA5E9]" strokeWidth={2} />
+                     </span>
+                     <div>
+                       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#D63B25]">Time</p>
+                       <p className="mt-0.5 text-[14px] font-semibold text-black">{webinarData.time}</p>
+                     </div>
+                   </div>
+
+                   {/* Venue */}
+                   <div className="flex items-center gap-3">
+                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_4px_10px_rgba(14,165,233,0.05)]">
+                       <MonitorPlay className="h-4 w-4 text-[#0EA5E9]" strokeWidth={2} />
+                     </span>
+                     <div>
+                       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#D63B25]">Venue</p>
+                       <p className="mt-0.5 text-[14px] font-semibold text-black">{webinarData.venue}</p>
+                     </div>
+                   </div>
+                </motion.div>
+
+                {/* Bottom Row: Speaker(s) and Register Button */}
+                <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+                   {/* Speaker(s) */}
+                   <div className="flex flex-1 items-center gap-3 w-full rounded-[16px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-3 shadow-[0_12px_30px_rgba(14,165,233,0.06)] backdrop-blur-md">
+                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_4px_10px_rgba(14,165,233,0.05)]">
+                       <Users className="h-4 w-4 text-[#0EA5E9]" strokeWidth={2} />
+                     </span>
+                     <div className="flex-1">
+                       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#D63B25]">Speaker(s)</p>
+                       <div className="mt-1.5 flex flex-wrap gap-2">
+                         {webinarData.speaker && webinarData.speaker.split(',').map((name, i) => (
+                           <span 
+                             key={i} 
+                             className="inline-flex items-center rounded border border-[rgba(14,165,233,0.16)] bg-transparent px-2.5 py-0.5 text-[14px] font-semibold text-black"
+                           >
+                             {name.trim()}
+                           </span>
+                         ))}
+                       </div>
+                     </div>
+                   </div>
+
+                   {/* Register Button */}
+                   <button
+                     onClick={() => setIsModalOpen(true)}
+                     className="inline-flex shrink-0 w-full sm:w-auto items-center justify-center gap-3 rounded-[16px] bg-[#EA580C] px-8 py-4 sm:py-3 text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f] h-full min-h-[60px] sm:min-h-0"
+                     type="button"
+                   >
+                     Register Now
+                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
+                       <svg
+                         className="h-3.5 w-3.5"
+                         fill="none"
+                         stroke="currentColor"
+                         strokeWidth="2.2"
+                         viewBox="0 0 24 24"
+                       >
+                         <path
+                           d="M5 12h14m-5-5 5 5-5 5"
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                         />
+                       </svg>
+                     </span>
+                   </button>
+                </motion.div>
               </motion.div>
 
             </div>
 
-            {/* RIGHT VISUAL - IMAGE AND BUTTON */}
+            {/* RIGHT VISUAL - IMAGE ONLY */}
             <motion.div
               animate={{ opacity: 1, x: 0 }}
               initial={{ opacity: 0, x: 40 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center justify-center w-full mt-10 lg:mt-0 lg:w-[45%] lg:items-end relative"
+              className="flex flex-col items-center justify-start w-full mt-10 lg:w-[45%] lg:items-end relative lg:mt-[74px]"
             >
               <div className="relative z-10 w-full max-w-[500px] rounded-[24px] shadow-[0_12px_40px_rgba(14,165,233,0.1)] border border-slate-100 overflow-hidden">
                 <img 
-                  src={webinarPoster}
+                  src={webinarData.image}
                   alt="Webinar poster" 
                   className="block w-full h-auto object-cover"
                   loading="eager"
                 />
               </div>
-
-              {/* BUTTON UNDER IMAGE */}
-              <motion.div
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-8 flex justify-center w-full max-w-[500px]"
-                initial={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-              >
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-3 w-full rounded-full bg-[#EA580C] px-9 py-4 text-[15px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
-                  type="button"
-                >
-                  Register Now
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                    <svg
-                      className="h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M5 12h14m-5-5 5 5-5 5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
+      )}
 
       {/* ==========================================
           1. FEATURED QUARTERLY UPDATES SECTION
@@ -338,6 +523,7 @@ function Blog() {
             title="Quarterly Product Updates" 
             subtitle="Stay updated with the latest Oracle Cloud innovations, platform enhancements, AI capabilities, and enterprise transformation releases."
             align="center"
+            titleClassName="!text-[40px]"
           />
 
           <motion.div 
@@ -368,11 +554,11 @@ function Blog() {
                       <Icon className="h-6 w-6" />
                     </div>
 
-                    <h3 className="max-w-sm min-h-[72px] text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
+                    <h3 className="max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                       {update.title}
                     </h3>
 
-                    <p className="mt-1 min-h-[64px] text-[13px] leading-6 text-[#5f6368]">
+                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                       {update.description}
                     </p>
 
@@ -409,10 +595,10 @@ function Blog() {
           <div className="mb-16 flex flex-col items-center text-center">
             <Badge light>Video Showcase</Badge>
             <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-[#0EA5E9] to-orange-500" />
-            <h2 className="mt-6 font-['Open_Sans'] text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-6 text-[40px] font-extrabold tracking-tight text-white">
               Expert Webinar Sessions
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-400 sm:text-lg">
+            <p className="mt-5 max-w-3xl text-[16px] leading-7 text-slate-400 ">
               Watch enterprise cloud experts discuss Oracle Cloud, integrations, AI transformation, ERP modernization, and OCI best practices.
             </p>
           </div>
@@ -423,7 +609,7 @@ function Blog() {
                 <div className="aspect-video rounded-lg overflow-hidden bg-black">
                   <iframe
                     className="h-full w-full"
-                    src="https://www.youtube.com/embed/qqAyn6sxn0E?si=SpkMVSiy3-ct8ZAH"
+                    src={showcaseVideos.featured}
                     title="CloudStand Featured Webinar"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -432,6 +618,29 @@ function Blog() {
               </div>
             </div>
           </div>
+
+          {showcaseVideos.list.length > 0 && (
+            <div className="mt-16 flex flex-wrap justify-center gap-6">
+              {showcaseVideos.list.map((videoUrl, index) => (
+                <div 
+                  key={index} 
+                  className="w-full max-w-[500px] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] min-w-[300px]"
+                >
+                  <div className="relative overflow-hidden rounded-[20px] border border-slate-800 bg-slate-900/50 p-4 shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl h-full">
+                    <div className="aspect-video rounded-lg overflow-hidden bg-black">
+                      <iframe
+                        className="h-full w-full"
+                        src={videoUrl}
+                        title={`CloudStand Video ${index + 1}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
         </div>
       </section>
@@ -446,6 +655,7 @@ function Blog() {
             title="Recent Updates & Activities" 
             subtitle="Latest cloud transformation activities, customer success stories, webinars, events, and product launches."
             align="center"
+            titleClassName="!text-[40px]"
           />
 
           <motion.div 
@@ -474,15 +684,15 @@ function Blog() {
 
                   {/* Body Content */}
                   <div className="p-7">
-                    <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-orange-600">
+                    <div className="flex items-center justify-between text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#EA580C]">
                       <span>{act.category}</span>
                       <span className="text-slate-400 font-medium">{act.date}</span>
                     </div>
 
-                    <h3 className="mt-4 font-['Open_Sans'] text-lg font-bold leading-snug text-slate-900 transition-colors duration-300 group-hover:text-[#0EA5E9]">
+                    <h3 className="mt-4 max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                       {act.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-text-muted">
+                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                       {act.description}
                     </p>
                   </div>
@@ -522,10 +732,10 @@ function Blog() {
 
             <div className="relative z-10 mx-auto max-w-4xl text-center">
               <Badge>Stay Ahead of the Curve</Badge>
-              <h2 className="mt-6 font-['Open_Sans'] text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              <h2 className="mt-6 text-[40px] font-extrabold leading-tight text-slate-900">
                 Stay Ahead with <span className="text-gradient">CloudStand Insights</span>
               </h2>
-              <p className="mt-5 text-base leading-7 text-text-muted sm:text-lg">
+              <p className="mt-5 text-[16px] leading-7 text-text-muted ">
                 Get quarterly Oracle Cloud updates, expert webinars, enterprise AI trends, and cloud transformation insights directly in your inbox.
               </p>
 
@@ -568,7 +778,7 @@ function Blog() {
                       exit={{ opacity: 0, y: -15 }}
                       className="rounded-[28px] border border-emerald-200 bg-emerald-50/50 p-6 text-center text-emerald-800 shadow-[0_8px_24px_rgba(16,185,129,0.05)] backdrop-blur-md"
                     >
-                      <h4 className="font-['Open_Sans'] text-lg font-bold">Successfully Subscribed!</h4>
+                      <h4 className="text-lg font-bold">Successfully Subscribed!</h4>
                       <p className="mt-2 text-sm text-emerald-700">
                         Thank you for joining. You will receive your first briefing shortly!
                       </p>
@@ -617,36 +827,41 @@ function Blog() {
                   <>
                     <div className="mb-8 flex flex-col items-center text-center">
                       <Badge>Webinar Registration</Badge>
-                      <h2 className="mt-4 text-[32px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
-                        Secure Your Spot
+                      <h2 className="mt-4 text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
+                        Claim Your Spot
                       </h2>
-                      <p className="mt-2 text-[15px] leading-relaxed text-[#475569] text-center max-w-[400px] mx-auto">
-                        Join our experts to explore the future of Oracle Cloud Infrastructure.
+                      <p className="mt-2 text-[16px] leading-relaxed text-[#475569] text-center max-w-[480px] mx-auto">
+                        Stay ahead with insights from our Oracle Center of Excellence specialists.
                       </p>
                     </div>
 
-                    <form onSubmit={handleRegSubmit} className="grid gap-4 md:grid-cols-2">
+                    <form onSubmit={handleRegSubmit} className="grid gap-2.5 md:grid-cols-2">
+                      {/* BASIC INFORMATION SECTION HEADER */}
+                      <div className="md:col-span-2">
+                        <h3 className="text-[12px] font-bold text-slate-500 uppercase tracking-widest">Basic Information</h3>
+                      </div>
+
                       {/* FIRST NAME */}
                       <div className="md:col-span-1">
                         <input
                           name="firstName"
                           type="text"
-                          placeholder="First Name *"
+                          placeholder="First Name (Optional)"
                           value={regForm.firstName}
                           onChange={handleRegChange}
-                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.firstName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                          className={`h-[44px] w-full rounded-[10px] border ${regErrors.firstName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
                         />
                       </div>
 
                       {/* LAST NAME */}
-                      <div className="md:col-span-1">
+                      <div className="md:col-span-1 relative">
                         <input
                           name="lastName"
                           type="text"
                           placeholder="Last Name *"
                           value={regForm.lastName}
                           onChange={handleRegChange}
-                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.lastName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                          className={`h-[44px] w-full rounded-[10px] border ${regErrors.lastName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
                         />
                       </div>
 
@@ -655,10 +870,10 @@ function Blog() {
                         <input
                           name="email"
                           type="email"
-                          placeholder="Work Email Address *"
+                          placeholder="Work Email Address (Optional)"
                           value={regForm.email}
                           onChange={handleRegChange}
-                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.email ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                          className={`h-[44px] w-full rounded-[10px] border ${regErrors.email ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
                         />
                       </div>
 
@@ -670,7 +885,7 @@ function Blog() {
                           placeholder="Contact Number (Optional)"
                           value={regForm.phone}
                           onChange={handleRegChange}
-                          className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                          className="h-[44px] w-full rounded-[10px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
                         />
                       </div>
 
@@ -679,21 +894,68 @@ function Blog() {
                         <input
                           name="linkedin"
                           type="text"
-                          placeholder="LinkedIn URL *"
+                          placeholder="LinkedIn URL (Optional)"
                           value={regForm.linkedin}
                           onChange={handleRegChange}
-                          className={`h-[48px] w-full rounded-[12px] border ${regErrors.linkedin ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
+                          className={`h-[44px] w-full rounded-[10px] border ${regErrors.linkedin ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
                         />
                       </div>
 
+                      {/* PROFESSIONAL DETAILS SECTION HEADER */}
+                      <div className="md:col-span-2 mt-1 pt-2 border-t border-slate-200/60">
+                        <h3 className="text-[12px] font-bold text-slate-500 uppercase tracking-widest">Professional Details</h3>
+                      </div>
+
+                      {/* CURRENT ROLE */}
+                      <div className="md:col-span-2">
+                        <input
+                          name="currentRole"
+                          type="text"
+                          placeholder="Current Role / Profession (Optional)"
+                          value={regForm.currentRole}
+                          onChange={handleRegChange}
+                          className="h-[44px] w-full rounded-[10px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                        />
+                      </div>
+
+                      {/* AREA OF INTEREST */}
+                      <div className="md:col-span-2 relative">
+                        <select
+                          name="areaOfInterest"
+                          value={regForm.areaOfInterest}
+                          onChange={handleRegChange}
+                          className={`h-[44px] w-full rounded-[10px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14px] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none appearance-none ${regForm.areaOfInterest === '' ? 'text-[#94a3b8]' : 'text-[#111827]'}`}
+                        >
+                          <option value="" disabled hidden className="text-slate-400">Select Service Area</option>
+                          <option value="Oracle Cloud Transformation" className="text-black">Oracle Cloud Transformation</option>
+                          <option value="AI & Automation CoE" className="text-black">AI & Automation CoE</option>
+                          <option value="Oracle Integration Cloud (OIC)" className="text-black">Oracle Integration Cloud (OIC)</option>
+                          <option value="Oracle Analytics Cloud (OAC)" className="text-black">Oracle Analytics Cloud (OAC)</option>
+                          <option value="Managed Services" className="text-black">Managed Services</option>
+                          <option value="Health Check & Advisory" className="text-black">Health Check & Advisory</option>
+                          <option value="Professional Staffing" className="text-black">Professional Staffing</option>
+                          <option value="Corporate Training" className="text-black">Corporate Training</option>
+                          <option value="Other" className="text-black">Other</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                        </div>
+                      </div>
+
                       {/* BUTTON */}
-                      <div className="md:col-span-2 mt-4 text-center">
+                      <div className="md:col-span-2 mt-1 text-center">
+                        {regSubmitError && (
+                          <div className="mb-2 text-sm font-medium text-red-500">
+                            {regSubmitError}
+                          </div>
+                        )}
                         <button
                           type="submit"
-                          className="inline-flex items-center justify-center gap-3 w-full rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1"
+                          disabled={regSubmitting}
+                          className="inline-flex items-center justify-center gap-3 w-full rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3 text-[15.5px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                         >
-                          Complete Registration
-                          <ArrowRight className="h-4 w-4" />
+                          {regSubmitting ? 'Processing Registration...' : 'Complete Registration'}
+                          {!regSubmitting && <ArrowRight className="h-4 w-4" />}
                         </button>
                       </div>
                     </form>

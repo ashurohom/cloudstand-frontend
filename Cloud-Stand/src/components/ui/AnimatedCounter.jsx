@@ -3,7 +3,7 @@ import { useCounterAnimation } from '../../hooks/useCounterAnimation'
 
 function AnimatedCounter({ value, suffix = '', prefix = '', className, duration = 2200, delay = 0 }) {
   const formattedTarget = `${value}${suffix}`
-  const { count, ref, suffix: derivedSuffix } = useCounterAnimation(formattedTarget, duration)
+  const { count, ref, suffix: derivedSuffix } = useCounterAnimation(formattedTarget, duration, delay)
   const counterClassName =
     className || 'inline-block font-syne text-4xl font-bold tracking-tight text-text-orange sm:text-5xl'
 

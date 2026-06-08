@@ -481,7 +481,7 @@ function FeedbackSection() {
             </motion.h2>
 
             <motion.p
-              className="mx-auto mt-5 max-w-3xl text-base leading-8 text-text-muted sm:text-lg"
+              className="mx-auto mt-5 max-w-3xl text-[16px] leading-8 text-text-muted "
               variants={cardMotion}
               custom={0.25}
             >

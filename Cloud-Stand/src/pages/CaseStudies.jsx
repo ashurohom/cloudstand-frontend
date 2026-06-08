@@ -34,8 +34,7 @@ function CaseStudies() {
                 animate={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 25 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="mt-6 text-[30px] font-bold leading-[0.95] tracking-[-0.06em] text-black md:text-[44px] lg:text-[48px]"
-                style={{ fontFamily: 'Open Sans, sans-serif' }}
+                className="mt-6 text-[40px] font-bold leading-[0.95] tracking-[-0.06em] text-black"
               >
                 Transformation
                 <br />
@@ -48,8 +47,7 @@ function CaseStudies() {
                 animate={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="mt-6 max-w-[760px] text-[20px] leading-[1.7] text-[#475569]"
-                style={{ fontFamily: 'Open Sans, sans-serif' }}
+                className="mt-6 max-w-[760px] text-[16px] leading-[1.7] text-[#475569]"
               >
                 Explore Oracle Cloud transformation programs,
                 enterprise modernization initiatives and measurable
@@ -95,24 +93,18 @@ function CaseStudies() {
                 
                 <div className="flex w-full flex-1 flex-col p-4 sm:p-6">
                   <div className="mb-5 flex items-center justify-between">
-                    <span className="inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#EA580C]" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                    <span className="inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] text-[#EA580C]">
                       {study.category}
                     </span>
                     <div className="h-2.5 w-12 shrink-0 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
                   </div>
 
-                  <h3 className="max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                  <h3 className="max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                     {study.title}
                   </h3>
 
-                  <p className="mt-4 mb-4 text-[15px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line" style={{ fontFamily: 'Open Sans, sans-serif' }}>
+                  <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                     {study.summary}
-                    {study.result && (
-                      <>
-                        <br /><br />
-                        <span className="font-bold text-black">Result :</span> {study.result}
-                      </>
-                    )}
                   </p>
 
                   <div className="mt-auto h-px w-full bg-[#ececec] shrink-0" />
@@ -121,7 +113,6 @@ function CaseStudies() {
                     <Link
                       className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300 group-hover:gap-4"
                       to={`/case-studies/${study.slug}`}
-                      style={{ fontFamily: 'Open Sans, sans-serif' }}
                     >
                       Read more
                       <span className="transition-colors duration-300 group-hover:text-[#EA580C]">

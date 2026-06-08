@@ -189,7 +189,7 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
               {safeSlides[activeTextSlide]?.heading}
             </h1>
 
-            <p className="hero-slide-subheading mx-auto mt-6 max-w-3xl text-base leading-7 text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.55)] sm:text-lg lg:text-xl">
+            <p className="hero-slide-subheading mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.55)] lg:text-xl">
               {safeSlides[activeTextSlide]?.subheading}
             </p>
 

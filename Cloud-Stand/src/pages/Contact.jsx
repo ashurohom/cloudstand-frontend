@@ -15,7 +15,8 @@ const initialForm = {
   company: '',
   email: '',
   phone: '',
-  serviceInterested: services[0]?.title ?? '',
+  designation: '',
+  serviceInterested: '',
   message: '',
 }
 
@@ -150,6 +151,7 @@ function Contact() {
           email: form.email,
           company: form.company,
           phone: form.phone,
+          designation: form.designation,
           service_interested: form.serviceInterested,
           message: form.message,
         }),
@@ -194,17 +196,15 @@ Pune - 412307`,
     },
 
     Texas: {
-      address: `5430 Lyndon B Johnson Fwy,
-Suite 1200,
-Dallas, Texas 75240`,
-      map: 'https://www.google.com/maps?q=Dallas+Texas&z=12&output=embed',
+      address: `5900 Balcones Dr Suit 100,
+Austin, TX 78731`,
+      map: 'https://www.google.com/maps?q=Austin+Texas&z=12&output=embed',
     },
 
-    USA: {
-      address: `1178 Broadway,
-Manhattan,
-New York, NY 10001`,
-      map: 'https://www.google.com/maps?q=Manhattan+New+York&z=12&output=embed',
+    Arkansas: {
+      address: `900 SE 5th St, Suite 22,
+Bentonville, Arkansas, 72712`,
+      map: 'https://www.google.com/maps?q=Bentonville+Arkansas&z=12&output=embed',
     },
   }
 
@@ -239,7 +239,7 @@ New York, NY 10001`,
 
             <motion.h1
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 text-[50px] lg:text-[60px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+              className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
               initial={{ opacity: 0, y: 25 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
@@ -251,7 +251,7 @@ New York, NY 10001`,
             {/* DESCRIPTION */}
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 max-w-[600px] text-[18px] leading-8 text-[#475569] text-left"
+              className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-left"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
@@ -274,11 +274,11 @@ New York, NY 10001`,
               {/* ORANGE BUTTON */}
               <button
                 onClick={() =>
-                  document.getElementById('premium-inquiry')?.scrollIntoView({
+                  document.getElementById('lets-talk')?.scrollIntoView({
                     behavior: 'smooth',
                   })
                 }
-                className="inline-flex items-center gap-3 rounded-full bg-[#EA580C] px-9 py-4 text-[15px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
+                className="inline-flex items-center gap-3 rounded-full bg-[#EA580C] px-9 py-4 text-[16px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
               >
 
                 Book a Consultation
@@ -310,7 +310,7 @@ New York, NY 10001`,
                     behavior: 'smooth',
                   })
                 }
-                className="rounded-full border border-[#bfdbfe] bg-white px-9 py-4 text-[15px] font-semibold text-black transition-all duration-300 hover:border-[#0EA5E9] hover:bg-[#f8fbff]"
+                className="rounded-full border border-[#bfdbfe] bg-white px-9 py-4 text-[16px] font-semibold text-black transition-all duration-300 hover:border-[#0EA5E9] hover:bg-[#f8fbff]"
               >
 
                 Explore FAQs
@@ -374,7 +374,7 @@ New York, NY 10001`,
             </h2>
 
             {/* TEXT */}
-            <p className="mt-6 max-w-[620px] text-[17px] leading-8 text-[#475569]">
+            <p className="mt-6 max-w-[620px] text-[16px] leading-8 text-[#475569]">
               Connect with our Oracle Cloud specialists to
               discuss implementation, optimization and
               enterprise transformation strategies tailored
@@ -384,7 +384,7 @@ New York, NY 10001`,
           </div>
 
           {/* OFFICES CARDS */}
-          <div className="mx-auto mt-12 grid max-w-[1050px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+          <div className="mx-auto mt-12 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-7 px-4 xl:px-0">
 
             {/* PUNE */}
             <motion.div
@@ -400,23 +400,30 @@ New York, NY 10001`,
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
-                <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                  Pune, India
-                </h3>
+                <div className="flex flex-col">
+                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
+                    Pune, India
+                  </h3>
+                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
+                    Headquarters
+                  </p>
+                </div>
                 <div className="my-4 h-px w-full bg-slate-100" />
 
-                <div className="space-y-2.5">
-                  <p className="text-[14px] leading-snug text-[#475569]">
+                <div className="flex flex-col flex-1">
+                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
                     Office No.19, Nirvana Hub,<br />
                     Mundhwa-Manjari Road,<br />
                     Pune - 412307
                   </p>
-                  <p className="text-[14.5px] font-semibold text-black">
-                    info@cloudstand.com
-                  </p>
-                  <p className="text-[14.5px] font-semibold text-black">
-                    +91 90490 20793
-                  </p>
+                  <div className="mt-auto space-y-2.5">
+                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
+                      info@cloudstandconsulting.com
+                    </p>
+                    <p className="text-[14.5px] font-semibold text-black">
+                      +91 90490 20793
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -435,28 +442,34 @@ New York, NY 10001`,
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
-                <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                  Texas, USA
-                </h3>
+                <div className="flex flex-col">
+                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
+                    Texas, USA
+                  </h3>
+                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
+                    US Office
+                  </p>
+                </div>
                 <div className="my-4 h-px w-full bg-slate-100" />
 
-                <div className="space-y-2.5">
-                  <p className="text-[14px] leading-snug text-[#475569]">
-                    5430 Lyndon B Johnson Fwy,<br />
-                    Suite 1200,<br />
-                    Dallas, Texas 75240
+                <div className="flex flex-col flex-1">
+                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
+                    5900 Balcones Dr Suit 100,<br />
+                    Austin, TX 78731
                   </p>
-                  <p className="text-[14.5px] font-semibold text-black">
-                    texas@cloudstand.com
-                  </p>
-                  <p className="text-[14.5px] font-semibold text-black">
-                    +1 (469) 555-1208
-                  </p>
+                  <div className="mt-auto space-y-2.5">
+                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
+                      info@cloudstandconsulting.com
+                    </p>
+                    <p className="text-[14.5px] font-semibold text-black">
+                      +1 (469) 555-1208
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* NEW YORK */}
+            {/* ARKANSAS */}
             <motion.div
               whileHover={{ y: -4 }}
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
@@ -464,29 +477,115 @@ New York, NY 10001`,
               <div className="relative h-[160px] w-full overflow-hidden">
                 <img
                   src="/Contact/newyork.jpeg"
-                  alt="New York Skyline"
+                  alt="Arkansas Skyline"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
-                <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                  New York, USA
-                </h3>
+                <div className="flex flex-col">
+                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
+                    Arkansas, USA
+                  </h3>
+                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
+                    US Office
+                  </p>
+                </div>
                 <div className="my-4 h-px w-full bg-slate-100" />
 
-                <div className="space-y-2.5">
-                  <p className="text-[14px] leading-snug text-[#475569]">
-                    1178 Broadway,<br />
-                    Manhattan,<br />
-                    New York, NY 10001
+                <div className="flex flex-col flex-1">
+                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
+                    900 SE 5th St, Suite 22,<br />
+                    Bentonville , Arkansas , 72712
                   </p>
-                  <p className="text-[14.5px] font-semibold text-black">
-                    usa@cloudstand.com
+                  <div className="mt-auto space-y-2.5">
+                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
+                      info@cloudstandconsulting.com
+                    </p>
+                    <p className="text-[14.5px] font-semibold text-black">
+                      +1 (646) 555-9087
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CANADA */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
+            >
+              <div className="relative h-[160px] w-full overflow-hidden">
+                <img
+                  src="/Contact/canada.png"
+                  alt="Canada Skyline"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="flex flex-1 flex-col p-5 text-left">
+                <div className="flex flex-col">
+                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
+                    Canada
+                  </h3>
+                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
+                    Canada Office
                   </p>
-                  <p className="text-[14.5px] font-semibold text-black">
-                    +1 (646) 555-9087
+                </div>
+                <div className="my-4 h-px w-full bg-slate-100" />
+
+                <div className="flex flex-col flex-1">
+                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
+                    Canada
                   </p>
+                  <div className="mt-auto space-y-2.5">
+                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
+                      info@cloudstandconsulting.com
+                    </p>
+                    <p className="text-[14.5px] font-semibold text-black">
+                      +1 (646) 555-9087
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* DUBAI */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
+            >
+              <div className="relative h-[160px] w-full overflow-hidden">
+                <img
+                  src="/Contact/dubai.png"
+                  alt="Dubai Skyline"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="flex flex-1 flex-col p-5 text-left">
+                <div className="flex flex-col">
+                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
+                    Dubai, UAE
+                  </h3>
+                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
+                    Regional Partner
+                  </p>
+                </div>
+                <div className="my-4 h-px w-full bg-slate-100" />
+
+                <div className="flex flex-col flex-1">
+                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
+                    Dubai, United Arab Emirates
+                  </p>
+                  <div className="mt-auto space-y-2.5">
+                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
+                      info@cloudstandconsulting.com
+                    </p>
+                    <p className="text-[14.5px] font-semibold text-black">
+                      +1 (646) 555-9087
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -523,11 +622,11 @@ New York, NY 10001`,
             {/* RIGHT SIDE - FORM */}
             <div className="p-6 md:p-8 lg:p-10">
               <div className="mb-6 flex flex-col items-center text-center">
-                <Badge>Premium Inquiry</Badge>
+                <Badge>Lets Work Together</Badge>
                 <h2 className="mt-4 text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
-                  Tell Us About Your Project
+                  Start a Conversation
                 </h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-[#475569] text-center">
+                <p className="mt-2 text-[16px] leading-relaxed text-[#475569] text-center">
                   Let’s discuss your cloud transformation and enterprise technology needs.
                 </p>
               </div>
@@ -590,6 +689,31 @@ New York, NY 10001`,
                     />
                   </div>
 
+                  {/* DESIGNATION DROPDOWN */}
+                  <div className="md:col-span-2 relative">
+                    <select
+                      name="designation"
+                      value={form.designation}
+                      onChange={handleChange}
+                      className={`h-[48px] w-full appearance-none rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none border-[#e2e8f0] focus:border-[#2563EB]`}
+                    >
+                      <option value="" disabled hidden>Your Designation</option>
+                      <option value="Business Owner / Founder">Business Owner / Founder</option>
+                      <option value="C-Suite Executive (CEO, CTO, CFO)">C-Suite Executive (CEO, CTO, CFO)</option>
+                      <option value="IT Manager / Director">IT Manager / Director</option>
+                      <option value="Oracle Consultant">Oracle Consultant</option>
+                      <option value="Solution Architect">Solution Architect</option>
+                      <option value="Project Manager">Project Manager</option>
+                      <option value="HR / Payroll Professional">HR / Payroll Professional</option>
+                      <option value="Finance Professional">Finance Professional</option>
+                      <option value="Student / Fresher">Student / Fresher</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
+                      <ChevronDown className="h-5 w-5" />
+                    </div>
+                  </div>
+
                   {/* SERVICE DROPDOWN */}
                   <div className="md:col-span-2 relative">
                     <select
@@ -598,11 +722,16 @@ New York, NY 10001`,
                       onChange={handleChange}
                       className={`h-[48px] w-full appearance-none rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.serviceInterested ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
                     >
-                      {services.map((service) => (
-                        <option key={service.slug} value={service.title}>
-                          {service.title}
-                        </option>
-                      ))}
+                      <option value="" disabled hidden>Select Service Area</option>
+                      <option value="Oracle Cloud Transformation">Oracle Cloud Transformation</option>
+                      <option value="AI & Automation CoE">AI & Automation CoE</option>
+                      <option value="Oracle Integration Cloud (OIC)">Oracle Integration Cloud (OIC)</option>
+                      <option value="Oracle Analytics Cloud (OAC)">Oracle Analytics Cloud (OAC)</option>
+                      <option value="Managed Services">Managed Services</option>
+                      <option value="Health Check & Advisory">Health Check & Advisory</option>
+                      <option value="Professional Staffing">Professional Staffing</option>
+                      <option value="Corporate Training">Corporate Training</option>
+                      <option value="Other">Other</option>
                     </select>
                     <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
                       <ChevronDown className="h-5 w-5" />
@@ -679,7 +808,7 @@ New York, NY 10001`,
             </h2>
 
             {/* DESCRIPTION */}
-            <p className="mt-6 max-w-[650px] text-[17px] leading-8 text-[#475569] text-center">
+            <p className="mt-6 max-w-[650px] text-[16px] leading-8 text-[#475569] text-center">
 
               CloudStand Consulting headquarters serves as the
               strategic center for Oracle Cloud transformation,
@@ -694,19 +823,121 @@ New York, NY 10001`,
 
           {/* MAP */}
           <div className="mt-14 overflow-hidden rounded-[32px] border border-[#dbeafe] bg-white p-4 shadow-[0_20px_60px_rgba(15,23,42,0.05)]">
+            <div className="relative h-[480px] w-full overflow-hidden rounded-[24px] bg-[#EBF3FC]">
+              
+              {/* BACKGROUND CIRCLES */}
+              <div className="absolute inset-0 opacity-40 pointer-events-none">
+                {/* LARGE BUBBLES */}
+                <div className="absolute top-[20%] left-[5%] w-[350px] h-[350px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[35%] left-[30%] w-[300px] h-[200px] rounded-[45%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[25%] left-[50%] w-[400px] h-[300px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[40%] left-[75%] w-[250px] h-[250px] rounded-[45%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                
+                {/* SMALL BUBBLES */}
+                <div className="absolute top-[65%] left-[68%] w-[120px] h-[80px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[75%] left-[78%] w-[140px] h-[100px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[50%] left-[88%] w-[100px] h-[160px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[65%] left-[45%] w-[160px] h-[160px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+                <div className="absolute top-[10%] left-[30%] w-[120px] h-[120px] rounded-[50%] bg-[#A8D397] mix-blend-multiply blur-[2px]" />
+              </div>
 
-            <div className="overflow-hidden rounded-[24px]">
+              {/* LEGEND */}
+              <div className="absolute top-6 left-6 rounded-[12px] bg-white px-5 py-4 shadow-[0_8px_20px_rgba(0,0,0,0.04)] z-10 flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="h-3 w-3 rounded-full bg-[#EA580C]" />
+                  <span className="text-[12px] font-bold text-slate-700">Office</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-3 w-3 rounded-full bg-[#2563EB]" />
+                  <span className="text-[12px] font-bold text-slate-700">US Office</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-3 w-3 rounded-full bg-[#B45309]" />
+                  <span className="text-[12px] font-bold text-slate-700">Regional Partner</span>
+                </div>
+              </div>
 
-              <iframe
-                title="CloudStand Headquarters Map"
-                src="https://www.google.com/maps?q=Office%20No.19,%20Nirvana%20Hub,%20Z%20Corner,%20Mundhwa-Manjari%20Rd,%20Manjri%20Bk.,%20Pune%20-%20412307&z=14&output=embed"
-                className="h-[560px] w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              {/* MARKERS */}
+              <div className="absolute inset-0 z-20 pointer-events-none">
+
+                {/* TEXAS */}
+                <div className="absolute top-[50%] left-[26%] -translate-x-1/2 flex flex-col items-center">
+                  <div className="rounded-[6px] bg-[#1E293B] px-3.5 py-1.5 text-center shadow-lg mb-1 z-10">
+                    <p className="text-[11.5px] font-bold text-white uppercase tracking-wide">Texas</p>
+                    <p className="text-[10px] text-slate-300">US Office</p>
+                  </div>
+                  <div className="h-14 w-px bg-[#2563EB]" />
+                  <div className="relative">
+                    <div className="h-3.5 w-3.5 rounded-full bg-[#2563EB]" />
+                    <div className="absolute inset-0 rounded-full bg-[#2563EB] animate-ping opacity-40" />
+                  </div>
+                </div>
+
+                {/* ARKANSAS */}
+                <div className="absolute top-[42%] left-[32%] -translate-x-1/2 flex flex-col items-center">
+                  <div className="rounded-[6px] bg-[#1E293B] px-3.5 py-1.5 text-center shadow-lg mb-1 z-10">
+                    <p className="text-[11.5px] font-bold text-white uppercase tracking-wide">Arkansas</p>
+                    <p className="text-[10px] text-slate-300">US Office</p>
+                  </div>
+                  <div className="h-10 w-px bg-[#2563EB]" />
+                  <div className="relative">
+                    <div className="h-3.5 w-3.5 rounded-full bg-[#2563EB]" />
+                    <div className="absolute inset-0 rounded-full bg-[#2563EB] animate-ping opacity-40" />
+                  </div>
+                </div>
+
+                {/* PUNE */}
+                <div className="absolute top-[55%] left-[64%] -translate-x-1/2 flex flex-col items-center">
+                  <div className="rounded-[6px] bg-[#1E293B] px-3.5 py-1.5 text-center shadow-lg mb-1 z-10">
+                    <p className="text-[11.5px] font-bold text-white uppercase tracking-wide">Pune, India</p>
+                    <p className="text-[10px] text-orange-300">Headquarters</p>
+                  </div>
+                  <div className="h-16 w-px bg-[#EA580C]" />
+                  <div className="relative">
+                    <div className="h-3.5 w-3.5 rounded-full bg-[#EA580C]" />
+                    <div className="absolute inset-0 rounded-full bg-[#EA580C] animate-ping opacity-40" />
+                  </div>
+                </div>
+
+                {/* CANADA */}
+                <div className="absolute top-[28%] left-[28%] -translate-x-1/2 flex flex-col items-center">
+                  <div className="rounded-[6px] bg-[#1E293B] px-3.5 py-1.5 text-center shadow-lg mb-1 z-10">
+                    <p className="text-[11.5px] font-bold text-white uppercase tracking-wide">Canada</p>
+                    <p className="text-[10px] text-slate-300">Office</p>
+                  </div>
+                  <div className="h-8 w-px bg-[#EA580C]" />
+                  <div className="relative">
+                    <div className="h-3.5 w-3.5 rounded-full bg-[#EA580C]" />
+                    <div className="absolute inset-0 rounded-full bg-[#EA580C] animate-ping opacity-40" />
+                  </div>
+                </div>
+
+                {/* DUBAI */}
+                <div className="absolute top-[50%] left-[55%] -translate-x-1/2 flex flex-col items-center">
+                  <div className="rounded-[6px] bg-[#1E293B] px-3.5 py-1.5 text-center shadow-lg mb-1 z-10">
+                    <p className="text-[11.5px] font-bold text-white uppercase tracking-wide">Dubai</p>
+                    <p className="text-[10px] text-slate-300">Office</p>
+                  </div>
+                  <div className="h-12 w-px bg-[#EA580C]" />
+                  <div className="relative">
+                    <div className="h-3.5 w-3.5 rounded-full bg-[#EA580C]" />
+                    <div className="absolute inset-0 rounded-full bg-[#EA580C] animate-ping opacity-40" />
+                  </div>
+                </div>
+
+              </div>
+
+              {/* BOTTOM SCROLL ARROW */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
+                <button 
+                  onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08)] transition-all hover:bg-slate-50 hover:scale-105 pointer-events-auto"
+                >
+                  <ArrowRight className="h-5 w-5 text-slate-500 rotate-90" />
+                </button>
+              </div>
 
             </div>
-
           </div>
 
         </div>
@@ -777,7 +1008,7 @@ New York, NY 10001`,
                 </h2>
 
                 {/* TEXT */}
-                <p className="mt-6 text-[17px] leading-8 text-[#475569] text-center">
+                <p className="mt-6 text-[16px] leading-8 text-[#475569] text-center">
 
                   Helpful answers about our Oracle Cloud consulting,
                   implementation process, support model and
