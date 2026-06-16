@@ -25,33 +25,129 @@ import { API_ENDPOINTS } from '../config/api'
 const quarterlyUpdates = [
   {
     quarter: 'Q1 2026',
-    category: 'Artificial Intelligence',
-    title: 'Oracle AI Agent Enhancements',
-    description: 'Empower operational teams with next-gen autonomous agent reasoning for automatic ticket classification, intelligent routing, and summary dashboards.',
-    tag: 'AI',
+    category: 'Oracle Fusion HCM 26A',
+    title: 'Oracle Fusion HCM 26A',
+    description: 'Oracle HCM 26A introduces foundational AI capabilities with strong focus on skills intelligence, employee self-service, and early Redwood adoption across HR processes.',
+    tag: 'HCM',
     Icon: Sparkles,
     badgeColor: 'bg-indigo-50/80 text-[#EA580C] border-indigo-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]',
+    fullContent: (
+      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] text-justify mt-6 border-t border-[#ececec] pt-6">
+        <p>
+          Oracle Fusion Cloud HCM 26A continues Oracle’s focus on <strong>embedding artificial intelligence across the employee lifecycle, introducing new AI-assisted experiences, Redwood innovations, and workforce intelligence capabilities</strong> designed to improve productivity, decision-making, and user experience.
+        </p>
+        <p>
+          A key theme of the 26A release is the <strong>expansion of AI-powered assistance</strong> across Human Resources. Organizations can now leverage Employee Self-Service with AI Assistance and Team Management with AI Assistance to simplify routine HR interactions. Additional AI-enabled capabilities include updating employee marital status, changing working hours, managing journeys, viewing employee personal information, and managing personal document records. Workforce leaders can also analyze workforce structures and team composition using AI-assisted insights, while Redwood employment processes now support AI-generated approval comments.
+        </p>
+        <p>
+          <strong>Recruiting</strong> receives several notable enhancements in 26A. Oracle introduces AI Agent Studio support for both Job Requisition Creation and Job Offer Creation flows, enabling organizations to extend and tailor recruiting experiences. Recruiters also benefit from Career Coach enhancements, candidate authenticity improvements within the Job Applicant Screening Advisor, and a redesigned Redwood Interview Schedule Details page that streamlines interview management activities.
+        </p>
+        <p>
+          In <strong>Compensation</strong>, Oracle expands intelligent decision-support capabilities through the introduction of Peer-Group Salary Benchmarking within My Team Compensation Advisor. Organizations can also take advantage of enhancements to AI Assist for generating individual compensation plan instructions, helping improve consistency and efficiency during compensation planning cycles.
+        </p>
+        <p>
+          <strong>Skills intelligence</strong> remains a major focus of the release. Generative AI-powered skill suggestions are now available across multiple talent processes, including learning items, career roles, job requisitions, gigs, and role guides. Employees can also access enhanced skill recommendations within the Redwood Skills Center, supporting workforce agility and skills-based talent development strategies.
+        </p>
+        <p>
+          <strong>Learning and Career Development</strong> continue to evolve through intelligent content discovery. The new Learning Catalog Smart Search Advisor helps learners locate relevant learning opportunities more effectively, while generative AI-driven skill recommendations strengthen career planning and development experiences.
+        </p>
+        <p>
+          <strong>Talent Management</strong> enhancements introduce additional AI-powered capabilities to support performance and growth. The Redwood Employee Goals Assistant Agent helps employees manage goals more efficiently, while Profile Management gains AI-generated summaries of employee feedback. Oracle also extends Dynamic Skills into performance documents, enabling closer alignment between employee skills, development activities, and performance management processes.
+        </p>
+        <p>
+          <strong>Payroll</strong> receives a significant innovation with the introduction of the Payroll Administrator Troubleshooting AI Agent, designed to assist payroll teams in identifying and resolving payroll-related issues more efficiently.
+        </p>
+        <p>
+          With Oracle Fusion HCM 26A, Oracle continues to invest in <strong>AI-driven experiences, Redwood modernization, and skills-focused workforce management,</strong> helping organizations streamline HR operations while empowering employees, managers, and HR teams with intelligent assistance.
+        </p>
+      </div>
+    )
   },
   {
     quarter: 'Q2 2026',
-    category: 'Finance & ERP',
-    title: 'Continuous Ledger Reconciliations',
-    description: 'Automate finance close cycles with sub-ledger exception handling, predictive anomaly detection, and unified reporting pipelines.',
-    tag: 'ERP',
+    category: 'Oracle Fusion HCM 26B',
+    title: 'Oracle Fusion HCM 26B',
+    description: 'Enterprise-wide AI expansion in Oracle HCM 26B across Recruiting, Learning, Payroll, Compensation, and Talent Management to improve HR productivity and decision-making.',
+    tag: 'HCM',
     Icon: Cpu,
     badgeColor: 'bg-emerald-50/80 text-[#EA580C] border-emerald-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]',
+    fullContent: (
+      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] text-justify mt-6 border-t border-[#ececec] pt-6">
+        <p>
+          Oracle Fusion Cloud HCM 26B introduces significant advancements across <strong>Human Resources, Recruiting, Learning, Talent Management, Compensation, Benefits, Payroll, and Time & Labor.</strong> The release continues Oracle’s investment in Redwood user experiences and embedded AI capabilities designed to enhance productivity, decision-making, and employee engagement.
+        </p>
+        <p>
+          A major highlight of 26B is the <strong>expansion of AI-powered agents</strong> across the HCM suite.
+        </p>
+        <p>
+          In <strong>Learning,</strong> organizations can leverage the Enhanced Skills Library Translation Agent, Enhanced Learning Creation Assistant, Learning Assignment Assistant, Learning Tutor Enhancements, and Ask Oracle: My Team’s Learning Assistant. Additional innovations include automatic import of content provider skills and a new Team Learning and Development Workspace for managers.
+        </p>
+        <p>
+          <strong>Recruiting</strong> receives substantial enhancements through Career Coach updates, including Interview Management Agents, framework improvements, and text assistant support. Recruiters can also benefit from AI-powered candidate search capabilities, Job Application AI Overview, AI-assisted sourcing campaigns, candidate pool creation, and enhanced AI-based candidate rating and sorting. Redwood experiences continue to expand with interview scheduling templates, agency hiring, and hiring event enhancements.
+        </p>
+        <p>
+          Within <strong>Core HR,</strong> Oracle introduces several AI-assisted experiences, including Manage Jobs with AI Assistance, Manage Document Records for Managers and HR Specialists, Resign from Employment with AI Assistance, and enhancements to the Representative Agent. The Personal Information Assistant AI Agent can now update demographic, biographical, phone, and email information. Workflow automation is also strengthened through AI-assisted journey task triggers.
+        </p>
+        <p>
+          <strong>Compensation and Benefits</strong> gain new intelligent capabilities through the Personal Contribution AI Agent, Line Manager Salary Change AI Agent, Compensation Advisor enhancements, Benefits Certification Agent, and Court Order Intake Assistant.
+        </p>
+        <p>
+          <strong>Talent Management</strong> continues its Redwood transformation with updates across Goal Management, Performance Management, Succession Management, Talent Review, and Check-Ins. Key enhancements include AI-generated performance feedback visibility, conversation summaries, succession planning advisor updates, redesigned configuration pages, and expanded role-based controls for goals and performance activities.
+        </p>
+        <p>
+          <strong>Time and Labor</strong> introduces the Time Analyst and enhanced Time Assistant experiences, while Payroll expands troubleshooting capabilities through improvements to the Payroll Administrator Troubleshooting AI Agent.
+        </p>
+        <p>
+          Additional innovations include the <strong>Redwood Style Transaction Console with Embedded AI, Microsoft Teams integration within HCM Communicate, the HCM Professional Concierge, and the Enhanced Time-off Assistant AI Agent.</strong>
+        </p>
+        <p>
+          Oracle Fusion HCM 26B demonstrates Oracle’s continued focus on delivering <strong>AI-assisted workflows, modern Redwood experiences, and operational efficiencies</strong> that help HR teams streamline processes while improving employee and manager experiences across the enterprise.
+        </p>
+      </div>
+    )
   },
   {
     quarter: 'Q3 2026',
-    category: 'Cloud Infrastructure',
-    title: 'OCI Zero-Trust Security Framework',
-    description: 'Elevate your cloud posture with decentralized key management, automated threat detection, and next-generation database hardware acceleration.',
-    tag: 'OCI',
+    category: 'Oracle Fusion HCM 26C',
+    title: 'Oracle Fusion HCM 26C',
+    description: 'Focus on HR security, data management, and Redwood-based administrative modernization with AI-assisted troubleshooting in Oracle HCM 26C.',
+    tag: 'HCM',
     Icon: Shield,
     badgeColor: 'bg-amber-50/80 text-[#EA580C] border-amber-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]',
+    fullContent: (
+      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] text-justify mt-6 border-t border-[#ececec] pt-6">
+        <p>
+          Oracle Fusion Cloud HCM 26C introduces enhancements across <strong>Applications Security, HCM Common, HCM Data Loader, HCM Extracts, and HCM Spreadsheet Data Loader.</strong> The release continues Oracle’s focus on Redwood modernization, AI-assisted administration, and improved data management capabilities, helping organizations streamline HR operations while enhancing user experience and governance.
+        </p>
+        <p>
+          A major highlight of 26C is the expansion of AI-powered administrative assistance. Within Applications Security, Oracle introduces <strong>Resolve HCM Data Security Access using AI Assistance,</strong> enabling administrators to analyze and troubleshoot HCM security access more efficiently. This enhancement supports faster issue resolution while simplifying complex security investigations.
+        </p>
+        <p>
+          Applications Security also receives Redwood-enabled administration enhancements through <strong>Configure Roles and Delegations and Manage User Account Quick Action Pages.</strong> Available through Visual Builder, this capability provides a more modern and streamlined experience for managing security-related tasks and user account administration.
+        </p>
+        <p>
+          In HCM Common, Oracle continues its Redwood experience expansion with <strong>Display Optional Regions in Compact Guided Process Redwood Template Pages.</strong> This enhancement provides organizations with greater flexibility when designing Redwood guided process experiences, enabling administrators to tailor page layouts based on business requirements.
+        </p>
+        <p>
+          Data management capabilities are strengthened through several updates in HCM Data Loader (HDL). Oracle introduces the <strong>Redwood Experience for Remove Person Information,</strong> delivering a modern Redwood interface for person information removal processes. In addition, <strong>Business Object Enhancements</strong> provide updates to HDL business object functionality, further improving data loading and maintenance capabilities.
+        </p>
+        <p>
+          Oracle also extends Redwood modernization to HCM Extracts with the introduction of the <strong>Redwood Experience for HCM Extracts.</strong> This enhancement modernizes the extracts experience and aligns it with Oracle’s broader Redwood user experience strategy, helping administrators work more efficiently within a consistent interface.
+        </p>
+        <p>
+          For organizations leveraging HCM Spreadsheet Data Loader (HSDL), Oracle introduces the <strong>AI Agent: Spreadsheet Data Loader Advisor for HSDL.</strong> This AI-powered advisor is designed to assist users working with spreadsheet-based data loads, helping simplify data loading activities and improve operational efficiency.
+        </p>
+        <p>
+          From an implementation perspective, most 26C enhancements are delivered with no <strong>impact to existing business processes,</strong> allowing organizations to adopt new functionality with minimal disruption. Several features require setup to enable the new capabilities, while the HDL Business Object Enhancements are delivered with a small-scale impact and do not require additional setup.
+        </p>
+        <p>
+          Oracle Fusion HCM 26C demonstrates Oracle’s continued investment in <strong>Redwood experiences, AI-driven administration, and modernized data management tools.</strong> These enhancements help organizations improve usability, strengthen governance, and streamline HR administration through intelligent and user-focused innovation.
+        </p>
+      </div>
+    )
   }
 ]
 
@@ -109,10 +205,13 @@ const recentActivities = [
 ]
 
 function Blog() {
-  useDocumentTitle('Insights & Perspectives | CloudStand Insights')
+  useDocumentTitle('Cloudstand Consulting | Insights & Perspectives')
   
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [subscribing, setSubscribing] = useState(false)
+  const [subscribeError, setSubscribeError] = useState('')
+  const [expandedUpdate, setExpandedUpdate] = useState(null)
 
   const [hasWebinar, setHasWebinar] = useState(true)
   const [webinarData, setWebinarData] = useState({
@@ -220,6 +319,7 @@ function Blog() {
   const handleRegSubmit = async (e) => {
     e.preventDefault()
     const newErrors = {}
+    if (!regForm.firstName.trim()) newErrors.firstName = 'Required'
     if (!regForm.lastName.trim()) newErrors.lastName = 'Required'
     if (regForm.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
       newErrors.email = 'Invalid'
@@ -281,14 +381,43 @@ function Blog() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault()
     if (email.trim() !== '') {
-      setSubscribed(true)
-      setTimeout(() => {
-        setEmail('')
-        setSubscribed(false)
-      }, 5000)
+      setSubscribing(true)
+      setSubscribeError('')
+      try {
+        const endpoint = API_ENDPOINTS.newsletterSubscribe || '/api/newsletter-subscribe/'
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.trim() }),
+        })
+
+        if (!res.ok) {
+          let errorMsg = 'Failed to subscribe. Please try again.'
+          try {
+            const errorData = await res.json()
+            if (errorData && errorData.message) {
+              errorMsg = errorData.message
+            }
+          } catch (parseErr) {
+            // keep default error message
+          }
+          throw new Error(errorMsg)
+        }
+
+        setSubscribed(true)
+        setTimeout(() => {
+          setEmail('')
+          setSubscribed(false)
+        }, 5000)
+      } catch (e) {
+        console.error(e)
+        setSubscribeError(e.message || 'Failed to subscribe. Please try again.')
+      } finally {
+        setSubscribing(false)
+      }
     }
   }
 
@@ -307,7 +436,7 @@ function Blog() {
           <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
           <div className="section-shell relative z-20 w-full">
             <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-              <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
+              <div className="max-w-[760px] lg:w-[60%] flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
                 <motion.div
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   initial={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -316,11 +445,11 @@ function Blog() {
                   <Badge>CloudStand Insights</Badge>
                 </motion.div>
 
-                <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+                <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9] mx-auto lg:mx-0" />
 
                 <motion.h1
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+                  className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-center lg:text-left"
                   initial={{ opacity: 0, y: 25 }}
                   transition={{ duration: 0.7, delay: 0.1 }}
                 >
@@ -329,7 +458,7 @@ function Blog() {
 
                 <motion.p
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-left"
+                  className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-center lg:text-left"
                   initial={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.7, delay: 0.2 }}
                 >
@@ -367,7 +496,7 @@ function Blog() {
         <div className="section-shell relative z-20 w-full">
           <div className="flex w-full flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             {/* LEFT CONTENT */}
-            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
+            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
               <motion.div
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 initial={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -377,11 +506,11 @@ function Blog() {
               </motion.div>
 
               {/* BLUE LINE */}
-              <div className="mt-3 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+              <div className="mt-3 h-1 w-16 rounded-full bg-[#0EA5E9] mx-auto lg:mx-0" />
 
               <motion.h1
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 text-[36px] font-bold leading-[1.1] tracking-[-0.03em] text-black text-left"
+                className="mt-4 text-[36px] font-bold leading-[1.1] tracking-[-0.03em] text-black text-center lg:text-left"
                 initial={{ opacity: 0, y: 25 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
@@ -391,7 +520,7 @@ function Blog() {
               {/* DESCRIPTION */}
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 max-w-[600px] text-[15px] leading-relaxed text-[#475569] text-left"
+                className="mt-4 max-w-[600px] text-[15px] leading-relaxed text-[#475569] text-center lg:text-left"
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
@@ -443,19 +572,19 @@ function Blog() {
                 </motion.div>
 
                 {/* Bottom Row: Speaker(s) and Register Button */}
-                <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+                <motion.div variants={staggerItem} className="flex flex-col gap-4 w-full mt-1">
                    {/* Speaker(s) */}
-                   <div className="flex flex-1 items-center gap-3 w-full rounded-[16px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-3 shadow-[0_12px_30px_rgba(14,165,233,0.06)] backdrop-blur-md">
+                   <div className="flex items-center gap-3 w-full rounded-[16px] border border-[rgba(14,165,233,0.16)] bg-white/88 px-5 py-3 shadow-[0_12px_30px_rgba(14,165,233,0.06)] backdrop-blur-md">
                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(14,165,233,0.18)] bg-white shadow-[0_4px_10px_rgba(14,165,233,0.05)]">
                        <Users className="h-4 w-4 text-[#0EA5E9]" strokeWidth={2} />
                      </span>
                      <div className="flex-1">
                        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#D63B25]">Speaker(s)</p>
                        <div className="mt-1.5 flex flex-wrap gap-2">
-                         {webinarData.speaker && webinarData.speaker.split(',').map((name, i) => (
+                         {webinarData.speaker && webinarData.speaker.split('.').map((name, i) => (
                            <span 
                              key={i} 
-                             className="inline-flex items-center rounded border border-[rgba(14,165,233,0.16)] bg-transparent px-2.5 py-0.5 text-[14px] font-semibold text-black"
+                             className="inline-flex items-center bg-transparent py-0.5 text-[14px] font-semibold text-black"
                            >
                              {name.trim()}
                            </span>
@@ -467,11 +596,11 @@ function Blog() {
                    {/* Register Button */}
                    <button
                      onClick={() => setIsModalOpen(true)}
-                     className="inline-flex shrink-0 w-full sm:w-auto items-center justify-center gap-3 rounded-[16px] bg-[#EA580C] px-8 py-4 sm:py-3 text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f] h-full min-h-[60px] sm:min-h-0"
+                     className="group inline-flex w-auto self-center items-center justify-center gap-3 rounded-full bg-[#EA580C] px-10 py-3.5 text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(234,88,12,0.22)] transition-all duration-300 hover:bg-[#d9480f] min-h-[60px]"
                      type="button"
                    >
                      Register Now
-                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
+                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-x-1.5">
                        <svg
                          className="h-3.5 w-3.5"
                          fill="none"
@@ -514,78 +643,9 @@ function Blog() {
       )}
 
       {/* ==========================================
-          1. FEATURED QUARTERLY UPDATES SECTION
+          1. WEBINAR VIDEOS SECTION
           ========================================== */}
-      <section className="relative py-24 sm:py-28 lg:py-32 bg-primary/45 border-t border-sky-100/50">
-        <div className="section-shell relative z-10">
-          <SectionTitle 
-            eyebrow="Quarterly Release Hub" 
-            title="Quarterly Product Updates" 
-            subtitle="Stay updated with the latest Oracle Cloud innovations, platform enhancements, AI capabilities, and enterprise transformation releases."
-            align="center"
-            titleClassName="!text-[40px]"
-          />
-
-          <motion.div 
-            className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-            initial="hidden"
-            variants={staggerContainer}
-            viewport={{ once: true, margin: '-80px' }}
-            whileInView="visible"
-          >
-            {quarterlyUpdates.map((update, index) => {
-              const Icon = update.Icon
-              return (
-                <motion.div 
-                  key={index}
-                  variants={staggerItem}
-                  className="group relative flex min-h-[345px] overflow-hidden rounded-[26px] border border-[#ececec] bg-white p-4 transition-all duration-500 hover:-translate-y-2 hover:border-[#f97316]"
-                >
-                  <div className="flex w-full flex-col">
-                    <div className="mb-5 flex items-center justify-between">
-                      <span className={`inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] ${update.badgeColor}`}>
-                        {update.quarter}
-                      </span>
-
-                      <div className="h-2.5 w-12 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
-                    </div>
-
-                    <div className="relative mt-2 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-100 bg-white text-[#0EA5E9] shadow-[0_8px_16px_rgba(14,165,233,0.04)]">
-                      <Icon className="h-6 w-6" />
-                    </div>
-
-                    <h3 className="max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
-                      {update.title}
-                    </h3>
-
-                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
-                      {update.description}
-                    </p>
-
-                    <div className="mt-auto h-px w-full bg-[#ececec]" />
-
-                    <div className="mt-4 flex items-center justify-between">
-                      <span className="text-sm font-semibold text-[#0EA5E9]">{update.category}</span>
-                      <button 
-                        type="button"
-                        className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300"
-                      >
-                        Read Update
-                        <ChevronRight className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==========================================
-          2. WEBINAR VIDEOS SECTION
-          ========================================== */}
-      <section className="relative py-24 sm:py-28 lg:py-32 bg-slate-950 text-white overflow-hidden">
+      <section className="relative py-24 sm:py-28 lg:py-32 bg-slate-950 text-white overflow-hidden border-t border-sky-100/50">
         {/* Glow Overlay Blobs */}
         <div className="pointer-events-none absolute -right-32 top-[-10%] h-[550px] w-[550px] rounded-full bg-blue-500/10 blur-[140px]" />
         <div className="pointer-events-none absolute -left-32 bottom-[-10%] h-[550px] w-[550px] rounded-full bg-orange-600/5 blur-[140px]" />
@@ -595,7 +655,7 @@ function Blog() {
           <div className="mb-16 flex flex-col items-center text-center">
             <Badge light>Video Showcase</Badge>
             <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-[#0EA5E9] to-orange-500" />
-            <h2 className="mt-6 text-[40px] font-extrabold tracking-tight text-white">
+            <h2 className="mt-6 text-[30px] lg:text-[40px] font-extrabold tracking-tight text-white">
               Expert Webinar Sessions
             </h2>
             <p className="mt-5 max-w-3xl text-[16px] leading-7 text-slate-400 ">
@@ -646,8 +706,107 @@ function Blog() {
       </section>
 
       {/* ==========================================
+          2. FEATURED QUARTERLY UPDATES SECTION
+          ========================================== */}
+      <section className="relative py-24 sm:py-28 lg:py-32 bg-primary/45">
+        <div className="section-shell relative z-10">
+          <SectionTitle 
+            eyebrow="Quarterly Release Hub" 
+            title="Quarterly Product Updates" 
+            subtitle="Stay updated with the latest Oracle Cloud innovations, platform enhancements, AI capabilities, and enterprise transformation releases."
+            align="center"
+            titleClassName="!text-[30px] lg:!text-[40px]"
+          />
+
+          <motion.div 
+            className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            initial="hidden"
+            variants={staggerContainer}
+            viewport={{ once: true, margin: '-80px' }}
+            whileInView="visible"
+          >
+            {quarterlyUpdates.map((update, index) => {
+              const Icon = update.Icon
+              const isExpanded = expandedUpdate === index
+
+              return (
+                <motion.div 
+                  key={index}
+                  variants={staggerItem}
+                  className={`group relative flex overflow-hidden rounded-[26px] border border-[#ececec] bg-white p-4 transition-all duration-500 hover:border-[#f97316] ${isExpanded ? 'col-span-full' : 'min-h-[345px] hover:-translate-y-2'}`}
+                >
+                  <div className="flex w-full flex-col">
+                    <div className="mb-5 flex items-center justify-between">
+                      <span className={`inline-flex items-center rounded-full border border-sky-200 bg-white px-4 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.20em] ${update.badgeColor}`}>
+                        {update.quarter}
+                      </span>
+
+                      {isExpanded ? (
+                        <button 
+                          type="button"
+                          onClick={() => setExpandedUpdate(null)}
+                          className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      ) : (
+                        <div className="h-2.5 w-12 rounded-full bg-gradient-to-r from-[#f97316] to-[#0EA5E9]" />
+                      )}
+                    </div>
+
+                    <div className="relative mt-2 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-100 bg-white text-[#0EA5E9] shadow-[0_8px_16px_rgba(14,165,233,0.04)]">
+                      <Icon className="h-6 w-6" />
+                    </div>
+
+                    <h3 className="mt-4 max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
+                      {update.title}
+                    </h3>
+
+                    <p className={`mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-4'}`}>
+                      {update.description}
+                    </p>
+
+                    <div className="mt-auto h-px w-full bg-[#ececec]" />
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-sm font-semibold text-[#0EA5E9]">{update.category}</span>
+                      {update.fullContent && !isExpanded && (
+                        <button 
+                          type="button"
+                          onClick={() => setExpandedUpdate(index)}
+                          className="flex items-center gap-2 text-sm font-semibold text-[#f97316] transition-all duration-300"
+                        >
+                          Read Update
+                          <ChevronRight className="h-4 w-4 transition-transform duration-300" />
+                        </button>
+                      )}
+                    </div>
+
+                    <AnimatePresence>
+                      {isExpanded && update.fullContent && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          {update.fullContent}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ==========================================
           3. RECENT ACTIVITIES / UPDATES SECTION
           ========================================== */}
+      {false && (
       <section className="relative py-24 sm:py-28 lg:py-32 bg-white">
         <div className="section-shell relative z-10">
           <SectionTitle 
@@ -655,7 +814,7 @@ function Blog() {
             title="Recent Updates & Activities" 
             subtitle="Latest cloud transformation activities, customer success stories, webinars, events, and product launches."
             align="center"
-            titleClassName="!text-[40px]"
+            titleClassName="!text-[30px] lg:!text-[40px]"
           />
 
           <motion.div 
@@ -698,21 +857,13 @@ function Blog() {
                   </div>
                 </div>
 
-                {/* Footer Read More Link */}
-                <div className="px-7 pb-7 pt-2">
-                  <a 
-                    href={act.link}
-                    className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-[#0EA5E9] transition-all duration-300 group-hover:gap-2 group-hover:text-[#D63B25]"
-                  >
-                    <span>Read More</span>
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                </div>
+                {/* Footer Read More Link Removed */}
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* ==========================================
           4. INSIGHTS NEWSLETTER CTA SECTION
@@ -732,7 +883,7 @@ function Blog() {
 
             <div className="relative z-10 mx-auto max-w-4xl text-center">
               <Badge>Stay Ahead of the Curve</Badge>
-              <h2 className="mt-6 text-[40px] font-extrabold leading-tight text-slate-900">
+              <h2 className="mt-6 text-[30px] lg:text-[40px] font-extrabold leading-tight text-slate-900">
                 Stay Ahead with <span className="text-gradient">CloudStand Insights</span>
               </h2>
               <p className="mt-5 text-[16px] leading-7 text-text-muted ">
@@ -764,10 +915,11 @@ function Blog() {
                       </div>
                       <button 
                         type="submit"
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#D63B25] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(214,59,37,0.2)] transition-all duration-300 hover:bg-[#EA580C] hover:shadow-[0_16px_36px_rgba(234,88,12,0.3)] shrink-0"
+                        disabled={subscribing}
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#D63B25] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(214,59,37,0.2)] transition-all duration-300 hover:bg-[#EA580C] hover:shadow-[0_16px_36px_rgba(234,88,12,0.3)] shrink-0 disabled:opacity-70 disabled:hover:bg-[#D63B25] disabled:hover:shadow-[0_12px_28px_rgba(214,59,37,0.2)]"
                       >
-                        <span>Subscribe Now</span>
-                        <ArrowRight className="h-4 w-4" />
+                        <span>{subscribing ? 'Subscribing...' : 'Subscribe Now'}</span>
+                        {!subscribing && <ArrowRight className="h-4 w-4" />}
                       </button>
                     </motion.form>
                   ) : (
@@ -785,6 +937,11 @@ function Blog() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+                {subscribeError && (
+                  <p className="mt-3 text-sm text-red-500 font-medium text-center">
+                    {subscribeError}
+                  </p>
+                )}
               </div>
 
               <p className="mt-4 text-xs text-slate-400">
@@ -822,20 +979,20 @@ function Blog() {
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="p-6 md:p-10">
+              <div className="p-5 md:p-7">
                 {!regSubmitted ? (
                   <>
-                    <div className="mb-8 flex flex-col items-center text-center">
+                    <div className="mb-4 flex flex-col items-center text-center">
                       <Badge>Webinar Registration</Badge>
-                      <h2 className="mt-4 text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
+                      <h2 className="mt-3 text-[28px] md:text-[32px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
                         Claim Your Spot
                       </h2>
-                      <p className="mt-2 text-[16px] leading-relaxed text-[#475569] text-center max-w-[480px] mx-auto">
+                      <p className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#475569] text-center max-w-[480px] mx-auto">
                         Stay ahead with insights from our Oracle Center of Excellence specialists.
                       </p>
                     </div>
 
-                    <form onSubmit={handleRegSubmit} className="grid gap-2.5 md:grid-cols-2">
+                    <form onSubmit={handleRegSubmit} className="grid gap-2 md:grid-cols-2">
                       {/* BASIC INFORMATION SECTION HEADER */}
                       <div className="md:col-span-2">
                         <h3 className="text-[12px] font-bold text-slate-500 uppercase tracking-widest">Basic Information</h3>
@@ -846,7 +1003,7 @@ function Blog() {
                         <input
                           name="firstName"
                           type="text"
-                          placeholder="First Name (Optional)"
+                          placeholder="First Name *"
                           value={regForm.firstName}
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.firstName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
@@ -870,7 +1027,7 @@ function Blog() {
                         <input
                           name="email"
                           type="email"
-                          placeholder="Work Email Address (Optional)"
+                          placeholder="Work Email Address"
                           value={regForm.email}
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.email ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
@@ -882,7 +1039,7 @@ function Blog() {
                         <input
                           name="phone"
                           type="text"
-                          placeholder="Contact Number (Optional)"
+                          placeholder="Contact Number"
                           value={regForm.phone}
                           onChange={handleRegChange}
                           className="h-[44px] w-full rounded-[10px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
@@ -894,7 +1051,7 @@ function Blog() {
                         <input
                           name="linkedin"
                           type="text"
-                          placeholder="LinkedIn URL (Optional)"
+                          placeholder="LinkedIn URL"
                           value={regForm.linkedin}
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.linkedin ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
@@ -911,7 +1068,7 @@ function Blog() {
                         <input
                           name="currentRole"
                           type="text"
-                          placeholder="Current Role / Profession (Optional)"
+                          placeholder="Current Role / Profession"
                           value={regForm.currentRole}
                           onChange={handleRegChange}
                           className="h-[44px] w-full rounded-[10px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"

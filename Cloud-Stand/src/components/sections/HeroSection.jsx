@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { API_ENDPOINTS } from '../../config/api'
 
 const DEFAULT_SLIDES = [
   {
@@ -40,9 +41,34 @@ const FALLBACK_SLIDE_COPY = DEFAULT_SLIDES.map(({ heading, subheading, button })
 }))
 
 function HeroSection({ slides = DEFAULT_SLIDES }) {
+  const [apiSlides, setApiSlides] = useState(null)
+
+  useEffect(() => {
+    const fetchHeroSlides = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.heroSlider)
+        const result = await response.json()
+        if (result.status && result.data && result.data.length > 0) {
+          const formattedSlides = result.data.map((slide) => ({
+            image: slide.image,
+            heading: slide.title,
+            subheading: slide.description,
+            button: { label: 'Explore Solutions', to: '/services' },
+          }))
+          setApiSlides(formattedSlides)
+        }
+      } catch (error) {
+        console.error('Failed to fetch hero slides:', error)
+      }
+    }
+    fetchHeroSlides()
+  }, [])
+
+  const activeSlides = apiSlides || slides
+
   const safeSlides = useMemo(
     () =>
-      slides
+      activeSlides
         .map((slide, index) => {
           if (!slide) return null
 
@@ -62,7 +88,7 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
           return slide
         })
         .filter(Boolean),
-    [slides]
+    [activeSlides]
   )
   const [currentSlide, setCurrentSlide] = useState(0)
   const [activeTextSlide, setActiveTextSlide] = useState(0)
@@ -180,21 +206,23 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-center px-6 py-24 sm:px-8 lg:px-12">
-        <div className="max-w-4xl text-center">
+        <div className="max-w-4xl text-center w-full">
           <div
             key={activeTextSlide}
-            className={`hero-slide-copy ${isTextVisible ? 'hero-slide-copy--visible' : 'hero-slide-copy--hidden'}`}
+            className={`hero-slide-copy flex flex-col min-h-[420px] sm:min-h-[360px] md:min-h-[320px] w-full ${isTextVisible ? 'hero-slide-copy--visible' : 'hero-slide-copy--hidden'}`}
           >
-            <h1 className="hero-slide-heading text-[2.1rem] font-extrabold leading-tight tracking-[-0.03em] text-white drop-shadow-[0_6px_22px_rgba(0,0,0,0.55)] sm:text-[2.7rem] lg:text-[3.35rem]">
-              {safeSlides[activeTextSlide]?.heading}
-            </h1>
+            <div className="flex-1 flex flex-col justify-center">
+              <h1 className="hero-slide-heading text-[2.1rem] font-extrabold leading-tight tracking-[-0.03em] text-white drop-shadow-[0_6px_22px_rgba(0,0,0,0.55)] sm:text-[2.7rem] lg:text-[3.35rem]">
+                {safeSlides[activeTextSlide]?.heading}
+              </h1>
 
-            <p className="hero-slide-subheading mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.55)] lg:text-xl">
-              {safeSlides[activeTextSlide]?.subheading}
-            </p>
+              <p className="hero-slide-subheading mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-white/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.55)] lg:text-xl">
+                {safeSlides[activeTextSlide]?.subheading}
+              </p>
+            </div>
 
             {safeSlides[activeTextSlide]?.button && (
-              <div className="mt-10 flex items-center justify-center">
+              <div className="mt-auto flex items-center justify-center shrink-0 pt-8">
                 <Link
                   to={safeSlides[activeTextSlide].button.to}
                   className="inline-flex min-w-[210px] items-center justify-center rounded-lg border-[0.5px] border-orange-400 bg-transparent px-8 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:border-[#d63b25] hover:bg-[#d63b25] hover:text-white hover:shadow-[0_16px_36px_rgba(234,88,12,0.28)]"

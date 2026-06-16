@@ -291,7 +291,7 @@ const backgroundDesigns = [
 ]
 
 function BackgroundDesigns() {
-  useDocumentTitle('Background Design Options | CloudStand Consulting')
+  useDocumentTitle('Cloudstand Consulting | Background Design Options')
 
   return (
     <motion.main

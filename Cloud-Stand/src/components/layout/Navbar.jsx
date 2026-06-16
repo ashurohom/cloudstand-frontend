@@ -330,17 +330,19 @@ function Navbar() {
         {menuOpen ? (
           <motion.div
             animate={{ height: 'auto', opacity: 1 }}
-            className="overflow-hidden border-t border-sky-200 bg-white px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden"
+            className="overflow-y-auto max-h-[calc(100vh-80px)] border-t border-sky-200 bg-white px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden shadow-lg"
             exit={{ height: 0, opacity: 0 }}
             initial={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="section-shell px-0">
               <motion.div animate="visible" className="flex flex-col gap-3" initial="hidden" variants={staggerContainer}>
-                {navLinks.map((item) => (
+                
+                {/* 1. Home and About */}
+                {navLinks.slice(0, 2).map((item) => (
                   <motion.div key={item.path} variants={staggerItem}>
                     <NavLink
-                      className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm text-black transition hover:border-orange-400 hover:bg-sky-50"
+                      className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
                       onClick={() => handleNavClick(item.path)}
                       to={item.path}
                     >
@@ -351,62 +353,116 @@ function Navbar() {
                     </NavLink>
                   </motion.div>
                 ))}
-              </motion.div>
 
-              <motion.div
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 rounded-[26px] border border-sky-200 bg-sky-50 p-4"
-                initial={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.3, delay: 0.08 }}
-              >
-                <div className="mb-3 text-xs uppercase tracking-[0.24em] text-black">Services</div>
-                <motion.div animate="visible" className="grid gap-3" initial="hidden" variants={staggerContainer}>
-                  {serviceItems.map((item) => (
-                    <motion.div key={item.path} variants={staggerItem}>
-                      <Link
-                        className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm transition hover:border-orange-400 hover:bg-sky-50"
-                        onClick={() => handleNavClick(item.path)}
-                        to={item.path}
+                {/* 2. Services Accordion */}
+                <motion.div variants={staggerItem} className="flex flex-col">
+                  <button 
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                    className="flex w-full items-center justify-between rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
+                  >
+                    <span>Services</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <AnimatePresence>
+                    {servicesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden px-2 pt-2"
                       >
-                        <div className="font-medium text-black">{item.label}</div>
-                        <div className="mt-1 text-black">{item.tagline}</div>
-                      </Link>
-                    </motion.div>
-                  ))}
+                        <div className="flex flex-col gap-1 border-l-2 border-sky-200 pl-4 py-2 ml-2">
+                          {serviceItems.map((item) => (
+                            <Link 
+                              key={item.path} 
+                              to={item.path} 
+                              onClick={() => handleNavClick(item.path)} 
+                              className="text-sm font-medium text-black hover:text-[#0EA5E9] py-2 transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
-              </motion.div>
-              <motion.div
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 rounded-[26px] border border-sky-200 bg-white p-4"
-                initial={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-              >
-                <div className="mb-3 text-xs uppercase tracking-[0.24em] text-black">Careers</div>
-                <motion.div animate="visible" className="grid gap-3" initial="hidden" variants={staggerContainer}>
-                  {careerItems.map((item) => (
-                    <motion.div key={item.path} variants={staggerItem}>
-                      <Link
-                        className="block rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-white"
-                        onClick={() => handleNavClick(item.path)}
-                        to={item.path}
+
+                {/* 3. Case Studies and Insights */}
+                {navLinks.slice(2, 4).map((item) => (
+                  <motion.div key={item.path} variants={staggerItem}>
+                    <NavLink
+                      className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
+                      onClick={() => handleNavClick(item.path)}
+                      to={item.path}
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        {item.icon ? <item.icon className="h-4 w-4 text-sky-500" /> : null}
+                        <span>{item.label}</span>
+                      </span>
+                    </NavLink>
+                  </motion.div>
+                ))}
+
+                {/* 4. Careers Accordion */}
+                <motion.div variants={staggerItem} className="flex flex-col">
+                  <button 
+                    onClick={() => setCareersOpen(!careersOpen)}
+                    className="flex w-full items-center justify-between rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
+                  >
+                    <span>Careers</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${careersOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <AnimatePresence>
+                    {careersOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden px-2 pt-2"
                       >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  ))}
+                        <div className="flex flex-col gap-1 border-l-2 border-sky-200 pl-4 py-2 ml-2">
+                          {careerItems.map((item) => (
+                            <Link 
+                              key={item.path} 
+                              to={item.path} 
+                              onClick={() => handleNavClick(item.path)} 
+                              className="text-sm font-medium text-black hover:text-[#0EA5E9] py-2 transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
-              </motion.div>
-              <motion.div
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 flex justify-center rounded-[26px] border border-sky-200 bg-white p-4"
-                initial={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.3, delay: 0.12 }}
-              >
-                <img
-                  alt="Oracle Partner"
-                  className="h-16 w-auto object-contain"
-                  src="/oracle-partner-logo.png"
-                />
+
+                {/* 5. Contact */}
+                {navLinks.slice(4).map((item) => (
+                  <motion.div key={item.path} variants={staggerItem}>
+                    <NavLink
+                      className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
+                      onClick={() => handleNavClick(item.path)}
+                      to={item.path}
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        {item.icon ? <item.icon className="h-4 w-4 text-sky-500" /> : null}
+                        <span>{item.label}</span>
+                      </span>
+                    </NavLink>
+                  </motion.div>
+                ))}
+
+                {/* Oracle Logo */}
+                <motion.div variants={staggerItem} className="mt-6 flex justify-center pb-4">
+                  <img
+                    alt="Oracle Partner"
+                    className="h-16 w-auto object-contain"
+                    src="/oracle-partner-logo.png"
+                  />
+                </motion.div>
+
               </motion.div>
             </div>
           </motion.div>

@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import HealthCheckModal from '../components/ui/HealthCheckModal'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { caseStudies } from '../data/caseStudies'
 import { pageVariants } from '../animations/variants'
@@ -21,8 +22,9 @@ const SVGIcon = () => (
 function CaseStudyDetail() {
   const { slug } = useParams()
   const study = caseStudies.find(s => s.slug === slug)
+  const [isHealthCheckModalOpen, setIsHealthCheckModalOpen] = useState(false)
 
-  useDocumentTitle(study ? `${study.title} | CloudStand Case Study` : 'Case Study Not Found')
+  useDocumentTitle(study ? `Cloudstand Consulting | ${study.title}` : 'Cloudstand Consulting | Case Study Not Found')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -267,17 +269,20 @@ function CaseStudyDetail() {
               whileInView={{ opacity: 1, y: 0 }}
             >
               <div>
-                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-white">
+                <h2 className="mt-6 max-w-3xl text-[30px] lg:text-[40px] font-bold text-white">
                   Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
                 <div className="mt-8">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Button className="!border-orange-500 !bg-orange-500 !text-white !shadow-none hover:!border-orange-400 hover:!bg-orange-600 hover:!text-white" size="lg" to="/contact" variant="white">
+                    <button 
+                      onClick={() => setIsHealthCheckModalOpen(true)}
+                      className="inline-flex items-center gap-2 rounded-full border border-orange-500 bg-orange-500 px-8 py-4 text-[16px] font-semibold text-white transition-all hover:border-orange-400 hover:bg-orange-600 shadow-md"
+                    >
                       Schedule Free System Health Check Analysis
                       <motion.span whileHover={{ x: 4 }}>
                         <ArrowRight className="h-4 w-4" />
                       </motion.span>
-                    </Button>
+                    </button>
                   </motion.div>
                 </div>
               </div>
@@ -327,6 +332,7 @@ function CaseStudyDetail() {
           </div>
         </div>
       </section>
+      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
     </motion.main>
   )
 }

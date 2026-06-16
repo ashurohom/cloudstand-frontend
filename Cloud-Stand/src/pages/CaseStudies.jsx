@@ -8,7 +8,7 @@ import { caseStudies } from '../data/caseStudies'
 import { pageVariants } from '../animations/variants'
 
 function CaseStudies() {
-  useDocumentTitle('Case Studies | CloudStand Oracle Cloud Success Stories')
+  useDocumentTitle('Cloudstand Consulting | Case Studies')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -18,7 +18,7 @@ function CaseStudies() {
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[90vh] lg:flex lg:items-center">
         <div className="section-shell relative z-10 grid items-center gap-12 lg:grid-cols-2">
-          <div>
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.div
               animate={{ opacity: 1, scale: 1, y: 0 }}
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -27,14 +27,14 @@ function CaseStudies() {
               <Badge>Case Studies</Badge>
             </motion.div>
 
-            <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+            <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9] mx-auto lg:mx-0" />
 
-            <div className="pb-2">
+            <div className="pb-2 flex flex-col items-center lg:items-start">
               <motion.h1
                 animate={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 25 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="mt-6 text-[40px] font-bold leading-[0.95] tracking-[-0.06em] text-black"
+                className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[0.95] tracking-[-0.06em] text-black"
               >
                 Transformation
                 <br />
@@ -60,17 +60,14 @@ function CaseStudies() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative lg:ml-auto w-full max-w-lg"
+            className="relative lg:ml-auto w-full max-w-lg flex items-center justify-center"
           >
-            <div className="relative overflow-hidden rounded-[32px] shadow-xl">
-              <img 
-                src="/CaseStudies/cs1.png" 
-                alt="Case Studies Hero" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            {/* Decorative background element for the image */}
-            <div className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-[#0EA5E9]/20 to-[#EA580C]/20 blur-xl opacity-70" />
+            <img 
+              src="/CaseStudies/casestudies_hero_white.png" 
+              alt="Case Studies Hero" 
+              className="w-full h-auto object-contain scale-100 lg:scale-110 mix-blend-darken"
+              style={{ filter: 'brightness(1.05) contrast(1.15)' }}
+            />
           </motion.div>
         </div>
       </section>

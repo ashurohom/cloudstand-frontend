@@ -10,8 +10,9 @@ const countryProjects = {
     flagIcon: '🇮🇳',
     flagSrc: 'https://flagcdn.com/w40/in.png',
     color: '#f97316',
-    x: '73.5%',
-    y: '29%',
+    x: '66%',
+    y: '43%',
+    labelPosition: 'bottom',
     projects: [
       { id: 1, title: 'Cloudstand Consulting Pvt. Ltd.' },
       // { id: 2, title: 'Demo Project 2' },
@@ -23,8 +24,9 @@ const countryProjects = {
     flagIcon: '🇺🇸',
     flagSrc: 'https://flagcdn.com/w40/us.png',
     color: '#2563eb',
-    x: '19%',
-    y: '4%',
+    x: '25%',
+    y: '30%',
+    labelPosition: 'bottom',
     projects: [
       { id: 1, title: 'Cooper Vision USA' },
       { id: 2, title: 'Envision HealthCare' },
@@ -43,7 +45,8 @@ const countryProjects = {
     flagSrc: 'https://flagcdn.com/w40/gb.png',
     color: '#dc2626',
     x: '48%',
-    y: '-2%',
+    y: '27%',
+    labelPosition: 'left',
     projects: [
       { id: 1, title: 'M Group' },
       { id: 2, title: 'Herriot Watt University' },
@@ -59,8 +62,9 @@ const countryProjects = {
     flagIcon: '🇦🇪',
     flagSrc: 'https://flagcdn.com/w40/ae.png',
     color: '#16a34a',
-    x: '63%',
-    y: '30%',
+    x: '60.5%',
+    y: '42.5%',
+    labelPosition: 'top-right',
     projects: [
       { id: 1, title: 'Bukhatir' },
       { id: 2, title: 'Higher College Technologies' },
@@ -68,6 +72,73 @@ const countryProjects = {
       { id: 4, title: 'Naresco' },
       { id: 5, title: 'Aster' },
       { id: 6, title: 'Abu Dhabi Islamic Bank' },
+    ],
+  },
+  DE: {
+    name: 'Germany',
+    flag: 'DE',
+    flagIcon: '🇩🇪',
+    flagSrc: 'https://flagcdn.com/w40/de.png',
+    color: '#eab308',
+    x: '50.5%',
+    y: '28%',
+    labelPosition: 'top',
+    projects: [
+      { id: 1, title: 'MHp Group' },
+    ],
+  },
+  QA: {
+    name: 'Qatar',
+    flag: 'QA',
+    flagIcon: '🇶🇦',
+    flagSrc: 'https://flagcdn.com/w40/qa.png',
+    color: '#7e22ce',
+    x: '59.5%',
+    y: '42%',
+    labelPosition: 'top',
+    projects: [
+      { id: 1, title: 'Almana Group' },
+      { id: 2, title: 'Vodafone' },
+    ],
+  },
+  SA: {
+    name: 'Saudi Arabia',
+    flag: 'SA',
+    flagIcon: '🇸🇦',
+    flagSrc: 'https://flagcdn.com/w40/sa.png',
+    color: '#059669',
+    x: '57.5%',
+    y: '43%',
+    labelPosition: 'bottom',
+    projects: [
+      { id: 1, title: 'Rashed al Rashed' },
+      { id: 2, title: 'Zameel Group' },
+    ],
+  },
+  APAC: {
+    name: 'APAC Region',
+    flag: 'SG',
+    flagIcon: '🇸🇬',
+    flagSrc: 'https://flagcdn.com/w40/sg.png',
+    color: '#0891b2',
+    x: '70%',
+    y: '20%',
+    labelPosition: 'bottom',
+    projects: [
+      { id: 1, title: 'Royal Cargo' },
+    ],
+  },
+  EMEA: {
+    name: 'EMEA Region',
+    flag: 'EU',
+    flagIcon: '🇪🇺',
+    flagSrc: 'https://flagcdn.com/w40/eu.png',
+    color: '#be185d',
+    x: '49.5%',
+    y: '42%',
+    labelPosition: 'bottom',
+    projects: [
+      { id: 1, title: 'Hoya INC' },
     ],
   },
 }
@@ -84,70 +155,89 @@ function GlobalDelivery() {
       <div className="w-full">
         <div className="section-shell mx-auto mb-10 md:mb-12 flex flex-col items-center text-center max-w-5xl">
           <Badge className="mb-6 border-sky-200 bg-white text-[#EA580C]">Global Delivery</Badge>
-          <h2 className="mx-auto max-w-4xl text-[40px] font-bold leading-[1.15] text-black">
-            Oracle Cloud delivery, across regions
+          <h2 className="mx-auto max-w-4xl text-[30px] lg:text-[40px] font-bold leading-[1.15] text-black">
+            Oracle Delivered Services across region
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-[16px] font-medium leading-7 text-[#5f6368]">
             Local insight, global execution for enterprise transformation programs.
           </p>
         </div>
 
-        <div className="relative mt-2 w-full">
+        <div className="relative mt-2 w-full max-w-[1440px] mx-auto px-2 sm:px-4">
           <div
-            className="pointer-events-none absolute left-1/2 top-2 hidden h-20 w-20 -translate-x-1/2 rounded-full blur-3xl md:block"
+            className="pointer-events-none absolute left-1/2 top-1/2 hidden h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl md:block"
             style={{ background: 'rgba(14,165,233,0.12)' }}
           />
 
-          <div className="relative min-h-[180px] overflow-visible sm:min-h-[220px] md:min-h-[250px] lg:min-h-[280px]">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
-              alt="World Map"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              style={{
-                filter: 'grayscale(1) opacity(0.14) contrast(0.9)',
-                transform: 'scale(1.12)',
-              }}
-            />
+          <div className="relative w-full aspect-[2.2/1] md:aspect-[2.6/1] lg:aspect-[3.2/1] overflow-hidden">
+            <div className="absolute top-0 left-0 w-full aspect-[2/1]">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
+                alt="World Map"
+                className="absolute inset-0 h-full w-full object-contain"
+                style={{
+                  filter: 'grayscale(1) opacity(0.2) contrast(0.9)',
+                }}
+              />
 
-            {Object.entries(countryProjects).map(([code, country]) => (
-              <div 
-                key={code}
-                className="absolute z-10"
-                style={{ left: country.x, top: country.y }}
-              >
-                <motion.button
-                  className="group absolute flex flex-col items-center justify-center"
-                  style={{ transform: 'translate(-50%, -50%)', width: '40px', height: '40px' }}
-                  onClick={() => {
-                    setSelectedCountry(selectedCountry === code ? null : code)
-                    setSlideIndex(0)
-                  }}
-                  type="button"
+              {Object.entries(countryProjects).map(([code, country]) => (
+                <div 
+                  key={code}
+                  className="absolute z-10"
+                  style={{ left: country.x, top: country.y }}
                 >
-                  {/* Central Dot Pointer (instead of teardrop) */}
-                  <div className="relative z-10 flex h-4 w-4 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-125 shadow-md" style={{ background: country.color }}>
-                    <motion.span
-                      className="pointer-events-none absolute inset-0 rounded-full"
-                      animate={{ scale: [1, 4], opacity: [0.6, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-                      style={{ border: `1.5px solid ${country.color}` }}
-                    />
-                    <motion.span
-                      className="pointer-events-none absolute inset-0 rounded-full"
-                      animate={{ scale: [1, 4], opacity: [0.6, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 1 }}
-                      style={{ border: `1.5px solid ${country.color}` }}
-                    />
-                    <div className="relative z-20 h-1.5 w-1.5 rounded-full bg-white" />
-                  </div>
+                  <motion.button
+                    className="group absolute flex flex-col items-center justify-center"
+                    style={{ transform: 'translate(-50%, -50%)', width: '40px', height: '40px' }}
+                    onClick={() => {
+                      setSelectedCountry(selectedCountry === code ? null : code)
+                      setSlideIndex(0)
+                    }}
+                    type="button"
+                  >
+                    {/* Central Dot Pointer (instead of teardrop) */}
+                    <div className="relative z-10 flex h-3 w-3 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-125 shadow-md" style={{ background: country.color }}>
+                      <motion.span
+                        className="pointer-events-none absolute inset-0 rounded-full"
+                        animate={{ scale: [1, 4], opacity: [0.6, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+                        style={{ border: `1px solid ${country.color}` }}
+                      />
+                      <motion.span
+                        className="pointer-events-none absolute inset-0 rounded-full"
+                        animate={{ scale: [1, 4], opacity: [0.6, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeOut', delay: 1 }}
+                        style={{ border: `1px solid ${country.color}` }}
+                      />
+                      <div className="relative z-20 h-1.5 w-1.5 rounded-full bg-white" />
+                    </div>
 
-                  {/* Label (positioned absolutely below the pointer) */}
-                  <div className="absolute top-[100%] whitespace-nowrap rounded-lg bg-white px-3 py-1.5 text-[11px] font-bold text-black shadow-md border border-slate-100 transition-colors duration-200 group-hover:border-slate-200">
-                    {country.name}
-                  </div>
-                </motion.button>
-              </div>
-            ))}
+                    {/* Label (positioned dynamically to prevent overlap) */}
+                    <div 
+                      className={`absolute whitespace-nowrap rounded-lg bg-white px-3 py-1.5 text-[11px] font-bold text-black shadow-md border border-slate-100 transition-colors duration-200 group-hover:border-slate-200 z-50 ${
+                        country.labelPosition === 'top' ? 'bottom-full mb-3 left-1/2 -translate-x-1/2' :
+                        country.labelPosition === 'top-right' ? 'bottom-full mb-3 left-1/2 -translate-x-4' :
+                        country.labelPosition === 'left' ? 'right-full mr-3 top-1/2 -translate-y-1/2' :
+                        country.labelPosition === 'right' ? 'left-full ml-3 top-1/2 -translate-y-1/2' :
+                        'top-full mt-3 left-1/2 -translate-x-1/2'
+                      }`}
+                    >
+                      {/* Connecting Line */}
+                      <div
+                        className={`absolute bg-black/20 pointer-events-none ${
+                          country.labelPosition === 'top' ? 'w-[1.5px] h-[22px] left-1/2 top-full -translate-x-1/2' :
+                          country.labelPosition === 'top-right' ? 'w-[1.5px] h-[22px] left-4 top-full -translate-x-1/2' :
+                          country.labelPosition === 'bottom' ? 'w-[1.5px] h-[22px] left-1/2 bottom-full -translate-x-1/2' :
+                          country.labelPosition === 'left' ? 'h-[1.5px] w-[22px] top-1/2 left-full -translate-y-1/2' :
+                          'h-[1.5px] w-[22px] top-1/2 right-full -translate-y-1/2'
+                        }`}
+                      />
+                      {country.name}
+                    </div>
+                  </motion.button>
+                </div>
+              ))}
+            </div>
 
             <AnimatePresence>
               {activeCountry && activeProject ? (

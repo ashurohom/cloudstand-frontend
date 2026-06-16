@@ -5,7 +5,7 @@ export const caseStudies = [
     title: 'Global Oracle HCM Security Optimization Across 14+ Countries',
     summary: 'CloudStand supported a global Oracle HCM rollout across 14+ countries for a leading Insurance and Financial Services organization, focusing on enterprise-wide security optimization and governance. The organization faced challenges with role proliferation, overlapping access, inconsistent security models, and governance complexities across multiple regions.\nTo address these challenges, CloudStand implemented a global security optimization framework that consolidated roles, strengthened access controls, improved data segregation, and established a governance-driven security model. The solution balanced global standardization with regional security requirements, creating a scalable and audit-ready Oracle HCM security architecture.',
     result: 'Reduced complexity, improved compliance, and stronger audit readiness.',
-    image: '/Contact/newyork.jpeg',
+    image: '/CaseStudies/cs2.jpg',
     region: 'Global (14+ Countries)',
     industry: 'Insurance and Financial Services',
     overview: [
@@ -56,7 +56,7 @@ export const caseStudies = [
     category: 'Workforce Management',
     title: 'Workforce Scheduler Rollout for Smart Shift Management',
     summary: 'CloudStand supported a global Oracle Workforce Scheduler rollout integrated with Oracle Time & Labor for a leading construction enterprise in the EMEA region. The organization relied on manual scheduling processes, complex Oracle Time & Labor validations, and significant manager intervention, resulting in operational inefficiencies and limited workforce flexibility.\nTo modernize workforce operations, CloudStand implemented an intelligent scheduling framework that enabled employee self-service shift management, streamlined scheduling governance, and reduced dependency on complex validations. The solution improved scheduling transparency, workforce flexibility, and operational control while maximizing standard Oracle capabilities.',
-    image: '/Aboutus.jpeg',
+    image: '/CaseStudies/cs3.jpg',
     region: 'EMEA',
     industry: 'Construction',
     overview: [
@@ -107,7 +107,7 @@ export const caseStudies = [
     category: 'Payroll EOY Compliance',
     title: 'Optimizing North America Payroll Year-End Activities with Smart Checklist Framework',
     summary: 'CloudStand supported Payroll Year-End activities for a leading manufacturing enterprise in North America, addressing complex W-2 validations, payroll balance mismatches, and reconciliation gaps across Oracle HCM Payroll and third-party tax providers. The organization faced challenges with Federal, State, and Local W-2 balances, quarterly tax reporting, and inconsistencies between Oracle payroll data and external systems such as Dayforce and ADP.\nTo improve accuracy and compliance, CloudStand implemented a Smart Sequencing and Checklist Framework that standardized validations, reconciliations, and Year-End readiness activities through a structured, dependency-driven approach.',
-    image: '/network.png',
+    image: '/CaseStudies/cs4.jpg',
     region: 'North America',
     industry: 'Manufacturing',
     overview: [

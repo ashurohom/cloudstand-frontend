@@ -82,7 +82,7 @@ function highlightMatch(text, query) {
 }
 
 function ResolveQuery() {
-  useDocumentTitle('Rescue Hub | CloudStand Consulting')
+  useDocumentTitle('Cloudstand Consulting | Rescue Hub')
 
   const [searchTerm, setSearchTerm] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Briefcase, GraduationCap, Laptop, TrendingUp } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Briefcase, GraduationCap, Laptop, TrendingUp, ChevronDown } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import AICloudBackground from '../components/ui/AICloudBackground'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -35,9 +35,14 @@ const formatPostedDate = (dateString) => {
 }
 
 function Careers() {
-  useDocumentTitle('Careers | Join CloudStand Consulting')
+  useDocumentTitle('Cloudstand Consulting | Careers')
   const [selectedRole, setSelectedRole] = useState(fallbackJobs[0]?.title ?? '')
+  const [expandedRoles, setExpandedRoles] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const toggleRole = (id) => {
+    setExpandedRoles(prev => ({ ...prev, [id]: !prev[id] }))
+  }
   const [resumeFile, setResumeFile] = useState(null)
   
   const [openRoles, setOpenRoles] = useState([])
@@ -162,7 +167,7 @@ function Careers() {
 
               <motion.h1
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black"
+                className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black"
                 initial={{ opacity: 0, y: 25 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
@@ -221,11 +226,12 @@ function Careers() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="hidden lg:flex lg:w-[45%] lg:justify-end lg:items-center relative"
             >
-              <div className="relative z-10 w-[90%] max-w-[600px] aspect-square rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-gradient-to-br from-[#0EA5E9]/5 to-[#EA580C]/5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-[6px] border-white overflow-hidden flex items-center justify-center scale-100 xl:scale-105">
+              <div className="relative z-10 w-[90%] max-w-[600px] aspect-[4/3] flex items-center justify-center">
                 <img 
-                  src="/bgg.png" 
-                  alt="Cloud Illustration" 
-                  className="w-full h-full object-cover"
+                  src="/Career/career_hero_white.png" 
+                  alt="Careers Hero" 
+                  className="w-full h-full object-contain scale-[1.1] lg:scale-[1.25] mix-blend-darken"
+                  style={{ filter: 'brightness(1.05) contrast(1.15)' }}
                 />
               </div>
             </motion.div>
@@ -413,62 +419,74 @@ function Careers() {
           </p>
 
           {/* EXTRA DETAILS FROM BACKEND */}
-          <div className="mt-6 space-y-4 text-[14px] text-[#475569]">
-            {job.key_responsibilities && (
-              <div>
-                <strong className="text-slate-800 block mb-1">Key Responsibilities:</strong>
-                <ul className="list-disc pl-5 space-y-1">
-                  {job.key_responsibilities.split('.').map((item, i) => (
-                    item.trim() && <li key={i}>{item.trim()}</li>
-                  ))}
-                </ul>
-              </div>
+          <AnimatePresence>
+            {expandedRoles[job.id || index] && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-6 space-y-4 text-[14px] text-[#475569]">
+                  {job.key_responsibilities && (
+                    <div>
+                      <strong className="text-slate-800 block mb-1">Key Responsibilities:</strong>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {job.key_responsibilities.split('.').map((item, i) => (
+                          item.trim() && <li key={i}>{item.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {job.requirements && (
+                    <div>
+                      <strong className="text-slate-800 block mb-1">Requirements:</strong>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {job.requirements.split('.').map((item, i) => (
+                          item.trim() && <li key={i}>{item.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {job.preferred && (
+                    <div>
+                      <strong className="text-slate-800 block mb-1">Preferred:</strong>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {job.preferred.split('.').map((item, i) => (
+                          item.trim() && <li key={i}>{item.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {job.additional_advantage && (
+                    <div>
+                      <strong className="text-slate-800 block mb-1">Additional Advantage:</strong>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {job.additional_advantage.split('.').map((item, i) => (
+                          item.trim() && <li key={i}>{item.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {job.benefits && (
+                    <div>
+                      <strong className="text-slate-800 block mb-1">Benefits:</strong>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {job.benefits.split('.').map((item, i) => (
+                          item.trim() && <li key={i}>{item.trim()}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
             )}
-            {job.requirements && (
-              <div>
-                <strong className="text-slate-800 block mb-1">Requirements:</strong>
-                <ul className="list-disc pl-5 space-y-1">
-                  {job.requirements.split('.').map((item, i) => (
-                    item.trim() && <li key={i}>{item.trim()}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {job.preferred && (
-              <div>
-                <strong className="text-slate-800 block mb-1">Preferred:</strong>
-                <ul className="list-disc pl-5 space-y-1">
-                  {job.preferred.split('.').map((item, i) => (
-                    item.trim() && <li key={i}>{item.trim()}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {job.additional_advantage && (
-              <div>
-                <strong className="text-slate-800 block mb-1">Additional Advantage:</strong>
-                <ul className="list-disc pl-5 space-y-1">
-                  {job.additional_advantage.split('.').map((item, i) => (
-                    item.trim() && <li key={i}>{item.trim()}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {job.benefits && (
-              <div>
-                <strong className="text-slate-800 block mb-1">Benefits:</strong>
-                <ul className="list-disc pl-5 space-y-1">
-                  {job.benefits.split('.').map((item, i) => (
-                    item.trim() && <li key={i}>{item.trim()}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          </AnimatePresence>
         </div>
 
-        {/* BUTTON */}
-        <div className="shrink-0 md:pl-6 pt-2 md:pt-0">
+        {/* BUTTONS */}
+        <div className="shrink-0 md:pl-6 pt-4 md:pt-0 flex flex-col items-center md:items-end justify-center w-full md:w-auto gap-4">
           <button
             onClick={() => {
               setSelectedRole(job.title)
@@ -480,6 +498,14 @@ function Careers() {
             <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
             </svg>
+          </button>
+
+          <button 
+            onClick={() => toggleRole(job.id || index)}
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-[#0EA5E9] hover:bg-[#0EA5E9]/10 transition-colors"
+            title={expandedRoles[job.id || index] ? "Show less details" : "Show full details"}
+          >
+            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${expandedRoles[job.id || index] ? 'rotate-180' : ''}`} />
           </button>
         </div>
       </motion.div>

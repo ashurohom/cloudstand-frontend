@@ -7,7 +7,7 @@ import { services } from '../data/services'
 import { pageVariants } from '../animations/variants'
 
 function Services() {
-  useDocumentTitle('Services | CloudStand Consulting')
+  useDocumentTitle('Cloudstand Consulting | Services')
   const location = useLocation()
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function Services() {
 
               <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left" initial={{ opacity: 0, y: 25 }} transition={{ duration: 0.7, delay: 0.1 }}>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left" initial={{ opacity: 0, y: 25 }} transition={{ duration: 0.7, delay: 0.1 }}>
                 Enterprise Cloud Solutions
                 <br />
                 Tailored For You
@@ -58,9 +58,9 @@ function Services() {
               </motion.p>
             </div>
 
-            <motion.div animate={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: 40 }} transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }} className="hidden lg:flex lg:w-[45%] lg:justify-end lg:items-center relative lg:-translate-y-6">
-              <div className="relative z-10 w-[90%] max-w-[600px] aspect-square rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-gradient-to-br from-[#0EA5E9]/5 to-[#EA580C]/5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-[6px] border-white overflow-hidden flex items-center justify-center scale-100 xl:scale-105">
-                <img src="/services/service1.png" alt="Services Hero" className="w-full h-full object-cover" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000' }} />
+            <motion.div animate={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: 40 }} transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }} className="mt-10 flex w-full justify-center lg:mt-0 lg:w-[45%] lg:justify-end lg:items-center relative lg:-translate-y-6">
+              <div className="relative z-10 w-full max-w-[500px] lg:max-w-full aspect-[4/3] flex items-center justify-center">
+                <img src="/services-img/services_hero_white.png" alt="Services Hero" className="w-full h-full object-contain scale-[1.1] lg:scale-[1.2] mix-blend-darken" style={{ filter: 'brightness(1.05) contrast(1.15)' }} onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000' }} />
               </div>
             </motion.div>
           </div>
@@ -68,58 +68,85 @@ function Services() {
       </section>
 
       {/* SERVICES LIST */}
-      <section className="bg-white py-16 lg:py-24">
-        <div className="section-shell">
-          <div className="flex flex-col space-y-16 sm:space-y-24 lg:space-y-32">
-            {services.map((service, index) => {
-              const isEven = index % 2 !== 0;
-              return (
-                <div key={service.slug} id={service.slug} className={`grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 lg:items-start items-center pt-8 scroll-mt-24`}>
-                  
-                  {/* TEXT COLUMN */}
-                  <motion.div
-                    initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: '-50px' }}
-                    transition={{ duration: 0.6 }}
-                    className={`flex flex-col items-start ${isEven ? 'order-1 lg:order-2' : 'order-1 lg:order-1'}`}
+      <div className="flex flex-col bg-white">
+        {services.map((service, index) => {
+          const isAlternate = index % 2 !== 0;
+          return (
+            <section
+              key={service.slug}
+              id={service.slug}
+              className={`relative overflow-hidden py-14 lg:py-20 scroll-mt-20 ${isAlternate ? '' : 'border-b border-slate-100'}`}
+              style={isAlternate ? {
+                backgroundColor: '#ffffff',
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+              } : { backgroundColor: '#ffffff' }}
+            >
+              {isAlternate && (
+                <>
+                  <svg
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <Badge className="mb-4 border-sky-200 bg-white text-[#EA580C]">
+                    <defs>
+                      <pattern id={`service-dot-grid-${index}`} x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+                        <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill={`url(#service-dot-grid-${index})`} />
+                  </svg>
+                  <div
+                    className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full"
+                    style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }}
+                  />
+                  <div
+                    className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full"
+                    style={{ background: 'radial-gradient(circle, rgba(234,88,12,0.06) 0%, transparent 70%)' }}
+                  />
+                </>
+              )}
+
+              <div className="section-shell relative z-10">
+                <div className="flex flex-col items-center w-full max-w-[1200px] mx-auto">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: '-40px' }}
+                    transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="mb-4"
+                  >
+                    <Badge className="border-sky-200 bg-white text-[#EA580C]">
                       {service.shortTitle || 'SERVICE'}
                     </Badge>
-                    <h2 className="text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#000000] mt-4 mb-6">
-                      {service.title}
-                    </h2>
-                    <p className="text-[16px] leading-7 xl:leading-8 text-black/80 text-justify mb-5">
-                      {service.description}
-                    </p>
                   </motion.div>
 
-                  {/* IMAGE COLUMN */}
-                  <motion.div
-                    initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: '-50px' }}
-                    transition={{ duration: 0.6 }}
-                    className={`relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)] h-[300px] lg:h-[380px] ${isEven ? 'order-2 lg:order-1' : 'order-2 lg:order-2'} w-full lg:mt-[60px]`}
-                    style={{ borderRadius: '90px 0 90px 0' }}
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: '-40px' }}
+                    transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-[32px] md:text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#000000] mt-4 mb-6 text-center"
                   >
-                    <img 
-                      src={`/services/service${(index % 8) + 1}.png`} 
-                      alt={service.title} 
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-                      onError={(e) => {
-                        e.target.src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000'
-                      }}
-                    />
-                  </motion.div>
+                    {service.title}
+                  </motion.h2>
 
+                  <motion.p 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: '-40px' }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-[16px] leading-7 xl:leading-8 text-black/80 text-justify mb-5 px-4 md:px-8"
+                  >
+                    {service.description}
+                  </motion.p>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </motion.main>
   )
 }

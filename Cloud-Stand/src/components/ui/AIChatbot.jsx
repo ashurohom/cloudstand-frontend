@@ -48,7 +48,7 @@ function AIChatbot() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-[60] flex items-end gap-3">
+      <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[999] flex items-end gap-3">
         <AnimatePresence>
           {!isOpen ? (
             <motion.div
@@ -67,7 +67,7 @@ function AIChatbot() {
 
         <button
           aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}
-          className="button-ring inline-flex h-16 w-16 items-center justify-center rounded-full border border-[#0EA5E9] bg-[#0EA5E9] text-white shadow-[0_18px_36px_rgba(14,165,233,0.22)] transition hover:scale-[1.02]"
+          className="button-ring inline-flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full border border-[#0EA5E9] bg-[#0EA5E9] text-white shadow-[0_18px_36px_rgba(14,165,233,0.22)] transition hover:scale-[1.02]"
           onClick={() => setIsOpen((current) => !current)}
           type="button"
         >
@@ -82,7 +82,7 @@ function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-28 right-6 z-[60] flex h-[560px] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-[30px] border border-[#d7e5ff] bg-white shadow-[0_24px_60px_rgba(24,67,148,0.18)]"
+            className="fixed bottom-20 right-4 left-4 md:left-auto md:right-6 md:bottom-28 z-[999] flex h-[calc(100vh-110px)] md:h-[calc(100vh-140px)] max-h-[600px] md:max-h-[560px] md:w-[420px] flex-col overflow-hidden rounded-[24px] md:rounded-[30px] border border-[#d7e5ff] bg-white shadow-[0_24px_60px_rgba(24,67,148,0.18)]"
           >
             <div className="bg-gradient-to-r from-[#0b6bff] via-[#276eff] to-[#4c88ff] p-5 text-white">
               <div className="flex items-start justify-between gap-4">
@@ -96,7 +96,7 @@ function AIChatbot() {
                       <Sparkles className="h-4 w-4" />
                     </div>
                     <p className="mt-1 text-sm text-blue-50">
-                      Demo-only chatbot for AI conversations, Oracle Cloud use cases, and automation ideas.
+                      Your intelligent assistant for Oracle Cloud consulting, implementations, and services.
                     </p>
                   </div>
                 </div>
@@ -124,7 +124,7 @@ function AIChatbot() {
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-3xl px-4 py-3 text-sm leading-7 ${
+                      className={`max-w-[85%] whitespace-pre-wrap rounded-3xl px-4 py-3 text-sm leading-7 ${
                         message.role === 'user'
                           ? 'rounded-br-md bg-accent text-white'
                           : 'rounded-bl-md border border-[#d7e5ff] bg-white text-slate-800'

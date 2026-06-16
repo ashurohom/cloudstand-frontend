@@ -5,7 +5,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle'
 import { pageVariants } from '../animations/variants'
 
 function NotFound() {
-  useDocumentTitle('404 | CloudStand Consulting')
+  useDocumentTitle('Cloudstand Consulting | Coming Soon')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -21,18 +21,22 @@ function NotFound() {
     >
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className="text-center"
+        className="text-center flex flex-col items-center"
         initial={{ opacity: 0, y: 24 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="font-syne text-8xl font-extrabold text-accent sm:text-[10rem]">404</div>
-        <h1 className="mt-4 text-4xl font-bold text-slate-900">Page not found</h1>
-        <p className="mt-4 max-w-xl text-base leading-8 text-text-muted">
-          The page you&apos;re looking for doesn&apos;t exist or may have moved.
+        <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[#0EA5E9]/10 text-[#0EA5E9]">
+          <svg className="h-12 w-12" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h1 className="text-4xl sm:text-5xl font-bold text-slate-900">Coming Soon</h1>
+        <p className="mt-5 max-w-md text-base leading-relaxed text-[#64748b]">
+          We are currently working hard on this section. It will be available very soon!
         </p>
         <div className="mt-8">
           <Button size="lg" to="/" variant="solid">
-            Go Home
+            Return Home
           </Button>
         </div>
       </motion.div>

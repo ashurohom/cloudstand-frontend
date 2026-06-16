@@ -5,7 +5,7 @@ export const services = [
     shortTitle: 'OCT',
     icon: 'Users',
     tagline: 'End-to-end Oracle Cloud transformation aligned to business outcomes',
-    description: 'CloudStand Consulting enables end-to-end Oracle Cloud transformation across ERP, HCM, SCM, EPM, and Finance functions. We support organizations migrating from PeopleSoft, Oracle E-Business Suite (EBS), SAP, and ADP into modern Oracle Cloud environments through implementation, re-implementation, and enhancement programs. Our focus is on critical success pillars—data readiness, configuration accuracy, and integration design—ensuring a controlled, low-risk transformation journey that delivers faster adoption and measurable business value. We also bring strong domain expertise in supply chain, finance, and enterprise reporting processes to support complex transformation needs.',
+    description: 'CloudStand Consulting enables end-to-end Oracle Cloud transformation across ERP, HCM, SCM, EPM, and Finance functions. We support organizations migrating from PeopleSoft, Oracle E-Business Suite (EBS), SAP, and ADP into modern Oracle Cloud environments through implementation, re-implementation, and enhancement programs. Our focus is on critical success pillars data readiness, configuration accuracy, and integration design ensuring a controlled, low risk transformation journey that delivers faster adoption and measurable business value. We also bring strong domain expertise in supply chain, finance, and enterprise reporting processes to support complex transformation needs.',
     features: [
       'Oracle Cloud transformation roadmap and program planning',
       'Current-state assessment and future-state operating model design',
@@ -57,7 +57,7 @@ export const services = [
     shortTitle: 'IRA',
     icon: 'GitBranch',
     tagline: 'Connected systems, reporting clarity, and analytics that drive decisions',
-    description: 'CloudStand delivers robust integration, reporting, and analytics solutions with strong interoperability across Oracle Cloud ecosystems. We maintain a standardized repository of reusable integrations, reports, dashboards, and templates that accelerate deployment and ensure consistency. Our integration toolkit supports plug-and-play development for faster implementation of inbound and outbound interfaces, including payroll extracts, benefits carrier integrations, and OIC-based solutions. With proven global delivery experience, we help organizations streamline data flows, improve reporting accuracy, and enable real-time decision-making through scalable analytics frameworks.',
+    description: 'CloudStand delivers robust integration, reporting, and analytics solutions with strong interoperability across Oracle Cloud ecosystems. We maintain a standardized repository of reusable integrations, reports, dashboards, and templates that accelerate deployment and ensure consistency. Our integration toolkit supports plug and play development for faster implementation of inbound and outbound interfaces, including payroll extracts, benefits carrier integrations, and OIC based solutions. With proven global delivery experience, we help organizations streamline data flows, improve reporting accuracy, and enable real time decision-making through scalable analytics frameworks.',
     features: [
       'Oracle and third-party integration design and delivery',
       'Custom operational reports and executive dashboards',
@@ -83,7 +83,7 @@ export const services = [
     shortTitle: 'HCA',
     icon: 'TrendingUp',
     tagline: 'Independent reviews to improve Oracle Cloud performance and readiness',
-    description: 'Our Health Check & Advisory Services provide organizations with a structured evaluation of their Oracle Cloud environment through a complimentary 240-hour engagement. We perform detailed diagnostic assessments, fit-gap analysis, process evaluations, compliance checks, and risk analysis to identify optimization opportunities. The output includes a fully documented health check report along with actionable recommendations and a strategic roadmap. Our engagement approach is advisory-led with no obligation or pressure, ensuring clients receive transparent insights to improve system performance, governance, and long-term operational efficiency.',
+    description: 'Our Health Check & Advisory Services provide organizations with a structured evaluation of their Oracle Cloud environment through a complimentary 240-hour engagement. We perform detailed diagnostic assessments, fit gap analysis, process evaluations, compliance checks, and risk analysis to identify optimization opportunities. The output includes a fully documented health check report along with actionable recommendations and a strategic roadmap. Our engagement approach is advisory-led with no obligation or pressure, ensuring clients receive transparent insights to improve system performance, governance, and long-term operational efficiency.',
     features: [
       'System health checks and process maturity assessments',
       'Configuration review and risk identification',
@@ -109,7 +109,7 @@ export const services = [
     shortTitle: 'BUA',
     icon: 'DollarSign',
     tagline: 'Responsive user support to help teams work confidently in Oracle Cloud',
-    description: 'CloudStand provides hands-on support to business users and project teams for critical execution activities, including User Acceptance Testing (UAT), knowledge transfer (KT), payroll reconciliation, and short-term project support. We have extensive experience supporting North America payroll year-end activities, ensuring smooth execution and business continuity during critical cycles. Our consultants act as an extension of client teams, helping bridge resource gaps while ensuring accuracy, compliance, and timely completion of business processes and deliverables.',
+    description: 'CloudStand provides hands-on support to business users and project teams for critical execution activities, including User Acceptance Testing (UAT), knowledge transfer (KT), payroll reconciliation, and short-term project support. We have extensive experience supporting North America payroll year end activities, ensuring smooth execution and business continuity during critical cycles. Our consultants act as an extension of client teams, helping bridge resource gaps while ensuring accuracy, compliance, and timely completion of business processes and deliverables.',
     features: [
       'Business-user query handling and functional assistance',
       'Ticket triage, issue clarification, and guided resolution support',
@@ -134,8 +134,8 @@ export const services = [
     title: 'NA Seasonal Payroll & Benefits Support',
     shortTitle: 'EOY',
     icon: 'Users',
-    tagline: 'Seasonal support for North America benefits cycles and year-end activities',
-    description: 'Our Seasonal Payroll & Benefits Support services are focused on North America, supporting organizations during peak operational cycles such as open enrollment and year-end payroll processing. We bring deep expertise in payroll reconciliation, benefits administration, compliance validation, and third-party coordination. Our team also supports W-2 preparation and year-end reporting activities, ensuring accuracy, compliance, and timely delivery. This dedicated seasonal model helps organizations manage high-volume workloads efficiently while reducing operational risk and ensuring regulatory alignment.',
+    tagline: 'Seasonal support for North America benefits cycles and year end activities',
+    description: 'Our Seasonal Payroll & Benefits Support services are focused on North America, supporting organizations during peak operational cycles such as open enrollment and year end payroll processing. We bring deep expertise in payroll reconciliation, benefits administration, compliance validation, and third-party coordination. Our team also supports W-2 preparation and year end reporting activities, ensuring accuracy, compliance, and timely delivery. This dedicated seasonal model helps organizations manage high-volume workloads efficiently while reducing operational risk and ensuring regulatory alignment.',
     features: [
       'Benefits cycle support for seasonal and high-volume periods',
       'End-of-year activity coordination and execution assistance',
@@ -145,13 +145,13 @@ export const services = [
     ],
     benefits: [
       'Reduce seasonal workload pressure on internal teams',
-      'Improve confidence during critical benefits and year-end windows',
+      'Improve confidence during critical benefits and year end windows',
       'Maintain timely execution for high-volume annual activities',
     ],
     color: '#D63B25',
     approach: [
       'Plan seasonal support windows, priorities, and ownership areas',
-      'Provide focused assistance during benefits and year-end cycles',
+      'Provide focused assistance during benefits and year end cycles',
       'Stabilize operations and capture lessons for the next cycle',
     ],
   },
@@ -161,7 +161,7 @@ export const services = [
     shortTitle: 'AI',
     icon: 'Cpu',
     tagline: 'Practical AI-led enablement for smarter workflows and digital operations',
-    description: 'CloudStand’s AI & Digital Enablement Services help organizations accelerate intelligent automation and digital transformation using Oracle AI capabilities. Through a complementary 120-hour advisory program, we identify high-value use cases, assess process automation opportunities, and define scalable implementation roadmaps. Our Center of Excellence evaluates Oracle-delivered AI features, supports custom extensions, and enables integration through APIs and digital workflows. This approach helps organizations adopt AI responsibly while driving productivity, efficiency, and innovation across enterprise processes.',
+    description: 'CloudStand’s AI & Digital Enablement Services help organizations accelerate intelligent automation and digital transformation using Oracle AI capabilities. Through a complementary 120-hour advisory program, we identify high-value use cases, assess process automation opportunities, and define scalable implementation roadmaps. Our Center of Excellence evaluates Oracle delivered AI features, supports custom extensions, and enables integration through APIs and digital workflows. This approach helps organizations adopt AI responsibly while driving productivity, efficiency, and innovation across enterprise processes.',
     features: [
       'AI opportunity discovery aligned to business processes',
       'Digital enablement use cases for support, operations, and reporting',

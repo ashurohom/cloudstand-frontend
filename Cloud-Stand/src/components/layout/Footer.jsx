@@ -30,13 +30,13 @@ function Footer() {
       
       <div className="relative z-10 pt-16 pb-0">
         <div className="section-shell">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid lg:grid-cols-12 lg:gap-8 justify-items-start text-left w-full">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid lg:grid-cols-12 lg:gap-8 justify-items-center md:justify-items-start text-center md:text-left w-full">
             
             {/* Column 1: Company */}
-            <div className="flex flex-col items-start h-full w-full lg:col-span-2">
+            <div className="flex flex-col items-center md:items-start h-full w-full lg:col-span-2">
               <h3 className="text-base font-semibold text-white">Company</h3>
               <div className="mt-2 h-[2px] w-12 bg-[#EA580C]" />
-              <ul className="mt-5 space-y-6">
+              <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 md:block md:space-y-6">
                 {companyLinks.map(([label, to]) => (
                   <li key={to}>
                     <Link className={listItemClassName} to={to}>
@@ -48,13 +48,13 @@ function Footer() {
             </div>
 
             {/* Column 2: Services */}
-            <div className="flex flex-col items-start h-full w-full lg:col-span-3">
+            <div className="flex flex-col items-center md:items-start h-full w-full lg:col-span-3">
               <h3 className="text-base font-semibold text-white">Services</h3>
               <div className="mt-2 h-[2px] w-12 bg-[#EA580C]" />
-              <ul className="mt-5 space-y-6">
+              <ul className="mt-5 flex flex-col items-center space-y-4 md:items-start md:space-y-6">
                 {serviceLinks.map(([label, to]) => (
-                  <li key={label}>
-                    <Link className="text-sm text-sky-100 transition duration-200 hover:text-orange-500" to={to}>
+                  <li key={label} className="text-center md:text-left">
+                    <Link className="text-[15px] md:text-sm text-sky-100 transition duration-200 hover:text-orange-500" to={to}>
                       {label}
                     </Link>
                   </li>
@@ -63,53 +63,53 @@ function Footer() {
             </div>
 
             {/* Column 3: Contact */}
-            <div className="flex flex-col items-start h-full w-full lg:col-span-4">
+            <div className="flex flex-col items-center md:items-start h-full w-full lg:col-span-4">
               <h3 className="text-base font-semibold text-white">Contact</h3>
               <div className="mt-2 h-[2px] w-12 bg-[#EA580C]" />
-              <div className="mt-5 space-y-6 text-sm leading-relaxed text-sky-100 flex flex-col items-start">
+              <div className="mt-5 space-y-6 text-sm leading-relaxed text-sky-100 flex flex-col items-center md:items-start">
                 
                 {/* Global Presence */}
-                <div className="w-full">
-                  <div className="flex items-center gap-2 mb-3">
+                <div className="w-full flex flex-col items-center md:items-start">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
                     <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
                     <p className="font-semibold text-white uppercase tracking-wide text-xs">Global Presence</p>
                   </div>
-                  <p className="mb-2">USA &bull; Canada &bull; India</p>
-                  <div className="flex items-center gap-2">
+                  <p className="mb-2 text-center md:text-left">USA &bull; Canada &bull; India</p>
+                  <div className="flex items-center justify-center md:justify-start gap-2">
                     <Mail className="h-4 w-4 shrink-0 text-[#EA580C]" />
                     <a
-                      href="mailto:info@cloudsandconsulting.com"
+                      href="mailto:info@cloudstandconsulting.com"
                       className="cursor-pointer transition duration-200 hover:text-orange-500"
                     >
-                      info@cloudsandconsulting.com
+                      info@cloudstandconsulting.com
                     </a>
                   </div>
                 </div>
 
                 {/* Connect With Us */}
-                <div className="w-full mt-2">
-                  <div className="flex items-center gap-2 mb-3">
+                <div className="w-full mt-2 flex flex-col items-center md:items-start">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
                     <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
                     <p className="font-semibold text-white uppercase tracking-wide text-xs">Connect With Us</p>
                   </div>
-                  <div className="flex flex-col space-y-1.5">
-                    <div className="flex items-center gap-2">
+                  <div className="flex flex-col items-center md:items-start space-y-1.5">
+                    <div className="flex items-center justify-center md:justify-start gap-2">
                       <Phone className="h-4 w-4 shrink-0 text-[#EA580C]" />
-                      <span className="w-16">USA:</span>
+                      <span className="w-16 text-right md:text-left">USA:</span>
                       <a href="tel:+15129038971" className="cursor-pointer transition duration-200 hover:text-orange-500">
                         +1 (512) 903-8971
                       </a>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-center md:justify-start gap-2">
                       <Phone className="h-4 w-4 shrink-0 text-[#EA580C]" />
-                      <span className="w-16">Canada:</span>
+                      <span className="w-16 text-right md:text-left">Canada:</span>
                       <a href="tel:+12263387868" className="cursor-pointer transition duration-200 hover:text-orange-500">
                         +1 (226) 338-7868
                       </a>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-center md:justify-start gap-2">
                       <Phone className="h-4 w-4 shrink-0 text-[#EA580C]" />
-                      <span className="w-16">India:</span>
+                      <span className="w-16 text-right md:text-left">India:</span>
                       <a href="tel:+919503036784" className="cursor-pointer transition duration-200 hover:text-orange-500">
                         +91 95030 36784
                       </a>
@@ -121,15 +121,15 @@ function Footer() {
             </div>
 
             {/* Column 4: Ask an Expert & Partner Logo */}
-            <div className="flex flex-col items-center sm:items-start lg:items-center h-full w-full lg:col-span-3">
+            <div className="flex flex-col items-center md:items-start lg:items-center w-full lg:col-span-3">
               <Link 
                 to="/contact" 
-                className="inline-block px-6 py-2.5 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-8 shadow-md"
+                className="inline-block w-48 text-center py-2 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-6 shadow-md"
               >
                 Ask an Expert
               </Link>
               
-              <div className="flex w-full justify-center sm:justify-start lg:justify-center items-center gap-6 mb-8">
+              <div className="flex w-full justify-center md:justify-start lg:justify-center items-center gap-6 mb-6">
                 {/* LinkedIn Icon */}
                 <a
                   href="https://www.linkedin.com/company/cloudstand-consulting-global/?viewAsMember=true"
@@ -144,18 +144,18 @@ function Footer() {
                 
                 {/* YouTube Icon */}
                 <a
-                  href="#"
+                  href="https://www.youtube.com/@CloudStandConsulting/posts"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1F2937] text-sky-100 transition-all duration-300 hover:scale-110 hover:bg-[#FF0000] hover:text-white"
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#FF0000] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_24px_rgba(255,0,0,0.6)]"
                 >
-                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8 fill-current">
                     <path d="M21.582 6.186a2.665 2.665 0 0 0-1.876-1.884C17.953 3.84 12 3.84 12 3.84s-5.953 0-7.706.462a2.665 2.665 0 0 0-1.876 1.884C1.953 7.95 1.953 12 1.953 12s0 4.05.465 5.814a2.665 2.665 0 0 0 1.876 1.884c1.753.462 7.706.462 7.706.462s5.953 0 7.706-.462a2.665 2.665 0 0 0 1.876-1.884c.465-1.764.465-5.814.465-5.814s0-4.05-.465-5.814ZM9.953 15.545V8.454l6.327 3.546-6.327 3.545Z" />
                   </svg>
                 </a>
               </div>
 
-              <div className="flex w-full justify-center sm:justify-start lg:justify-center mt-auto">
+              <div className="flex w-full justify-center md:justify-start lg:justify-center">
                 <img 
                   src="/oracle-partner-logo.png" 
                   alt="Oracle Partner" 
@@ -166,9 +166,20 @@ function Footer() {
 
           </div>
 
-          <div className="mt-16 pt-6 pb-6 flex justify-start items-center">
-            <p className="text-sm text-sky-100/70 text-left">
+          <div className="mt-16 pt-6 pb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-sky-100/70 text-center md:text-left">
               &copy; {currentYear} CloudStand Consulting. All rights reserved.
+            </p>
+            <p className="text-xs text-sky-100/70 text-center md:text-right md:pr-40">
+              Powered by{' '}
+              <a 
+                href="https://dreamwarez.in/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-inherit inline-block transition-all duration-300 hover:scale-110 origin-left hover:text-white tracking-wide"
+              >
+                DREAMWAREZ
+              </a>
             </p>
           </div>
         </div>

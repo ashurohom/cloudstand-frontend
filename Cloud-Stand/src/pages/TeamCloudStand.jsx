@@ -7,12 +7,12 @@ import { pageVariants, staggerContainer } from '../animations/variants'
 import { API_ENDPOINTS } from '../config/api'
 
 function TeamCloudStand() {
-  useDocumentTitle('Team CloudStand | Careers')
+  useDocumentTitle('Cloudstand Consulting | Team CloudStand')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
 
   // State for images from Backend API
-  const [heroImage, setHeroImage] = useState('/Slider/slider-22.jpeg')
+  const [heroImage, setHeroImage] = useState('/Teamcloudstand/TeamCS.jpg')
   const [galleryImages, setGalleryImages] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -78,18 +78,18 @@ function TeamCloudStand() {
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             
             {/* LEFT CONTENT */}
-            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
+            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-center md:items-start text-center md:text-left relative z-10">
               <motion.div animate={{ opacity: 1, scale: 1, y: 0 }} initial={{ opacity: 0, scale: 0.9, y: 10 }} transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}>
                 <Badge className="mb-4 border-sky-200 bg-white text-[#EA580C]">TEAM CLOUDSTAND</Badge>
               </motion.div>
 
               <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="mt-6 text-[40px] md:text-[52px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left" initial={{ opacity: 0, y: 25 }} transition={{ duration: 0.7, delay: 0.1 }}>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-center md:text-left" initial={{ opacity: 0, y: 25 }} transition={{ duration: 0.7, delay: 0.1 }}>
                 <span className="text-[#0EA5E9]">Team</span> <span className="text-[#EA580C]">CloudStand</span>
               </motion.h1>
 
-              <motion.div animate={{ opacity: 1, y: 0 }} className="mt-6 space-y-4 text-[16px] leading-8 text-[#475569] text-left max-w-[600px]" initial={{ opacity: 0, y: 20 }} transition={{ duration: 0.7, delay: 0.2 }}>
+              <motion.div animate={{ opacity: 1, y: 0 }} className="mt-6 space-y-4 text-[16px] leading-8 text-[#475569] text-center md:text-left max-w-[600px]" initial={{ opacity: 0, y: 20 }} transition={{ duration: 0.7, delay: 0.2 }}>
                 <p>
                   Team CloudStand reflects our people, culture, and everyday moments that make us who we are.
                 </p>
@@ -109,7 +109,7 @@ function TeamCloudStand() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="hidden lg:flex lg:w-[45%] lg:justify-end lg:items-center relative"
             >
-              <div className="relative z-10 w-[90%] max-w-[600px] aspect-square rounded-[60%_40%_30%_70%/60%_30%_70%_40%] bg-gradient-to-br from-[#0EA5E9]/5 to-[#EA580C]/5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-[6px] border-white overflow-hidden flex items-center justify-center scale-100 xl:scale-105">
+              <div className="relative z-10 w-[90%] max-w-[600px] aspect-[4/3] overflow-hidden rounded-[24px] shadow-[0_20px_50px_rgba(14,165,233,0.12)] border border-[#e0efff] scale-100 xl:scale-105">
                 <img 
                   src={heroImage} 
                   alt="Team CloudStand Hero" 
@@ -136,7 +136,7 @@ function TeamCloudStand() {
             className="text-center mb-12 flex flex-col items-center"
           >
             <Badge className="mb-4 border-sky-200 bg-white text-[#EA580C]">GALLERY</Badge>
-            <h2 className="text-[#EA580C] text-[40px] font-bold leading-tight" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+            <h2 className="text-[#EA580C] text-[30px] lg:text-[40px] font-bold leading-tight" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               Life at CloudStand
             </h2>
           </motion.div>

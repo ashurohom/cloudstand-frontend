@@ -24,7 +24,7 @@ function ServiceDetail() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
-  useDocumentTitle(service ? `${service.title} | CloudStand Consulting` : 'Service Detail | CloudStand Consulting')
+  useDocumentTitle(service ? `Cloudstand Consulting | ${service.title}` : 'Cloudstand Consulting | Service Detail')
 
   if (!service) {
     return <NotFound />

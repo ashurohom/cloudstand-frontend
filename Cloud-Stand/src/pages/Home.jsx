@@ -3,6 +3,7 @@ import { ArrowRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/ui/Button'
+import HealthCheckModal from '../components/ui/HealthCheckModal'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
@@ -116,7 +117,8 @@ function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className
 }
 
 function Home() {
-  useDocumentTitle('CloudStand Consulting | Oracle Cloud Transformation Partner')
+  useDocumentTitle('Cloudstand Consulting | Home')
+  const [isHealthCheckModalOpen, setIsHealthCheckModalOpen] = useState(false)
   const leftPartnerPoints = whyPartnerPoints.slice(0, 5)
   const rightPartnerPoints = whyPartnerPoints.slice(5)
   const featuredCaseStudies = caseStudies.slice(0, 3).map((study, index) => ({
@@ -143,6 +145,7 @@ function Home() {
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <HeroSection />
 
+      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
 
       <section className="bg-white py-12 sm:py-16">
         <div className="section-shell">
@@ -174,7 +177,7 @@ function Home() {
         </div>
       </section>
 
-      <GlobalDelivery />
+      {/* <GlobalDelivery /> */}
 
       <section 
         className="relative overflow-hidden py-20 sm:py-24 border-y border-sky-100/50"
@@ -216,7 +219,7 @@ function Home() {
               </style>
               <div className="section-shell relative z-10">
                 <div className="text-center max-w-5xl mx-auto mb-16">
-                  <h2 className="text-[40px] font-bold tracking-tight text-black">
+                  <h2 className="text-[30px] lg:text-[40px] font-bold tracking-tight text-black">
                     Proven Team Experience
                   </h2>
                   <p className="mt-6 text-[16px] leading-relaxed text-slate-600 font-medium">
@@ -297,7 +300,7 @@ function Home() {
             whileInView="visible"
           >
             <Badge className="border-sky-200 bg-white text-[#EA580C]">Why Partner With CloudStand</Badge>
-            <h2 className="mt-6 text-[40px] font-extrabold leading-[1.02] tracking-[-0.03em] text-black">
+            <h2 className="mt-6 text-[30px] lg:text-[40px] font-extrabold leading-[1.02] tracking-[-0.03em] text-black">
               Why Global Enterprises Choose Cloudstand
             </h2>
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
@@ -325,7 +328,7 @@ function Home() {
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                     whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
-                    className="group flex items-center gap-4 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-5 py-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                    className="group flex flex-col md:flex-row items-center md:items-center text-center md:text-left gap-4 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-5 py-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
                   >
                     <span className="inline-flex shrink-0 items-center justify-center text-[#EA580C]">
                       <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
@@ -356,7 +359,7 @@ function Home() {
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                     whileHover={{ y: -1.5, boxShadow: '0 10px 28px rgba(14,165,233,0.09)' }}
-                    className="group flex items-center gap-4 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-5 py-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
+                    className="group flex flex-col md:flex-row items-center md:items-center text-center md:text-left gap-4 rounded-xl border border-[rgba(14,165,233,0.25)] bg-white px-5 py-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[rgba(14,165,233,0.5)]"
                   >
                     <span className="inline-flex shrink-0 items-center justify-center text-[#EA580C]">
                       <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
@@ -412,7 +415,7 @@ function Home() {
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Badge className="mb-6">Transformation Stories</Badge>
 
-            <h2 className="text-[40px] font-black leading-[1.15] tracking-tight text-black">
+            <h2 className="text-[30px] lg:text-[40px] font-black leading-[1.15] tracking-tight text-black">
               Driving Scalable Business
               <br />
               Transformation Across Industries
@@ -528,7 +531,7 @@ function Home() {
 
         <div className="section-shell relative z-10">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-[40px] font-bold leading-tight tracking-tight text-[#000000]">
+            <h2 className="text-[30px] lg:text-[40px] font-bold leading-tight tracking-tight text-[#000000]">
               Oracle Transformation Delivery Model
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-[16px] leading-relaxed text-[#000000]/80">
@@ -613,29 +616,29 @@ function Home() {
 
       <section className="relative overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
         <div className="section-shell relative z-10 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="max-w-xl">
+          <div className="max-w-xl flex flex-col items-center lg:items-start text-center lg:text-left mx-auto lg:mx-0">
             <Badge className="border-[rgba(234,88,12,0.25)] bg-white text-[#EA580C] shadow-[0_10px_24px_rgba(14,165,233,0.08)]">
               Testimonials
             </Badge>
-            <h2 className="mt-5 text-[40px] font-bold leading-tight text-black">
+            <h2 className="mt-5 text-[30px] lg:text-[40px] font-bold leading-tight text-black">
               What Our Clients Say
             </h2>
-            <p className="mt-4 max-w-md text-[16px] leading-7 text-black ">
+            <p className="mt-4 max-w-md text-[16px] leading-7 text-black">
               Trusted by growing enterprises for Oracle Cloud transformation, implementation and long-term support.
             </p>
           </div>
 
-          <div className="min-w-0 h-[480px] sm:h-[400px] lg:h-[360px]">
+          <div className="min-w-0 h-[500px] sm:h-[420px] lg:h-[380px] flex flex-col">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
                 animate={{ opacity: 1, x: 0 }}
-                className="max-w-3xl"
+                className="max-w-3xl mx-auto lg:mx-0 w-full"
                 exit={{ opacity: 0, x: -36 }}
                 initial={{ opacity: 0, x: 42 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="mb-4">
+                <div className="mb-4 flex justify-center lg:justify-start">
                   <svg
                     aria-hidden="true"
                     className="h-10 w-10 text-[#EA580C]"
@@ -647,26 +650,26 @@ function Home() {
                   </svg>
                 </div>
 
-                <blockquote className="-mt-1 text-sm leading-relaxed text-black sm:text-base lg:text-lg lg:leading-[1.7]">
+                <blockquote className="-mt-1 text-sm leading-relaxed text-black sm:text-base lg:text-lg lg:leading-[1.7] text-justify">
                   {enhancedTestimonials[current].quote}
                 </blockquote>
 
-                <div className="mt-6 h-[3px] w-24 rounded-full bg-[#EA580C]" />
+                <div className="mt-6 h-[3px] w-24 rounded-full bg-[#EA580C] mx-auto lg:mx-0" />
 
-                <div className="mt-6 flex flex-col gap-1 text-sm sm:text-base">
+                <div className="mt-6 flex flex-col gap-1 text-sm sm:text-base text-center lg:text-left">
                   <span className="text-lg font-semibold text-[#EA580C]">{enhancedTestimonials[current].name}</span>
                   <span className="text-black/70">
                     {enhancedTestimonials[current].designation}
                   </span>
                 </div>
 
-                <div className="mt-4 flex flex-wrap items-center gap-3">
+                <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
                   <span className="font-semibold uppercase tracking-[0.12em] text-black">{enhancedTestimonials[current].region}</span>
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-8 flex items-center gap-5">
+            <div className="mt-auto flex items-center justify-center lg:justify-start gap-5 pt-8">
               {enhancedTestimonials.map((_, i) => (
                 <button
                   key={i}
@@ -708,25 +711,29 @@ function Home() {
               viewport={{ once: true, margin: '-80px' }}
               whileInView={{ opacity: 1, y: 0 }}
             >
-              <div>
-                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-white">
+              <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
+                <h2 className="mt-6 max-w-3xl text-[30px] lg:text-[40px] font-bold text-white">
                   Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
-                <div className="mt-8">
+                <div className="mt-8 flex justify-center lg:justify-start">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Button className="!border-orange-500 !bg-orange-500 !text-white !shadow-none hover:!border-orange-400 hover:!bg-orange-600 hover:!text-white" size="lg" to="/contact" variant="white">
-                      Schedule Free System Health Check Analysis
+                    <button 
+                      onClick={() => setIsHealthCheckModalOpen(true)}
+                      className="inline-flex items-center gap-2 rounded-full border border-orange-500 bg-orange-500 px-8 py-4 text-[16px] font-semibold text-white transition-all hover:border-orange-400 hover:bg-orange-600 shadow-md"
+                    >
+                      <span className="sm:hidden">System Health Check</span>
+                      <span className="hidden sm:inline">Schedule Free System Health Check Analysis</span>
                       <motion.span whileHover={{ x: 4 }}>
                         <ArrowRight className="h-4 w-4" />
                       </motion.span>
-                    </Button>
+                    </button>
                   </motion.div>
                 </div>
               </div>
 
-              <Card className="p-6 !bg-white/10 backdrop-blur-md !border-white/20">
+              <Card className="p-6 !bg-white/10 backdrop-blur-md !border-white/20 text-center lg:text-left">
                 <div className="text-[12px] font-extrabold uppercase tracking-normal text-white drop-shadow-lg">Value You Receive</div>
-                <ul className="mt-4 space-y-3 text-white font-medium drop-shadow-md lg:whitespace-nowrap">
+                <ul className="mt-4 space-y-3 text-white font-medium drop-shadow-md lg:whitespace-nowrap flex flex-col items-center lg:items-start">
                   <li className="group flex items-start gap-3">
                     <span className="mt-0.5 flex shrink-0 items-center justify-center text-[#EA580C] drop-shadow-md">
                       <svg viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-current">

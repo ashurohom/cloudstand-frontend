@@ -27,7 +27,7 @@ const Eyebrow = ({ text, showLine = false, centered = false, isWhite = false }) 
 )
 
 function EmpoweringTalent() {
-  useDocumentTitle('Empowering Talent | Careers')
+  useDocumentTitle('Cloudstand Consulting | Empowering Talent')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -55,7 +55,7 @@ function EmpoweringTalent() {
             >
               <Eyebrow text="CLOUDSTAND CAREERS" showLine={true} centered={true} />
               
-              <h1 className="mt-6 text-[40px] md:text-[46px] font-bold leading-[1.15] tracking-tight text-[#0F172A]">
+              <h1 className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.15] tracking-tight text-[#0F172A]">
                 Empowering Talent
               </h1>
 
@@ -71,21 +71,17 @@ function EmpoweringTalent() {
               initial={{ opacity: 0, x: 30 }} 
               animate={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              className="relative flex items-center justify-center w-full aspect-[4/3]"
             >
-              <div 
-                className="w-full aspect-[4/3] overflow-hidden"
-                style={{ borderRadius: '48px 48px 48px 12px' }}
-              >
-                <img 
-                  src="/services/service7.png" 
-                  alt="CloudStand Team Meeting" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000'
-                  }}
-                />
-              </div>
+              <img 
+                src="/Empt/empt_hero_white.png" 
+                alt="Empowering Talent Hero" 
+                className="w-full h-full object-contain scale-[1.15] lg:scale-[1.25] mix-blend-darken -translate-y-4 lg:-translate-y-8"
+                style={{ filter: 'brightness(1.05) contrast(1.15)' }}
+                onError={(e) => {
+                  e.target.src = 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000'
+                }}
+              />
             </motion.div>
           </div>
         </div>

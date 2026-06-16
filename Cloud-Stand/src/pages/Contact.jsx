@@ -4,6 +4,7 @@ import { Activity, ArrowRight, ChevronDown, Clock3, Cloud, Globe2, Mail, MapPin,
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import HealthCheckModal from '../components/ui/HealthCheckModal'
 import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
@@ -24,8 +25,8 @@ const contactInfoCards = [
   {
     title: 'Quick Contact',
     description: 'Speak with a CloudStand specialist about your Oracle roadmap and next steps.',
-    value: '+91 9049020793',
-    href: 'tel:+919049020793',
+    value: '+91 9503036784',
+    href: 'tel:+919503036784',
     icon: Phone,
     accent: 'Live',
   },
@@ -41,7 +42,7 @@ const contactInfoCards = [
     title: 'Global Presence',
     description: 'We support teams across markets with practical guidance, delivery expertise, and advisory support.',
     value: 'Worldwide consulting',
-    href: 'https://maps.google.com/?q=Office+No.19,+Nirvana+Hub,+Z+Corner,+Mundhwa-Manjari+Rd,+Manjri+Bk.,+Pune+-+412307',
+    href: 'https://maps.google.com/?q=Office+No.19,+Nirvana+Hub,+Keshav+Nagar+-+Manjari+Rd,+z-corner,+Pune+412307',
     icon: Globe2,
     accent: 'Global',
   },
@@ -49,50 +50,59 @@ const contactInfoCards = [
 
 const faqs = [
   {
+    question: 'What Oracle Cloud services does CloudStand offer?',
+    answer:
+      'CloudStand provides Oracle Cloud Transformation, Managed Services, Integrations, Reporting & Analytics, Health Checks, Advisory Services, Staffing Augmentation, and Corporate Training. We help organizations maximize the value of their Oracle Cloud investments through end-to-end consulting and support.',
+  },
+  {
     question: 'What types of Oracle Cloud projects does CloudStand support?',
     answer:
-      'We support Oracle HCM, ERP, Payroll, Integration, BI, and AI-led transformation programs from advisory and implementation through post-go-live optimization.',
+      'We support new implementations, global rollouts, module expansions, system optimizations, integrations, and digital transformation initiatives. Our team works across the entire Oracle Cloud lifecycle—from strategy and deployment to ongoing support.',
   },
   {
-    question: 'How quickly can we start a consultation?',
+    question: 'Which Oracle Fusion Cloud areas do you specialize in?',
     answer:
-      'Most discovery calls are scheduled within 24 hours. We tailor the engagement based on your priorities, timeline, and business goals.',
-  },
-  {
-    question: 'Do you support global operations and multi-region teams?',
-    answer:
-      'Yes, we regularly partner with distributed organizations and design delivery models that fit regional compliance, governance, and cross-functional alignment.',
-  },
-  {
-    question: 'Can you help with rollout planning and change support?',
-    answer:
-      'Absolutely. We help teams shape implementation phases, adoption readiness, and operating support so the transformation sustains beyond launch.',
-  },
-  {
-    question: 'Which Oracle Cloud modules do you specialize in?',
-    answer:
-      'Our teams specialize in Oracle HCM, ERP, OIC, Payroll, Analytics, and AI-powered enterprise transformation solutions.',
-  },
-  {
-    question: 'Do you provide post-implementation support?',
-    answer:
-      'Yes. We offer continuous optimization, managed support, enhancement planning, and operational guidance after go-live.',
-  },
-  {
-    question: 'Can CloudStand work alongside our internal IT team?',
-    answer:
-      'Yes. We frequently collaborate with internal technology and business teams to ensure smooth execution and knowledge transfer.',
+      'Our expertise spans Oracle Fusion HCM, Payroll, Benefits, Absence Management, Talent Management, Recruiting, Learning, and Workforce Management. We also provide reporting, analytics, integrations, and advisory services to enhance business outcomes.',
   },
   {
     question: 'Do you support Oracle Cloud integrations?',
     answer:
-      'We help organizations build secure and scalable integrations across Oracle Cloud and third-party enterprise platforms.',
+      'Yes, we design and implement secure integrations between Oracle Cloud and third-party systems using OIC, APIs, file-based integrations, and middleware solutions. Our integration services help ensure seamless data flow across your enterprise applications.',
   },
-
+  {
+    question: 'Do you provide Oracle Managed Services?',
+    answer:
+      'Yes, we offer flexible Oracle Managed Services to support application maintenance, issue resolution, release management, and continuous improvement. Our team acts as an extension of your organization to ensure stable and efficient operations.',
+  },
+  {
+    question: 'Do you support global Oracle Cloud deployments?',
+    answer:
+      'Yes, we have successfully delivered Oracle Cloud projects across the USA, Canada, UK, Germany, UAE, and India. Our global delivery model enables consistent support across multiple regions and time zones.',
+  },
+  {
+    question: 'Can CloudStand work alongside our internal teams?',
+    answer:
+      'Absolutely. We collaborate closely with business stakeholders, IT teams, and project leaders to complement your internal capabilities. Our approach focuses on partnership, knowledge transfer, and long-term success.',
+  },
+  {
+    question: 'Do you provide health checks and optimization assessments?',
+    answer:
+      'Yes, we perform comprehensive Oracle Cloud health checks to identify process gaps, configuration issues, and improvement opportunities. Our recommendations help enhance performance, user adoption, compliance, and operational efficiency.',
+  },
+  {
+    question: 'Can you support seasonal payroll and benefits operations?',
+    answer:
+      'Yes, we provide specialized support for North America payroll and benefits activities, including peak periods and year-end processing. Our experts help organizations manage critical payroll operations accurately and efficiently.',
+  },
+  {
+    question: 'How do I get started with CloudStand?',
+    answer:
+      'Simply contact us to schedule an initial consultation and discuss your Oracle Cloud goals and challenges. Our team will assess your requirements and recommend the most effective engagement approach.',
+  },
 ]
 
 function Contact() {
-  useDocumentTitle('Contact CloudStand | Oracle Cloud Consultation')
+  useDocumentTitle('Cloudstand Consulting | Contact')
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
@@ -101,6 +111,7 @@ function Contact() {
   const [openFaq, setOpenFaq] = useState(0)
   const [activeLocation, setActiveLocation] = useState('Pune')
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isHealthCheckModalOpen, setIsHealthCheckModalOpen] = useState(false)
 
 
   useEffect(() => {
@@ -190,9 +201,9 @@ function Contact() {
   const officeLocations = {
     Pune: {
       address: `Office No.19, Nirvana Hub,
-Mundhwa-Manjari Road,
-Pune - 412307`,
-      map: 'https://www.google.com/maps?q=Office%20No.19,%20Nirvana%20Hub,%20Z%20Corner,%20Mundhwa-Manjari%20Rd,%20Manjri%20Bk.,%20Pune%20-%20412307&z=14&output=embed',
+Keshav Nagar - Manjari Rd,
+z-corner, Pune 412307`,
+      map: 'https://www.google.com/maps?q=Office%20No.19,%20Nirvana%20Hub,%20Keshav%20Nagar%20-%20Manjari%20Rd,%20z-corner,%20Pune%20412307&z=14&output=embed',
     },
 
     Texas: {
@@ -223,7 +234,7 @@ Bentonville, Arkansas, 72712`,
 
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             {/* LEFT CONTENT */}
-            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-start text-left relative z-10">
+            <div className="max-w-[760px] lg:w-[60%] flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
 
             <motion.div
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -234,12 +245,12 @@ Bentonville, Arkansas, 72712`,
             </motion.div>
 
             {/* BLUE LINE */}
-            <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
+            <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9] mx-auto lg:mx-0" />
 
 
             <motion.h1
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-left"
+              className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-center lg:text-left"
               initial={{ opacity: 0, y: 25 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
@@ -251,7 +262,7 @@ Bentonville, Arkansas, 72712`,
             {/* DESCRIPTION */}
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-left"
+              className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-justify lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
@@ -266,7 +277,7 @@ Bentonville, Arkansas, 72712`,
             {/* BUTTONS */}
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="mt-8 flex flex-wrap justify-start items-center gap-5"
+              className="mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-5"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
@@ -369,12 +380,12 @@ Bentonville, Arkansas, 72712`,
             <div className="mt-6 h-1 w-14 rounded-full bg-[#0EA5E9]" />
 
             {/* HEADING */}
-            <h2 className="mt-6 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
+            <h2 className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
               Our Global Offices
             </h2>
 
             {/* TEXT */}
-            <p className="mt-6 max-w-[620px] text-[16px] leading-8 text-[#475569]">
+            <p className="mt-6 max-w-[620px] text-[16px] leading-8 text-[#475569] text-justify lg:text-center">
               Connect with our Oracle Cloud specialists to
               discuss implementation, optimization and
               enterprise transformation strategies tailored
@@ -384,19 +395,15 @@ Bentonville, Arkansas, 72712`,
           </div>
 
           {/* OFFICES CARDS */}
-          <div className="mx-auto mt-12 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-7 px-4 xl:px-0">
+          <div className="mx-auto mt-12 grid w-full max-w-[1400px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-3 px-4 xl:px-0">
 
             {/* PUNE */}
             <motion.div
               whileHover={{ y: -4 }}
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <img
-                  src="/Contact/pune.jpeg"
-                  alt="Pune City"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
+                <img src="https://flagcdn.com/w40/in.png" alt="India" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
@@ -413,15 +420,12 @@ Bentonville, Arkansas, 72712`,
                 <div className="flex flex-col flex-1">
                   <p className="text-[14px] leading-snug text-[#475569] mb-4">
                     Office No.19, Nirvana Hub,<br />
-                    Mundhwa-Manjari Road,<br />
-                    Pune - 412307
+                    Keshav Nagar - Manjari Rd,<br />
+                    z-corner, Pune 412307
                   </p>
                   <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
-                      info@cloudstandconsulting.com
-                    </p>
                     <p className="text-[14.5px] font-semibold text-black">
-                      +91 90490 20793
+                      +91 9503036784
                     </p>
                   </div>
                 </div>
@@ -433,12 +437,8 @@ Bentonville, Arkansas, 72712`,
               whileHover={{ y: -4 }}
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <img
-                  src="/Contact/texas.jpeg"
-                  alt="Dallas Skyline"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
+                <img src="https://flagcdn.com/w40/us.png" alt="USA" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
@@ -458,11 +458,8 @@ Bentonville, Arkansas, 72712`,
                     Austin, TX 78731
                   </p>
                   <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
-                      info@cloudstandconsulting.com
-                    </p>
                     <p className="text-[14.5px] font-semibold text-black">
-                      +1 (469) 555-1208
+                      +1 (512) 903-8971
                     </p>
                   </div>
                 </div>
@@ -474,12 +471,8 @@ Bentonville, Arkansas, 72712`,
               whileHover={{ y: -4 }}
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <img
-                  src="/Contact/newyork.jpeg"
-                  alt="Arkansas Skyline"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
+                <img src="https://flagcdn.com/w40/us.png" alt="USA" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
@@ -499,11 +492,8 @@ Bentonville, Arkansas, 72712`,
                     Bentonville , Arkansas , 72712
                   </p>
                   <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
-                      info@cloudstandconsulting.com
-                    </p>
                     <p className="text-[14.5px] font-semibold text-black">
-                      +1 (646) 555-9087
+                      +1 (602) 503-9547
                     </p>
                   </div>
                 </div>
@@ -515,12 +505,8 @@ Bentonville, Arkansas, 72712`,
               whileHover={{ y: -4 }}
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <img
-                  src="/Contact/canada.png"
-                  alt="Canada Skyline"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
+                <img src="https://flagcdn.com/w40/ca.png" alt="Canada" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
@@ -536,14 +522,13 @@ Bentonville, Arkansas, 72712`,
 
                 <div className="flex flex-col flex-1">
                   <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    Canada
+                    1711 carolyn road,<br />
+                    missisauga, ontario,<br />
+                    l5m 2c9
                   </p>
                   <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
-                      info@cloudstandconsulting.com
-                    </p>
                     <p className="text-[14.5px] font-semibold text-black">
-                      +1 (646) 555-9087
+                      +1 (226) 338-7868
                     </p>
                   </div>
                 </div>
@@ -555,12 +540,18 @@ Bentonville, Arkansas, 72712`,
               whileHover={{ y: -4 }}
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-[160px] w-full overflow-hidden">
-                <img
-                  src="/Contact/dubai.png"
-                  alt="Dubai Skyline"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
+                <svg viewBox="0 0 512 512" className="h-[26px] w-[26px] shadow-sm rounded-full">
+                  <clipPath id="circle-clip-uae">
+                    <circle cx="256" cy="256" r="256" />
+                  </clipPath>
+                  <g clipPath="url(#circle-clip-uae)">
+                    <rect x="128" y="0" width="384" height="170.66" fill="#69A357" />
+                    <rect x="128" y="170.66" width="384" height="170.67" fill="#F2F2F2" />
+                    <rect x="128" y="341.33" width="384" height="170.66" fill="#1F1F1F" />
+                    <rect x="0" y="0" width="128" height="512" fill="#CC4539" />
+                  </g>
+                </svg>
               </div>
 
               <div className="flex flex-1 flex-col p-5 text-left">
@@ -576,14 +567,13 @@ Bentonville, Arkansas, 72712`,
 
                 <div className="flex flex-col flex-1">
                   <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    Dubai, United Arab Emirates
+                    Meydan Grandstand, 6th Floor<br />
+                    Meydan Road, Nad Al Sheba<br />
+                    Dubai, U.A.E.
                   </p>
                   <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] xl:text-[12px] 2xl:text-[14px] font-semibold text-black tracking-tight truncate" title="info@cloudstandconsulting.com">
-                      info@cloudstandconsulting.com
-                    </p>
                     <p className="text-[14.5px] font-semibold text-black">
-                      +1 (646) 555-9087
+                      +971 52 867 7172
                     </p>
                   </div>
                 </div>
@@ -623,10 +613,10 @@ Bentonville, Arkansas, 72712`,
             <div className="p-6 md:p-8 lg:p-10">
               <div className="mb-6 flex flex-col items-center text-center">
                 <Badge>Lets Work Together</Badge>
-                <h2 className="mt-4 text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
+                <h2 className="mt-4 text-[30px] lg:text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
                   Start a Conversation
                 </h2>
-                <p className="mt-2 text-[16px] leading-relaxed text-[#475569] text-center">
+                <p className="mt-2 text-[16px] leading-relaxed text-[#475569] text-justify lg:text-center">
                   Let’s discuss your cloud transformation and enterprise technology needs.
                 </p>
               </div>
@@ -670,7 +660,7 @@ Bentonville, Arkansas, 72712`,
                     <input
                       name="company"
                       type="text"
-                      placeholder="Company Name (Optional)"
+                      placeholder="Company Name"
                       value={form.company}
                       onChange={handleChange}
                       className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
@@ -773,6 +763,7 @@ Bentonville, Arkansas, 72712`,
         </div>
       </section>
 
+      {false && (
       <section className="relative overflow-hidden bg-white py-24">
 
         {/* BACKGROUND */}
@@ -798,7 +789,7 @@ Bentonville, Arkansas, 72712`,
             <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
             {/* HEADING */}
-            <h2 className="mt-6 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
+            <h2 className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
 
               Our Global
 
@@ -808,7 +799,7 @@ Bentonville, Arkansas, 72712`,
             </h2>
 
             {/* DESCRIPTION */}
-            <p className="mt-6 max-w-[650px] text-[16px] leading-8 text-[#475569] text-center">
+            <p className="mt-6 max-w-[650px] text-[16px] leading-8 text-[#475569] text-justify lg:text-center">
 
               CloudStand Consulting headquarters serves as the
               strategic center for Oracle Cloud transformation,
@@ -943,6 +934,7 @@ Bentonville, Arkansas, 72712`,
         </div>
 
       </section>
+      )}
 
       <section
         id="faq"
@@ -998,7 +990,7 @@ Bentonville, Arkansas, 72712`,
                 <div className="mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
                 {/* HEADING */}
-                <h2 className="mt-6 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
+                <h2 className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-black text-center">
 
                   Everything You
                   <br />
@@ -1008,7 +1000,7 @@ Bentonville, Arkansas, 72712`,
                 </h2>
 
                 {/* TEXT */}
-                <p className="mt-6 text-[16px] leading-8 text-[#475569] text-center">
+                <p className="mt-6 text-[16px] leading-8 text-[#475569] text-justify lg:text-center">
 
                   Helpful answers about our Oracle Cloud consulting,
                   implementation process, support model and
@@ -1017,14 +1009,14 @@ Bentonville, Arkansas, 72712`,
                 </p>
 
                 {/* EXTRA POINTS */}
-                <div className="mt-10 space-y-4">
+                <div className="mt-10 space-y-4 self-start lg:self-center text-left">
 
                   <div className="flex items-center gap-3">
 
                     <div className="h-2.5 w-2.5 rounded-full bg-[#EA580C]" />
 
                     <p className="text-[14px] font-medium text-[#475569]">
-                      Oracle-certified consulting specialists
+                      Oracle certified consulting specialists
                     </p>
 
                   </div>
@@ -1044,7 +1036,7 @@ Bentonville, Arkansas, 72712`,
                     <div className="h-2.5 w-2.5 rounded-full bg-black" />
 
                     <p className="text-[14px] font-medium text-[#475569]">
-                      End-to-end Oracle Cloud transformation support
+                      End to end Oracle Cloud transformation support
                     </p>
 
                   </div>
@@ -1175,17 +1167,20 @@ Bentonville, Arkansas, 72712`,
               whileInView={{ opacity: 1, y: 0 }}
             >
               <div>
-                <h2 className="mt-6 max-w-3xl text-[40px] font-bold text-white">
+                <h2 className="mt-6 max-w-3xl text-[30px] lg:text-[40px] font-bold text-white">
                   Unlock Oracle Cloud Value with Best Practices and Agentic AI
                 </h2>
                 <div className="mt-8">
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Button className="!border-orange-500 !bg-orange-500 !text-white !shadow-none hover:!border-orange-400 hover:!bg-orange-600 hover:!text-white" size="lg" to="/contact" variant="white">
+                    <button 
+                      onClick={() => setIsHealthCheckModalOpen(true)}
+                      className="inline-flex items-center gap-2 rounded-full border border-orange-500 bg-orange-500 px-8 py-4 text-[16px] font-semibold text-white transition-all hover:border-orange-400 hover:bg-orange-600 shadow-md"
+                    >
                       Schedule Free System Health Check Analysis
                       <motion.span whileHover={{ x: 4 }}>
                         <ArrowRight className="h-4 w-4" />
                       </motion.span>
-                    </Button>
+                    </button>
                   </motion.div>
                 </div>
               </div>
@@ -1235,6 +1230,7 @@ Bentonville, Arkansas, 72712`,
           </div>
         </div>
       </section>
+      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
     </motion.main>
   )
 }
