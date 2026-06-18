@@ -72,7 +72,7 @@ function TeamCloudStand() {
       style={{ fontFamily: "'Open Sans', sans-serif" }}
     >
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-16 min-h-[50vh] lg:flex lg:items-center bg-white">
+      <section className="relative overflow-hidden pt-12 pb-16 min-h-[50dvh] lg:portrait:min-h-[400px] lg:flex lg:items-center bg-white">
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
         <div className="section-shell relative z-20 w-full">
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
@@ -145,17 +145,17 @@ function TeamCloudStand() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: false, margin: '-50px' }}
-            className={`grid gap-4 md:gap-6 ${
-              galleryImages.length === 1 ? 'grid-cols-1 max-w-md mx-auto w-full' :
-              galleryImages.length === 2 ? 'grid-cols-2 max-w-3xl mx-auto w-full' :
-              galleryImages.length === 3 ? 'grid-cols-2 md:grid-cols-3 max-w-5xl mx-auto w-full' :
-              'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+            className={`flex flex-wrap justify-center gap-4 md:gap-6 ${
+              galleryImages.length === 1 ? 'max-w-md mx-auto w-full' :
+              galleryImages.length === 2 ? 'max-w-3xl mx-auto w-full' :
+              galleryImages.length === 3 ? 'max-w-5xl mx-auto w-full' :
+              'w-full'
             }`}
           >
             {isLoading ? (
-              <div className="col-span-full py-12 text-center text-[#475569] font-semibold tracking-wide">Loading gallery...</div>
+              <div className="w-full py-12 text-center text-[#475569] font-semibold tracking-wide">Loading gallery...</div>
             ) : galleryImages.length === 0 ? (
-              <div className="col-span-full py-12 text-center text-[#64748B] font-medium tracking-wide">No images currently available.</div>
+              <div className="w-full py-12 text-center text-[#64748B] font-medium tracking-wide">No images currently available.</div>
             ) : galleryImages.map((src, index) => (
               <motion.div 
                 key={index}
@@ -164,7 +164,12 @@ function TeamCloudStand() {
                   initial: { opacity: 0, y: 30, scale: 0.95 },
                   animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } }
                 }}
-                className="relative aspect-square overflow-hidden rounded-2xl shadow-sm bg-gray-200 cursor-pointer group"
+                className={`relative aspect-square overflow-hidden rounded-2xl shadow-sm bg-gray-200 cursor-pointer group ${
+                  galleryImages.length === 1 ? 'w-full' :
+                  galleryImages.length === 2 ? 'w-[calc(50%-0.5rem)] md:w-[calc(50%-0.75rem)]' :
+                  galleryImages.length === 3 ? 'w-[calc(50%-0.5rem)] md:w-[calc(33.333%-1rem)]' :
+                  'w-[calc(50%-0.5rem)] md:w-[calc(33.333%-1rem)] lg:w-[calc(25%-1.125rem)]'
+                }`}
               >
                 <img 
                   src={src} 
@@ -222,7 +227,7 @@ function TeamCloudStand() {
               transition={{ duration: 0.2 }}
               src={galleryImages[currentIndex]} 
               alt="Lightbox Full Size" 
-              className="max-h-[85vh] max-w-[85vw] object-contain rounded-lg shadow-2xl"
+              className="max-h-[85dvh] lg:portrait:max-h-[800px] max-w-[85vw] object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 e.target.src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800'

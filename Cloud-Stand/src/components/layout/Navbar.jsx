@@ -330,7 +330,7 @@ function Navbar() {
         {menuOpen ? (
           <motion.div
             animate={{ height: 'auto', opacity: 1 }}
-            className="overflow-y-auto max-h-[calc(100vh-80px)] border-t border-sky-200 bg-white px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden shadow-lg"
+            className="overflow-y-auto max-h-[calc(100dvh-80px)] border-t border-sky-200 bg-white px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden shadow-lg"
             exit={{ height: 0, opacity: 0 }}
             initial={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}

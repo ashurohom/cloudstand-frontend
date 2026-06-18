@@ -185,7 +185,7 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
   }
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[100dvh] lg:portrait:min-h-[600px] items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         {safeSlides.map((slide, index) => (
           <div

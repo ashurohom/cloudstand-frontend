@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      screens: {
+        'lg': '980px',
+      },
       colors: {
         primary: 'rgb(var(--color-primary-rgb) / <alpha-value>)',
         accent: 'rgb(var(--color-accent-rgb) / <alpha-value>)',

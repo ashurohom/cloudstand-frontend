@@ -46,7 +46,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-primary text-text">
+      <div className="min-h-[100dvh] bg-primary text-text">
         <Navbar />
         <AnimatedRoutes />
         <Footer />

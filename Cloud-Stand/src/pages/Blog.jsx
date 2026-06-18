@@ -432,7 +432,7 @@ function Blog() {
           Hero Section / Live Webinar (Contact Page Style)
           ========================================== */}
       {!hasWebinar ? (
-        <section className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white">
+        <section className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white">
           <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
           <div className="section-shell relative z-20 w-full">
             <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
@@ -488,7 +488,7 @@ function Blog() {
         </section>
       ) : (
       <section
-        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white"
+        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white"
       >
         {/* SOFT OVERLAY */}
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />

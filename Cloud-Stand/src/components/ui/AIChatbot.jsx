@@ -82,7 +82,7 @@ function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-20 right-4 left-4 md:left-auto md:right-6 md:bottom-28 z-[999] flex h-[calc(100vh-110px)] md:h-[calc(100vh-140px)] max-h-[600px] md:max-h-[560px] md:w-[420px] flex-col overflow-hidden rounded-[24px] md:rounded-[30px] border border-[#d7e5ff] bg-white shadow-[0_24px_60px_rgba(24,67,148,0.18)]"
+            className="fixed bottom-20 right-4 left-4 md:left-auto md:right-6 md:bottom-28 z-[999] flex h-[calc(100dvh-110px)] md:h-[calc(100dvh-140px)] max-h-[600px] md:max-h-[560px] md:w-[420px] flex-col overflow-hidden rounded-[24px] md:rounded-[30px] border border-[#d7e5ff] bg-white shadow-[0_24px_60px_rgba(24,67,148,0.18)]"
           >
             <div className="bg-gradient-to-r from-[#0b6bff] via-[#276eff] to-[#4c88ff] p-5 text-white">
               <div className="flex items-start justify-between gap-4">

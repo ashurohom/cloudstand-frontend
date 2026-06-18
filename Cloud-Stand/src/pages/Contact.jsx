@@ -223,7 +223,7 @@ Bentonville, Arkansas, 72712`,
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section
-        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white"
+        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white"
       >
 
         {/* SOFT OVERLAY */}

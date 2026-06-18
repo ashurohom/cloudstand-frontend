@@ -145,7 +145,7 @@ function Careers() {
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <section
-        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100vh-80px)] lg:flex lg:items-center bg-white"
+        className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white"
       >
         {/* SOFT OVERLAY */}
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
@@ -524,7 +524,7 @@ function Careers() {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
-      className="relative w-full max-w-2xl max-h-[95vh] overflow-y-auto rounded-[24px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.15)] border border-slate-200 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      className="relative w-full max-w-2xl max-h-[95dvh] lg:portrait:max-h-[800px] overflow-y-auto rounded-[24px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.15)] border border-slate-200 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
       {/* CLOSE BUTTON */}
       <button

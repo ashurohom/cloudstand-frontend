@@ -36,7 +36,7 @@ function Services() {
       style={{ fontFamily: "'Open Sans', sans-serif" }}
     >
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-16 min-h-[50vh] lg:flex lg:items-center bg-white">
+      <section className="relative overflow-hidden pt-12 pb-16 min-h-[50dvh] lg:portrait:min-h-[400px] lg:flex lg:items-center bg-white">
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
         <div className="section-shell relative z-20 w-full">
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">

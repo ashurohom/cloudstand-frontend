@@ -16,7 +16,7 @@ function CaseStudies() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[90vh] lg:flex lg:items-center">
+      <section className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[90dvh] lg:portrait:min-h-[600px] lg:flex lg:items-center">
         <div className="section-shell relative z-10 grid items-center gap-12 lg:grid-cols-2">
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.div

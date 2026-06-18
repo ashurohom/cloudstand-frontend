@@ -14,7 +14,7 @@ function NotFound() {
   return (
     <motion.main
       animate="animate"
-      className="flex min-h-[80vh] items-center justify-center px-4 pt-20"
+      className="flex min-h-[80dvh] lg:portrait:min-h-[500px] items-center justify-center px-4 pt-20"
       exit="exit"
       initial="initial"
       variants={pageVariants}
