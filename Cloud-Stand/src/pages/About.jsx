@@ -40,7 +40,7 @@ function About() {
                   Founded in India and expanded across the USA, Canada we enable seamless collaboration, agile delivery, and region specific expertise.
                 </p>
                 <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-2">
-                  We specialize in end-to-end Oracle Cloud consulting, implementation, managed services, and enterprise transformation empowering organizations to build scalable, resilient, and future ready operations that deliver measurable value.
+                  We specialize in end to end Oracle Cloud consulting, implementation, managed services, and enterprise transformation empowering organizations to build scalable, resilient, and future ready operations that deliver measurable value.
                 </p>
                 <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-2">
                   Actively engaged in global Oracle communities, including Oracle AI World and ERP transformation forums, we stay aligned with evolving customer needs, regulatory landscapes, and emerging trends ensuring our solutions remain relevant and impactful.
@@ -87,7 +87,7 @@ function About() {
                   Trusted Oracle Experts for Complex Transformations
                 </h2>
                 <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-5">
-                  We are recognized for our ability to stabilize, recover, and successfully deliver complex Oracle programs that require deep functional, technical, and industry expertise. Organizations rely on us to address critical challenges, accelerate project outcomes, and drive long-term success.
+                  We are recognized for our ability to stabilize, recover, and successfully deliver complex Oracle programs that require deep functional, technical, and industry expertise. Organizations rely on us to address critical challenges, accelerate project outcomes, and drive long term success.
                 </p>
                 <p className="font-bold text-[#0EA5E9] mb-3">Our expertise spans:</p>
                 <ul className="space-y-2 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
