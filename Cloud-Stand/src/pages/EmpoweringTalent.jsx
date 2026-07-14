@@ -43,7 +43,27 @@ function EmpoweringTalent() {
       style={{ fontFamily: "'Open Sans', sans-serif" }}
     >
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-16 lg:pb-24">
+      <section 
+        className="relative overflow-hidden pt-12 pb-16 lg:pb-24"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="empt-dot-grid-1" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#empt-dot-grid-1)" />
+        </svg>
         <div className="section-shell relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
@@ -88,8 +108,20 @@ function EmpoweringTalent() {
       </section>
 
       {/* GROWTH SECTION */}
-      <section className="py-16 bg-[#EA580C]">
-        <div className="section-shell max-w-4xl mx-auto px-4 text-center">
+      <section className="relative overflow-hidden py-16 bg-[#EA580C]">
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="empt-dot-grid-growth" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#empt-dot-grid-growth)" />
+        </svg>
+        <div className="section-shell relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,8 +140,28 @@ function EmpoweringTalent() {
       </section>
 
       {/* WHY JOIN US SECTION */}
-      <section className="py-16 bg-white">
-        <div className="section-shell max-w-7xl mx-auto px-4 md:px-8">
+      <section 
+        className="relative overflow-hidden py-16 bg-white"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="empt-dot-grid-3" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#empt-dot-grid-3)" />
+        </svg>
+        <div className="section-shell relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           <motion.div
             className="mb-10 text-center flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
@@ -148,8 +200,28 @@ function EmpoweringTalent() {
       </section>
 
       {/* CENTER OF EXCELLENCE SECTION */}
-      <section className="py-16 bg-white">
-        <div className="section-shell max-w-7xl mx-auto px-4 md:px-8">
+      <section 
+        className="relative overflow-hidden py-16 bg-white"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="empt-dot-grid-2" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#empt-dot-grid-2)" />
+        </svg>
+        <div className="section-shell relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

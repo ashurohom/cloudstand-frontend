@@ -4,26 +4,26 @@ import { API_ENDPOINTS } from '../../config/api'
 
 const DEFAULT_SLIDES = [
   {
-    image: '/Slider/slider-1.jpeg',
+    image: '/Slider/slider-1.png',
     heading: 'Building Future-Ready Enterprises with Intelligent Oracle Transformation',
     subheading:
       'Helping organizations modernize operations, empower people, and accelerate growth through Oracle Cloud, AI-driven innovation, and scalable digital experiences. ',
     button: { label: 'Explore Solutions', to: '/services' },
   },
   {
-    image: '/Slider/slider-2.jpeg',
+    image: '/Slider/slider-2.png',
     heading: 'Reimagining Workforce Experiences with Oracle HCM Cloud ',
     subheading: 'Streamline hire-to-retire operations, strengthen employee engagement, and enable smarter workforce decisions through connected HR transformation. ',
     button: { label: 'Discover HCM', to: '/case-studies' },
   },
   {
-    image: '/Slider/slider-3.jpeg',
+    image: '/Slider/slider-3.png',
     heading: 'Enabling Smarter Financial Operations with Oracle ERP Cloud',
     subheading: 'Create connected, agile, and data-driven enterprise processes that improve visibility, operational efficiency, and business performance. ',
     button: { label: 'Explore ERP', to: '/case-studies' },
   },
   {
-    image: '/Slider/slider-4.jpeg',
+    image: '/Slider/slider-4.png',
     heading: 'Connecting Enterprise Ecosystems Through Intelligent Integration ',
     subheading: 'Seamlessly integrate applications, automate workflows, and create scalable digital environments with Oracle Integration Cloud solutions. ',
     button: { label: 'Learn About Integrations', to: '/services/integrations-reports-analytics-solutions' },
@@ -55,6 +55,20 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
             subheading: slide.description,
             button: { label: 'Explore Solutions', to: '/services' },
           }))
+          
+          // Preload images before swapping to prevent grey screen flash
+          const imagePromises = formattedSlides.map((slide) => {
+            return new Promise((resolve, reject) => {
+              const img = new Image()
+              img.src = slide.image
+              img.onload = resolve
+              img.onerror = resolve // Resolve anyway to avoid breaking the whole slider if one fails
+            })
+          })
+
+          await Promise.all(imagePromises)
+          
+          // Now that images are in browser cache, it will swap instantly with zero delay
           setApiSlides(formattedSlides)
         }
       } catch (error) {
@@ -185,12 +199,12 @@ function HeroSection({ slides = DEFAULT_SLIDES }) {
   }
 
   return (
-    <section className="relative flex min-h-[100dvh] lg:portrait:min-h-[600px] items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="relative flex min-h-[100dvh] lg:portrait:min-h-[600px] items-center justify-center overflow-hidden bg-slate-950">
+      <div className="absolute inset-0 bg-slate-950">
         {safeSlides.map((slide, index) => (
           <div
             key={slide.image}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out bg-slate-950 ${
               index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >

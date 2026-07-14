@@ -72,7 +72,27 @@ function TeamCloudStand() {
       style={{ fontFamily: "'Open Sans', sans-serif" }}
     >
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-16 min-h-[50dvh] lg:portrait:min-h-[400px] lg:flex lg:items-center bg-white">
+      <section 
+        className="relative overflow-hidden pt-12 pb-16 min-h-[50dvh] lg:portrait:min-h-[400px] lg:flex lg:items-center bg-white"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="teamcs-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#teamcs-dot-grid)" />
+        </svg>
         <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
         <div className="section-shell relative z-20 w-full">
           <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">

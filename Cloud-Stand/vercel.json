@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/chat",
+      "destination": "https://text.pollinations.ai/openai"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

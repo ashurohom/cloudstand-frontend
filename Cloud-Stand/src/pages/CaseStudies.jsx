@@ -16,7 +16,27 @@ function CaseStudies() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <section className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[90dvh] lg:portrait:min-h-[600px] lg:flex lg:items-center">
+      <section 
+        className="relative overflow-hidden bg-white pt-16 pb-14 lg:min-h-[90dvh] lg:portrait:min-h-[600px] lg:flex lg:items-center"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="casestudies-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#casestudies-dot-grid)" />
+        </svg>
         <div className="section-shell relative z-10 grid items-center gap-12 lg:grid-cols-2">
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.div
@@ -72,7 +92,27 @@ function CaseStudies() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] py-14 lg:py-20">
+      <section 
+        className="relative overflow-hidden bg-white py-14 lg:py-20"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="casestudies-list-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#casestudies-list-dot-grid)" />
+        </svg>
         <div className="section-shell relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-[1280px] mx-auto">
             {caseStudies.slice(0, 9).map((study, index) => (
@@ -100,7 +140,7 @@ function CaseStudies() {
                     {study.title}
                   </h3>
 
-                  <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
+                  <p className="mt-4 mb-4 text-[16px] leading-relaxed text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                     {study.summary}
                   </p>
 

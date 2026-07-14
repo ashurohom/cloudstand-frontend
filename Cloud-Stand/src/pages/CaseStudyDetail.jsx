@@ -91,7 +91,7 @@ function CaseStudyDetail() {
                     animate={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="mt-6 text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 whitespace-pre-line text-justify"
+                    className="mt-6 text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 whitespace-pre-line"
                   >
                     {study.summary}
                   </motion.p>
@@ -112,7 +112,7 @@ function CaseStudyDetail() {
                   </p>
                 )}
                 {study.overview.map((para, i) => (
-                  <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-3 last:mb-0">
+                  <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 mb-3 last:mb-0">
                     {para}
                   </p>
                 ))}
@@ -134,7 +134,7 @@ function CaseStudyDetail() {
               {/* Solution Delivered & Key Components */}
               <div>
                 <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">Solution & Approach</h3>
-                <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-5">
+                <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 mb-5">
                   {study.solutionDelivered}
                 </p>
                 {study.keyComponents && study.keyComponents.length > 0 && (
@@ -167,7 +167,7 @@ function CaseStudyDetail() {
                   </>
                 )}
                 {study.solutionConclusion && (
-                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-5 mb-0">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 mt-5 mb-0">
                     {study.solutionConclusion}
                   </p>
                 )}
@@ -179,13 +179,13 @@ function CaseStudyDetail() {
                   <h3 className="text-xl font-bold text-[#0EA5E9] mb-4">{study.governanceHeading || 'Governance & Control Enhancements'}</h3>
                   {Array.isArray(study.governanceIntro) ? (
                     study.governanceIntro.map((para, i) => (
-                      <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4 whitespace-pre-line">
+                      <p key={i} className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 mb-4 whitespace-pre-line">
                         {para}
                       </p>
                     ))
                   ) : (
                     study.governanceIntro && (
-                      <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mb-4">
+                      <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 mb-4">
                         {study.governanceIntro}
                       </p>
                     )
@@ -211,7 +211,7 @@ function CaseStudyDetail() {
                     })}
                   </ul>
                   {study.governanceConclusion && (
-                    <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify mt-4 mb-0">
+                    <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 mt-4 mb-0">
                       {study.governanceConclusion}
                     </p>
                   )}
@@ -232,10 +232,21 @@ function CaseStudyDetail() {
                 </ul>
                 <div className="bg-[#f8fafc] rounded-2xl p-6 sm:p-8 border border-sky-100 shadow-sm">
                   <p className="font-bold text-[#EA580C] mb-2 text-[16px]">Outcome</p>
-                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80 text-justify">
+                  <p className="text-[16px] xl:text-base leading-7 xl:leading-8 text-black/80">
                     {study.outcome}
                   </p>
                 </div>
+              </div>
+
+              {/* Bottom Right Back Button */}
+              <div className="flex justify-end pt-4">
+                <Link 
+                  to="/case-studies" 
+                  className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-[#0EA5E9] transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Case Studies
+                </Link>
               </div>
             </div>
           </motion.div>

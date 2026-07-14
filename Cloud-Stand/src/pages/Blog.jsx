@@ -33,7 +33,7 @@ const quarterlyUpdates = [
     badgeColor: 'bg-indigo-50/80 text-[#EA580C] border-indigo-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]',
     fullContent: (
-      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] text-justify mt-6 border-t border-[#ececec] pt-6">
+      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] mt-6 border-t border-[#ececec] pt-6">
         <p>
           Oracle Fusion Cloud HCM 26A continues Oracle’s focus on <strong>embedding artificial intelligence across the employee lifecycle, introducing new AI-assisted experiences, Redwood innovations, and workforce intelligence capabilities</strong> designed to improve productivity, decision-making, and user experience.
         </p>
@@ -74,7 +74,7 @@ const quarterlyUpdates = [
     badgeColor: 'bg-emerald-50/80 text-[#EA580C] border-emerald-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]',
     fullContent: (
-      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] text-justify mt-6 border-t border-[#ececec] pt-6">
+      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] mt-6 border-t border-[#ececec] pt-6">
         <p>
           Oracle Fusion Cloud HCM 26B introduces significant advancements across <strong>Human Resources, Recruiting, Learning, Talent Management, Compensation, Benefits, Payroll, and Time & Labor.</strong> The release continues Oracle’s investment in Redwood user experiences and embedded AI capabilities designed to enhance productivity, decision-making, and employee engagement.
         </p>
@@ -118,7 +118,7 @@ const quarterlyUpdates = [
     badgeColor: 'bg-amber-50/80 text-[#EA580C] border-amber-200/50',
     glowColor: 'group-hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]',
     fullContent: (
-      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] text-justify mt-6 border-t border-[#ececec] pt-6">
+      <div className="space-y-4 text-[15px] leading-relaxed text-[#475569] mt-6 border-t border-[#ececec] pt-6">
         <p>
           Oracle Fusion Cloud HCM 26C introduces enhancements across <strong>Applications Security, HCM Common, HCM Data Loader, HCM Extracts, and HCM Spreadsheet Data Loader.</strong> The release continues Oracle’s focus on Redwood modernization, AI-assisted administration, and improved data management capabilities, helping organizations streamline HR operations while enhancing user experience and governance.
         </p>
@@ -320,8 +320,10 @@ function Blog() {
     e.preventDefault()
     const newErrors = {}
     if (!regForm.firstName.trim()) newErrors.firstName = 'Required'
-    if (!regForm.lastName.trim()) newErrors.lastName = 'Required'
-    if (regForm.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
+    
+    if (!regForm.email.trim()) {
+      newErrors.email = 'Required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
       newErrors.email = 'Invalid'
     }
 
@@ -432,8 +434,27 @@ function Blog() {
           Hero Section / Live Webinar (Contact Page Style)
           ========================================== */}
       {!hasWebinar ? (
-        <section className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white">
-          <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
+        <section 
+          className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white"
+          style={{
+            backgroundColor: '#ffffff',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <pattern id="blog-dot-grid-1" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+                <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#blog-dot-grid-1)" />
+          </svg>
           <div className="section-shell relative z-20 w-full">
             <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12">
               <div className="max-w-[760px] lg:w-[60%] flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
@@ -489,9 +510,25 @@ function Blog() {
       ) : (
       <section
         className="relative overflow-hidden pt-12 pb-16 min-h-[calc(100dvh-80px)] lg:portrait:min-h-[600px] lg:flex lg:items-center bg-white"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
-        {/* SOFT OVERLAY */}
-        <div className="absolute inset-0 bg-white/45 backdrop-blur-[1px]" />
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="blog-dot-grid-2" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#blog-dot-grid-2)" />
+        </svg>
 
         <div className="section-shell relative z-20 w-full">
           <div className="flex w-full flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-12">
@@ -658,17 +695,18 @@ function Blog() {
             <h2 className="mt-6 text-[30px] lg:text-[40px] font-extrabold tracking-tight text-white">
               Expert Webinar Sessions
             </h2>
-            <p className="mt-5 max-w-3xl text-[16px] leading-7 text-slate-400 ">
+            <p className="mt-5 max-w-3xl text-[16px] leading-7 text-slate-400">
               Watch enterprise cloud experts discuss Oracle Cloud, integrations, AI transformation, ERP modernization, and OCI best practices.
             </p>
           </div>
 
           <div className="mt-12 flex justify-center">
             <div className="w-full max-w-4xl">
-              <div className="relative overflow-hidden rounded-[26px] border border-slate-800 bg-slate-900/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
-                <div className="aspect-video rounded-lg overflow-hidden bg-black">
+              <div className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-500 hover:border-sky-500/30 hover:shadow-[0_30px_60px_rgba(14,165,233,0.2)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 via-transparent to-orange-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative z-10 aspect-video w-full overflow-hidden rounded-[20px] bg-black shadow-2xl">
                   <iframe
-                    className="h-full w-full"
+                    className="h-full w-full border-0"
                     src={showcaseVideos.featured}
                     title="CloudStand Featured Webinar"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -680,22 +718,21 @@ function Blog() {
           </div>
 
           {showcaseVideos.list.length > 0 && (
-            <div className="mt-16 flex flex-wrap justify-center gap-6">
+            <div className="mt-16 flex flex-wrap justify-center gap-6 lg:gap-8 w-full max-w-6xl mx-auto">
               {showcaseVideos.list.map((videoUrl, index) => (
                 <div 
                   key={index} 
-                  className="w-full max-w-[500px] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] min-w-[300px]"
+                  className="group relative w-full max-w-[500px] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-1.33rem)] min-w-[280px] overflow-hidden rounded-[24px] border border-white/10 bg-white/5 p-3 shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-sky-500/30 hover:bg-white/10 hover:shadow-[0_20px_40px_rgba(14,165,233,0.15)]"
                 >
-                  <div className="relative overflow-hidden rounded-[20px] border border-slate-800 bg-slate-900/50 p-4 shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl h-full">
-                    <div className="aspect-video rounded-lg overflow-hidden bg-black">
-                      <iframe
-                        className="h-full w-full"
-                        src={videoUrl}
-                        title={`CloudStand Video ${index + 1}`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="relative z-10 aspect-video w-full overflow-hidden rounded-[16px] bg-black shadow-inner">
+                    <iframe
+                      className="h-full w-full border-0"
+                      src={videoUrl}
+                      title={`CloudStand Video ${index + 1}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
                 </div>
               ))}
@@ -708,7 +745,27 @@ function Blog() {
       {/* ==========================================
           2. FEATURED QUARTERLY UPDATES SECTION
           ========================================== */}
-      <section className="relative py-24 sm:py-28 lg:py-32 bg-primary/45">
+      <section 
+        className="relative overflow-hidden py-24 sm:py-28 lg:py-32 bg-white"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="blog-release-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#blog-release-dot-grid)" />
+        </svg>
         <div className="section-shell relative z-10">
           <SectionTitle 
             eyebrow="Quarterly Release Hub" 
@@ -758,11 +815,11 @@ function Blog() {
                       <Icon className="h-6 w-6" />
                     </div>
 
-                    <h3 className="mt-4 max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
+                    <h3 className="mt-4 max-w-sm mx-auto text-center text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                       {update.title}
                     </h3>
 
-                    <p className={`mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-4'}`}>
+                    <p className={`mt-4 mb-4 text-[16px] leading-relaxed  text-[#5f6368] flex-1 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-4'}`}>
                       {update.description}
                     </p>
 
@@ -851,7 +908,7 @@ function Blog() {
                     <h3 className="mt-4 max-w-sm text-[1.25rem] font-bold leading-[1.3] text-black transition-colors duration-300 group-hover:text-[#0EA5E9]">
                       {act.title}
                     </h3>
-                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
+                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                       {act.description}
                     </p>
                   </div>
@@ -886,7 +943,7 @@ function Blog() {
               <h2 className="mt-6 text-[30px] lg:text-[40px] font-extrabold leading-tight text-slate-900">
                 Stay Ahead with <span className="text-gradient">CloudStand Insights</span>
               </h2>
-              <p className="mt-5 text-[16px] leading-7 text-text-muted ">
+              <p className="mt-5 text-[16px] leading-7 text-text-muted">
                 Get quarterly Oracle Cloud updates, expert webinars, enterprise AI trends, and cloud transformation insights directly in your inbox.
               </p>
 
@@ -1015,7 +1072,7 @@ function Blog() {
                         <input
                           name="lastName"
                           type="text"
-                          placeholder="Last Name *"
+                          placeholder="Last Name"
                           value={regForm.lastName}
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.lastName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
@@ -1027,7 +1084,7 @@ function Blog() {
                         <input
                           name="email"
                           type="email"
-                          placeholder="Work Email Address"
+                          placeholder="Email Address *"
                           value={regForm.email}
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.email ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}

@@ -6,7 +6,7 @@ import Badge from '../components/ui/Badge'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { fadeUp, iconPop, pageVariants, slideLeft, slideRight, staggerContainer, staggerItem } from '../animations/variants'
 
-const aboutSectionSpacing = 'py-10 sm:py-12 lg:py-14'
+const aboutSectionSpacing = 'py-12 sm:py-16 lg:py-20'
 
 function About() {
   useDocumentTitle('Cloudstand Consulting | About')
@@ -17,10 +17,42 @@ function About() {
 
   return (
     <motion.main animate="animate" className="pt-20" exit="exit" initial="initial" variants={pageVariants}>
-      <div className="flex flex-col w-full bg-white">
+      <div 
+        className="flex flex-col w-full relative overflow-hidden"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,75 60,105 0,135' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 150vh',
+          backgroundRepeat: 'repeat-y',
+        }}
+      >
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="about-dot-grid-full" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#about-dot-grid-full)" />
+        </svg>
+        <div
+          className="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full opacity-50"
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full opacity-50"
+          style={{ background: 'radial-gradient(circle, rgba(234,88,12,0.06) 0%, transparent 70%)' }}
+        />
+        <div
+          className="pointer-events-none absolute top-1/2 left-1/4 h-80 w-80 rounded-full opacity-30"
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }}
+        />
         
         {/* Row 1: Our Story */}
-        <section className="py-12 sm:py-16 lg:py-20 relative flex flex-col items-center bg-white">
+        <section className="py-12 sm:py-16 lg:py-20 relative flex flex-col items-center bg-transparent">
           <div className="section-shell relative z-10 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-16 items-center">
               <motion.div
@@ -33,19 +65,19 @@ function About() {
                 <h2 className="text-[30px] lg:text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#000000] mt-4 mb-6">
                   Transforming Oracle Cloud Investments into Business Value
                 </h2>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-2">
+                <p className="text-[16px] leading-relaxed text-black/80 mb-4">
                   <span className="font-bold">CloudStand Consulting</span> is a fast growing, innovation driven Oracle Cloud consulting firm dedicated to helping organizations unlock the full value of their Oracle Cloud investments and accelerate digital transformation.
                 </p>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-2">
+                <p className="text-[16px] leading-relaxed text-black/80 mb-4">
                   Founded in India and expanded across the USA, Canada we enable seamless collaboration, agile delivery, and region specific expertise.
                 </p>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-2">
+                <p className="text-[16px] leading-relaxed text-black/80 mb-4">
                   We specialize in end to end Oracle Cloud consulting, implementation, managed services, and enterprise transformation empowering organizations to build scalable, resilient, and future ready operations that deliver measurable value.
                 </p>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-2">
+                <p className="text-[16px] leading-relaxed text-black/80 mb-4">
                   Actively engaged in global Oracle communities, including Oracle AI World and ERP transformation forums, we stay aligned with evolving customer needs, regulatory landscapes, and emerging trends ensuring our solutions remain relevant and impactful.
                 </p>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify">
+                <p className="text-[16px] leading-relaxed text-black/80">
                   This global engagement and community driven approach keeps us responsive, adaptive, and innovation focused delivering streamlined solutions that evolve with client needs and market demands.
                 </p>
               </motion.div>
@@ -63,7 +95,7 @@ function About() {
         </section>
 
         {/* Row 2: What Makes Us Different */}
-        <section className="py-12 sm:py-16 lg:py-20 relative flex flex-col items-center bg-white">
+        <section className="py-12 sm:py-16 lg:py-20 relative flex flex-col items-center bg-transparent">
           <div className="section-shell relative z-10 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-center">
               <motion.div
@@ -86,11 +118,11 @@ function About() {
                 <h2 className="text-[30px] lg:text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#000000] mt-4 mb-6">
                   Trusted Oracle Experts for Complex Transformations
                 </h2>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-5">
+                <p className="text-[16px] leading-relaxed text-black/80 mb-5">
                   We are recognized for our ability to stabilize, recover, and successfully deliver complex Oracle programs that require deep functional, technical, and industry expertise. Organizations rely on us to address critical challenges, accelerate project outcomes, and drive long term success.
                 </p>
                 <p className="font-bold text-[#0EA5E9] mb-3">Our expertise spans:</p>
-                <ul className="space-y-2 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                <ul className="gap-y-2 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
                   {[
                     'Oracle Cloud Applications',
                     'Oracle Integration Cloud (OIC)',
@@ -110,7 +142,7 @@ function About() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify">
+                <p className="text-[16px] leading-relaxed text-black/80">
                   Beyond our core Oracle and AI services, we also provide <span className="font-bold">Professional Staffing Services</span> and <span className="font-bold">Business Corporate Training</span> to support our clients' broader organisational needs.
                 </p>
               </motion.div>
@@ -119,7 +151,7 @@ function About() {
         </section>
 
         {/* Row 3: Innovation & Impact */}
-        <section className="py-12 sm:py-16 lg:py-20 relative flex flex-col items-center bg-white">
+        <section className="py-12 sm:py-16 lg:py-20 relative flex flex-col items-center bg-transparent">
           <div className="section-shell relative z-10 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-16 items-center">
               <motion.div
@@ -132,14 +164,14 @@ function About() {
                 <h2 className="text-[30px] lg:text-[40px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#000000] mt-4 mb-6">
                   Powered by CloudStand CoE. Driven by Results.
                 </h2>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify mb-5">
-                  Our dedicated <span className="font-bold">CloudStand Center of Excellence (CoE)</span> focuses on developing proprietary accelerators, advancing AI-driven capabilities, and strengthening integration frameworks that improve delivery efficiency, predictability, and business insights.
+                <p className="text-[16px] leading-relaxed text-black/80 mb-5">
+                  Our dedicated <span className="font-bold">CloudStand Center of Excellence (CoE)</span> focuses on developing proprietary accelerators, advancing AI driven capabilities, and strengthening integration frameworks that improve delivery efficiency, predictability, and business insights.
                 </p>
                 <p className="font-bold text-[#0EA5E9] mb-3">Our Impact:</p>
                 <ul className="space-y-2.5 mb-6">
                   {[
                     <>OTL solution delivered for <span className="font-bold">200,000+ EMP</span> . Achieved using CoE's predefined biometric integration framework and validation rules</>,
-                    <>Payroll solution rolled out for <span className="font-bold">600,000+ EMP</span>, Delivered via CoE's Fast Formula repository, legislation-wise reports, and standard integrations.</>,
+                    <>Payroll solution rolled out for <span className="font-bold">600,000+ EMP</span>, Delivered via CoE's Fast Formula repository, legislation wise reports, and standard integrations.</>,
                     <>Dedicated research and development focused on automation . Current aimed active products is <span className="font-bold">Benefit</span> and <span className="font-bold">Payroll</span> AI Agents.</>,
                     <>CloudStand CoE proudly presents 'CloudScan' a in house engineered Oracle system assessment</>
                   ].map((item, i) => (
@@ -154,7 +186,7 @@ function About() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-[16px] leading-relaxed text-black/80 text-justify">
+                <p className="text-[16px] leading-relaxed text-black/80">
                   As a growing and ambitious organization, we remain focused on delivering quality, building credibility, and earning long term client trust through measurable business outcomes and continuous innovation.
                 </p>
               </motion.div>
@@ -185,10 +217,8 @@ function About() {
           </div>
         </section>
 
-      </div>
-
-      <section className={`${aboutSectionSpacing} bg-white`}>
-        <div className="section-shell">
+      <section className={`${aboutSectionSpacing} relative flex flex-col items-center bg-transparent`}>
+        <div className="section-shell relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Mission Section */}
             <motion.div 
@@ -199,7 +229,7 @@ function About() {
               className="flex flex-col xl:flex-row rounded-[32px] border border-[rgba(14,165,233,0.22)] bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)] overflow-hidden"
             >
               <div className="w-full xl:w-[45%] h-56 xl:h-auto relative overflow-hidden bg-black flex-shrink-0">
-                <img src="/Contact_Header.jpeg" alt="Mission" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                <img src="/About/mission.png" alt="Mission" className="absolute inset-0 w-full h-full object-cover opacity-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-5 lg:p-6">
                   <span className="text-white/80 text-[12px] font-semibold tracking-wider uppercase">Our Purpose</span>
                 </div>
@@ -209,7 +239,7 @@ function About() {
                 <div>
                   <Badge>Mission</Badge>
                 </div>
-                <p className="mt-4 text-[16px] leading-relaxed text-black/80 text-justify">
+                <p className="mt-4 text-[16px] leading-relaxed text-black/80">
                   To deliver Oracle Cloud transformation with integrity, innovation, and unwavering security leveraging automation and AI to reduce risks, optimize costs, and accelerate business results for our clients.
                 </p>
               </div>
@@ -227,8 +257,8 @@ function About() {
                 <div>
                   <Badge>Vision</Badge>
                 </div>
-                <p className="mt-4 text-[16px] leading-relaxed text-black/80 text-justify">
-                  To be the most trusted Oracle Cloud transformation partner by sustaining unwavering integrity, fostering world class talent, and continuously delivering success through automation, AI driven innovation, and outcome focused secured solutions.
+                <p className="mt-4 text-[16px] leading-relaxed text-black/80">
+                  To be the most trusted Oracle Cloud transformation partner by sustaining unwavering integrity, fostering world class talent, and continuously delivering success through automation, AI driven innovation, outcome focused secured solutions.
                 </p>
               </div>
 
@@ -242,6 +272,7 @@ function About() {
           </div>
         </div>
       </section>
+      </div>
     </motion.main>
   )
 }

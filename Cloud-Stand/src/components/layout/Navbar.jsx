@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { fadeUp, staggerContainer, staggerItem } from '../../animations/variants
 
 const navLinks = [
   { label: 'Home', path: '/' },
+  { label: 'AI Labs', path: '/cloud-ai' },
   { label: 'About', path: '/about' },
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'Insights', path: '/insights' },
@@ -34,6 +35,22 @@ function Navbar() {
   const [careersOpen, setCareersOpen] = useState(false)
   const [hoveredPath, setHoveredPath] = useState('')
   const location = useLocation()
+  const navRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuOpen && navRef.current && !navRef.current.contains(event.target)) {
+        setMenuOpen(false)
+        setServicesOpen(false)
+        setCareersOpen(false)
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [menuOpen])
 
   const serviceItems = useMemo(
     () =>
@@ -64,10 +81,7 @@ function Navbar() {
     setCareersOpen(false)
     setHoveredPath('')
     if (typeof path === 'string' && path.includes('#')) {
-      // The Services page useEffect will handle the scrolling, 
-      // just don't scroll to top here so they don't fight.
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      // The Services page useEffect will handle the scrolling
     }
   }
 
@@ -82,6 +96,7 @@ function Navbar() {
 
   return (
     <motion.header
+      ref={navRef}
       className={`gpu-layer smooth-transition fixed inset-x-0 top-0 z-50 transition-all duration-300 ${navClassName}`}
       initial={false}
     >
@@ -107,7 +122,7 @@ function Navbar() {
             initial="hidden"
             variants={staggerContainer}
           >
-            {navLinks.slice(0, 2).map((item, index) => (
+            {navLinks.slice(0, 3).map((item, index) => (
               <motion.div custom={index} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
@@ -186,7 +201,7 @@ function Navbar() {
               </AnimatePresence>
             </motion.div>
 
-            {navLinks.slice(2, 4).map((item, index) => (
+            {navLinks.slice(3, 5).map((item, index) => (
               <motion.div custom={index + 4} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
@@ -264,7 +279,7 @@ function Navbar() {
               </AnimatePresence>
             </motion.div>
 
-            {navLinks.slice(4).map((item, index) => (
+            {navLinks.slice(5).map((item, index) => (
               <motion.div custom={index + 7} key={item.path} variants={fadeUp}>
                 <NavLink
                   className="relative py-2 text-sm text-black transition-colors hover:text-[#0EA5E9]"
@@ -339,7 +354,7 @@ function Navbar() {
               <motion.div animate="visible" className="flex flex-col gap-3" initial="hidden" variants={staggerContainer}>
                 
                 {/* 1. Home and About */}
-                {navLinks.slice(0, 2).map((item) => (
+                {navLinks.slice(0, 3).map((item) => (
                   <motion.div key={item.path} variants={staggerItem}>
                     <NavLink
                       className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
@@ -356,13 +371,14 @@ function Navbar() {
 
                 {/* 2. Services Accordion */}
                 <motion.div variants={staggerItem} className="flex flex-col">
-                  <button 
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                    className="flex w-full items-center justify-between rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
-                  >
-                    <span>Services</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
-                  </button>
+                  <div className="flex w-full items-center justify-between rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50">
+                    <Link to="/services" onClick={() => handleNavClick('/services')} className="flex-1 text-left">
+                      Services
+                    </Link>
+                    <button onClick={(e) => { e.preventDefault(); setServicesOpen(!servicesOpen); }} className="p-1 -mr-1">
+                      <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
                   <AnimatePresence>
                     {servicesOpen && (
                       <motion.div
@@ -389,7 +405,7 @@ function Navbar() {
                 </motion.div>
 
                 {/* 3. Case Studies and Insights */}
-                {navLinks.slice(2, 4).map((item) => (
+                {navLinks.slice(3, 5).map((item) => (
                   <motion.div key={item.path} variants={staggerItem}>
                     <NavLink
                       className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
@@ -406,13 +422,14 @@ function Navbar() {
 
                 {/* 4. Careers Accordion */}
                 <motion.div variants={staggerItem} className="flex flex-col">
-                  <button 
-                    onClick={() => setCareersOpen(!careersOpen)}
-                    className="flex w-full items-center justify-between rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"
-                  >
-                    <span>Careers</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${careersOpen ? 'rotate-180' : ''}`} />
-                  </button>
+                  <div className="flex w-full items-center justify-between rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50">
+                    <Link to="/careers" onClick={() => handleNavClick('/careers')} className="flex-1 text-left">
+                      Careers
+                    </Link>
+                    <button onClick={(e) => { e.preventDefault(); setCareersOpen(!careersOpen); }} className="p-1 -mr-1">
+                      <ChevronDown className={`h-4 w-4 transition-transform ${careersOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
                   <AnimatePresence>
                     {careersOpen && (
                       <motion.div
@@ -439,7 +456,7 @@ function Navbar() {
                 </motion.div>
 
                 {/* 5. Contact */}
-                {navLinks.slice(4).map((item) => (
+                {navLinks.slice(5).map((item) => (
                   <motion.div key={item.path} variants={staggerItem}>
                     <NavLink
                       className="block rounded-2xl border border-sky-200 bg-white px-4 py-3 text-sm font-medium text-black transition hover:border-orange-400 hover:bg-sky-50"

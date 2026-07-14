@@ -15,7 +15,7 @@ function AIChatbot() {
     endRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isTyping])
 
-  const sendMessage = (rawMessage) => {
+  const sendMessage = async (rawMessage) => {
     const trimmed = rawMessage.trim()
 
     if (!trimmed || isTyping) {
@@ -29,41 +29,31 @@ function AIChatbot() {
       text: trimmed,
     }
 
-    setMessages((current) => [...current, userMessage])
+    const currentMessages = [...messages, userMessage]
+    setMessages(currentMessages)
     setInput('')
     setIsTyping(true)
 
-    window.setTimeout(() => {
+    try {
+      const replyText = await getChatbotReply(trimmed, currentMessages)
       messageIdRef.current += 1
       const assistantMessage = {
         id: `assistant-${messageIdRef.current}`,
         role: 'assistant',
-        text: getChatbotReply(trimmed),
+        text: replyText,
       }
-
       setMessages((current) => [...current, assistantMessage])
+    } catch (error) {
+      console.error(error)
+    } finally {
       setIsTyping(false)
-    }, 700)
+    }
   }
 
   return (
     <>
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[999] flex items-end gap-3">
-        <AnimatePresence>
-          {!isOpen ? (
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="hidden rounded-2xl border border-[#d7e5ff] bg-white/95 px-4 py-3 text-sm text-text-muted shadow-[0_18px_40px_rgba(24,67,148,0.12)] md:block"
-            >
-              <span className="inline-flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-accent" />
-                Assist
-              </span>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+
 
         <button
           aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}

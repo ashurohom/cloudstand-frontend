@@ -16,14 +16,30 @@ import ResolveQuery from './pages/ResolveQuery'
 import BackgroundDesigns from './pages/BackgroundDesigns'
 import TeamCloudStand from './pages/TeamCloudStand'
 import EmpoweringTalent from './pages/EmpoweringTalent'
+import CloudAI from './pages/CloudAI'
+import { useEffect } from 'react'
 
 function AnimatedRoutes() {
   const location = useLocation()
 
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname, location.hash])
+
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence 
+      mode="wait"
+      onExitComplete={() => {
+        if (!window.location.hash) {
+          window.scrollTo(0, 0)
+        }
+      }}
+    >
       <Routes location={location} key={location.pathname}>
         <Route element={<Home />} path="/" />
+        <Route element={<CloudAI />} path="/cloud-ai" />
         <Route element={<About />} path="/about" />
         <Route element={<Services />} path="/services" />
         <Route element={<CaseStudies />} path="/case-studies" />

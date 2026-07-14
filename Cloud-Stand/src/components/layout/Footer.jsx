@@ -1,8 +1,20 @@
 import { Mail, Phone } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Footer() {
   const currentYear = new Date().getFullYear()
+  const location = useLocation()
+
+  const handleAskExpertClick = () => {
+    if (location.pathname === '/contact') {
+      const element = document.getElementById('premium-inquiry')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
+  }
 
   const serviceLinks = [
     ['AI & Digital Enablement', '/services#ai-digital-enablement-services'],
@@ -14,7 +26,7 @@ function Footer() {
 
   const companyLinks = [
     ['Home', '/'],
-    ['AI Labs', '/ai-labs'],
+    ['AI Labs', '/cloud-ai'],
     ['About', '/about'],
     ['Contact', '/contact'],
     ['Careers', '/careers'],
@@ -123,7 +135,8 @@ function Footer() {
             {/* Column 4: Ask an Expert & Partner Logo */}
             <div className="flex flex-col items-center md:items-start lg:items-center w-full lg:col-span-3">
               <Link 
-                to="/contact" 
+                to="/contact#premium-inquiry" 
+                onClick={handleAskExpertClick}
                 className="inline-block w-48 text-center py-2 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-6 shadow-md"
               >
                 Ask an Expert

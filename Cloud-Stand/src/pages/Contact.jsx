@@ -10,6 +10,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle'
 import { services } from '../data/services'
 import { fadeUp, pageVariants, staggerContainer, staggerItem } from '../animations/variants'
 import { API_ENDPOINTS } from '../config/api'
+import { useLocation } from 'react-router-dom'
 
 const initialForm = {
   name: '',
@@ -102,7 +103,8 @@ const faqs = [
 ]
 
 function Contact() {
-  useDocumentTitle('Cloudstand Consulting | Contact')
+  useDocumentTitle('Cloudstand Consulting | Contact Us')
+  const location = useLocation()
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
@@ -115,8 +117,18 @@ function Contact() {
 
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace('#', '')
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [location])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -262,7 +274,7 @@ Bentonville, Arkansas, 72712`,
             {/* DESCRIPTION */}
             <motion.p
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] text-justify lg:text-left"
+              className="mt-6 max-w-[600px] text-[16px] leading-8 text-[#475569] lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
@@ -284,11 +296,7 @@ Bentonville, Arkansas, 72712`,
 
               {/* ORANGE BUTTON */}
               <button
-                onClick={() =>
-                  document.getElementById('lets-talk')?.scrollIntoView({
-                    behavior: 'smooth',
-                  })
-                }
+                onClick={() => setIsHealthCheckModalOpen(true)}
                 className="inline-flex items-center gap-3 rounded-full bg-[#EA580C] px-9 py-4 text-[16px] font-semibold text-white shadow-[0_18px_40px_rgba(234,88,12,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#d9480f]"
               >
 
@@ -354,17 +362,26 @@ Bentonville, Arkansas, 72712`,
       <section
         id="lets-talk"
         className="relative overflow-hidden bg-white py-16 lg:py-24"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
-        {/* BACKGROUND TEXTURE */}
-        <div
-          className="absolute inset-0 opacity-[0.5]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='0' cy='0' r='50' fill='rgba(14,165,233,0.05)' /%3E%3Ccircle cx='100' cy='100' r='60' fill='rgba(234,88,12,0.05)' /%3E%3Ccircle cx='50' cy='50' r='30' fill='rgba(0,0,0,0.02)' /%3E%3C/svg%3E")`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-          }}
-        />
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="contact-locations-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#contact-locations-dot-grid)" />
+        </svg>
+        {/* BACKGROUND IMAGE REMOVED */}
 
         <div className="section-shell relative z-10">
 
@@ -385,7 +402,7 @@ Bentonville, Arkansas, 72712`,
             </h2>
 
             {/* TEXT */}
-            <p className="mt-6 max-w-[620px] text-[16px] leading-8 text-[#475569] text-justify lg:text-center">
+            <p className="mt-6 max-w-[620px] text-[16px] leading-8 text-[#475569] lg:text-center">
               Connect with our Oracle Cloud specialists to
               discuss implementation, optimization and
               enterprise transformation strategies tailored
@@ -403,30 +420,34 @@ Bentonville, Arkansas, 72712`,
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
               <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
-                <img src="https://flagcdn.com/w40/in.png" alt="India" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
+                <span className="text-white font-bold text-[14px] uppercase tracking-widest">Headquarters</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5 text-left">
-                <div className="flex flex-col">
-                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                    Pune, India
-                  </h3>
-                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
-                    Headquarters
-                  </p>
-                </div>
-                <div className="my-4 h-px w-full bg-slate-100" />
+              <div 
+                className="relative flex flex-1 flex-col p-5 text-center bg-cover bg-center"
+                style={{ backgroundImage: 'url("/locations/pune.png")' }}
+              >
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex flex-col items-center">
+                    <img src="https://flagcdn.com/w320/in.png" alt="India" className="h-[56px] w-[56px] rounded-full object-cover shadow-sm mb-3" />
+                    <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-white">
+                      Pune, India
+                    </h3>
+                  </div>
+                  <div className="my-4 h-px w-full bg-white/20" />
 
-                <div className="flex flex-col flex-1">
-                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    Office No.19, Nirvana Hub,<br />
-                    Keshav Nagar - Manjari Rd,<br />
-                    z-corner, Pune 412307
-                  </p>
-                  <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] font-semibold text-black">
-                      +91 9503036784
+                  <div className="flex flex-col flex-1 items-center">
+                    <p className="text-[14px] font-medium leading-snug text-white mb-4">
+                      Office No.19, Nirvana Hub,<br />
+                      Keshav Nagar - Manjari Rd,<br />
+                      z-corner, Pune 412307
                     </p>
+                    <div className="mt-auto space-y-2.5 flex flex-col items-center">
+                      <p className="text-[14.5px] font-bold text-white">
+                        +91 9503036784
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -438,29 +459,33 @@ Bentonville, Arkansas, 72712`,
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
               <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
-                <img src="https://flagcdn.com/w40/us.png" alt="USA" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
+                <span className="text-white font-bold text-[14px] uppercase tracking-widest">US Office</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5 text-left">
-                <div className="flex flex-col">
-                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                    Texas, USA
-                  </h3>
-                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
-                    US Office
-                  </p>
-                </div>
-                <div className="my-4 h-px w-full bg-slate-100" />
+              <div 
+                className="relative flex flex-1 flex-col p-5 text-center bg-cover bg-center"
+                style={{ backgroundImage: 'url("/locations/texas.png")' }}
+              >
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex flex-col items-center">
+                    <img src="https://flagcdn.com/w320/us.png" alt="USA" className="h-[56px] w-[56px] rounded-full object-cover shadow-sm mb-3" />
+                    <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-white">
+                      Texas, USA
+                    </h3>
+                  </div>
+                  <div className="my-4 h-px w-full bg-white/20" />
 
-                <div className="flex flex-col flex-1">
-                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    5900 Balcones Dr Suit 100,<br />
-                    Austin, TX 78731
-                  </p>
-                  <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] font-semibold text-black">
-                      +1 (512) 903-8971
+                  <div className="flex flex-col flex-1 items-center">
+                    <p className="text-[14px] font-medium leading-snug text-white mb-4">
+                      5900 Balcones Dr Suit 100,<br />
+                      Austin, TX 78731
                     </p>
+                    <div className="mt-auto space-y-2.5 flex flex-col items-center">
+                      <p className="text-[14.5px] font-bold text-white">
+                        +1 (512) 903-8971
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -472,29 +497,33 @@ Bentonville, Arkansas, 72712`,
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
               <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
-                <img src="https://flagcdn.com/w40/us.png" alt="USA" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
+                <span className="text-white font-bold text-[14px] uppercase tracking-widest">US Office</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5 text-left">
-                <div className="flex flex-col">
-                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                    Arkansas, USA
-                  </h3>
-                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
-                    US Office
-                  </p>
-                </div>
-                <div className="my-4 h-px w-full bg-slate-100" />
+              <div 
+                className="relative flex flex-1 flex-col p-5 text-center bg-cover bg-center"
+                style={{ backgroundImage: 'url("/locations/newyork.png")' }}
+              >
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex flex-col items-center">
+                    <img src="https://flagcdn.com/w320/us.png" alt="USA" className="h-[56px] w-[56px] rounded-full object-cover shadow-sm mb-3" />
+                    <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-white">
+                      Arkansas, USA
+                    </h3>
+                  </div>
+                  <div className="my-4 h-px w-full bg-white/20" />
 
-                <div className="flex flex-col flex-1">
-                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    900 SE 5th St, Suite 22,<br />
-                    Bentonville , Arkansas , 72712
-                  </p>
-                  <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] font-semibold text-black">
-                      +1 (602) 503-9547
+                  <div className="flex flex-col flex-1 items-center">
+                    <p className="text-[14px] font-medium leading-snug text-white mb-4">
+                      900 SE 5th St, Suite 22,<br />
+                      Bentonville , Arkansas , 72712
                     </p>
+                    <div className="mt-auto space-y-2.5 flex flex-col items-center">
+                      <p className="text-[14.5px] font-bold text-white">
+                        +1 (602) 503-9547
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -506,30 +535,34 @@ Bentonville, Arkansas, 72712`,
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
               <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
-                <img src="https://flagcdn.com/w40/ca.png" alt="Canada" className="h-[26px] w-[26px] rounded-full object-cover shadow-sm" />
+                <span className="text-white font-bold text-[14px] uppercase tracking-widest">Canada Office</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5 text-left">
-                <div className="flex flex-col">
-                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                    Canada
-                  </h3>
-                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
-                    Canada Office
-                  </p>
-                </div>
-                <div className="my-4 h-px w-full bg-slate-100" />
+              <div 
+                className="relative flex flex-1 flex-col p-5 text-center bg-cover bg-center"
+                style={{ backgroundImage: 'url("/locations/canada.png")' }}
+              >
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex flex-col items-center">
+                    <img src="https://flagcdn.com/w320/ca.png" alt="Canada" className="h-[56px] w-[56px] rounded-full object-cover shadow-sm mb-3" />
+                    <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-white">
+                      Canada
+                    </h3>
+                  </div>
+                  <div className="my-4 h-px w-full bg-white/20" />
 
-                <div className="flex flex-col flex-1">
-                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    1711 carolyn road,<br />
-                    missisauga, ontario,<br />
-                    l5m 2c9
-                  </p>
-                  <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] font-semibold text-black">
-                      +1 (226) 338-7868
+                  <div className="flex flex-col flex-1 items-center">
+                    <p className="text-[14px] font-medium leading-snug text-white mb-4">
+                      1711 carolyn road,<br />
+                      missisauga, ontario,<br />
+                      l5m 2c9
                     </p>
+                    <div className="mt-auto space-y-2.5 flex flex-col items-center">
+                      <p className="text-[14.5px] font-bold text-white">
+                        +1 (226) 338-7868
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -541,40 +574,44 @@ Bentonville, Arkansas, 72712`,
               className="group flex flex-col overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
             >
               <div className="relative h-[48px] w-full overflow-hidden bg-[#0EA5E9] flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0284c7]">
-                <svg viewBox="0 0 512 512" className="h-[26px] w-[26px] shadow-sm rounded-full">
-                  <clipPath id="circle-clip-uae">
-                    <circle cx="256" cy="256" r="256" />
-                  </clipPath>
-                  <g clipPath="url(#circle-clip-uae)">
-                    <rect x="128" y="0" width="384" height="170.66" fill="#69A357" />
-                    <rect x="128" y="170.66" width="384" height="170.67" fill="#F2F2F2" />
-                    <rect x="128" y="341.33" width="384" height="170.66" fill="#1F1F1F" />
-                    <rect x="0" y="0" width="128" height="512" fill="#CC4539" />
-                  </g>
-                </svg>
+                <span className="text-white font-bold text-[14px] uppercase tracking-widest">Regional Partner</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5 text-left">
-                <div className="flex flex-col">
-                  <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-black">
-                    Dubai, UAE
-                  </h3>
-                  <p className="text-[#EA580C] text-[13px] font-bold mt-1.5 uppercase tracking-wider">
-                    Regional Partner
-                  </p>
-                </div>
-                <div className="my-4 h-px w-full bg-slate-100" />
+              <div 
+                className="relative flex flex-1 flex-col p-5 text-center bg-cover bg-center"
+                style={{ backgroundImage: 'url("/locations/dubai.png")' }}
+              >
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex flex-col items-center">
+                    <svg viewBox="0 0 512 512" className="h-[56px] w-[56px] shadow-sm rounded-full mb-3">
+                      <clipPath id="circle-clip-uae">
+                        <circle cx="256" cy="256" r="256" />
+                      </clipPath>
+                      <g clipPath="url(#circle-clip-uae)">
+                        <rect x="128" y="0" width="384" height="170.66" fill="#69A357" />
+                        <rect x="128" y="170.66" width="384" height="170.67" fill="#F2F2F2" />
+                        <rect x="128" y="341.33" width="384" height="170.66" fill="#1F1F1F" />
+                        <rect x="0" y="0" width="128" height="512" fill="#CC4539" />
+                      </g>
+                    </svg>
+                    <h3 className="text-[1.5rem] font-bold leading-none tracking-tight text-white">
+                      Dubai, UAE
+                    </h3>
+                  </div>
+                  <div className="my-4 h-px w-full bg-white/20" />
 
-                <div className="flex flex-col flex-1">
-                  <p className="text-[14px] leading-snug text-[#475569] mb-4">
-                    Meydan Grandstand, 6th Floor<br />
-                    Meydan Road, Nad Al Sheba<br />
-                    Dubai, U.A.E.
-                  </p>
-                  <div className="mt-auto space-y-2.5">
-                    <p className="text-[14.5px] font-semibold text-black">
-                      +971 52 867 7172
+                  <div className="flex flex-col flex-1 items-center">
+                    <p className="text-[14px] font-medium leading-snug text-white mb-4">
+                      Meydan Grandstand, 6th Floor<br />
+                      Meydan Road, Nad Al Sheba<br />
+                      Dubai, U.A.E.
                     </p>
+                    <div className="mt-auto space-y-2.5 flex flex-col items-center">
+                      <p className="text-[14.5px] font-bold text-white">
+                        +971 52 867 7172
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -616,7 +653,7 @@ Bentonville, Arkansas, 72712`,
                 <h2 className="mt-4 text-[30px] lg:text-[40px] font-bold leading-[1.02] tracking-tight text-[#111827] text-center">
                   Start a Conversation
                 </h2>
-                <p className="mt-2 text-[16px] leading-relaxed text-[#475569] text-justify lg:text-center">
+                <p className="mt-2 text-[16px] leading-relaxed text-[#475569] lg:text-center">
                   Let’s discuss your cloud transformation and enterprise technology needs.
                 </p>
               </div>
@@ -799,7 +836,7 @@ Bentonville, Arkansas, 72712`,
             </h2>
 
             {/* DESCRIPTION */}
-            <p className="mt-6 max-w-[650px] text-[16px] leading-8 text-[#475569] text-justify lg:text-center">
+            <p className="mt-6 max-w-[650px] text-[16px] leading-8 text-[#475569] lg:text-center">
 
               CloudStand Consulting headquarters serves as the
               strategic center for Oracle Cloud transformation,
@@ -938,24 +975,26 @@ Bentonville, Arkansas, 72712`,
 
       <section
         id="faq"
-        className="relative overflow-hidden bg-[#fcfcfd] py-24"
+        className="relative overflow-hidden py-24 bg-white"
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
-
-        {/* BACKGROUND TEXTURE */}
-        <div
-          className="absolute inset-0 opacity-[0.18]"
-          style={{
-            backgroundImage: `
-        linear-gradient(rgba(14,165,233,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(14,165,233,0.05) 1px, transparent 1px)
-      `,
-            backgroundSize: '24px 24px',
-          }}
-        />
-
-        {/* SOFT GLOW */}
-        <div className="absolute left-0 top-0 h-[320px] w-[320px] rounded-full bg-[#0EA5E9]/[0.05] blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[320px] w-[320px] rounded-full bg-[#EA580C]/[0.05] blur-3xl" />
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="faq-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#faq-dot-grid)" />
+        </svg>
 
         <div className="section-shell relative z-10">
 
@@ -1000,7 +1039,7 @@ Bentonville, Arkansas, 72712`,
                 </h2>
 
                 {/* TEXT */}
-                <p className="mt-6 text-[16px] leading-8 text-[#475569] text-justify lg:text-center">
+                <p className="mt-6 text-[16px] leading-8 text-[#475569] lg:text-center">
 
                   Helpful answers about our Oracle Cloud consulting,
                   implementation process, support model and

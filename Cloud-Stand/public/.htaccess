@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Proxy /api/chat directly to our PHP proxy script on Hostinger
+  RewriteRule ^api/chat/?$ chat-proxy.php [L]
+
+  # 2. React Router Fallback: Redirect all other requests to index.html
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

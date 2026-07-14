@@ -111,7 +111,7 @@ function HomeSectionTitle({ eyebrow, title, subtitle, showLine = true, className
           className="mt-2 h-1 w-16 rounded-full bg-sky-500"
         />
       ) : null}
-      {subtitle ? <p className="text-[16px] leading-7 text-black ">{subtitle}</p> : null}
+      {subtitle ? <p className="text-[16px] leading-7 text-black">{subtitle}</p> : null}
     </div>
   )
 }
@@ -127,19 +127,23 @@ function Home() {
   }))
   const enhancedTestimonials = testimonials
   const [current, setCurrent] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
   const total = enhancedTestimonials.length
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Force scroll to top on mount to counteract any inherited scroll position during transitions
+    window.scrollTo(0, 0)
   }, [])
 
   useEffect(() => {
+    if (isHovered) return
+
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % total)
     }, 4000)
 
     return () => clearInterval(timer)
-  }, [total])
+  }, [total, isHovered])
 
   return (
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
@@ -304,7 +308,7 @@ function Home() {
               Why Global Enterprises Choose Cloudstand
             </h2>
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-sky-500" />
-            <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-black ">
+            <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-black">
               We combine deep Oracle expertise, agile delivery, and transformation-focused consulting to help organizations modernize operations with confidence
             </p>
           </motion.div>
@@ -312,13 +316,7 @@ function Home() {
           <div className="mt-14 grid items-start gap-6 md:grid-cols-2 max-w-6xl mx-auto">
 
             {/* ── LEFT: Checklist ── */}
-            <motion.div
-              initial="hidden"
-              variants={slideLeft}
-              viewport={{ once: true, margin: '-80px' }}
-              whileInView="visible"
-              className="flex flex-col"
-            >
+            <div className="flex flex-col">
               <div className="grid gap-3">
                 {leftPartnerPoints.map((item, i) => (
                   <motion.div
@@ -340,16 +338,10 @@ function Home() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* ── RIGHT: Checklist ── */}
-            <motion.div
-              initial="hidden"
-              variants={slideRight}
-              viewport={{ once: true, margin: '-80px' }}
-              whileInView="visible"
-              className="flex flex-col"
-            >
+            <div className="flex flex-col">
               <div className="grid gap-3">
                 {rightPartnerPoints.map((item, i) => (
                   <motion.div
@@ -371,7 +363,7 @@ function Home() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
           </div>
 
@@ -422,7 +414,7 @@ function Home() {
             </h2>
 
             <div className="mx-auto mt-6 h-1 w-16 rounded-full bg-[#0EA5E9]" />
-            <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-black ">
+            <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-7 text-black">
               From workforce transformation to enterprise integrations, we help organizations modernize operations, improve efficiency, and create long-term business value.
             </p>
           </div>
@@ -452,7 +444,7 @@ function Home() {
                       {study.title}
                     </h3>
 
-                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-justify text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
+                    <p className="mt-4 mb-4 text-[16px] leading-relaxed text-[#5f6368] flex-1 line-clamp-4 whitespace-pre-line">
                       {study.summary}
                       {study.result && (
                         <>
@@ -539,7 +531,42 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-16 w-full pb-8 overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {/* MOBILE VERTICAL VIEW (hidden on lg and above) */}
+          <div className="lg:hidden mt-10 relative px-4 sm:px-8 max-w-lg mx-auto">
+            {/* Vertical connecting line */}
+            <div className="absolute top-4 bottom-4 left-[27px] sm:left-[43px] w-[2px] bg-[#EA580C] z-0" />
+            
+            <div className="flex flex-col gap-10">
+              {deliveryModelSteps.map((step, index) => (
+                <motion.div 
+                  key={step.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative flex items-start gap-6 z-10"
+                >
+                  {/* Popping Ring Node */}
+                  <div className="relative flex shrink-0 items-center justify-center w-6 h-6 rounded-full bg-white mt-1 z-10">
+                    <motion.div
+                      animate={{ scale: [0.6, 1.5, 2.2], opacity: [0, 1, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: index * 0.15 }}
+                      className="absolute w-4 h-4 rounded-full border-[2px] border-[#EA580C] bg-transparent"
+                    />
+                    <div className="w-2 h-2 rounded-full bg-[#EA580C] relative z-20" />
+                  </div>
+                  {/* Content */}
+                  <div className="flex flex-col text-left">
+                    <h3 className="text-[16px] font-bold text-[#0EA5E9] mb-1.5">{step.title}</h3>
+                    <p className="text-[14px] text-black leading-relaxed">{step.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* DESKTOP HORIZONTAL VIEW (hidden below lg) */}
+          <div className="hidden lg:block mt-16 w-full pb-8 overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="relative min-w-[1000px] lg:min-w-full px-4 lg:px-10 xl:px-12">
               <div className="grid grid-cols-6 gap-0 relative">
                 {/* Central Horizontal Line */}
@@ -628,7 +655,11 @@ function Home() {
             </p>
           </div>
 
-          <div className="min-w-0 h-[500px] sm:h-[420px] lg:h-[380px] flex flex-col">
+          <div 
+            className="min-w-0 h-[580px] sm:h-[480px] lg:h-[450px] flex flex-col justify-between"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -650,7 +681,7 @@ function Home() {
                   </svg>
                 </div>
 
-                <blockquote className="-mt-1 text-sm leading-relaxed text-black sm:text-base lg:text-lg lg:leading-[1.7] text-justify">
+                <blockquote className="-mt-1 text-sm leading-relaxed text-black sm:text-base lg:text-lg lg:leading-[1.7]">
                   {enhancedTestimonials[current].quote}
                 </blockquote>
 

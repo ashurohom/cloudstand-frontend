@@ -1,3 +1,10 @@
+import { services } from './services'
+import { blogs } from './blogs'
+import { caseStudies } from './caseStudies'
+import { faqEntries } from './faqData'
+import { jobs } from './jobs'
+import { API_ENDPOINTS } from '../config/api'
+
 export const chatbotQuickPrompts = [
   'What Oracle Cloud services do you offer?',
   'Where are your offices located?',
@@ -69,10 +76,7 @@ const qaDatabase = [
     keywords: ['schedule a demo', 'demo request', 'demo'],
     reply: "Email info@cloudstandconsulting.com with subject: 'Demo Request — Oracle AI Payroll Agent' and our CoE team will set up a personalized walkthrough tailored to your needs."
   },
-  {
-    keywords: ['webinar', 'training session', 'events', 'host webinars'],
-    reply: "Yes! CloudStand regularly hosts educational webinars on Oracle Cloud topics. Our latest webinar covers:\n• AI-Driven Payroll Optimization in Oracle HCM\n• Oracle Payroll Digital Agent live demonstrations\n• Center of Excellence (CoE) innovations\n\nVisit our website or follow us on LinkedIn to stay updated on upcoming sessions."
-  },
+
   {
     keywords: ['register', 'invitation list', 'sign up for webinar'],
     reply: "Visit our website and look for the Events or Webinar section. You can also email info@cloudstandconsulting.com to be added to our invitation list."
@@ -144,24 +148,167 @@ const qaDatabase = [
   {
     keywords: ['thank'],
     reply: "You are very welcome! If you need anything else, just ask."
+  },
+  {
+    keywords: ['mission', 'purpose'],
+    reply: "CloudStand's Mission is to deliver Oracle Cloud transformation with integrity, innovation, and unwavering security leveraging automation and AI to reduce risks, optimize costs, and accelerate business results for our clients."
+  },
+  {
+    keywords: ['vision', 'goal', 'goals'],
+    reply: "CloudStand's Vision is to be the most trusted Oracle Cloud transformation partner by sustaining unwavering integrity, fostering world class talent, and continuously delivering success through automation, AI driven innovation, outcome focused secured solutions."
   }
 ];
 
-export function getChatbotReply(input) {
-  const message = input.toLowerCase()
+// Dynamically seed database from external data files
+services.forEach(item => {
+  qaDatabase.push({
+    keywords: ['service', item.title.toLowerCase(), item.shortTitle.toLowerCase(), ...item.title.toLowerCase().split(' ')],
+    reply: `${item.title}: ${item.description} Key features: ${item.features.join(', ')}.`
+  });
+});
 
-  if (message.trim() === 'hi') {
-    return "Hello! Welcome to CloudStand. How can I help you with your Oracle Cloud journey today?"
-  }
+blogs.forEach(item => {
+  qaDatabase.push({
+    keywords: ['blog', 'insight', 'article', item.title.toLowerCase(), ...item.title.toLowerCase().split(' ')],
+    reply: `Blog post "${item.title}": ${item.excerpt} Read more in our Insights section.`
+  });
+});
 
-  // Iterate over database to find matching keywords
-  for (const entry of qaDatabase) {
-    for (const keyword of entry.keywords) {
-      if (message.includes(keyword)) {
-        return entry.reply
+caseStudies.forEach(item => {
+  const industry = item.industry || '';
+  qaDatabase.push({
+    keywords: ['case study', 'client', 'project', item.title.toLowerCase(), industry.toLowerCase(), ...industry.toLowerCase().split(' ')],
+    reply: `Case Study (${item.title}): ${item.summary}`
+  });
+});
+
+faqEntries.forEach(item => {
+  qaDatabase.push({
+    keywords: ['faq', 'question', item.question.toLowerCase(), ...item.question.toLowerCase().split(' ')],
+    reply: `${item.question} - ${item.answer}`
+  });
+});
+
+
+
+export async function getChatbotReply(input, conversationHistory = []) {
+  try {
+    const lowerInput = input.toLowerCase();
+    
+    // Break input into meaningful words (3+ characters) for flexible matching
+    const inputWords = lowerInput.replace(/[^\w\s]/gi, '').split(/\s+/).filter(w => w.length > 2);
+    
+    // Add fuzzy match synonyms for common misspellings or variants
+    if (inputWords.includes('adress') || inputWords.includes('addres')) inputWords.push('address', 'location');
+    if (inputWords.includes('overview') || inputWords.includes('short')) inputWords.push('about', 'company');
+    if (lowerInput.includes('hi') || lowerInput.includes('hello')) inputWords.push('hello');
+
+    // Score each database entry based on word hits
+    let scoredEntries = qaDatabase.map(entry => {
+      let score = 0;
+      const textToSearch = (entry.keywords.join(' ') + ' ' + entry.reply).toLowerCase();
+      
+      // High score for exact phrase matches in keywords
+      if (entry.keywords.some(k => lowerInput.includes(k))) {
+        score += 50;
+      }
+      
+      // +1 score for each matching word in the entry's text
+      inputWords.forEach(word => {
+        if (textToSearch.includes(word)) {
+          score += 1;
+        }
+      });
+      
+      return { entry, score };
+    });
+    
+    // Filter out zero scores, sort by highest score, and grab the top 3 most relevant entries
+    scoredEntries = scoredEntries.filter(e => e.score > 0).sort((a, b) => b.score - a.score);
+    
+    let relevantContext = scoredEntries.slice(0, 3).map(e => `- ${e.entry.reply}`).join('\n\n');
+    
+    // Dynamically fetch LIVE webinar data when asked
+    if (inputWords.includes('webinar') || inputWords.includes('event') || inputWords.includes('training')) {
+      try {
+        const res = await fetch(API_ENDPOINTS.liveWebinar);
+        let title = 'Future of Oracle Cloud Infrastructure';
+        let date = '12th Jun 2026';
+        let time = '7:00 PM IST';
+        let venue = 'Virtual';
+        let speaker = 'Dhananjay G, Karina Pawar';
+        
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Object.keys(data).length > 0 && !(Array.isArray(data) && data.length === 0)) {
+            title = data.title || title;
+            date = data.date || date;
+            time = data.time || time;
+            venue = data.venue || venue;
+            speaker = data.speaker || speaker;
+          }
+        }
+        relevantContext = `- Live Webinar: "${title}". Date: ${date}. Time: ${time}. Venue: ${venue}. Speakers: ${speaker}.\n\n` + relevantContext;
+      } catch (err) {
+        // Fallback to what is statically rendered on the UI if API fails
+        relevantContext = `- Live Webinar: "Future of Oracle Cloud Infrastructure". Date: 12th Jun 2026. Time: 7:00 PM IST. Venue: Virtual. Speakers: Dhananjay G, Karina Pawar.\n\n` + relevantContext;
       }
     }
-  }
+    
+    // Dynamically fetch LIVE open roles data when asked
+    if (inputWords.some(w => ['job', 'jobs', 'career', 'careers', 'hiring', 'vacancy', 'role', 'roles'].includes(w))) {
+      try {
+        const res = await fetch(API_ENDPOINTS.openRoles);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data) && data.length > 0) {
+            const jobsText = data.map(job => `- Hiring: ${job.title} in ${job.location || 'Remote'}`).join('\n');
+            relevantContext = `Live Open Roles:\n${jobsText}\n\n` + relevantContext;
+          } else {
+            relevantContext = `We currently have no open roles available at this moment. You can always email info@cloudstandconsulting.com with your resume.\n\n` + relevantContext;
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch live roles', err);
+      }
+    }
+    
+    if (!relevantContext) {
+      relevantContext = "If the user is greeting you, greet them warmly. Otherwise, politely inform them that you can only answer questions related to CloudStand's services, locations, careers, and Oracle Cloud expertise, and provide the contact email (info@cloudstandconsulting.com).";
+    }
 
-  return 'I am an AI assistant and I am still learning. To get started, you can ask me about our company, services, careers, webinars, or how to contact us.'
+    const shortSystemPrompt = `You are an AI assistant for CloudStand Consulting.
+Answer the user based ONLY on this context:
+${relevantContext}
+
+Instructions:
+1. Be concise, polite, and professional.
+2. Format in plain text (use standard - for bullets, do not use markdown **asterisks**).
+3. Do not make up information.`;
+
+    let promptString = `${shortSystemPrompt}\n\nConversation History:\n`;
+    
+    // Only include the last 4 messages to keep the URL extremely short
+    const recentHistory = conversationHistory.slice(-4);
+    for (const msg of recentHistory) {
+      const role = msg.role === 'assistant' ? 'Assistant' : 'User';
+      promptString += `${role}: ${msg.text}\n`;
+    }
+    promptString += `Assistant:`;
+
+    // 2. Use GET to bypass Cloudflare WAF POST blocks. 
+    // The prompt is now small enough to fit within standard URL limits!
+    const encodedPrompt = encodeURIComponent(promptString);
+    const response = await fetch(`https://text.pollinations.ai/${encodedPrompt}`);
+
+    if (!response.ok) {
+      throw new Error(`API returned status ${response.status}`);
+    }
+
+    const text = await response.text();
+    return text.trim();
+  } catch (error) {
+    console.error('Error fetching AI response:', error);
+    return `I'm having trouble connecting to my AI brain right now. (Error: ${error.message}). Please try again later or contact us at info@cloudstandconsulting.com.`;
+  }
 }

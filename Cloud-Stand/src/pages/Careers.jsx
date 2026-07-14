@@ -240,7 +240,27 @@ function Careers() {
       </section>
 {/* WHY WORK WITH US */}
 
-<section className="relative overflow-hidden bg-[#fcfcfd] py-10">
+<section 
+  className="relative overflow-hidden bg-white py-10"
+  style={{
+    backgroundColor: '#ffffff',
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+    backgroundSize: '100% 100%',
+    backgroundRepeat: 'no-repeat',
+  }}
+>
+  <svg
+    aria-hidden="true"
+    className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <pattern id="career-why-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#career-why-dot-grid)" />
+  </svg>
 
   {/* SOFT BACKGROUND */}
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.04),transparent_30%)]" />
@@ -287,7 +307,7 @@ function Careers() {
               duration: 0.35,
               delay: index * 0.04,
             }}
-            className="group relative border-b border-[#edf2f7] pb-4"
+            className="group relative pb-4"
           >
 
             <div className="flex items-start gap-4">
@@ -333,7 +353,28 @@ function Careers() {
 </section>
 {/* OPEN ROLES */}
 
-<section id="open-roles" className="relative overflow-hidden bg-[#FFFFFF] py-14">
+<section 
+  id="open-roles" 
+  className="relative overflow-hidden bg-[#FFFFFF] py-14"
+  style={{
+    backgroundColor: '#ffffff',
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 60,30 0,60' fill='rgba(14,165,233,0.06)'/%3E%3Cpolygon points='0,60 60,90 0,120' fill='rgba(234,88,12,0.06)'/%3E%3Cpolygon points='100,10 40,50 100,90' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E")`,
+    backgroundSize: '100% 100%',
+    backgroundRepeat: 'no-repeat',
+  }}
+>
+  <svg
+    aria-hidden="true"
+    className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.045]"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <pattern id="career-roles-dot-grid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="1.5" fill="#0EA5E9" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#career-roles-dot-grid)" />
+  </svg>
 
   {/* SOFT BACKGROUND */}
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.05),transparent_28%)]" />
@@ -414,7 +455,7 @@ function Careers() {
           </div>
 
           {/* DESCRIPTION */}
-          <p className="mt-5 text-[14px] leading-relaxed text-[#64748b] text-justify">
+          <p className="mt-5 text-[14px] leading-relaxed text-[#64748b]">
             {job.summary}
           </p>
 
