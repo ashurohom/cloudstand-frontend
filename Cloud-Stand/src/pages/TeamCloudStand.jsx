@@ -12,7 +12,7 @@ function TeamCloudStand() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   // State for images from Backend API
-  const [heroImage, setHeroImage] = useState('/Teamcloudstand/TeamCS.jpg')
+  const [heroImage, setHeroImage] = useState(null)
   const [galleryImages, setGalleryImages] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -106,7 +106,7 @@ function TeamCloudStand() {
               <div className="mt-4 h-1 w-16 rounded-full bg-[#0EA5E9]" />
 
               <motion.h1 animate={{ opacity: 1, y: 0 }} className="mt-6 text-[30px] lg:text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black text-center md:text-left" initial={{ opacity: 0, y: 25 }} transition={{ duration: 0.7, delay: 0.1 }}>
-                <span className="text-[#0EA5E9]">Team</span> <span className="text-[#EA580C]">CloudStand</span>
+                Team CloudStand
               </motion.h1>
 
               <motion.div animate={{ opacity: 1, y: 0 }} className="mt-6 space-y-4 text-[16px] leading-8 text-[#475569] text-center md:text-left max-w-[600px]" initial={{ opacity: 0, y: 20 }} transition={{ duration: 0.7, delay: 0.2 }}>
@@ -129,15 +129,19 @@ function TeamCloudStand() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="hidden lg:flex lg:w-[45%] lg:justify-end lg:items-center relative"
             >
-              <div className="relative z-10 w-[90%] max-w-[600px] aspect-[4/3] overflow-hidden rounded-[24px] shadow-[0_20px_50px_rgba(14,165,233,0.12)] border border-[#e0efff] scale-100 xl:scale-105">
-                <img 
-                  src={heroImage} 
-                  alt="Team CloudStand Hero" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800'
-                  }}
-                />
+              <div className="relative z-10 w-[90%] max-w-[600px] aspect-[4/3] overflow-hidden rounded-[24px] shadow-[0_20px_50px_rgba(14,165,233,0.12)] border border-[#e0efff] scale-100 xl:scale-105 bg-sky-50">
+                {!heroImage ? (
+                  <div className="w-full h-full animate-pulse bg-sky-100" />
+                ) : (
+                  <img 
+                    src={heroImage} 
+                    alt="Team CloudStand Hero" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800'
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
             

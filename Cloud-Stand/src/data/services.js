@@ -85,7 +85,7 @@ export const services = [
     tagline: 'Independent reviews to improve Oracle Cloud performance and readiness',
     description: 'Our Health Check & Advisory Services provide organizations with a structured evaluation of their Oracle Cloud environment through a complimentary 240-hour engagement. We perform detailed diagnostic assessments, fit gap analysis, process evaluations, compliance checks, and risk analysis to identify optimization opportunities. The output includes a fully documented health check report along with actionable recommendations and a strategic roadmap. Our engagement approach is advisory-led with no obligation or pressure, ensuring clients receive transparent insights to improve system performance, governance, and long-term operational efficiency.',
     features: [
-      'System health checks and process maturity assessments',
+      'System Health Checks and process maturity assessments',
       'Configuration review and risk identification',
       'Advisory recommendations for stabilization and optimization',
       'Governance, controls, and compliance review support',

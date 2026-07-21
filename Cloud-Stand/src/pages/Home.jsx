@@ -149,7 +149,11 @@ function Home() {
     <motion.main animate="animate" className="overflow-hidden pt-20" exit="exit" initial="initial" variants={pageVariants}>
       <HeroSection />
 
-      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
+      <HealthCheckModal 
+        isOpen={isHealthCheckModalOpen} 
+        onClose={() => setIsHealthCheckModalOpen(false)}
+        source="Health Check Analysis"
+      />
 
       <section className="bg-white py-12 sm:py-16">
         <div className="section-shell">

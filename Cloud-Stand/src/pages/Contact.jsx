@@ -11,11 +11,14 @@ import { services } from '../data/services'
 import { fadeUp, pageVariants, staggerContainer, staggerItem } from '../animations/variants'
 import { API_ENDPOINTS } from '../config/api'
 import { useLocation } from 'react-router-dom'
+import { countryCodes } from '../data/countryCodes'
+import SearchableCountrySelect from '../components/ui/SearchableCountrySelect'
 
 const initialForm = {
   name: '',
   company: '',
   email: '',
+  countryCode: '',
   phone: '',
   designation: '',
   serviceInterested: '',
@@ -142,15 +145,39 @@ function Contact() {
 
     const nextErrors = {}
 
-      ;['name', 'email', 'phone', 'serviceInterested', 'message'].forEach((field) => {
-        if (!form[field].trim()) {
-          nextErrors[field] = 'This field is required'
-        }
-      })
+    if (!form.name.trim()) {
+      nextErrors.name = 'Full name is required';
+    } else if (form.name.trim().length < 2) {
+      nextErrors.name = 'Name must be at least 2 characters';
+    }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (form.email && !emailPattern.test(form.email)) {
-      nextErrors.email = 'Enter a valid email address'
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email.trim() || !emailPattern.test(form.email)) {
+      nextErrors.email = 'Invalid Email';
+    }
+
+    const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/;
+    const phoneDigits = (form.countryCode + form.phone).replace(/\D/g, '');
+    if (!form.countryCode) {
+      nextErrors.phone = 'Country code is required';
+    } else if (!form.phone.trim()) {
+      nextErrors.phone = 'Phone number is required';
+    } else if (!phonePattern.test(form.phone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+      nextErrors.phone = 'Enter a valid phone number';
+    }
+
+    if (!form.company.trim()) {
+      nextErrors.company = 'Company name is required';
+    } else if (form.company.trim().length < 2) {
+      nextErrors.company = 'Company name must be at least 2 characters';
+    }
+
+    if (!form.serviceInterested.trim()) {
+      nextErrors.serviceInterested = 'Service Area is required';
+    }
+    
+    if (!form.message.trim()) {
+      nextErrors.message = 'Message is required';
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -173,7 +200,7 @@ function Contact() {
           name: form.name,
           email: form.email,
           company: form.company,
-          phone: form.phone,
+          phone: `${form.countryCode} ${form.phone}`,
           designation: form.designation,
           service_interested: form.serviceInterested,
           message: form.message,
@@ -193,7 +220,7 @@ function Contact() {
 
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitError('Failed to send inquiry. Please try again later.');
+      setSubmitError('Failed to send enquiry. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -622,7 +649,7 @@ Bentonville, Arkansas, 72712`,
       </section>
 
       {/* EMBEDDED CONTACT FORM SECTION */}
-      <section id="premium-inquiry" className="relative overflow-hidden bg-[#F7F9FC] py-16">
+      <section id="premium-enquiry" className="relative overflow-hidden bg-[#F7F9FC] py-16">
         <div className="section-shell relative z-10 max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-0 overflow-hidden rounded-[24px] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] border border-[#e2e8f0]">
 
@@ -663,11 +690,11 @@ Bentonville, Arkansas, 72712`,
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                     <svg className="h-8 w-8 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-[#111827] mb-2">Inquiry Submitted!</h3>
+                  <h3 className="text-2xl font-bold text-[#111827] mb-2">Enquiry Submitted!</h3>
                   <p className="text-[#475569]">Thank you for reaching out. We will get back to you shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
+                <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2" noValidate>
                   {/* FULL NAME */}
                   <div className="md:col-span-1">
                     <input
@@ -678,6 +705,7 @@ Bentonville, Arkansas, 72712`,
                       onChange={handleChange}
                       className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
                     />
+                    {errors.name && <span className="text-xs text-red-500 mt-1.5 block px-1">{errors.name}</span>}
                   </div>
 
                   {/* EMAIL */}
@@ -690,6 +718,7 @@ Bentonville, Arkansas, 72712`,
                       onChange={handleChange}
                       className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
                     />
+                    {errors.email && <span className="text-xs text-red-500 mt-1.5 block px-1">{errors.email}</span>}
                   </div>
 
                   {/* COMPANY NAME */}
@@ -697,23 +726,32 @@ Bentonville, Arkansas, 72712`,
                     <input
                       name="company"
                       type="text"
-                      placeholder="Company Name"
+                      placeholder="Company Name *"
                       value={form.company}
                       onChange={handleChange}
-                      className="h-[48px] w-full rounded-[12px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
+                      className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.company ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
                     />
+                    {errors.company && <span className="text-xs text-red-500 mt-1.5 block px-1">{errors.company}</span>}
                   </div>
 
                   {/* PHONE NUMBER */}
                   <div className="md:col-span-1">
-                    <input
-                      name="phone"
-                      type="text"
-                      placeholder="Phone Number *"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className={`h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
-                    />
+                    <div className={`flex h-[48px] w-full rounded-[12px] border bg-[#F7F9FC] text-[14.5px] text-[#111827] focus-within:bg-white focus-within:ring-4 focus-within:ring-[#2563EB]/10 transition-all ${errors.phone ? 'border-red-500 focus-within:border-red-500' : 'border-[#e2e8f0] focus-within:border-[#2563EB]'}`}>
+                      <SearchableCountrySelect
+                        value={form.countryCode}
+                        onChange={handleChange}
+                        className="w-[110px] sm:w-[120px] flex-shrink-0 border-r border-[#e2e8f0]"
+                      />
+                      <input
+                        name="phone"
+                        type="tel"
+                        placeholder="Phone Number *"
+                        value={form.phone}
+                        onChange={handleChange}
+                        className="flex-1 w-full bg-transparent px-4 placeholder:text-[#94a3b8] outline-none"
+                      />
+                    </div>
+                    {errors.phone && <span className="text-xs text-red-500 mt-1.5 block px-1">{errors.phone}</span>}
                   </div>
 
                   {/* DESIGNATION DROPDOWN */}
@@ -742,27 +780,30 @@ Bentonville, Arkansas, 72712`,
                   </div>
 
                   {/* SERVICE DROPDOWN */}
-                  <div className="md:col-span-2 relative">
-                    <select
-                      name="serviceInterested"
-                      value={form.serviceInterested}
-                      onChange={handleChange}
-                      className={`h-[48px] w-full appearance-none rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.serviceInterested ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
-                    >
-                      <option value="" disabled hidden>Select Service Area</option>
-                      <option value="Oracle Cloud Transformation">Oracle Cloud Transformation</option>
-                      <option value="AI & Automation CoE">AI & Automation CoE</option>
-                      <option value="Oracle Integration Cloud (OIC)">Oracle Integration Cloud (OIC)</option>
-                      <option value="Oracle Analytics Cloud (OAC)">Oracle Analytics Cloud (OAC)</option>
-                      <option value="Managed Services">Managed Services</option>
-                      <option value="Health Check & Advisory">Health Check & Advisory</option>
-                      <option value="Professional Staffing">Professional Staffing</option>
-                      <option value="Corporate Training">Corporate Training</option>
-                      <option value="Other">Other</option>
-                    </select>
-                    <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
-                      <ChevronDown className="h-5 w-5" />
+                  <div className="md:col-span-2">
+                    <div className="relative">
+                      <select
+                        name="serviceInterested"
+                        value={form.serviceInterested}
+                        onChange={handleChange}
+                        className={`h-[48px] w-full appearance-none rounded-[12px] border bg-[#F7F9FC] px-4 text-[14.5px] text-[#111827] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none ${errors.serviceInterested ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
+                      >
+                        <option value="" disabled hidden>Select Service Area</option>
+                        <option value="Oracle Cloud Transformation">Oracle Cloud Transformation</option>
+                        <option value="AI & Automation CoE">AI & Automation CoE</option>
+                        <option value="Oracle Integration Cloud (OIC)">Oracle Integration Cloud (OIC)</option>
+                        <option value="Oracle Analytics Cloud (OAC)">Oracle Analytics Cloud (OAC)</option>
+                        <option value="Managed Services">Managed Services</option>
+                        <option value="Health Check & Advisory">Health Check & Advisory</option>
+                        <option value="Professional Staffing">Professional Staffing</option>
+                        <option value="Corporate Training">Corporate Training</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#2563EB]">
+                        <ChevronDown className="h-5 w-5" />
+                      </div>
                     </div>
+                    {errors.serviceInterested && <span className="text-xs text-red-500 mt-1.5 block px-1">{errors.serviceInterested}</span>}
                   </div>
 
                   {/* MESSAGE TEXTAREA */}
@@ -774,6 +815,7 @@ Bentonville, Arkansas, 72712`,
                       onChange={handleChange}
                       className={`min-h-[100px] w-full rounded-[12px] border bg-[#F7F9FC] p-4 text-[14.5px] text-[#111827] placeholder:text-[#94a3b8] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none resize-y ${errors.message ? 'border-red-500 focus:border-red-500' : 'border-[#e2e8f0] focus:border-[#2563EB]'}`}
                     />
+                    {errors.message && <span className="text-xs text-red-500 mt-1.5 block px-1">{errors.message}</span>}
                   </div>
 
                   {submitError && (
@@ -789,7 +831,7 @@ Bentonville, Arkansas, 72712`,
                       disabled={isSubmitting}
                       className="inline-flex items-center justify-center gap-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-[#F97316] to-[#ea580c] px-8 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_10px_25px_rgba(249,115,22,0.25)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(249,115,22,0.35)] hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Inquiry'}
+                      {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                       <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -1269,7 +1311,13 @@ Bentonville, Arkansas, 72712`,
           </div>
         </div>
       </section>
-      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
+      <HealthCheckModal 
+        isOpen={isHealthCheckModalOpen} 
+        onClose={() => setIsHealthCheckModalOpen(false)}
+        title="Book a Consultation"
+        description="Fill out the details below to book your consultation with our Oracle Cloud experts."
+        source="Book Consultation"
+      />
     </motion.main>
   )
 }

@@ -7,7 +7,7 @@ function Footer() {
 
   const handleAskExpertClick = () => {
     if (location.pathname === '/contact') {
-      const element = document.getElementById('premium-inquiry')
+      const element = document.getElementById('premium-enquiry')
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       } else {
@@ -135,7 +135,7 @@ function Footer() {
             {/* Column 4: Ask an Expert & Partner Logo */}
             <div className="flex flex-col items-center md:items-start lg:items-center w-full lg:col-span-3">
               <Link 
-                to="/contact#premium-inquiry" 
+                to="/contact#premium-enquiry" 
                 onClick={handleAskExpertClick}
                 className="inline-block w-48 text-center py-2 bg-[#EA580C] hover:bg-[#c2410a] text-white text-sm font-semibold rounded-full transition-colors mb-6 shadow-md"
               >

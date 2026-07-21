@@ -354,7 +354,7 @@ function CloudAI() {
               At CloudStand, responsible AI is a foundational commitment embedded across every stage of the AI lifecycle. Building on our legacy of innovation since 1982, we prioritize ethical, secure, and transparent AI aligned with global regulations and best practices. Guided by our trust principles, we ensure privacy, fairness, human oversight, and social responsibility in every initiative. Through structured processes, we proactively manage ethical, legal, and operational risks. By staying mindful of potential risks and promoting a culture of awareness and accountability, we strive to ensure our AI solutions contribute positively and meaningfully. This ensures our AI solutions not only deliver value but also uphold the trust and integrity our customers expect.
             </p>
             <div className="mt-10 flex justify-center">
-              <Link to="/contact#premium-inquiry" className="inline-flex items-center gap-2 rounded-full bg-[#1e1b4b] px-8 py-4 font-semibold text-white transition-transform hover:-translate-y-1 hover:shadow-lg">
+              <Link to="/contact#premium-enquiry" className="inline-flex items-center gap-2 rounded-full bg-[#1e1b4b] px-8 py-4 font-semibold text-white transition-transform hover:-translate-y-1 hover:shadow-lg">
                 Start Your AI Journey <ArrowRight className="h-5 w-5" />
               </Link>
             </div>

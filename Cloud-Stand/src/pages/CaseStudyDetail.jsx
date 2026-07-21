@@ -343,7 +343,11 @@ function CaseStudyDetail() {
           </div>
         </div>
       </section>
-      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
+      <HealthCheckModal 
+        isOpen={isHealthCheckModalOpen} 
+        onClose={() => setIsHealthCheckModalOpen(false)}
+        source="Case Study Detail Page"
+      />
     </motion.main>
   )
 }

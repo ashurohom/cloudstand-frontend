@@ -300,7 +300,11 @@ function Services() {
         </div>
       </section>
 
-      <HealthCheckModal isOpen={isHealthCheckModalOpen} onClose={() => setIsHealthCheckModalOpen(false)} />
+      <HealthCheckModal 
+        isOpen={isHealthCheckModalOpen} 
+        onClose={() => setIsHealthCheckModalOpen(false)}
+        source="Services Page"
+      />
     </motion.main>
   )
 }

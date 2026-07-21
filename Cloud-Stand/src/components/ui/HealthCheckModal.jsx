@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { API_ENDPOINTS } from '../../config/api';
+import { countryCodes } from '../../data/countryCodes';
+import SearchableCountrySelect from './SearchableCountrySelect';
 
-function HealthCheckModal({ isOpen, onClose }) {
+function HealthCheckModal({ isOpen, onClose, source = 'Website', title = 'Schedule Health Check', description = 'Fill out the details below to request your free System Health Check Analysis.' }) {
   const [form, setForm] = useState({
     name: '',
     email: '',
+    countryCode: '',
     phone: '',
     company: '',
   });
@@ -25,12 +28,32 @@ function HealthCheckModal({ isOpen, onClose }) {
     e.preventDefault();
 
     const newErrors = {};
-    if (!form.name.trim()) newErrors.name = 'Full name is required';
-    if (!form.email.trim()) newErrors.email = 'Email is required';
     
+    if (!form.name.trim()) {
+      newErrors.name = 'Full name is required';
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (form.email && !emailPattern.test(form.email)) {
-      newErrors.email = 'Enter a valid email address';
+    if (!form.email.trim() || !emailPattern.test(form.email)) {
+      newErrors.email = 'Invalid Email';
+    }
+
+    const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/;
+    const phoneDigits = (form.countryCode + form.phone).replace(/\D/g, '');
+    if (!form.countryCode) {
+      newErrors.phone = 'Country code is required';
+    } else if (!form.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!phonePattern.test(form.phone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+      newErrors.phone = 'Enter a valid phone number';
+    }
+
+    if (!form.company.trim()) {
+      newErrors.company = 'Company name is required';
+    } else if (form.company.trim().length < 2) {
+      newErrors.company = 'Company name must be at least 2 characters';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -50,8 +73,9 @@ function HealthCheckModal({ isOpen, onClose }) {
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          phone: form.phone || '',
+          phone: `${form.countryCode} ${form.phone}`,
           company: form.company || '',
+          source: source,
         }),
       });
 
@@ -62,7 +86,7 @@ function HealthCheckModal({ isOpen, onClose }) {
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
-        setForm({ name: '', email: '', phone: '', company: '' });
+        setForm({ name: '', email: '', countryCode: '', phone: '', company: '' });
         onClose();
       }, 3000);
     } catch (error) {
@@ -104,13 +128,13 @@ function HealthCheckModal({ isOpen, onClose }) {
               ) : (
                 <>
                   <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-[#111827]">Schedule Health Check</h2>
+                    <h2 className="text-2xl font-bold text-[#111827]">{title}</h2>
                     <p className="mt-2 text-sm text-[#475569]">
-                      Fill out the details below to request your free system health check analysis.
+                      {description}
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="grid gap-4">
+                  <form onSubmit={handleSubmit} className="grid gap-4" noValidate>
                     <div>
                       <label className="mb-1.5 block text-sm font-medium text-[#111827]">Full Name *</label>
                       <input
@@ -142,27 +166,38 @@ function HealthCheckModal({ isOpen, onClose }) {
                     </div>
 
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-[#111827]">Phone Number</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleChange}
-                        className="h-[44px] w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition-all focus:border-[#0EA5E9] focus:bg-white"
-                        placeholder="+1 (555) 000-0000"
-                      />
+                      <label className="mb-1.5 block text-sm font-medium text-[#111827]">Phone Number *</label>
+                      <div className={`flex h-[44px] w-full rounded-xl border bg-slate-50 text-sm text-slate-900 focus-within:bg-white transition-all ${errors.phone ? 'border-red-500 focus-within:border-red-500' : 'border-slate-200 focus-within:border-[#0EA5E9]'}`}>
+                        <SearchableCountrySelect
+                          value={form.countryCode}
+                          onChange={handleChange}
+                          className="w-[100px] sm:w-[110px] flex-shrink-0 border-r border-slate-200"
+                        />
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={form.phone}
+                          onChange={handleChange}
+                          className="flex-1 w-full bg-transparent px-4 outline-none"
+                          placeholder="Phone Number *"
+                        />
+                      </div>
+                      {errors.phone && <span className="text-xs text-red-500 mt-1 block">{errors.phone}</span>}
                     </div>
 
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-[#111827]">Company Name</label>
+                      <label className="mb-1.5 block text-sm font-medium text-[#111827]">Company Name *</label>
                       <input
                         type="text"
                         name="company"
                         value={form.company}
                         onChange={handleChange}
-                        className="h-[44px] w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition-all focus:border-[#0EA5E9] focus:bg-white"
+                        className={`h-[44px] w-full rounded-xl border bg-slate-50 px-4 text-sm text-slate-900 outline-none transition-all focus:bg-white ${
+                          errors.company ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-[#0EA5E9]'
+                        }`}
                         placeholder="Acme Inc."
                       />
+                      {errors.company && <span className="text-xs text-red-500 mt-1 block">{errors.company}</span>}
                     </div>
 
                     {submitError && (

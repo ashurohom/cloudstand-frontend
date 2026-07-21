@@ -508,7 +508,7 @@ function ServiceDetail() {
                     type="button"
                     className="group inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#0EA5E9] px-7 text-sm font-bold uppercase tracking-[0.16em] text-white transition-all duration-300 hover:bg-[#EA580C] hover:shadow-[0_12px_30px_rgba(234,88,12,0.25)]"
                   >
-                    Send Inquiry
+                    Send Enquiry
 
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-all duration-300 group-hover:translate-x-1">
                       <Mail className="h-4 w-4" />

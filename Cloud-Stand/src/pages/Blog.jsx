@@ -21,6 +21,8 @@ import SectionTitle from '../components/ui/SectionTitle'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { pageVariants, staggerContainer, staggerItem } from '../animations/variants'
 import { API_ENDPOINTS } from '../config/api'
+import { countryCodes } from '../data/countryCodes'
+import SearchableCountrySelect from '../components/ui/SearchableCountrySelect'
 
 const quarterlyUpdates = [
   {
@@ -281,6 +283,7 @@ function Blog() {
     firstName: '',
     lastName: '',
     email: '',
+    countryCode: '',
     phone: '',
     linkedin: '',
     currentRole: '',
@@ -305,6 +308,7 @@ function Blog() {
         firstName: '',
         lastName: '',
         email: '',
+        countryCode: '',
         phone: '',
         linkedin: '',
         currentRole: '',
@@ -321,10 +325,18 @@ function Blog() {
     const newErrors = {}
     if (!regForm.firstName.trim()) newErrors.firstName = 'Required'
     
-    if (!regForm.email.trim()) {
-      newErrors.email = 'Required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
-      newErrors.email = 'Invalid'
+    if (!regForm.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email)) {
+      newErrors.email = 'Invalid Email'
+    }
+
+    const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/;
+    const phoneDigits = (regForm.countryCode + regForm.phone).replace(/\D/g, '');
+    if (!regForm.countryCode) {
+      newErrors.phone = 'Country code is required';
+    } else if (!regForm.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!phonePattern.test(regForm.phone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+      newErrors.phone = 'Enter a valid phone number';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -344,7 +356,7 @@ function Blog() {
           first_name: regForm.firstName,
           last_name: regForm.lastName,
           email: regForm.email,
-          phone: regForm.phone,
+          phone: `${regForm.countryCode} ${regForm.phone}`,
           linkedin_url: regForm.linkedin,
           current_role: regForm.currentRole,
           area_of_interest: regForm.areaOfInterest,
@@ -385,8 +397,12 @@ function Blog() {
 
   const handleSubscribe = async (e) => {
     e.preventDefault()
-    if (email.trim() !== '') {
-      setSubscribing(true)
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setSubscribeError('Invalid Email')
+      return
+    }
+    
+    setSubscribing(true)
       setSubscribeError('')
       try {
         const endpoint = API_ENDPOINTS.newsletterSubscribe || '/api/newsletter-subscribe/'
@@ -420,7 +436,6 @@ function Blog() {
       } finally {
         setSubscribing(false)
       }
-    }
   }
 
   return (
@@ -474,7 +489,7 @@ function Blog() {
                   initial={{ opacity: 0, y: 25 }}
                   transition={{ duration: 0.7, delay: 0.1 }}
                 >
-                  Enterprise Cloud Transformation & <span className="text-[#EA580C]">Expert Webinars</span>
+                  Enterprise Cloud Transformation & Expert Webinars
                 </motion.h1>
 
                 <motion.p
@@ -485,7 +500,7 @@ function Blog() {
                 >
                   Explore our latest research, industry perspectives, and technical roadmaps on Oracle Cloud implementations, AI adoption, and ERP modernization.
                   <br /><br />
-                  We regularly host <span className="font-semibold text-[#EA580C]">live expert-led webinars</span> to share these exclusive insights. Stay tuned for our upcoming schedule!
+                  We regularly host live expert-led webinars to share these exclusive insights. Stay tuned for our upcoming schedule!
                 </motion.p>
               </div>
 
@@ -953,6 +968,7 @@ function Blog() {
                   {!subscribed ? (
                     <motion.form 
                       onSubmit={handleSubscribe}
+                      noValidate
                       key="form"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -1049,7 +1065,7 @@ function Blog() {
                       </p>
                     </div>
 
-                    <form onSubmit={handleRegSubmit} className="grid gap-2 md:grid-cols-2">
+                    <form onSubmit={handleRegSubmit} className="grid gap-2 md:grid-cols-2" noValidate>
                       {/* BASIC INFORMATION SECTION HEADER */}
                       <div className="md:col-span-2">
                         <h3 className="text-[12px] font-bold text-slate-500 uppercase tracking-widest">Basic Information</h3>
@@ -1065,6 +1081,7 @@ function Blog() {
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.firstName ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
                         />
+                        {regErrors.firstName && <span className="text-xs text-red-500 mt-1 block">{regErrors.firstName}</span>}
                       </div>
 
                       {/* LAST NAME */}
@@ -1089,18 +1106,27 @@ function Blog() {
                           onChange={handleRegChange}
                           className={`h-[44px] w-full rounded-[10px] border ${regErrors.email ? 'border-red-400' : 'border-[#e2e8f0]'} bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none`}
                         />
+                        {regErrors.email && <span className="text-xs text-red-500 mt-1 block">{regErrors.email}</span>}
                       </div>
 
                       {/* PHONE NUMBER */}
                       <div className="md:col-span-1">
-                        <input
-                          name="phone"
-                          type="text"
-                          placeholder="Contact Number"
-                          value={regForm.phone}
-                          onChange={handleRegChange}
-                          className="h-[44px] w-full rounded-[10px] border border-[#e2e8f0] bg-[#F7F9FC] px-4 text-[14px] text-[#111827] placeholder:text-[#94a3b8] focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-[#2563EB]/10 transition-all outline-none"
-                        />
+                        <div className={`flex h-[44px] w-full rounded-[10px] border bg-[#F7F9FC] text-[14px] text-[#111827] focus-within:bg-white focus-within:ring-4 focus-within:ring-[#2563EB]/10 transition-all ${regErrors.phone ? 'border-red-400 focus-within:border-red-400' : 'border-[#e2e8f0] focus-within:border-[#2563EB]'}`}>
+                          <SearchableCountrySelect
+                            value={regForm.countryCode}
+                            onChange={handleRegChange}
+                            className="w-[100px] sm:w-[110px] flex-shrink-0 border-r border-[#e2e8f0]"
+                          />
+                          <input
+                            name="phone"
+                            type="tel"
+                            placeholder="Contact Number *"
+                            value={regForm.phone}
+                            onChange={handleRegChange}
+                            className="flex-1 w-full bg-transparent px-4 placeholder:text-[#94a3b8] outline-none"
+                          />
+                        </div>
+                        {regErrors.phone && <span className="text-xs text-red-500 mt-1 block">{regErrors.phone}</span>}
                       </div>
 
                       {/* LINKEDIN */}

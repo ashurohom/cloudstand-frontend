@@ -1,0 +1,6 @@
+# Allow all search engine crawlers to access the public pages
+User-agent: *
+Allow: /
+
+# Reference to the sitemap for better crawling and indexing
+Sitemap: https://www.cloudstandconsulting.com/sitemap.xml

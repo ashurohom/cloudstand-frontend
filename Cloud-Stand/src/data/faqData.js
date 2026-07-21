@@ -123,5 +123,5 @@ export const faqTopicOptions = [
   'Service Information',
   'Engagement & Process',
   'Technical Support',
-  'General Inquiry',
+  'General Enquiry',
 ]

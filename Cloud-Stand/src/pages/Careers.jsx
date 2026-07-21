@@ -11,6 +11,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle'
 import { jobs as fallbackJobs } from '../data/jobs'
 import { API_ENDPOINTS } from '../config/api'
 import { iconPop, pageVariants, staggerContainer, staggerItem } from '../animations/variants'
+import SearchableCountrySelect from '../components/ui/SearchableCountrySelect'
 
 const perks = [
   { icon: Laptop, title: 'Remote Friendly', text: 'Flexible collaboration model for focused delivery and better work rhythms.' },
@@ -48,7 +49,7 @@ function Careers() {
   const [openRoles, setOpenRoles] = useState([])
   const [rolesLoading, setRolesLoading] = useState(true)
   
-  const [appForm, setAppForm] = useState({ name: '', email: '', linkedin: '', phone: '', experience: '', coverNote: '' })
+  const [appForm, setAppForm] = useState({ name: '', email: '', linkedin: '', countryCode: '', phone: '', experience: '', coverNote: '' })
   const [appErrors, setAppErrors] = useState({})
   const [appSubmitted, setAppSubmitted] = useState(false)
   const [appSubmitting, setAppSubmitting] = useState(false)
@@ -57,7 +58,7 @@ function Careers() {
   const closeAppModal = () => {
     setIsModalOpen(false)
     setTimeout(() => {
-      setAppForm({ name: '', email: '', linkedin: '', phone: '', experience: '', coverNote: '' })
+      setAppForm({ name: '', email: '', linkedin: '', countryCode: '', phone: '', experience: '', coverNote: '' })
       setResumeFile(null)
       setAppErrors({})
       setAppSubmitted(false)
@@ -69,8 +70,19 @@ function Careers() {
   const handleAppSubmit = async () => {
     const newErrors = {}
     if (!appForm.name.trim()) newErrors.name = 'Required'
-    if (!appForm.email.trim()) newErrors.email = 'Required'
+    if (!appForm.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(appForm.email)) newErrors.email = 'Invalid Email'
     if (!appForm.linkedin.trim()) newErrors.linkedin = 'Required'
+    
+    const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/;
+    const phoneDigits = (appForm.countryCode + appForm.phone).replace(/\D/g, '');
+    if (!appForm.countryCode) {
+      newErrors.phone = 'Country code is required'
+    } else if (!appForm.phone.trim()) {
+      newErrors.phone = 'Phone number is required'
+    } else if (!phonePattern.test(appForm.phone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+      newErrors.phone = 'Enter a valid phone number'
+    }
+
     if (!appForm.experience) newErrors.experience = 'Required'
     if (!resumeFile) newErrors.resume = 'Required'
 
@@ -88,7 +100,7 @@ function Careers() {
       formData.append('role_title', selectedRole)
       formData.append('name', appForm.name)
       formData.append('email', appForm.email)
-      if (appForm.phone) formData.append('phone', appForm.phone)
+      formData.append('phone', `${appForm.countryCode} ${appForm.phone}`)
       formData.append('experience', appForm.experience)
       formData.append('linkedin_url', appForm.linkedin)
       if (appForm.coverNote) formData.append('cover_note', appForm.coverNote)
@@ -605,6 +617,7 @@ function Careers() {
                   }}
                   className={`h-[40px] w-full rounded-[10px] border bg-slate-50 px-3 text-[13px] outline-none transition-all focus:bg-white ${appErrors.name ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-[#0EA5E9]'}`} 
                 />
+                {appErrors.name && <span className="text-xs text-red-500 mt-1 block">{appErrors.name}</span>}
               </div>
 
               {/* EMAIL */}
@@ -620,23 +633,39 @@ function Careers() {
                   }}
                   className={`h-[40px] w-full rounded-[10px] border bg-slate-50 px-3 text-[13px] outline-none transition-all focus:bg-white ${appErrors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-[#0EA5E9]'}`} 
                 />
+                {appErrors.email && <span className="text-xs text-red-500 mt-1 block">{appErrors.email}</span>}
               </div>
 
               {/* PHONE */}
               <div>
-                <label className="mb-1 block text-[12px] font-medium text-[#111827]">Phone Number</label>
-                <input 
-                  type="tel" 
-                  placeholder="+1 (555) 000-0000" 
-                  value={appForm.phone}
-                  onChange={(e) => setAppForm(prev => ({...prev, phone: e.target.value}))}
-                  className="h-[40px] w-full rounded-[10px] border border-slate-200 bg-slate-50 px-3 text-[13px] outline-none transition-all focus:border-[#0EA5E9] focus:bg-white" 
-                />
+                <label className="mb-1 block text-[12px] font-medium text-[#111827]">Phone Number *</label>
+                <div className={`flex h-[40px] w-full rounded-[10px] border bg-slate-50 text-[13px] focus-within:bg-white transition-all ${appErrors.phone ? 'border-red-500 focus-within:border-red-500' : 'border-slate-200 focus-within:border-[#0EA5E9]'}`}>
+                  <SearchableCountrySelect
+                    value={appForm.countryCode}
+                    onChange={(e) => {
+                      setAppForm(prev => ({...prev, countryCode: e.target.value}))
+                      setAppErrors(prev => ({...prev, phone: ''}))
+                    }}
+                    className="w-[90px] sm:w-[100px] flex-shrink-0 border-r border-slate-200"
+                  />
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    value={appForm.phone}
+                    onChange={(e) => {
+                      setAppForm(prev => ({...prev, phone: e.target.value}))
+                      setAppErrors(prev => ({...prev, phone: ''}))
+                    }}
+                    className="flex-1 w-full bg-transparent px-3 outline-none" 
+                  />
+                </div>
+                {appErrors.phone && <span className="text-xs text-red-500 mt-1 block">{appErrors.phone}</span>}
               </div>
 
               {/* EXPERIENCE */}
-              <div className="relative">
+              <div>
                 <label className="mb-1 block text-[12px] font-medium text-[#111827]">Years of Experience *</label>
+                <div className="relative">
                 <select 
                   value={appForm.experience}
                   onChange={(e) => {
@@ -654,6 +683,8 @@ function Careers() {
                 <div className="pointer-events-none absolute bottom-3 right-3 text-slate-400">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
                 </div>
+                </div>
+                {appErrors.experience && <span className="text-xs text-red-500 mt-1 block">{appErrors.experience}</span>}
               </div>
 
               {/* LINKEDIN */}
@@ -669,6 +700,7 @@ function Careers() {
                   }}
                   className={`h-[40px] w-full rounded-[10px] border bg-slate-50 px-3 text-[13px] outline-none transition-all focus:bg-white ${appErrors.linkedin ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-[#0EA5E9]'}`} 
                 />
+                {appErrors.linkedin && <span className="text-xs text-red-500 mt-1 block">{appErrors.linkedin}</span>}
               </div>
 
               {/* COVER NOTE */}
@@ -690,7 +722,8 @@ function Careers() {
               )}
 
               {/* SUBMIT SECTION */}
-              <div className="md:col-span-2 mt-1 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="md:col-span-2 mt-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex flex-col">
                 <label className={`group flex cursor-pointer items-center gap-2 rounded-full border bg-slate-50 px-5 py-2 text-[13px] font-semibold transition-colors hover:bg-white ${appErrors.resume ? 'border-red-500 text-red-600 hover:border-red-600 hover:text-red-600' : 'border-slate-200 text-slate-700 hover:border-[#0EA5E9] hover:text-[#0EA5E9]'}`}>
                   <svg className={`h-4 w-4 transition-transform group-hover:-translate-y-0.5 shrink-0 ${appErrors.resume ? 'text-red-500' : 'text-[#0EA5E9]'}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/></svg>
                   <span className="truncate max-w-[150px]">{resumeFile ? resumeFile.name : 'Attach Resume'}</span>
@@ -706,6 +739,8 @@ function Careers() {
                     }}
                   />
                 </label>
+                {appErrors.resume && <span className="text-xs text-red-500 mt-1 ml-2 block">{appErrors.resume}</span>}
+                </div>
                 <button 
                   onClick={handleAppSubmit}
                   type="button" 

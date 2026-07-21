@@ -83,10 +83,9 @@ function CaseStudies() {
             className="relative lg:ml-auto w-full max-w-lg flex items-center justify-center"
           >
             <img 
-              src="/CaseStudies/casestudies_hero_white.png" 
+              src="/CaseStudies/casestudies_hero_final.png" 
               alt="Case Studies Hero" 
               className="w-full h-auto object-contain scale-100 lg:scale-110 mix-blend-darken"
-              style={{ filter: 'brightness(1.05) contrast(1.15)' }}
             />
           </motion.div>
         </div>
